@@ -72,118 +72,134 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              PinCodeTextField(
-                                autoDisposeControllers: false,
-                                appContext: context,
-                                length: 6,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  PinCodeTextField(
+                                    autoDisposeControllers: false,
+                                    appContext: context,
+                                    length: 6,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    enableActiveFill: false,
+                                    autoFocus: true,
+                                    enablePinAutofill: false,
+                                    errorTextSpace: 16.0,
+                                    showCursor: true,
+                                    cursorColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    obscureText: false,
+                                    hintCharacter: '●',
+                                    keyboardType: TextInputType.number,
+                                    pinTheme: PinTheme(
+                                      fieldHeight: 44.0,
+                                      fieldWidth: 44.0,
+                                      borderWidth: 2.0,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(12.0),
+                                        bottomRight: Radius.circular(12.0),
+                                        topLeft: Radius.circular(12.0),
+                                        topRight: Radius.circular(12.0),
+                                      ),
+                                      shape: PinCodeFieldShape.box,
+                                      activeColor: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      inactiveColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      selectedColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      activeFillColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                      inactiveFillColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      selectedFillColor:
+                                          FlutterFlowTheme.of(context).primary,
                                     ),
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                enableActiveFill: false,
-                                autoFocus: true,
-                                enablePinAutofill: false,
-                                errorTextSpace: 16.0,
-                                showCursor: true,
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                obscureText: false,
-                                hintCharacter: '●',
-                                keyboardType: TextInputType.number,
-                                pinTheme: PinTheme(
-                                  fieldHeight: 44.0,
-                                  fieldWidth: 44.0,
-                                  borderWidth: 2.0,
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(12.0),
-                                    bottomRight: Radius.circular(12.0),
-                                    topLeft: Radius.circular(12.0),
-                                    topRight: Radius.circular(12.0),
+                                    controller: _model.pinCodeController,
+                                    onChanged: (_) {},
+                                    autovalidateMode: AutovalidateMode.disabled,
+                                    validator: _model.pinCodeControllerValidator
+                                        .asValidator(context),
                                   ),
-                                  shape: PinCodeFieldShape.box,
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  inactiveColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  selectedColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeFillColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  inactiveFillColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  selectedFillColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                ),
-                                controller: _model.pinCodeController,
-                                onChanged: (_) {},
-                                autovalidateMode: AutovalidateMode.disabled,
-                                validator: _model.pinCodeControllerValidator
-                                    .asValidator(context),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  if (_model.formKey.currentState == null ||
-                                      !_model.formKey.currentState!
-                                          .validate()) {
-                                    return;
-                                  }
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  final smsCodeVal =
-                                      _model.pinCodeController!.text;
-                                  if (smsCodeVal == null ||
-                                      smsCodeVal.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Enter SMS verification code.'),
-                                      ),
-                                    );
-                                    return;
-                                  }
-                                  final phoneVerifiedUser =
-                                      await authManager.verifySmsCode(
-                                    context: context,
-                                    smsCode: smsCodeVal,
-                                  );
-                                  if (phoneVerifiedUser == null) {
-                                    return;
-                                  }
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      if (_model.formKey.currentState == null ||
+                                          !_model.formKey.currentState!
+                                              .validate()) {
+                                        return;
+                                      }
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final smsCodeVal =
+                                          _model.pinCodeController!.text;
+                                      if (smsCodeVal == null ||
+                                          smsCodeVal.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                'Enter SMS verification code.'),
+                                          ),
+                                        );
+                                        return;
+                                      }
+                                      final phoneVerifiedUser =
+                                          await authManager.verifySmsCode(
+                                        context: context,
+                                        smsCode: smsCodeVal,
+                                      );
+                                      if (phoneVerifiedUser == null) {
+                                        return;
+                                      }
 
-                                  context.goNamedAuth(
-                                      'HomePage', context.mounted);
-                                },
-                                text: 'ยืนยัน',
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
+                                      context.goNamedAuth(
+                                          'HomePage', context.mounted);
+                                    },
+                                    text: 'ยืนยัน',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 50.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
                                       ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
-                                ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
