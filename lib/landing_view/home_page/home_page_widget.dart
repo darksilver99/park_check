@@ -393,8 +393,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           width: 100.0,
                           height: 50.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: FlutterFlowTheme.of(context).secondary,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(24.0),
                               bottomRight: Radius.circular(0.0),
@@ -419,8 +418,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Icon(
                                     Icons.download_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: FlutterFlowTheme.of(context).info,
                                     size: 24.0,
                                   ),
                                 ),
@@ -431,6 +429,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -452,8 +453,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           width: 100.0,
                           height: 50.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(24.0),
@@ -488,8 +488,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Icon(
                                     Icons.upload_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: FlutterFlowTheme.of(context).info,
                                     size: 24.0,
                                   ),
                                 ),
@@ -500,6 +499,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
