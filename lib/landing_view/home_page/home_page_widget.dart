@@ -39,7 +39,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
-      if (!(_model.projectData?.reference != null)) {
+      if (_model.projectData?.reference != null) {
+        FFAppState().projectName = _model.projectData!.name;
+        setState(() {});
+      } else {
         context.goNamed('CreateProjectPage');
       }
     });
@@ -54,6 +57,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
