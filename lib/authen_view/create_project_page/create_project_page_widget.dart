@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -166,18 +167,46 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                         return;
                                       }
 
-                                      await ProjectListRecord.collection
-                                          .doc()
+                                      var projectListRecordReference =
+                                          ProjectListRecord.collection.doc();
+                                      await projectListRecordReference
                                           .set(createProjectListRecordData(
-                                            createDate: getCurrentTimestamp,
-                                            createBy: currentUserReference,
-                                            name: _model.textController.text,
-                                            status: 1,
-                                          ));
-                                      FFAppState().projectName =
-                                          _model.textController.text;
+                                        createDate: getCurrentTimestamp,
+                                        createBy: currentUserReference,
+                                        name: _model.textController.text,
+                                        status: 1,
+                                      ));
+                                      _model.projectInserted =
+                                          ProjectListRecord.getDocumentFromData(
+                                              createProjectListRecordData(
+                                                createDate: getCurrentTimestamp,
+                                                createBy: currentUserReference,
+                                                name:
+                                                    _model.textController.text,
+                                                status: 1,
+                                              ),
+                                              projectListRecordReference);
+                                      FFAppState().projectData =
+                                          ProjectDataStruct(
+                                        projectDocID: _model
+                                            .projectInserted?.reference.id,
+                                        projectName: _model.textController.text,
+                                        projectStampList: [
+                                          'ประทับตรา',
+                                          'ไม่ประทับตรา'
+                                        ],
+                                        projectObjectiveList: [
+                                          'รับ-ส่งลูกบ้าน',
+                                          'ติดต่อลูกบ้าน',
+                                          'นิติบุคคล',
+                                          'ช่างซ่อมบำรุง',
+                                          'ส่งอาหาร-พัสดุ'
+                                        ],
+                                      );
 
                                       context.goNamed('HomePage');
+
+                                      setState(() {});
                                     },
                                     text: 'สร้างโครงการ',
                                     options: FFButtonOptions(

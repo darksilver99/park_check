@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';

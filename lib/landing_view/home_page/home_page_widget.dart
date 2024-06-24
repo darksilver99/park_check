@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
@@ -45,7 +46,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.projectData?.reference != null) {
-        FFAppState().projectName = _model.projectData!.name;
+        FFAppState().projectData = ProjectDataStruct(
+          projectDocID: _model.projectData?.reference.id,
+          projectName: _model.projectData?.name,
+          projectStampList: _model.projectData?.stampList,
+          projectObjectiveList: _model.projectData?.objectiveList,
+        );
         setState(() {});
       } else {
         context.goNamed('CreateProjectPage');
@@ -83,8 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainBackgroundViewWidget(),
               ),
-              if (FFAppState().projectName != null &&
-                  FFAppState().projectName != '')
+              if (FFAppState().projectData != null)
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -100,7 +105,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 8.0, 8.0),
+                              12.0, 8.0, 12.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -305,7 +310,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'ทะเบียน : ถถถถถ นคร',
+                                                  'ทะเบียน : ${listViewTransactionListRecord.carRegistration}',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -320,7 +325,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 Expanded(
                                                   child: Text(
-                                                    'นาย aaa bbb',
+                                                    '${listViewTransactionListRecord.preName} ${listViewTransactionListRecord.firstName} ${listViewTransactionListRecord.lastName}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -333,7 +338,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  'เวลาเข้า : 18.00 น.',
+                                                  'เวลาเข้า : ${dateTimeFormat('d/M/y', listViewTransactionListRecord.dateIn)}',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -360,7 +365,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 size: 24.0,
                                               ),
                                               Text(
-                                                'รายละเอียด\nเพิ่มเติม',
+                                                'ดูรายละเอียด',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)

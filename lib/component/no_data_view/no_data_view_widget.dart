@@ -41,7 +41,7 @@ class _NoDataViewWidgetState extends State<NoDataViewWidget> {
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: Color(0xCCFFFFFF),
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(32.0, 32.0, 32.0, 32.0),
