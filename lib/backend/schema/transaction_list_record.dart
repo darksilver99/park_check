@@ -93,7 +93,7 @@ class TransactionListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('project_list/${FFAppState().projectName}/transaction_list');
+      FirebaseFirestore.instance.collection('project_list/${FFAppState().projectData.projectName}/transaction_list');
 
   static Stream<TransactionListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => TransactionListRecord.fromSnapshot(s));
