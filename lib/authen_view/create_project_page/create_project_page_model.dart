@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,6 +29,9 @@ class CreateProjectPageModel extends FlutterFlowModel<CreateProjectPageWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  ProjectListRecord? projectInserted;
 
   @override
   void initState(BuildContext context) {

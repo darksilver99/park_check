@@ -73,7 +73,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         ),
                       ),
                       Text(
-                        'ProjectName : ${FFAppState().projectName}',
+                        'ProjectName : ${FFAppState().projectData.projectName}',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -19,7 +20,15 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _projectName = prefs.getString('ff_projectName') ?? _projectName;
+      if (prefs.containsKey('ff_projectData')) {
+        try {
+          final serializedData = prefs.getString('ff_projectData') ?? '{}';
+          _projectData =
+              ProjectDataStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
     });
   }
 
@@ -30,11 +39,16 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _projectName = '';
-  String get projectName => _projectName;
-  set projectName(String value) {
-    _projectName = value;
-    prefs.setString('ff_projectName', value);
+  ProjectDataStruct _projectData = ProjectDataStruct();
+  ProjectDataStruct get projectData => _projectData;
+  set projectData(ProjectDataStruct value) {
+    _projectData = value;
+    prefs.setString('ff_projectData', value.serialize());
+  }
+
+  void updateProjectDataStruct(Function(ProjectDataStruct) updateFn) {
+    updateFn(_projectData);
+    prefs.setString('ff_projectData', _projectData.serialize());
   }
 }
 

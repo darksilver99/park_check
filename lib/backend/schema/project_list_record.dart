@@ -26,21 +26,33 @@ class ProjectListRecord extends FirestoreRecord {
   DocumentReference? get createBy => _createBy;
   bool hasCreateBy() => _createBy != null;
 
-  // "name" field.
-  String? _name;
-  String get name => _name ?? '';
-  bool hasName() => _name != null;
-
   // "status" field.
   int? _status;
   int get status => _status ?? 0;
   bool hasStatus() => _status != null;
 
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  bool hasName() => _name != null;
+
+  // "objective_list" field.
+  List<String>? _objectiveList;
+  List<String> get objectiveList => _objectiveList ?? const [];
+  bool hasObjectiveList() => _objectiveList != null;
+
+  // "stamp_list" field.
+  List<String>? _stampList;
+  List<String> get stampList => _stampList ?? const [];
+  bool hasStampList() => _stampList != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
-    _name = snapshotData['name'] as String?;
     _status = castToType<int>(snapshotData['status']);
+    _name = snapshotData['name'] as String?;
+    _objectiveList = getDataList(snapshotData['objective_list']);
+    _stampList = getDataList(snapshotData['stamp_list']);
   }
 
   static CollectionReference get collection =>
@@ -80,15 +92,15 @@ class ProjectListRecord extends FirestoreRecord {
 Map<String, dynamic> createProjectListRecordData({
   DateTime? createDate,
   DocumentReference? createBy,
-  String? name,
   int? status,
+  String? name,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'create_date': createDate,
       'create_by': createBy,
-      'name': name,
       'status': status,
+      'name': name,
     }.withoutNulls,
   );
 
@@ -100,15 +112,24 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
 
   @override
   bool equals(ProjectListRecord? e1, ProjectListRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.createDate == e2?.createDate &&
         e1?.createBy == e2?.createBy &&
+        e1?.status == e2?.status &&
         e1?.name == e2?.name &&
-        e1?.status == e2?.status;
+        listEquality.equals(e1?.objectiveList, e2?.objectiveList) &&
+        listEquality.equals(e1?.stampList, e2?.stampList);
   }
 
   @override
-  int hash(ProjectListRecord? e) => const ListEquality()
-      .hash([e?.createDate, e?.createBy, e?.name, e?.status]);
+  int hash(ProjectListRecord? e) => const ListEquality().hash([
+        e?.createDate,
+        e?.createBy,
+        e?.status,
+        e?.name,
+        e?.objectiveList,
+        e?.stampList
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ProjectListRecord;

@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -30,7 +31,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().projectName = '';
+      FFAppState().projectData = ProjectDataStruct();
     });
 
     _model.textController ??= TextEditingController();

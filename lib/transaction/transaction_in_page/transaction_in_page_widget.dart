@@ -29,8 +29,23 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
     super.initState();
     _model = createModel(context, () => TransactionInPageModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.textController4 ??= TextEditingController();
+    _model.textFieldFocusNode4 ??= FocusNode();
+
+    _model.textController5 ??= TextEditingController();
+    _model.textFieldFocusNode5 ??= FocusNode();
+
+    _model.textController6 ??= TextEditingController();
+    _model.textFieldFocusNode6 ??= FocusNode();
   }
 
   @override
@@ -67,7 +82,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
             },
           ),
           title: Text(
-            'Page Title',
+            'ลงทะเบียนรถเข้า',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -93,13 +108,107 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 4.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'ถ่ายรูปทะเบียนรถ',
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 0.0, 0.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'ถ่ายรูปบัตร',
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 4.0),
+                          child: Text(
+                            'ข้อมูลผู้จอดรถ',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
+                            controller: _model.textController1,
+                            focusNode: _model.textFieldFocusNode1,
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -152,9 +261,359 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model.textControllerValidator
+                            validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController2,
+                            focusNode: _model.textFieldFocusNode2,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'ชื่อ',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController2Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController3,
+                            focusNode: _model.textFieldFocusNode3,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'นามสกุล',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController3Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController4,
+                            focusNode: _model.textFieldFocusNode4,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'เลขประจำตัวประชาชน',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController4Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 4.0),
+                          child: Text(
+                            'ข้อมูลรถ',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController5,
+                            focusNode: _model.textFieldFocusNode5,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'ทะเบียนรถ',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController5Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController6,
+                            focusNode: _model.textFieldFocusNode6,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'จังหวัด',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController6Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 4.0),
+                          child: Text(
+                            'วัตถุประสงค์',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).alternate,
                         ),
                         FFButtonWidget(
                           onPressed: () async {
@@ -168,7 +627,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 .set(createTransactionListRecordData(
                                   createDate: getCurrentTimestamp,
                                   cardNumber: '1',
-                                  preName: _model.textController.text,
+                                  preName: _model.textController1.text,
                                   firstName: '2',
                                   lastName: '3',
                                   carRegistration: '4',
