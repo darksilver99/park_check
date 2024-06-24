@@ -174,7 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 },
                                 text: 'ค้นหา',
                                 options: FFButtonOptions(
-                                  height: 50.0,
+                                  height: 58.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -187,7 +187,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         color: Colors.white,
                                         letterSpacing: 0.0,
                                       ),
-                                  elevation: 3.0,
+                                  elevation: 0.0,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
