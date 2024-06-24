@@ -7,25 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'login_page_model.dart';
-export 'login_page_model.dart';
+import 'create_project_page_model.dart';
+export 'create_project_page_model.dart';
 
-class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({super.key});
+class CreateProjectPageWidget extends StatefulWidget {
+  const CreateProjectPageWidget({super.key});
 
   @override
-  State<LoginPageWidget> createState() => _LoginPageWidgetState();
+  State<CreateProjectPageWidget> createState() =>
+      _CreateProjectPageWidgetState();
 }
 
-class _LoginPageWidgetState extends State<LoginPageWidget> {
-  late LoginPageModel _model;
+class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
+  late CreateProjectPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LoginPageModel());
+    _model = createModel(context, () => CreateProjectPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -96,7 +97,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'เบอร์โทรศัพท์',
+                                    labelText: 'ระบุชื่อโครงการ',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -151,7 +152,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
                                       ),
-                                  keyboardType: TextInputType.phone,
                                   validator: _model.textControllerValidator
                                       .asValidator(context),
                                 ),
@@ -188,7 +188,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     },
                                   );
                                 },
-                                text: 'เข้าใช้งาน',
+                                text: 'สร้างโครงการ',
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 50.0,

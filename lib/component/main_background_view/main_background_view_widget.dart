@@ -57,7 +57,7 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
             height: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0x61000000), Color(0xD6000000)],
+                colors: [Color(0x61FFFFFF), Color(0x53FFFFFF)],
                 stops: [0.0, 1.0],
                 begin: AlignmentDirectional(0.0, -1.0),
                 end: AlignmentDirectional(0, 1.0),
