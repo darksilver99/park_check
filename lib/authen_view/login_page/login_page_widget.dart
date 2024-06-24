@@ -3,6 +3,7 @@ import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().customerName = '';
+      FFAppState().projectName = '';
     });
 
     _model.textController ??= TextEditingController();
@@ -163,6 +164,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           .validate()) {
                                     return;
                                   }
+                                  setState(() {
+                                    _model.textController?.text =
+                                        functions.convertPhoneNumber(
+                                            _model.textController.text);
+                                    _model.textController?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .textController!.text.length);
+                                  });
                                   final phoneNumberVal =
                                       _model.textController.text;
                                   if (phoneNumberVal == null ||

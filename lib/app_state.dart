@@ -19,7 +19,7 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _customerName = prefs.getString('ff_customerName') ?? _customerName;
+      _projectName = prefs.getString('ff_projectName') ?? _projectName;
     });
   }
 
@@ -30,11 +30,11 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _customerName = '';
-  String get customerName => _customerName;
-  set customerName(String value) {
-    _customerName = value;
-    prefs.setString('ff_customerName', value);
+  String _projectName = '';
+  String get projectName => _projectName;
+  set projectName(String value) {
+    _projectName = value;
+    prefs.setString('ff_projectName', value);
   }
 }
 

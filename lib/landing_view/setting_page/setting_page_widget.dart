@@ -36,6 +36,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -50,6 +52,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AuthUserStreamWidget(
                     builder: (context) => Text(
@@ -59,6 +62,13 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                             letterSpacing: 0.0,
                           ),
                     ),
+                  ),
+                  Text(
+                    'ProjectName : ${FFAppState().projectName}',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
                   ),
                   FFButtonWidget(
                     onPressed: () async {

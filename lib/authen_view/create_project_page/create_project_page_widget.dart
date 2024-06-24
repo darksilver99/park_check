@@ -1,10 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_project_page_model.dart';
@@ -28,15 +29,8 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
     super.initState();
     _model = createModel(context, () => CreateProjectPageModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().customerName = '';
-    });
-
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    authManager.handlePhoneAuthStateChanges(context);
   }
 
   @override
@@ -48,8 +42,6 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -163,30 +155,19 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                           .validate()) {
                                     return;
                                   }
-                                  final phoneNumberVal =
+
+                                  await ProjectListRecord.collection
+                                      .doc()
+                                      .set(createProjectListRecordData(
+                                        createDate: getCurrentTimestamp,
+                                        createBy: currentUserReference,
+                                        name: _model.textController.text,
+                                        status: 1,
+                                      ));
+                                  FFAppState().projectName =
                                       _model.textController.text;
-                                  if (phoneNumberVal == null ||
-                                      phoneNumberVal.isEmpty ||
-                                      !phoneNumberVal.startsWith('+')) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Phone Number is required and has to start with +.'),
-                                      ),
-                                    );
-                                    return;
-                                  }
-                                  await authManager.beginPhoneAuth(
-                                    context: context,
-                                    phoneNumber: phoneNumberVal,
-                                    onCodeSent: (context) async {
-                                      context.goNamedAuth(
-                                        'OtpPage',
-                                        context.mounted,
-                                        ignoreRedirect: true,
-                                      );
-                                    },
-                                  );
+
+                                  context.goNamed('HomePage');
                                 },
                                 text: 'สร้างโครงการ',
                                 options: FFButtonOptions(
