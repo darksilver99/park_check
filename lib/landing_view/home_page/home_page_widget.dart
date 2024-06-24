@@ -89,7 +89,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainBackgroundViewWidget(),
               ),
-              if (FFAppState().projectData != null)
+              if (FFAppState().projectData.projectName != null &&
+                  FFAppState().projectData.projectName != '')
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
