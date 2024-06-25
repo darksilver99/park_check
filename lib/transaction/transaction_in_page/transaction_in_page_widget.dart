@@ -623,7 +623,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                               () => _model.carSelectedValue = val?.firstOrNull),
                           selectedChipStyle: ChipStyle(
                             backgroundColor:
-                                FlutterFlowTheme.of(context).primary,
+                                FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -657,7 +657,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                             labelPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(16.0),
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
                           chipSpacing: 12.0,
                           rowSpacing: 12.0,
@@ -731,7 +731,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                             labelPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(16.0),
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
                           chipSpacing: 12.0,
                           rowSpacing: 12.0,

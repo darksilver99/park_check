@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/component/loading_view/loading_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
@@ -15,10 +16,26 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
 class HomePageModel extends FlutterFlowModel<HomePageWidget> {
+  ///  Local state fields for this page.
+
+  List<TransactionListRecord> transactionList = [];
+  void addToTransactionList(TransactionListRecord item) =>
+      transactionList.add(item);
+  void removeFromTransactionList(TransactionListRecord item) =>
+      transactionList.remove(item);
+  void removeAtIndexFromTransactionList(int index) =>
+      transactionList.removeAt(index);
+  void insertAtIndexInTransactionList(int index, TransactionListRecord item) =>
+      transactionList.insert(index, item);
+  void updateTransactionListAtIndex(
+          int index, Function(TransactionListRecord) updateFn) =>
+      transactionList[index] = updateFn(transactionList[index]);
+
+  bool isLoading = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -30,19 +47,15 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for ListView widget.
-
-  PagingController<DocumentSnapshot?, TransactionListRecord>?
-      listViewPagingController;
-  Query? listViewPagingQuery;
-  List<StreamSubscription?> listViewStreamSubscriptions = [];
-
   var qrCode = '';
+  // Model for LoadingView component.
+  late LoadingViewModel loadingViewModel;
 
   @override
   void initState(BuildContext context) {
     mainBackgroundViewModel =
         createModel(context, () => MainBackgroundViewModel());
+    loadingViewModel = createModel(context, () => LoadingViewModel());
   }
 
   @override
@@ -52,42 +65,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    listViewStreamSubscriptions.forEach((s) => s?.cancel());
-    listViewPagingController?.dispose();
-  }
-
-  /// Additional helper methods.
-  PagingController<DocumentSnapshot?, TransactionListRecord>
-      setListViewController(
-    Query query, {
-    DocumentReference<Object?>? parent,
-  }) {
-    listViewPagingController ??= _createListViewController(query, parent);
-    if (listViewPagingQuery != query) {
-      listViewPagingQuery = query;
-      listViewPagingController?.refresh();
-    }
-    return listViewPagingController!;
-  }
-
-  PagingController<DocumentSnapshot?, TransactionListRecord>
-      _createListViewController(
-    Query query,
-    DocumentReference<Object?>? parent,
-  ) {
-    final controller =
-        PagingController<DocumentSnapshot?, TransactionListRecord>(
-            firstPageKey: null);
-    return controller
-      ..addPageRequestListener(
-        (nextPageMarker) => queryTransactionListRecordPage(
-          queryBuilder: (_) => listViewPagingQuery ??= query,
-          nextPageMarker: nextPageMarker,
-          streamSubscriptions: listViewStreamSubscriptions,
-          controller: controller,
-          pageSize: 25,
-          isStream: true,
-        ),
-      );
+    loadingViewModel.dispose();
   }
 }
