@@ -36,18 +36,27 @@ String getTimeDuration(
   DateTime dateIn,
   DateTime dateOut,
 ) {
+  // Calculate the duration between the two dates
   Duration duration = dateOut.difference(dateIn);
 
-  double totalHours =
-      duration.inHours.toDouble() + (duration.inMinutes.remainder(60) / 60);
+  // Calculate the days, hours, and minutes
+  int days = duration.inDays;
+  int hours = duration.inHours.remainder(24);
+  int minutes = duration.inMinutes.remainder(60);
 
-  // Check if the duration is more than a day
-  if (totalHours >= 24) {
-    // Calculate days and remaining hours
-    int days = duration.inDays;
-    double remainingHours = totalHours - (days * 24);
-    return '${days} วัน${days > 1 ? 's' : ''} ${remainingHours.toStringAsFixed(2)} ชม.';
-  } else {
-    return '${totalHours.toStringAsFixed(2)} ชม.';
+  // Construct the formatted string based on the duration
+  StringBuffer result = StringBuffer();
+
+  if (days > 0) {
+    result.write('$days วัน${days > 1 ? 's' : ''} ');
   }
+
+  if (hours > 0 || days > 0) {
+    // Only show hours if there are any days or hours
+    result.write('$hours ชม. ');
+  }
+
+  result.write('$minutes นาที');
+
+  return result.toString().trim(); // Trim any trailing spaces
 }
