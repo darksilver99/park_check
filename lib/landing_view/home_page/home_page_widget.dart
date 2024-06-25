@@ -66,20 +66,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         );
         _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) => transactionListRecord
-              .where(Filter.or(
-                Filter(
-                  'date_in',
-                  isGreaterThanOrEqualTo: functions.getStartDayTime(),
-                ),
-                Filter(
-                  'date_in',
-                  isLessThanOrEqualTo: functions.getEndDayTime(),
-                ),
-                Filter(
-                  'is_out',
-                  isEqualTo: false,
-                ),
-              ))
+              .where(
+                'is_out',
+                isEqualTo: false,
+              )
+              .where(
+                'date_in',
+                isGreaterThanOrEqualTo: functions.getStartDayTime(),
+              )
+              .where(
+                'date_in',
+                isLessThanOrEqualTo: functions.getEndDayTime(),
+              )
               .orderBy('date_in', descending: true),
         );
         _model.isLoading = false;
