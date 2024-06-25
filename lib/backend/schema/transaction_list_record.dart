@@ -76,6 +76,11 @@ class TransactionListRecord extends FirestoreRecord {
   DateTime? get dateOut => _dateOut;
   bool hasDateOut() => _dateOut != null;
 
+  // "is_out" field.
+  bool? _isOut;
+  bool get isOut => _isOut ?? false;
+  bool hasIsOut() => _isOut != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _cardNumber = snapshotData['card_number'] as String?;
@@ -90,6 +95,7 @@ class TransactionListRecord extends FirestoreRecord {
     _carType = snapshotData['car_type'] as String?;
     _dateIn = snapshotData['date_in'] as DateTime?;
     _dateOut = snapshotData['date_out'] as DateTime?;
+    _isOut = snapshotData['is_out'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -139,6 +145,7 @@ Map<String, dynamic> createTransactionListRecordData({
   String? carType,
   DateTime? dateIn,
   DateTime? dateOut,
+  bool? isOut,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -154,6 +161,7 @@ Map<String, dynamic> createTransactionListRecordData({
       'car_type': carType,
       'date_in': dateIn,
       'date_out': dateOut,
+      'is_out': isOut,
     }.withoutNulls,
   );
 
@@ -177,7 +185,8 @@ class TransactionListRecordDocumentEquality
         e1?.objective == e2?.objective &&
         e1?.carType == e2?.carType &&
         e1?.dateIn == e2?.dateIn &&
-        e1?.dateOut == e2?.dateOut;
+        e1?.dateOut == e2?.dateOut &&
+        e1?.isOut == e2?.isOut;
   }
 
   @override
@@ -193,7 +202,8 @@ class TransactionListRecordDocumentEquality
         e?.objective,
         e?.carType,
         e?.dateIn,
-        e?.dateOut
+        e?.dateOut,
+        e?.isOut
       ]);
 
   @override

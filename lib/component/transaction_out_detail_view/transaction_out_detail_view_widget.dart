@@ -1,16 +1,21 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'transaction_detail_view_model.dart';
-export 'transaction_detail_view_model.dart';
+import 'transaction_out_detail_view_model.dart';
+export 'transaction_out_detail_view_model.dart';
 
-class TransactionDetailViewWidget extends StatefulWidget {
-  const TransactionDetailViewWidget({
+class TransactionOutDetailViewWidget extends StatefulWidget {
+  const TransactionOutDetailViewWidget({
     super.key,
     required this.transactionParameter,
   });
@@ -18,13 +23,13 @@ class TransactionDetailViewWidget extends StatefulWidget {
   final TransactionListRecord? transactionParameter;
 
   @override
-  State<TransactionDetailViewWidget> createState() =>
-      _TransactionDetailViewWidgetState();
+  State<TransactionOutDetailViewWidget> createState() =>
+      _TransactionOutDetailViewWidgetState();
 }
 
-class _TransactionDetailViewWidgetState
-    extends State<TransactionDetailViewWidget> {
-  late TransactionDetailViewModel _model;
+class _TransactionOutDetailViewWidgetState
+    extends State<TransactionOutDetailViewWidget> {
+  late TransactionOutDetailViewModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -35,7 +40,7 @@ class _TransactionDetailViewWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TransactionDetailViewModel());
+    _model = createModel(context, () => TransactionOutDetailViewModel());
   }
 
   @override
@@ -235,6 +240,21 @@ class _TransactionDetailViewWidgetState
                                     ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                'เวลาเข้า : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateIn)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateIn)}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
                             Text(
                               'ตราประทับ',
                               style: FlutterFlowTheme.of(context)
@@ -246,21 +266,63 @@ class _TransactionDetailViewWidgetState
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 32.0),
-                              child: Container(
-                                width: double.infinity,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                                ),
+                            FlutterFlowChoiceChips(
+                              options: FFAppState()
+                                  .projectData
+                                  .projectStampList
+                                  .map((label) => ChipData(label))
+                                  .toList(),
+                              onChanged: (val) => setState(() =>
+                                  _model.stampSelectedValue = val?.firstOrNull),
+                              selectedChipStyle: ChipStyle(
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).info,
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                iconColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                iconSize: 18.0,
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 16.0, 8.0),
+                                elevation: 4.0,
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
+                              unselectedChipStyle: ChipStyle(
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                iconColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                iconSize: 18.0,
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 16.0, 8.0),
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              chipSpacing: 12.0,
+                              rowSpacing: 12.0,
+                              multiselect: false,
+                              alignment: WrapAlignment.start,
+                              controller:
+                                  _model.stampSelectedValueController ??=
+                                      FormFieldController<List<String>>(
+                                [],
+                              ),
+                              wrapped: true,
                             ),
                           ],
                         ),
@@ -277,21 +339,44 @@ class _TransactionDetailViewWidgetState
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            if (_model.stampSelectedValue != null &&
+                                _model.stampSelectedValue != '') {
+                              await widget.transactionParameter!.reference
+                                  .update(createTransactionListRecordData(
+                                dateOut: getCurrentTimestamp,
+                                stamp: _model.stampSelectedValue,
+                                isOut: true,
+                              ));
+                              await actions.pushReplacement(
+                                context,
+                              );
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('กรุณาเลือกตราประทับ'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('ตกลง'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           },
-                          text: 'พิมพ์',
-                          icon: Icon(
-                            Icons.print_rounded,
-                            size: 32.0,
-                          ),
+                          text: 'บันทึกรถออก',
                           options: FFButtonOptions(
                             height: 57.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(

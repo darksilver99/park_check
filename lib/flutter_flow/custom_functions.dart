@@ -28,8 +28,6 @@ DateTime getStartDayTime() {
 
 DateTime getEndDayTime() {
   DateTime now = DateTime.now();
-
-  // Create a new DateTime object with the time set to 23:00:00
   DateTime endOfDay = DateTime(now.year, now.month, now.day, 23, 0, 0);
   return endOfDay;
 }
