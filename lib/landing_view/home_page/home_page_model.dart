@@ -57,6 +57,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Custom Action - searchTransactionData] action in TextField widget.
   List<TransactionListRecord>? searchResult;
+  // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
+  List<TransactionListRecord>? rsDataList2;
   var qrCode = '';
   // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
   TransactionListRecord? transactionDocumentResult;
