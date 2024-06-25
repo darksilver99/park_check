@@ -308,6 +308,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           }
                           return RefreshIndicator(
                             onRefresh: () async {
+                              _model.isLoading = true;
                               setState(() {
                                 _model.textController?.text = '';
                                 _model.textController?.selection =
@@ -315,6 +316,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         offset:
                                             _model.textController!.text.length);
                               });
+                              _model.rsDataList2 =
+                                  await queryTransactionListRecordOnce(
+                                queryBuilder: (transactionListRecord) =>
+                                    transactionListRecord
+                                        .where(
+                                          'is_out',
+                                          isEqualTo: false,
+                                        )
+                                        .where(
+                                          'date_in',
+                                          isGreaterThanOrEqualTo:
+                                              functions.getStartDayTime(),
+                                        )
+                                        .where(
+                                          'date_in',
+                                          isLessThanOrEqualTo:
+                                              functions.getEndDayTime(),
+                                        )
+                                        .orderBy('date_in', descending: true),
+                              );
+                              _model.isLoading = false;
+                              _model.transactionList = _model.rsDataList2!
+                                  .toList()
+                                  .cast<TransactionListRecord>();
+                              setState(() {});
                             },
                             child: ListView.separated(
                               padding: EdgeInsets.fromLTRB(
