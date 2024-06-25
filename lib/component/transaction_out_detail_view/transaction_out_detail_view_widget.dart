@@ -242,90 +242,156 @@ class _TransactionOutDetailViewWidgetState
                                     ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 8.0),
-                              child: Text(
-                                'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context).error,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ),
-                            Text(
-                              'ตราประทับ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            FlutterFlowChoiceChips(
-                              options: FFAppState()
-                                  .projectData
-                                  .projectStampList
-                                  .map((label) => ChipData(label))
-                                  .toList(),
-                              onChanged: (val) => setState(() =>
-                                  _model.stampSelectedValue = val?.firstOrNull),
-                              selectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context).info,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                iconSize: 18.0,
-                                labelPadding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
-                                elevation: 4.0,
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              unselectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                iconSize: 18.0,
-                                labelPadding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              chipSpacing: 12.0,
-                              rowSpacing: 12.0,
-                              multiselect: false,
-                              alignment: WrapAlignment.start,
-                              controller:
-                                  _model.stampSelectedValueController ??=
-                                      FormFieldController<List<String>>(
-                                [],
-                              ),
-                              wrapped: true,
+                            Builder(
+                              builder: (context) {
+                                if (!widget.transactionParameter!.isOut) {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
+                                        'ตราประทับ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      FlutterFlowChoiceChips(
+                                        options: FFAppState()
+                                            .projectData
+                                            .projectStampList
+                                            .map((label) => ChipData(label))
+                                            .toList(),
+                                        onChanged: (val) => setState(() =>
+                                            _model.stampSelectedValue =
+                                                val?.firstOrNull),
+                                        selectedChipStyle: ChipStyle(
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          iconColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          iconSize: 18.0,
+                                          labelPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          elevation: 4.0,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        unselectedChipStyle: ChipStyle(
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          iconColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          iconSize: 18.0,
+                                          labelPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        chipSpacing: 12.0,
+                                        rowSpacing: 12.0,
+                                        multiselect: false,
+                                        alignment: WrapAlignment.start,
+                                        controller: _model
+                                                .stampSelectedValueController ??=
+                                            FormFieldController<List<String>>(
+                                          [],
+                                        ),
+                                        wrapped: true,
+                                      ),
+                                    ],
+                                  );
+                                } else {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          'เวลาออก : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateOut)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateOut)}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
+                                        'ตราประทับ : ${widget.transactionParameter?.stamp}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ],
+                                  );
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -338,64 +404,83 @@ class _TransactionOutDetailViewWidgetState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            if (_model.stampSelectedValue != null &&
-                                _model.stampSelectedValue != '') {
-                              await widget.transactionParameter!.reference
-                                  .update(createTransactionListRecordData(
-                                dateOut: getCurrentTimestamp,
-                                stamp: _model.stampSelectedValue,
-                                isOut: true,
-                              ));
-                              await actions.pushReplacement(
-                                context,
-                              );
-                            } else {
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('กรุณาเลือกตราประทับ'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('ตกลง'),
-                                      ),
-                                    ],
-                                  );
+                      child: Builder(
+                        builder: (context) {
+                          if (!widget.transactionParameter!.isOut) {
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  if (_model.stampSelectedValue != null &&
+                                      _model.stampSelectedValue != '') {
+                                    await widget.transactionParameter!.reference
+                                        .update(createTransactionListRecordData(
+                                      dateOut: getCurrentTimestamp,
+                                      stamp: _model.stampSelectedValue,
+                                      isOut: true,
+                                    ));
+                                    await actions.pushReplacement(
+                                      context,
+                                    );
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('กรุณาเลือกตราประทับ'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('ตกลง'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
-                              );
-                            }
-                          },
-                          text: 'บันทึกรถออก',
-                          options: FFButtonOptions(
-                            height: 57.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).error,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: 22.0,
-                                  letterSpacing: 0.0,
+                                text: 'บันทึกรถออก',
+                                options: FFButtonOptions(
+                                  height: 57.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).error,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        fontSize: 22.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                            elevation: 3.0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
+                              ),
+                            );
+                          } else {
+                            return Text(
+                              'รายการนี้บันทึกออกแล้ว',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            );
+                          }
+                        },
                       ),
                     ),
                   ],
