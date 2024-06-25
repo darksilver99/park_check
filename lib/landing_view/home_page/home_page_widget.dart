@@ -51,6 +51,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectName: _model.projectData?.name,
           projectStampList: _model.projectData?.stampList,
           projectObjectiveList: _model.projectData?.objectiveList,
+          projectCarList: _model.projectData?.carList,
         );
         setState(() {});
       } else {
