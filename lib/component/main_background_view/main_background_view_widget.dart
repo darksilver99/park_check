@@ -38,19 +38,47 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       child: Stack(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              'assets/images/2149239098.jpg',
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              fit: BoxFit.cover,
-            ),
+          Builder(
+            builder: (context) {
+              if (FFAppState().configData.backgroudImage == 2) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/1913.jpg',
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              } else if (FFAppState().configData.backgroudImage == 3) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/2149661457.jpg',
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              } else {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/2149239098.jpg',
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }
+            },
           ),
           Container(
             width: MediaQuery.sizeOf(context).width * 1.0,

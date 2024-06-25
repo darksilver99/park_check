@@ -87,7 +87,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.asset(
-                                        'assets/images/parking_1487306.png',
+                                        'assets/images/parking_1022847.png',
                                         height: 86.0,
                                         fit: BoxFit.cover,
                                       ),
@@ -107,14 +107,19 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                              Text(
-                                'ProjectName : ${FFAppState().projectData.projectName}',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 16.0),
+                                child: Text(
+                                  '(Version 1.0.0)',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 8.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -162,7 +167,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
                                     _navigate();
                                   },
-                                  text: 'ออกจากระบบ',
+                                  text: 'ตั้งค่า',
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
@@ -170,7 +175,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).error,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
