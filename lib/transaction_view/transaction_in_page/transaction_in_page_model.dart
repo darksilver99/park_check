@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -18,6 +19,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Model for MainBackgroundView component.
+  late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -105,6 +108,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
   @override
   void initState(BuildContext context) {
+    mainBackgroundViewModel =
+        createModel(context, () => MainBackgroundViewModel());
     textController1Validator = _textController1Validator;
     textController2Validator = _textController2Validator;
     textController3Validator = _textController3Validator;
@@ -116,6 +121,7 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    mainBackgroundViewModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
