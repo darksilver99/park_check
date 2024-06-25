@@ -327,6 +327,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
                                       enableDrag: false,
+                                      useSafeArea: true,
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
