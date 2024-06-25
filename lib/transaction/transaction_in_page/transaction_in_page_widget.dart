@@ -46,6 +46,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
 
     _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode6 ??= FocusNode();
+
+    _model.textController7 ??= TextEditingController();
+    _model.textFieldFocusNode7 ??= FocusNode();
   }
 
   @override
@@ -593,6 +596,68 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 .asValidator(context),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: TextFormField(
+                            controller: _model.textController7,
+                            focusNode: _model.textFieldFocusNode7,
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'ประเภทรถ',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController7Validator
+                                .asValidator(context),
+                          ),
+                        ),
                         Divider(
                           thickness: 1.0,
                           color: FlutterFlowTheme.of(context).alternate,
@@ -626,13 +691,13 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 .doc()
                                 .set(createTransactionListRecordData(
                                   createDate: getCurrentTimestamp,
-                                  cardNumber: '1',
+                                  cardNumber: _model.textController4.text,
                                   preName: _model.textController1.text,
-                                  firstName: '2',
-                                  lastName: '3',
-                                  carRegistration: '4',
-                                  carRegistrationProvince: '5',
-                                  stamp: '6',
+                                  firstName: _model.textController2.text,
+                                  lastName: _model.textController3.text,
+                                  carRegistration: _model.textController5.text,
+                                  carRegistrationProvince:
+                                      _model.textController6.text,
                                   objective: '7',
                                   carType: '8',
                                   dateIn: getCurrentTimestamp,

@@ -169,39 +169,54 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
 
                                       var projectListRecordReference =
                                           ProjectListRecord.collection.doc();
-                                      await projectListRecordReference
-                                          .set(createProjectListRecordData(
-                                        createDate: getCurrentTimestamp,
-                                        createBy: currentUserReference,
-                                        name: _model.textController.text,
-                                        status: 1,
-                                      ));
-                                      _model.projectInserted =
-                                          ProjectListRecord.getDocumentFromData(
-                                              createProjectListRecordData(
-                                                createDate: getCurrentTimestamp,
-                                                createBy: currentUserReference,
-                                                name:
-                                                    _model.textController.text,
-                                                status: 1,
-                                              ),
-                                              projectListRecordReference);
+                                      await projectListRecordReference.set({
+                                        ...createProjectListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          createBy: currentUserReference,
+                                          name: _model.textController.text,
+                                          status: 1,
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'objective_list': FFAppConstants
+                                                .defaultObjectiveList,
+                                            'stamp_list':
+                                                FFAppConstants.defaultStampList,
+                                            'car_list':
+                                                FFAppConstants.defaultCarList,
+                                          },
+                                        ),
+                                      });
+                                      _model.projectInserted = ProjectListRecord
+                                          .getDocumentFromData({
+                                        ...createProjectListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          createBy: currentUserReference,
+                                          name: _model.textController.text,
+                                          status: 1,
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'objective_list': FFAppConstants
+                                                .defaultObjectiveList,
+                                            'stamp_list':
+                                                FFAppConstants.defaultStampList,
+                                            'car_list':
+                                                FFAppConstants.defaultCarList,
+                                          },
+                                        ),
+                                      }, projectListRecordReference);
                                       FFAppState().projectData =
                                           ProjectDataStruct(
                                         projectDocID: _model
                                             .projectInserted?.reference.id,
                                         projectName: _model.textController.text,
-                                        projectStampList: [
-                                          'ประทับตรา',
-                                          'ไม่ประทับตรา'
-                                        ],
-                                        projectObjectiveList: [
-                                          'รับ-ส่งลูกบ้าน',
-                                          'ติดต่อลูกบ้าน',
-                                          'นิติบุคคล',
-                                          'ช่างซ่อมบำรุง',
-                                          'ส่งอาหาร-พัสดุ'
-                                        ],
+                                        projectStampList:
+                                            FFAppConstants.defaultStampList,
+                                        projectObjectiveList:
+                                            FFAppConstants.defaultObjectiveList,
+                                        projectCarList:
+                                            FFAppConstants.defaultCarList,
                                       );
 
                                       context.goNamed('HomePage');
