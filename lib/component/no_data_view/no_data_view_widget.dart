@@ -42,6 +42,7 @@ class _NoDataViewWidgetState extends State<NoDataViewWidget> {
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xCCFFFFFF),
+          borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(32.0, 32.0, 32.0, 32.0),

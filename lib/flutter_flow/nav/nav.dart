@@ -308,10 +308,10 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: Colors.transparent,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/parking_1487306.png',
+                      'assets/images/parking_1022847.png',
                       width: MediaQuery.sizeOf(context).width * 0.6,
                       fit: BoxFit.cover,
                     ),
