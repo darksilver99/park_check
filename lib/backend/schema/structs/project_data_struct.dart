@@ -14,11 +14,13 @@ class ProjectDataStruct extends FFFirebaseStruct {
     String? projectName,
     List<String>? projectStampList,
     List<String>? projectObjectiveList,
+    List<String>? projectCarList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
         _projectStampList = projectStampList,
         _projectObjectiveList = projectObjectiveList,
+        _projectCarList = projectCarList,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -57,12 +59,24 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasProjectObjectiveList() => _projectObjectiveList != null;
 
+  // "projectCarList" field.
+  List<String>? _projectCarList;
+  List<String> get projectCarList => _projectCarList ?? const [];
+  set projectCarList(List<String>? val) => _projectCarList = val;
+
+  void updateProjectCarList(Function(List<String>) updateFn) {
+    updateFn(projectCarList ??= []);
+  }
+
+  bool hasProjectCarList() => _projectCarList != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
         projectName: data['projectName'] as String?,
         projectStampList: getDataList(data['projectStampList']),
         projectObjectiveList: getDataList(data['projectObjectiveList']),
+        projectCarList: getDataList(data['projectCarList']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -74,6 +88,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'projectName': _projectName,
         'projectStampList': _projectStampList,
         'projectObjectiveList': _projectObjectiveList,
+        'projectCarList': _projectCarList,
       }.withoutNulls;
 
   @override
@@ -93,6 +108,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         ),
         'projectObjectiveList': serializeParam(
           _projectObjectiveList,
+          ParamType.String,
+          isList: true,
+        ),
+        'projectCarList': serializeParam(
+          _projectCarList,
           ParamType.String,
           isList: true,
         ),
@@ -120,6 +140,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        projectCarList: deserializeParam<String>(
+          data['projectCarList'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -132,12 +157,18 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectDocID == other.projectDocID &&
         projectName == other.projectName &&
         listEquality.equals(projectStampList, other.projectStampList) &&
-        listEquality.equals(projectObjectiveList, other.projectObjectiveList);
+        listEquality.equals(projectObjectiveList, other.projectObjectiveList) &&
+        listEquality.equals(projectCarList, other.projectCarList);
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [projectDocID, projectName, projectStampList, projectObjectiveList]);
+  int get hashCode => const ListEquality().hash([
+        projectDocID,
+        projectName,
+        projectStampList,
+        projectObjectiveList,
+        projectCarList
+      ]);
 }
 
 ProjectDataStruct createProjectDataStruct({

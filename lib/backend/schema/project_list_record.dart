@@ -46,6 +46,11 @@ class ProjectListRecord extends FirestoreRecord {
   List<String> get stampList => _stampList ?? const [];
   bool hasStampList() => _stampList != null;
 
+  // "car_list" field.
+  List<String>? _carList;
+  List<String> get carList => _carList ?? const [];
+  bool hasCarList() => _carList != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -53,6 +58,7 @@ class ProjectListRecord extends FirestoreRecord {
     _name = snapshotData['name'] as String?;
     _objectiveList = getDataList(snapshotData['objective_list']);
     _stampList = getDataList(snapshotData['stamp_list']);
+    _carList = getDataList(snapshotData['car_list']);
   }
 
   static CollectionReference get collection =>
@@ -118,7 +124,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.status == e2?.status &&
         e1?.name == e2?.name &&
         listEquality.equals(e1?.objectiveList, e2?.objectiveList) &&
-        listEquality.equals(e1?.stampList, e2?.stampList);
+        listEquality.equals(e1?.stampList, e2?.stampList) &&
+        listEquality.equals(e1?.carList, e2?.carList);
   }
 
   @override
@@ -128,7 +135,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.status,
         e?.name,
         e?.objectiveList,
-        e?.stampList
+        e?.stampList,
+        e?.carList
       ]);
 
   @override

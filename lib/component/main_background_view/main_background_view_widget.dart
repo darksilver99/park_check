@@ -47,8 +47,8 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
             borderRadius: BorderRadius.circular(8.0),
             child: Image.asset(
               'assets/images/2149239098.jpg',
-              width: double.infinity,
-              height: double.infinity,
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 1.0,
               fit: BoxFit.cover,
             ),
           ),
@@ -57,7 +57,7 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
             height: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0x61000000), Color(0x53000000)],
+                colors: [Color(0x61000000), Color(0xBA000000)],
                 stops: [0.0, 1.0],
                 begin: AlignmentDirectional(0.0, -1.0),
                 end: AlignmentDirectional(0, 1.0),
