@@ -234,6 +234,8 @@ class _TransactionOutDetailViewWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color:
+                                          FlutterFlowTheme.of(context).success,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
@@ -244,11 +246,12 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'เวลาเข้า : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateIn)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateIn)}',
+                                'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).error,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
