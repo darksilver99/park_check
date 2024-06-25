@@ -41,15 +41,18 @@ class _LoadingViewWidgetState extends State<LoadingViewWidget> {
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(
-            'assets/lottie_animations/Animation_-_1719298397508.json',
-            width: 200.0,
-            height: 200.0,
-            fit: BoxFit.cover,
-            animate: true,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+            child: Lottie.asset(
+              'assets/lottie_animations/Animation_-_1719298868786.json',
+              width: 150.0,
+              height: 130.0,
+              fit: BoxFit.cover,
+              animate: true,
+            ),
           ),
           Text(
             'กำลังโหลดข้อมูล...',
