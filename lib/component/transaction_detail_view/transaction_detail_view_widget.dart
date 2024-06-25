@@ -52,7 +52,7 @@ class _TransactionDetailViewWidgetState
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 64.0, 0.0, 0.0),
         child: Container(
           width: double.infinity,
           height: double.infinity,
