@@ -619,17 +619,17 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                               .projectCarList
                               .map((label) => ChipData(label))
                               .toList(),
-                          onChanged: (val) => setState(() =>
-                              _model.choiceChipsValue1 = val?.firstOrNull),
+                          onChanged: (val) => setState(
+                              () => _model.carSelectedValue = val?.firstOrNull),
                           selectedChipStyle: ChipStyle(
                             backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                                FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
                             iconColor: FlutterFlowTheme.of(context).primaryText,
@@ -648,11 +648,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
                             iconColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                             iconSize: 18.0,
+                            labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -660,7 +663,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                           rowSpacing: 12.0,
                           multiselect: false,
                           alignment: WrapAlignment.start,
-                          controller: _model.choiceChipsValueController1 ??=
+                          controller: _model.carSelectedValueController ??=
                               FormFieldController<List<String>>(
                             [],
                           ),
@@ -691,7 +694,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                               .map((label) => ChipData(label))
                               .toList(),
                           onChanged: (val) => setState(() =>
-                              _model.choiceChipsValue2 = val?.firstOrNull),
+                              _model.objectiveSelectedValue = val?.firstOrNull),
                           selectedChipStyle: ChipStyle(
                             backgroundColor:
                                 FlutterFlowTheme.of(context).secondary,
@@ -699,8 +702,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
                             iconColor: FlutterFlowTheme.of(context).primaryText,
@@ -719,11 +722,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
                             iconColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                             iconSize: 18.0,
+                            labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -731,8 +737,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                           rowSpacing: 12.0,
                           multiselect: false,
                           alignment: WrapAlignment.start,
-                          controller: _model.choiceChipsValueController2 ??=
-                              FormFieldController<List<String>>(
+                          controller:
+                              _model.objectiveSelectedValueController ??=
+                                  FormFieldController<List<String>>(
                             [],
                           ),
                           wrapped: true,
@@ -747,10 +754,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 !_model.formKey.currentState!.validate()) {
                               return;
                             }
-                            if (_model.choiceChipsValue1 != null &&
-                                _model.choiceChipsValue1 != '') {
-                              if (_model.choiceChipsValue2 != null &&
-                                  _model.choiceChipsValue2 != '') {
+                            if (_model.carSelectedValue != null &&
+                                _model.carSelectedValue != '') {
+                              if (_model.objectiveSelectedValue != null &&
+                                  _model.objectiveSelectedValue != '') {
                                 await TransactionListRecord.collection
                                     .doc()
                                     .set(createTransactionListRecordData(
@@ -763,12 +770,11 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           _model.textController5.text,
                                       carRegistrationProvince:
                                           _model.textController6.text,
-                                      objective: '7',
-                                      carType: '8',
+                                      objective: _model.objectiveSelectedValue,
+                                      carType: _model.carSelectedValue,
                                       dateIn: getCurrentTimestamp,
                                     ));
-
-                                context.goNamed('HomePage');
+                                context.safePop();
                               } else {
                                 await showDialog(
                                   context: context,
