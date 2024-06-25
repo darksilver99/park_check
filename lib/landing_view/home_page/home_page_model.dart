@@ -53,7 +53,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Custom Action - searchTransactionData] action in Button widget.
+  // Stores action output result for [Custom Action - searchTransactionData] action in TextField widget.
   List<TransactionListRecord>? searchResult;
   var qrCode = '';
   // Model for LoadingView component.

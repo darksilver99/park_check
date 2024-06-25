@@ -133,7 +133,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController',
                                     Duration(milliseconds: 2000),
-                                    () => setState(() {}),
+                                    () async {
+                                      _model.searchResult =
+                                          await actions.searchTransactionData(
+                                        _model.textController.text,
+                                      );
+                                      _model.transactionList = _model
+                                          .searchResult!
+                                          .toList()
+                                          .cast<TransactionListRecord>();
+                                      setState(() {});
+
+                                      setState(() {});
+                                    },
                                   ),
                                   autofocus: false,
                                   obscureText: false,
@@ -189,6 +201,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ? InkWell(
                                             onTap: () async {
                                               _model.textController?.clear();
+                                              _model.searchResult =
+                                                  await actions
+                                                      .searchTransactionData(
+                                                _model.textController.text,
+                                              );
+                                              _model.transactionList = _model
+                                                  .searchResult!
+                                                  .toList()
+                                                  .cast<
+                                                      TransactionListRecord>();
+                                              setState(() {});
+
+                                              setState(() {});
                                               setState(() {});
                                             },
                                             child: Icon(
@@ -209,42 +234,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                   validator: _model.textControllerValidator
                                       .asValidator(context),
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  _model.searchResult =
-                                      await actions.searchTransactionData(
-                                    _model.textController.text,
-                                  );
-                                  _model.transactionList = _model.searchResult!
-                                      .toList()
-                                      .cast<TransactionListRecord>();
-                                  setState(() {});
-
-                                  setState(() {});
-                                },
-                                text: 'ค้นหา',
-                                options: FFButtonOptions(
-                                  height: 58.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 0.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0.0),
                                 ),
                               ),
                             ],
