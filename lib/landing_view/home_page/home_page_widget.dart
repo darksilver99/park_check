@@ -53,6 +53,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectObjectiveList: _model.projectData?.objectiveList,
           projectCarList: _model.projectData?.carList,
         );
+        _model.configResult = await queryConfigRecordOnce(
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
+        FFAppState().configData = ConfigDataStruct(
+          orcApi: _model.configResult?.orcApi,
+        );
         _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) =>
               transactionListRecord.orderBy('date_in', descending: true),

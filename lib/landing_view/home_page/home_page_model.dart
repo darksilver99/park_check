@@ -42,6 +42,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ProjectListRecord? projectData;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
+  ConfigRecord? configResult;
+  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
