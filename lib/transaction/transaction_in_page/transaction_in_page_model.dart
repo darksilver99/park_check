@@ -89,18 +89,18 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController1;
-  String? get choiceChipsValue1 =>
-      choiceChipsValueController1?.value?.firstOrNull;
-  set choiceChipsValue1(String? val) =>
-      choiceChipsValueController1?.value = val != null ? [val] : [];
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController2;
-  String? get choiceChipsValue2 =>
-      choiceChipsValueController2?.value?.firstOrNull;
-  set choiceChipsValue2(String? val) =>
-      choiceChipsValueController2?.value = val != null ? [val] : [];
+  // State field(s) for carSelected widget.
+  FormFieldController<List<String>>? carSelectedValueController;
+  String? get carSelectedValue =>
+      carSelectedValueController?.value?.firstOrNull;
+  set carSelectedValue(String? val) =>
+      carSelectedValueController?.value = val != null ? [val] : [];
+  // State field(s) for objectiveSelected widget.
+  FormFieldController<List<String>>? objectiveSelectedValueController;
+  String? get objectiveSelectedValue =>
+      objectiveSelectedValueController?.value?.firstOrNull;
+  set objectiveSelectedValue(String? val) =>
+      objectiveSelectedValueController?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {
