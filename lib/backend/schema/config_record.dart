@@ -16,19 +16,19 @@ class ConfigRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "orc_api" field.
-  String? _orcApi;
-  String get orcApi => _orcApi ?? '';
-  bool hasOrcApi() => _orcApi != null;
-
   // "background_image" field.
   int? _backgroundImage;
   int get backgroundImage => _backgroundImage ?? 0;
   bool hasBackgroundImage() => _backgroundImage != null;
 
+  // "ocr_api" field.
+  String? _ocrApi;
+  String get ocrApi => _ocrApi ?? '';
+  bool hasOcrApi() => _ocrApi != null;
+
   void _initializeFields() {
-    _orcApi = snapshotData['orc_api'] as String?;
     _backgroundImage = castToType<int>(snapshotData['background_image']);
+    _ocrApi = snapshotData['ocr_api'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -65,13 +65,13 @@ class ConfigRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createConfigRecordData({
-  String? orcApi,
   int? backgroundImage,
+  String? ocrApi,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'orc_api': orcApi,
       'background_image': backgroundImage,
+      'ocr_api': ocrApi,
     }.withoutNulls,
   );
 
@@ -83,13 +83,13 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
 
   @override
   bool equals(ConfigRecord? e1, ConfigRecord? e2) {
-    return e1?.orcApi == e2?.orcApi &&
-        e1?.backgroundImage == e2?.backgroundImage;
+    return e1?.backgroundImage == e2?.backgroundImage &&
+        e1?.ocrApi == e2?.ocrApi;
   }
 
   @override
   int hash(ConfigRecord? e) =>
-      const ListEquality().hash([e?.orcApi, e?.backgroundImage]);
+      const ListEquality().hash([e?.backgroundImage, e?.ocrApi]);
 
   @override
   bool isValidKey(Object? o) => o is ConfigRecord;
