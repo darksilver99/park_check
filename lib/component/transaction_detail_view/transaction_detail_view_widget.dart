@@ -47,6 +47,8 @@ class _TransactionDetailViewWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
@@ -54,7 +56,12 @@ class _TransactionDetailViewWidgetState
         height: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.circular(24.0),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(24.0),
+            topRight: Radius.circular(24.0),
+          ),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -106,19 +113,46 @@ class _TransactionDetailViewWidgetState
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: BarcodeWidget(
-                              data: 'Barcode',
-                              barcode: Barcode.qrCode(),
-                              width: 300.0,
-                              height: 150.0,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              backgroundColor: Colors.transparent,
-                              errorBuilder: (_context, _error) => SizedBox(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'โครงการ ${FFAppState().projectData.projectName}',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(0.0, -1.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 16.0),
+                              child: BarcodeWidget(
+                                data: 'Barcode',
+                                barcode: Barcode.qrCode(),
                                 width: 300.0,
                                 height: 150.0,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                backgroundColor: Colors.transparent,
+                                errorBuilder: (_context, _error) => SizedBox(
+                                  width: 300.0,
+                                  height: 150.0,
+                                ),
+                                drawText: false,
                               ),
-                              drawText: false,
                             ),
                           ),
                           Padding(
