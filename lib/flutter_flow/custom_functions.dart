@@ -31,3 +31,23 @@ DateTime getEndDayTime() {
   DateTime endOfDay = DateTime(now.year, now.month, now.day, 23, 0, 0);
   return endOfDay;
 }
+
+String getTimeDuration(
+  DateTime dateIn,
+  DateTime dateOut,
+) {
+  Duration duration = dateOut.difference(dateIn);
+
+  double totalHours =
+      duration.inHours.toDouble() + (duration.inMinutes.remainder(60) / 60);
+
+  // Check if the duration is more than a day
+  if (totalHours >= 24) {
+    // Calculate days and remaining hours
+    int days = duration.inDays;
+    double remainingHours = totalHours - (days * 24);
+    return '${days} วัน${days > 1 ? 's' : ''} ${remainingHours.toStringAsFixed(2)} ชม.';
+  } else {
+    return '${totalHours.toStringAsFixed(2)} ชม.';
+  }
+}
