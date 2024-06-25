@@ -53,8 +53,8 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
             ),
           ),
           Container(
-            width: double.infinity,
-            height: double.infinity,
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0x61000000), Color(0xBA000000)],

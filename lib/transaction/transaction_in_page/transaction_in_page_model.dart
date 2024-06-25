@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'transaction_in_page_widget.dart' show TransactionInPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -31,30 +33,83 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
+  String? _textController3Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
+  String? _textController4Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode5;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
+  String? _textController5Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode6;
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
+  String? _textController6Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController1;
+  String? get choiceChipsValue1 =>
+      choiceChipsValueController1?.value?.firstOrNull;
+  set choiceChipsValue1(String? val) =>
+      choiceChipsValueController1?.value = val != null ? [val] : [];
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController2;
+  String? get choiceChipsValue2 =>
+      choiceChipsValueController2?.value?.firstOrNull;
+  set choiceChipsValue2(String? val) =>
+      choiceChipsValueController2?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {
     textController1Validator = _textController1Validator;
+    textController2Validator = _textController2Validator;
+    textController3Validator = _textController3Validator;
+    textController4Validator = _textController4Validator;
+    textController5Validator = _textController5Validator;
+    textController6Validator = _textController6Validator;
   }
 
   @override
@@ -77,8 +132,5 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
     textFieldFocusNode6?.dispose();
     textController6?.dispose();
-
-    textFieldFocusNode7?.dispose();
-    textController7?.dispose();
   }
 }

@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,9 +48,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
 
     _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode6 ??= FocusNode();
-
-    _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
   }
 
   @override
@@ -60,6 +59,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -598,65 +599,72 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
-                          child: TextFormField(
-                            controller: _model.textController7,
-                            focusNode: _model.textFieldFocusNode7,
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'ประเภทรถ',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              filled: true,
-                            ),
+                              0.0, 0.0, 0.0, 4.0),
+                          child: Text(
+                            'ประเภทรถ',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ),
+                        ),
+                        FlutterFlowChoiceChips(
+                          options: FFAppState()
+                              .projectData
+                              .projectCarList
+                              .map((label) => ChipData(label))
+                              .toList(),
+                          onChanged: (val) => setState(() =>
+                              _model.choiceChipsValue1 = val?.firstOrNull),
+                          selectedChipStyle: ChipStyle(
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model.textController7Validator
-                                .asValidator(context),
+                            iconColor: FlutterFlowTheme.of(context).primaryText,
+                            iconSize: 18.0,
+                            labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            elevation: 4.0,
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
+                          unselectedChipStyle: ChipStyle(
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            iconColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            iconSize: 18.0,
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          chipSpacing: 12.0,
+                          rowSpacing: 12.0,
+                          multiselect: false,
+                          alignment: WrapAlignment.start,
+                          controller: _model.choiceChipsValueController1 ??=
+                              FormFieldController<List<String>>(
+                            [],
+                          ),
+                          wrapped: true,
                         ),
                         Divider(
                           thickness: 1.0,
@@ -664,7 +672,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 4.0),
+                              0.0, 0.0, 0.0, 8.0),
                           child: Text(
                             'วัตถุประสงค์',
                             style: FlutterFlowTheme.of(context)
@@ -676,6 +684,59 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 ),
                           ),
                         ),
+                        FlutterFlowChoiceChips(
+                          options: FFAppState()
+                              .projectData
+                              .projectObjectiveList
+                              .map((label) => ChipData(label))
+                              .toList(),
+                          onChanged: (val) => setState(() =>
+                              _model.choiceChipsValue2 = val?.firstOrNull),
+                          selectedChipStyle: ChipStyle(
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            iconColor: FlutterFlowTheme.of(context).primaryText,
+                            iconSize: 18.0,
+                            labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            elevation: 4.0,
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
+                          unselectedChipStyle: ChipStyle(
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            iconColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            iconSize: 18.0,
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          chipSpacing: 12.0,
+                          rowSpacing: 12.0,
+                          multiselect: false,
+                          alignment: WrapAlignment.start,
+                          controller: _model.choiceChipsValueController2 ??=
+                              FormFieldController<List<String>>(
+                            [],
+                          ),
+                          wrapped: true,
+                        ),
                         Divider(
                           thickness: 1.0,
                           color: FlutterFlowTheme.of(context).alternate,
@@ -686,23 +747,62 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                 !_model.formKey.currentState!.validate()) {
                               return;
                             }
+                            if (_model.choiceChipsValue1 != null &&
+                                _model.choiceChipsValue1 != '') {
+                              if (_model.choiceChipsValue2 != null &&
+                                  _model.choiceChipsValue2 != '') {
+                                await TransactionListRecord.collection
+                                    .doc()
+                                    .set(createTransactionListRecordData(
+                                      createDate: getCurrentTimestamp,
+                                      cardNumber: _model.textController4.text,
+                                      preName: _model.textController1.text,
+                                      firstName: _model.textController2.text,
+                                      lastName: _model.textController3.text,
+                                      carRegistration:
+                                          _model.textController5.text,
+                                      carRegistrationProvince:
+                                          _model.textController6.text,
+                                      objective: '7',
+                                      carType: '8',
+                                      dateIn: getCurrentTimestamp,
+                                    ));
 
-                            await TransactionListRecord.collection
-                                .doc()
-                                .set(createTransactionListRecordData(
-                                  createDate: getCurrentTimestamp,
-                                  cardNumber: _model.textController4.text,
-                                  preName: _model.textController1.text,
-                                  firstName: _model.textController2.text,
-                                  lastName: _model.textController3.text,
-                                  carRegistration: _model.textController5.text,
-                                  carRegistrationProvince:
-                                      _model.textController6.text,
-                                  objective: '7',
-                                  carType: '8',
-                                  dateIn: getCurrentTimestamp,
-                                ));
-                            context.safePop();
+                                context.goNamed('HomePage');
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text('กรุณาเลือกวัตถุประสงค์'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('ตกลง'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('กรุณาเลือกประเภทรถ'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('ตกลง'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           },
                           text: 'บันทึกรถเข้า',
                           options: FFButtonOptions(
