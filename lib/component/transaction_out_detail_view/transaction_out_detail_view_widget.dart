@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -268,6 +269,24 @@ class _TransactionOutDetailViewWidgetState
                                               ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, getCurrentTimestamp)}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 22.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
                                       Text(
                                         'ตราประทับ',
                                         style: FlutterFlowTheme.of(context)
@@ -372,6 +391,24 @@ class _TransactionOutDetailViewWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .error,
                                                 fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, widget.transactionParameter!.dateOut!)}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 22.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
