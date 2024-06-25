@@ -57,6 +57,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Stores action output result for [Custom Action - searchTransactionData] action in TextField widget.
   List<TransactionListRecord>? searchResult;
   var qrCode = '';
+  // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
+  TransactionListRecord? transactionDocumentResult;
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
 

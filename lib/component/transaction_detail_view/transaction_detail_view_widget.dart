@@ -144,7 +144,8 @@ class _TransactionDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: BarcodeWidget(
-                                  data: 'Barcode',
+                                  data:
+                                      '${widget.transactionParameter?.reference.id}',
                                   barcode: Barcode.qrCode(),
                                   width: 300.0,
                                   height: 150.0,
@@ -223,7 +224,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'เวลาเข้า : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateIn)}',
+                                'เวลาเข้า : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateIn)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateIn)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
