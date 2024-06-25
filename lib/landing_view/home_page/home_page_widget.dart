@@ -5,6 +5,7 @@ import '/component/loading_view/loading_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
+import '/component/transaction_out_detail_view/transaction_out_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -74,9 +75,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   'date_in',
                   isLessThanOrEqualTo: functions.getEndDayTime(),
                 ),
+                Filter(
+                  'is_out',
+                  isEqualTo: false,
+                ),
               ))
               .orderBy('date_in', descending: true),
-          limit: 150,
         );
         _model.isLoading = false;
         _model.transactionList =
@@ -550,6 +554,51 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   await actions.getTransactionDocument(
                                 _model.qrCode!,
                               );
+                              if ((_model.transactionDocumentResult != null) ==
+                                  true) {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  useSafeArea: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: TransactionOutDetailViewWidget(
+                                          transactionParameter:
+                                              _model.transactionDocumentResult!,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text('ไม่พบข้อมูล'),
+                                      content: Text(
+                                          'กรุณาตรวจสอบ QR Code / ทะเบียนรถ'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('ตกลง'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
 
                               setState(() {});
                             },

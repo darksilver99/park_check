@@ -1,3 +1,18 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "transaction_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "is_out",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date_in",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
 }

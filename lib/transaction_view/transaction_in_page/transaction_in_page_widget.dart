@@ -866,6 +866,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   _model.objectiveSelectedValue,
                                               carType: _model.carSelectedValue,
                                               dateIn: getCurrentTimestamp,
+                                              isOut: false,
                                             ));
                                         await actions.pushReplacement(
                                           context,

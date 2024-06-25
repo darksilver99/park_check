@@ -9,12 +9,17 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/flutter_flow/custom_functions.dart' as functions;
+
 Future<List<TransactionListRecord>> searchTransactionData(
     String keyword) async {
   // Add your function code here!
   var rs = await FirebaseFirestore.instance
       .collection(
           'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
+      .where("date_in", isGreaterThanOrEqualTo: functions.getStartDayTime())
+      .where("date_in", isLessThanOrEqualTo: functions.getEndDayTime())
+      .where("is_out", isEqualTo: false)
       .orderBy("date_in", descending: true)
       .get();
   List<TransactionListRecord> transactionList = rs.docs.where((doc) {
