@@ -60,8 +60,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           singleRecord: true,
         ).then((s) => s.firstOrNull);
         FFAppState().configData = ConfigDataStruct(
-          orcApi: _model.configResult?.orcApi,
           backgroudImage: _model.configResult?.backgroundImage,
+          ocrApi: _model.configResult?.ocrApi,
         );
         _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) => transactionListRecord
