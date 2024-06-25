@@ -121,7 +121,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                             16.0, 16.0, 16.0, 16.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xCDFFFFFF),
+                            color: Color(0xE6FFFFFF),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           child: Padding(
