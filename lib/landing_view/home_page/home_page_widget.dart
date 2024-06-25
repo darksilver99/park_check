@@ -538,7 +538,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                                 Flexible(
                                   child: Text(
-                                    'รถเข้า',
+                                    'เพิ่มรถเข้า',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -656,7 +656,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                                 Flexible(
                                   child: Text(
-                                    'รถออก',
+                                    'นำรถออก',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
