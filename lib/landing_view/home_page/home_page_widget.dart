@@ -8,6 +8,7 @@ import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -189,8 +190,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ),
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  _model.searchResult =
+                                      await actions.searchTransactionData(
+                                    _model.textController.text,
+                                  );
+                                  _model.transactionList = _model.searchResult!
+                                      .toList()
+                                      .cast<TransactionListRecord>();
+                                  setState(() {});
+
+                                  setState(() {});
                                 },
                                 text: 'ค้นหา',
                                 options: FFButtonOptions(
