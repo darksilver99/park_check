@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
+import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -845,29 +846,84 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       if (_model.objectiveSelectedValue !=
                                               null &&
                                           _model.objectiveSelectedValue != '') {
-                                        await TransactionListRecord.collection
-                                            .doc()
+                                        var transactionListRecordReference =
+                                            TransactionListRecord.collection
+                                                .doc();
+                                        await transactionListRecordReference
                                             .set(
                                                 createTransactionListRecordData(
-                                              createDate: getCurrentTimestamp,
-                                              cardNumber:
-                                                  _model.textController4.text,
-                                              preName:
-                                                  _model.textController1.text,
-                                              firstName:
-                                                  _model.textController2.text,
-                                              lastName:
-                                                  _model.textController3.text,
-                                              carRegistration:
-                                                  _model.textController5.text,
-                                              carRegistrationProvince:
-                                                  _model.textController6.text,
-                                              objective:
-                                                  _model.objectiveSelectedValue,
-                                              carType: _model.carSelectedValue,
-                                              dateIn: getCurrentTimestamp,
-                                              isOut: false,
-                                            ));
+                                          createDate: getCurrentTimestamp,
+                                          cardNumber:
+                                              _model.textController4.text,
+                                          preName: _model.textController1.text,
+                                          firstName:
+                                              _model.textController2.text,
+                                          lastName: _model.textController3.text,
+                                          carRegistration:
+                                              _model.textController5.text,
+                                          carRegistrationProvince:
+                                              _model.textController6.text,
+                                          objective:
+                                              _model.objectiveSelectedValue,
+                                          carType: _model.carSelectedValue,
+                                          dateIn: getCurrentTimestamp,
+                                          isOut: false,
+                                        ));
+                                        _model.insertedTransaction =
+                                            TransactionListRecord.getDocumentFromData(
+                                                createTransactionListRecordData(
+                                                  createDate:
+                                                      getCurrentTimestamp,
+                                                  cardNumber: _model
+                                                      .textController4.text,
+                                                  preName: _model
+                                                      .textController1.text,
+                                                  firstName: _model
+                                                      .textController2.text,
+                                                  lastName: _model
+                                                      .textController3.text,
+                                                  carRegistration: _model
+                                                      .textController5.text,
+                                                  carRegistrationProvince:
+                                                      _model
+                                                          .textController6.text,
+                                                  objective: _model
+                                                      .objectiveSelectedValue,
+                                                  carType:
+                                                      _model.carSelectedValue,
+                                                  dateIn: getCurrentTimestamp,
+                                                  isOut: false,
+                                                ),
+                                                transactionListRecordReference);
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          useSafeArea: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    TransactionDetailViewWidget(
+                                                  transactionParameter: _model
+                                                      .insertedTransaction!,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+
                                         await actions.pushReplacement(
                                           context,
                                         );
@@ -907,6 +963,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         },
                                       );
                                     }
+
+                                    setState(() {});
                                   },
                                   text: 'บันทึกรถเข้า',
                                   options: FFButtonOptions(
