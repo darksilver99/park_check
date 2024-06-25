@@ -8,6 +8,7 @@ import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -51,6 +52,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Custom Action - searchTransactionData] action in Button widget.
+  List<TransactionListRecord>? searchResult;
   var qrCode = '';
   // Model for LoadingView component.
   late LoadingViewModel loadingViewModel;
