@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
+import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -105,6 +106,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
       objectiveSelectedValueController?.value?.firstOrNull;
   set objectiveSelectedValue(String? val) =>
       objectiveSelectedValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  TransactionListRecord? insertedTransaction;
 
   @override
   void initState(BuildContext context) {
