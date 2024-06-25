@@ -12,5 +12,15 @@ import 'package:flutter/material.dart';
 Future<List<TransactionListRecord>> searchTransactionData(
     String keyword) async {
   // Add your function code here!
-  return [];
+  var rs = await FirebaseFirestore.instance
+      .collection(
+          'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
+      .where("")
+      .where('car_registration', isGreaterThanOrEqualTo: keyword)
+      .where('car_registration', isLessThanOrEqualTo: '$keyword\uf8ff')
+      .get();
+  List<TransactionListRecord> transactionList = rs.docs.map((doc) {
+    return TransactionListRecord.fromSnapshot(doc);
+  }).toList();
+  return transactionList;
 }
