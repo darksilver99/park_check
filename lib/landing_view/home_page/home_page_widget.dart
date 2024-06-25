@@ -546,7 +546,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ScanMode.QR,
                               );
 
-                              setState(() {});
+                              _model.transactionDocumentResult =
+                                  await actions.getTransactionDocument(
+                                _model.qrCode!,
+                              );
 
                               setState(() {});
                             },
