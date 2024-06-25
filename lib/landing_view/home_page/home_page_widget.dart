@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -60,10 +61,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ).then((s) => s.firstOrNull);
         FFAppState().configData = ConfigDataStruct(
           orcApi: _model.configResult?.orcApi,
+          backgroudImage: _model.configResult?.backgroundImage,
         );
         _model.rsDataList = await queryTransactionListRecordOnce(
-          queryBuilder: (transactionListRecord) =>
-              transactionListRecord.orderBy('date_in', descending: true),
+          queryBuilder: (transactionListRecord) => transactionListRecord
+              .where(Filter.or(
+                Filter(
+                  'date_in',
+                  isGreaterThanOrEqualTo: functions.getStartDayTime(),
+                ),
+                Filter(
+                  'date_in',
+                  isLessThanOrEqualTo: functions.getEndDayTime(),
+                ),
+              ))
+              .orderBy('date_in', descending: true),
           limit: 150,
         );
         _model.isLoading = false;
@@ -253,7 +265,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             onPressed: () {
                               print('Button pressed ...');
                             },
-                            text: 'รายการรถค้าง',
+                            text: 'รายการ รถออก/ค้าง',
                             icon: Icon(
                               Icons.history_rounded,
                               size: 15.0,

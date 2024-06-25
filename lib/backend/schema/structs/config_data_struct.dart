@@ -11,8 +11,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 class ConfigDataStruct extends FFFirebaseStruct {
   ConfigDataStruct({
     String? orcApi,
+    int? backgroudImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _orcApi = orcApi,
+        _backgroudImage = backgroudImage,
         super(firestoreUtilData);
 
   // "orc_api" field.
@@ -22,9 +24,20 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasOrcApi() => _orcApi != null;
 
+  // "backgroudImage" field.
+  int? _backgroudImage;
+  int get backgroudImage => _backgroudImage ?? 0;
+  set backgroudImage(int? val) => _backgroudImage = val;
+
+  void incrementBackgroudImage(int amount) =>
+      backgroudImage = backgroudImage + amount;
+
+  bool hasBackgroudImage() => _backgroudImage != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         orcApi: data['orc_api'] as String?,
+        backgroudImage: castToType<int>(data['backgroudImage']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -33,6 +46,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'orc_api': _orcApi,
+        'backgroudImage': _backgroudImage,
       }.withoutNulls;
 
   @override
@@ -40,6 +54,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'orc_api': serializeParam(
           _orcApi,
           ParamType.String,
+        ),
+        'backgroudImage': serializeParam(
+          _backgroudImage,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -50,6 +68,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        backgroudImage: deserializeParam(
+          data['backgroudImage'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -57,15 +80,18 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is ConfigDataStruct && orcApi == other.orcApi;
+    return other is ConfigDataStruct &&
+        orcApi == other.orcApi &&
+        backgroudImage == other.backgroudImage;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([orcApi]);
+  int get hashCode => const ListEquality().hash([orcApi, backgroudImage]);
 }
 
 ConfigDataStruct createConfigDataStruct({
   String? orcApi,
+  int? backgroudImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -73,6 +99,7 @@ ConfigDataStruct createConfigDataStruct({
 }) =>
     ConfigDataStruct(
       orcApi: orcApi,
+      backgroudImage: backgroudImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

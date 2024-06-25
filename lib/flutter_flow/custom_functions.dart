@@ -19,3 +19,17 @@ String convertPhoneNumber(String phoneNumber) {
   }
   return phoneNumber; // Return as is if it doesn't start with '0'
 }
+
+DateTime getStartDayTime() {
+  DateTime now = DateTime.now();
+  DateTime startOfDay = DateTime(now.year, now.month, now.day);
+  return startOfDay;
+}
+
+DateTime getEndDayTime() {
+  DateTime now = DateTime.now();
+
+  // Create a new DateTime object with the time set to 23:00:00
+  DateTime endOfDay = DateTime(now.year, now.month, now.day, 23, 0, 0);
+  return endOfDay;
+}
