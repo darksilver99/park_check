@@ -98,277 +98,283 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainBackgroundViewWidget(),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            12.0, 8.0, 12.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                controller: _model.textController,
-                                focusNode: _model.textFieldFocusNode,
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'ระบุทะเบียนรถ',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+              if (!_model.isLoading)
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 8.0, 12.0, 8.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _model.textController,
+                                  focusNode: _model.textFieldFocusNode,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'ระบุทะเบียนรถ',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    filled: true,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
                                       ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'ค้นหา',
+                                options: FFButtonOptions(
+                                  height: 58.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Colors.white,
                                         letterSpacing: 0.0,
                                       ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                  elevation: 0.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  filled: true,
+                                  borderRadius: BorderRadius.circular(0.0),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
                               ),
-                            ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'ค้นหา',
-                              options: FFButtonOptions(
-                                height: 58.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 0.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        final dataList = _model.transactionList.toList();
-                        if (dataList.isEmpty) {
-                          return NoDataViewWidget();
-                        }
-                        return ListView.separated(
-                          padding: EdgeInsets.fromLTRB(
-                            0,
-                            0,
-                            0,
-                            64.0,
-                          ),
-                          scrollDirection: Axis.vertical,
-                          itemCount: dataList.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                          itemBuilder: (context, dataListIndex) {
-                            final dataListItem = dataList[dataListIndex];
-                            return Builder(
-                              builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: TransactionDetailViewWidget(
-                                              transactionParameter:
-                                                  dataListItem,
+                    Expanded(
+                      child: Builder(
+                        builder: (context) {
+                          final dataList = _model.transactionList.toList();
+                          if (dataList.isEmpty) {
+                            return NoDataViewWidget();
+                          }
+                          return ListView.separated(
+                            padding: EdgeInsets.fromLTRB(
+                              0,
+                              0,
+                              0,
+                              64.0,
+                            ),
+                            scrollDirection: Axis.vertical,
+                            itemCount: dataList.length,
+                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                            itemBuilder: (context, dataListIndex) {
+                              final dataListItem = dataList[dataListIndex];
+                              return Builder(
+                                builder: (context) => Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child:
+                                                  TransactionDetailViewWidget(
+                                                transactionParameter:
+                                                    dataListItem,
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-                                  },
-                                  child: Container(
-                                    width: 100.0,
-                                    height: 120.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'ทะเบียน : ${dataListItem.carRegistration}',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 20.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    '${dataListItem.preName} ${dataListItem.firstName} ${dataListItem.lastName}',
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 120.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'ทะเบียน : ${dataListItem.carRegistration}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${dataListItem.preName} ${dataListItem.firstName} ${dataListItem.lastName}',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'เวลาเข้า : ${dataListItem.dateIn?.toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
+                                                ],
+                                              ),
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons
+                                                      .content_paste_search_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
                                                 ),
                                                 Text(
-                                                  'เวลาเข้า : ${dataListItem.dateIn?.toString()}',
+                                                  'ดูรายละเอียด',
+                                                  textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        fontSize: 8.0,
                                                         letterSpacing: 0.0,
+                                                        lineHeight: 1.2,
                                                       ),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons
-                                                    .content_paste_search_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              Text(
-                                                'ดูรายละเอียด',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 8.0,
-                                                          letterSpacing: 0.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),
                 child: Padding(
