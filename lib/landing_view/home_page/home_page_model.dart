@@ -41,6 +41,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ProjectListRecord? projectData;
+  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
+  List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for TextField widget.

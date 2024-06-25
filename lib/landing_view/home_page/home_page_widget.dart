@@ -53,12 +53,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectObjectiveList: _model.projectData?.objectiveList,
           projectCarList: _model.projectData?.carList,
         );
-        await queryTransactionListRecordOnce(
+        _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) =>
               transactionListRecord.orderBy('date_in', descending: true),
           limit: 150,
         );
         _model.isLoading = false;
+        _model.transactionList =
+            _model.rsDataList!.toList().cast<TransactionListRecord>();
         setState(() {});
       } else {
         context.goNamed('CreateProjectPage');
