@@ -774,7 +774,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       carType: _model.carSelectedValue,
                                       dateIn: getCurrentTimestamp,
                                     ));
-                                context.safePop();
                               } else {
                                 await showDialog(
                                   context: context,

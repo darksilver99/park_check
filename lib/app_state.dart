@@ -50,6 +50,16 @@ class FFAppState extends ChangeNotifier {
     updateFn(_projectData);
     prefs.setString('ff_projectData', _projectData.serialize());
   }
+
+  ConfigDataStruct _configData = ConfigDataStruct();
+  ConfigDataStruct get configData => _configData;
+  set configData(ConfigDataStruct value) {
+    _configData = value;
+  }
+
+  void updateConfigDataStruct(Function(ConfigDataStruct) updateFn) {
+    updateFn(_configData);
+  }
 }
 
 void _safeInit(Function() initializeField) {
