@@ -68,7 +68,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           minHeight: MediaQuery.sizeOf(context).height * 0.8,
                         ),
                         decoration: BoxDecoration(
-                          color: Color(0xCDFFFFFF),
+                          color: Color(0xE6FFFFFF),
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         child: Padding(
