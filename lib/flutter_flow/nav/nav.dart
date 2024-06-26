@@ -121,6 +121,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TransactionInPage',
           path: '/transactionInPage',
           builder: (context, params) => TransactionInPageWidget(),
+        ),
+        FFRoute(
+          name: 'SettingProjectPage',
+          path: '/settingProjectPage',
+          builder: (context, params) => SettingProjectPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -126,48 +126,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     0.0, 0.0, 0.0, 8.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    Function() _navigate = () {};
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text('ออกจากระบบ?'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('ยกเลิก'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              true),
-                                                      child: Text('ยืนยัน'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                    if (confirmDialogResponse) {
-                                      GoRouter.of(context).prepareAuthEvent();
-                                      await authManager.signOut();
-                                      GoRouter.of(context)
-                                          .clearRedirectLocation();
-
-                                      _navigate = () => context.goNamedAuth(
-                                          'LoginPage', context.mounted);
-                                    } else {
-                                      setState(() {});
-                                    }
-
-                                    _navigate();
+                                    context.pushNamed('SettingProjectPage');
                                   },
-                                  text: 'ตั้งค่า',
+                                  text: 'ตั้งค่าโครงการ',
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
@@ -175,13 +136,14 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          color: Colors.white,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
@@ -237,6 +199,10 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   _navigate();
                                 },
                                 text: 'ออกจากระบบ',
+                                icon: Icon(
+                                  Icons.login_rounded,
+                                  size: 15.0,
+                                ),
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 40.0,

@@ -61,6 +61,11 @@ class ProjectListRecord extends FirestoreRecord {
   String get projectType => _projectType ?? '';
   bool hasProjectType() => _projectType != null;
 
+  // "update_date" field.
+  DateTime? _updateDate;
+  DateTime? get updateDate => _updateDate;
+  bool hasUpdateDate() => _updateDate != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -71,6 +76,7 @@ class ProjectListRecord extends FirestoreRecord {
     _carList = getDataList(snapshotData['car_list']);
     _stampField = snapshotData['stamp_field'] as String?;
     _projectType = snapshotData['project_type'] as String?;
+    _updateDate = snapshotData['update_date'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -114,6 +120,7 @@ Map<String, dynamic> createProjectListRecordData({
   String? name,
   String? stampField,
   String? projectType,
+  DateTime? updateDate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -123,6 +130,7 @@ Map<String, dynamic> createProjectListRecordData({
       'name': name,
       'stamp_field': stampField,
       'project_type': projectType,
+      'update_date': updateDate,
     }.withoutNulls,
   );
 
@@ -143,7 +151,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         listEquality.equals(e1?.stampList, e2?.stampList) &&
         listEquality.equals(e1?.carList, e2?.carList) &&
         e1?.stampField == e2?.stampField &&
-        e1?.projectType == e2?.projectType;
+        e1?.projectType == e2?.projectType &&
+        e1?.updateDate == e2?.updateDate;
   }
 
   @override
@@ -156,7 +165,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.stampList,
         e?.carList,
         e?.stampField,
-        e?.projectType
+        e?.projectType,
+        e?.updateDate
       ]);
 
   @override

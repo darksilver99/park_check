@@ -17,6 +17,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
     List<String>? projectCarList,
     String? projectType,
     String? stampField,
+    DocumentReference? projectReference,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -25,6 +26,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _projectCarList = projectCarList,
         _projectType = projectType,
         _stampField = stampField,
+        _projectReference = projectReference,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -88,6 +90,13 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasStampField() => _stampField != null;
 
+  // "projectReference" field.
+  DocumentReference? _projectReference;
+  DocumentReference? get projectReference => _projectReference;
+  set projectReference(DocumentReference? val) => _projectReference = val;
+
+  bool hasProjectReference() => _projectReference != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -97,6 +106,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectCarList: getDataList(data['projectCarList']),
         projectType: data['project_type'] as String?,
         stampField: data['stamp_field'] as String?,
+        projectReference: data['projectReference'] as DocumentReference?,
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -111,6 +121,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'projectCarList': _projectCarList,
         'project_type': _projectType,
         'stamp_field': _stampField,
+        'projectReference': _projectReference,
       }.withoutNulls;
 
   @override
@@ -145,6 +156,10 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'stamp_field': serializeParam(
           _stampField,
           ParamType.String,
+        ),
+        'projectReference': serializeParam(
+          _projectReference,
+          ParamType.DocumentReference,
         ),
       }.withoutNulls;
 
@@ -185,6 +200,12 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        projectReference: deserializeParam(
+          data['projectReference'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['project_list'],
+        ),
       );
 
   @override
@@ -200,7 +221,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         listEquality.equals(projectObjectiveList, other.projectObjectiveList) &&
         listEquality.equals(projectCarList, other.projectCarList) &&
         projectType == other.projectType &&
-        stampField == other.stampField;
+        stampField == other.stampField &&
+        projectReference == other.projectReference;
   }
 
   @override
@@ -211,7 +233,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectObjectiveList,
         projectCarList,
         projectType,
-        stampField
+        stampField,
+        projectReference
       ]);
 }
 
@@ -220,6 +243,7 @@ ProjectDataStruct createProjectDataStruct({
   String? projectName,
   String? projectType,
   String? stampField,
+  DocumentReference? projectReference,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -230,6 +254,7 @@ ProjectDataStruct createProjectDataStruct({
       projectName: projectName,
       projectType: projectType,
       stampField: stampField,
+      projectReference: projectReference,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
