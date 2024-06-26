@@ -195,7 +195,8 @@ class _TransactionHistoryPageWidgetState
                                           final _datePickedDate =
                                               await showDatePicker(
                                             context: context,
-                                            initialDate: getCurrentTimestamp,
+                                            initialDate: (_model.startDate ??
+                                                DateTime.now()),
                                             firstDate: DateTime(1900),
                                             lastDate: DateTime(2050),
                                             builder: (context, child) {
