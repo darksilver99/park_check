@@ -274,7 +274,7 @@ class _TransactionOutDetailViewWidgetState
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Text(
-                                          'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
+                                          'เวลาออก : ตอนนี้',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
