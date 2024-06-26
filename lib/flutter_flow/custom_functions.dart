@@ -20,15 +20,15 @@ String convertPhoneNumber(String phoneNumber) {
   return phoneNumber; // Return as is if it doesn't start with '0'
 }
 
-DateTime getStartDayTime() {
-  DateTime now = DateTime.now();
-  DateTime startOfDay = DateTime(now.year, now.month, now.day);
+DateTime getStartDayTime(DateTime currentDate) {
+  DateTime startOfDay =
+      DateTime(currentDate.year, currentDate.month, currentDate.day);
   return startOfDay;
 }
 
-DateTime getEndDayTime() {
-  DateTime now = DateTime.now();
-  DateTime endOfDay = DateTime(now.year, now.month, now.day, 23, 0, 0);
+DateTime getEndDayTime(DateTime currentDate) {
+  DateTime endOfDay =
+      DateTime(currentDate.year, currentDate.month, currentDate.day, 23, 0, 0);
   return endOfDay;
 }
 

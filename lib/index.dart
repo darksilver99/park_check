@@ -10,3 +10,5 @@ export '/transaction_view/transaction_in_page/transaction_in_page_widget.dart'
     show TransactionInPageWidget;
 export '/setting_view/setting_project_page/setting_project_page_widget.dart'
     show SettingProjectPageWidget;
+export '/transaction_view/transaction_history_page/transaction_history_page_widget.dart'
+    show TransactionHistoryPageWidget;
