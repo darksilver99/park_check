@@ -549,27 +549,59 @@ class _TransactionHistoryPageWidgetState
                                       offset:
                                           _model.textController!.text.length);
                             });
-                            _model.rsDataList2 =
-                                await queryTransactionListRecordOnce(
-                              queryBuilder: (transactionListRecord) =>
-                                  transactionListRecord
-                                      .where(
-                                        'date_in',
-                                        isGreaterThanOrEqualTo: functions
-                                            .getStartDayTime(_model.startDate!),
-                                      )
-                                      .where(
-                                        'date_in',
-                                        isLessThanOrEqualTo: functions
-                                            .getEndDayTime(_model.endDate!),
-                                      )
-                                      .orderBy('date_in', descending: true),
-                            );
-                            _model.transactionList = _model.rsDataList2!
-                                .toList()
-                                .cast<TransactionListRecord>();
-                            _model.isLoading = false;
-                            setState(() {});
+                            if (functions
+                                    .getStartDayTime(getCurrentTimestamp) ==
+                                _model.startDate) {
+                              _model.rsDataList2 =
+                                  await queryTransactionListRecordOnce(
+                                queryBuilder: (transactionListRecord) =>
+                                    transactionListRecord
+                                        .where(
+                                          'date_in',
+                                          isGreaterThanOrEqualTo:
+                                              functions.getStartDayTime(
+                                                  _model.startDate!),
+                                        )
+                                        .where(
+                                          'date_in',
+                                          isLessThanOrEqualTo: functions
+                                              .getEndDayTime(_model.endDate!),
+                                        )
+                                        .where(
+                                          'is_out',
+                                          isEqualTo: true,
+                                        )
+                                        .orderBy('date_in', descending: true),
+                              );
+                              _model.transactionList = _model.rsDataList2!
+                                  .toList()
+                                  .cast<TransactionListRecord>();
+                              _model.isLoading = false;
+                              setState(() {});
+                            } else {
+                              _model.rsDataList6 =
+                                  await queryTransactionListRecordOnce(
+                                queryBuilder: (transactionListRecord) =>
+                                    transactionListRecord
+                                        .where(
+                                          'date_in',
+                                          isGreaterThanOrEqualTo:
+                                              functions.getStartDayTime(
+                                                  _model.startDate!),
+                                        )
+                                        .where(
+                                          'date_in',
+                                          isLessThanOrEqualTo: functions
+                                              .getEndDayTime(_model.endDate!),
+                                        )
+                                        .orderBy('date_in', descending: true),
+                              );
+                              _model.transactionList = _model.rsDataList6!
+                                  .toList()
+                                  .cast<TransactionListRecord>();
+                              _model.isLoading = false;
+                              setState(() {});
+                            }
                           },
                           child: ListView.separated(
                             padding: EdgeInsets.fromLTRB(
@@ -622,7 +654,90 @@ class _TransactionHistoryPageWidgetState
                                           ),
                                         );
                                       },
-                                    ).then((value) => safeSetState(() {}));
+                                    ).then((value) => safeSetState(
+                                        () => _model.isSaved = value));
+
+                                    if (_model.isSaved != null &&
+                                        _model.isSaved != '') {
+                                      setState(() {
+                                        _model.textController?.text = '';
+                                        _model.textController?.selection =
+                                            TextSelection.collapsed(
+                                                offset: _model.textController!
+                                                    .text.length);
+                                      });
+                                      _model.isLoading = true;
+                                      setState(() {});
+                                      if (functions.getStartDayTime(
+                                              getCurrentTimestamp) ==
+                                          _model.startDate) {
+                                        _model.rsDataList7 =
+                                            await queryTransactionListRecordOnce(
+                                          queryBuilder:
+                                              (transactionListRecord) =>
+                                                  transactionListRecord
+                                                      .where(
+                                                        'date_in',
+                                                        isGreaterThanOrEqualTo:
+                                                            functions
+                                                                .getStartDayTime(
+                                                                    _model
+                                                                        .startDate!),
+                                                      )
+                                                      .where(
+                                                        'date_in',
+                                                        isLessThanOrEqualTo:
+                                                            functions
+                                                                .getEndDayTime(
+                                                                    _model
+                                                                        .endDate!),
+                                                      )
+                                                      .where(
+                                                        'is_out',
+                                                        isEqualTo: true,
+                                                      )
+                                                      .orderBy('date_in',
+                                                          descending: true),
+                                        );
+                                        _model.transactionList = _model
+                                            .rsDataList7!
+                                            .toList()
+                                            .cast<TransactionListRecord>();
+                                        _model.isLoading = false;
+                                        setState(() {});
+                                      } else {
+                                        _model.rsDataList8 =
+                                            await queryTransactionListRecordOnce(
+                                          queryBuilder:
+                                              (transactionListRecord) =>
+                                                  transactionListRecord
+                                                      .where(
+                                                        'date_in',
+                                                        isGreaterThanOrEqualTo:
+                                                            functions
+                                                                .getStartDayTime(
+                                                                    _model
+                                                                        .startDate!),
+                                                      )
+                                                      .where(
+                                                        'date_in',
+                                                        isLessThanOrEqualTo:
+                                                            functions
+                                                                .getEndDayTime(
+                                                                    _model
+                                                                        .endDate!),
+                                                      )
+                                                      .orderBy('date_in',
+                                                          descending: true),
+                                        );
+                                        _model.transactionList = _model
+                                            .rsDataList8!
+                                            .toList()
+                                            .cast<TransactionListRecord>();
+                                        _model.isLoading = false;
+                                        setState(() {});
+                                      }
+                                    }
 
                                     setState(() {});
                                   },

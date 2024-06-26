@@ -475,7 +475,7 @@ class _TransactionOutDetailViewWidgetState
                                       stamp: _model.stampSelectedValue,
                                       isOut: true,
                                     ));
-                                    Navigator.pop(context);
+                                    Navigator.pop(context, 'saved');
                                   } else {
                                     await showDialog(
                                       context: context,

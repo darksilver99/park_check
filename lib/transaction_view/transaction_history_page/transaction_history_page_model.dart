@@ -64,6 +64,14 @@ class TransactionHistoryPageModel
   List<TransactionListRecord>? searchResult;
   // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
   List<TransactionListRecord>? rsDataList2;
+  // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
+  List<TransactionListRecord>? rsDataList6;
+  // Stores action output result for [Bottom Sheet - TransactionOutDetailView] action in Container widget.
+  String? isSaved;
+  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
+  List<TransactionListRecord>? rsDataList7;
+  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
+  List<TransactionListRecord>? rsDataList8;
 
   @override
   void initState(BuildContext context) {
