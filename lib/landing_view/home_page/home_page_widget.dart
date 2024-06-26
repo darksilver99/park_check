@@ -417,6 +417,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      await actions.hideKeyBoard(
+                                        context,
+                                      );
                                       await showModalBottomSheet(
                                         isScrollControlled: true,
                                         backgroundColor: Colors.transparent,
