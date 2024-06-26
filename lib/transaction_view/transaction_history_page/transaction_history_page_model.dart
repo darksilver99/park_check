@@ -46,10 +46,14 @@ class TransactionHistoryPageModel
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in TransactionHistoryPage widget.
+  List<TransactionListRecord>? rsDataList4;
+  // Stores action output result for [Firestore Query - Query a collection] action in TransactionHistoryPage widget.
   List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   DateTime? datePicked;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<TransactionListRecord>? rsDataList5;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<TransactionListRecord>? rsDataList3;
   // State field(s) for TextField widget.
