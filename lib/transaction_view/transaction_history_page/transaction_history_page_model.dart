@@ -42,6 +42,22 @@ class TransactionHistoryPageModel
 
   DateTime? endDate;
 
+  List<TransactionListRecord> searchedTransactionList = [];
+  void addToSearchedTransactionList(TransactionListRecord item) =>
+      searchedTransactionList.add(item);
+  void removeFromSearchedTransactionList(TransactionListRecord item) =>
+      searchedTransactionList.remove(item);
+  void removeAtIndexFromSearchedTransactionList(int index) =>
+      searchedTransactionList.removeAt(index);
+  void insertAtIndexInSearchedTransactionList(
+          int index, TransactionListRecord item) =>
+      searchedTransactionList.insert(index, item);
+  void updateSearchedTransactionListAtIndex(
+          int index, Function(TransactionListRecord) updateFn) =>
+      searchedTransactionList[index] = updateFn(searchedTransactionList[index]);
+
+  bool isFullList = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -56,6 +72,8 @@ class TransactionHistoryPageModel
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Bottom Sheet - TransactionOutDetailView] action in Container widget.
   String? isSaved;
+  // Stores action output result for [Bottom Sheet - TransactionOutDetailView] action in Container widget.
+  String? isSaved2;
 
   @override
   void initState(BuildContext context) {
