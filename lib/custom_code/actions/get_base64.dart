@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:convert';
+
 Future<String> getBase64(FFUploadedFile image) async {
   // Add your function code here!
   var base64 = base64Encode(image.bytes!.toList());
