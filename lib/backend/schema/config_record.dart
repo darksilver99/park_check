@@ -26,9 +26,39 @@ class ConfigRecord extends FirestoreRecord {
   String get ocrApi => _ocrApi ?? '';
   bool hasOcrApi() => _ocrApi != null;
 
+  // "default_stamp_list" field.
+  List<String>? _defaultStampList;
+  List<String> get defaultStampList => _defaultStampList ?? const [];
+  bool hasDefaultStampList() => _defaultStampList != null;
+
+  // "default_car_list" field.
+  List<String>? _defaultCarList;
+  List<String> get defaultCarList => _defaultCarList ?? const [];
+  bool hasDefaultCarList() => _defaultCarList != null;
+
+  // "project_type" field.
+  List<String>? _projectType;
+  List<String> get projectType => _projectType ?? const [];
+  bool hasProjectType() => _projectType != null;
+
+  // "default_stamp_field" field.
+  String? _defaultStampField;
+  String get defaultStampField => _defaultStampField ?? '';
+  bool hasDefaultStampField() => _defaultStampField != null;
+
+  // "default_objective_list" field.
+  List<String>? _defaultObjectiveList;
+  List<String> get defaultObjectiveList => _defaultObjectiveList ?? const [];
+  bool hasDefaultObjectiveList() => _defaultObjectiveList != null;
+
   void _initializeFields() {
     _backgroundImage = castToType<int>(snapshotData['background_image']);
     _ocrApi = snapshotData['ocr_api'] as String?;
+    _defaultStampList = getDataList(snapshotData['default_stamp_list']);
+    _defaultCarList = getDataList(snapshotData['default_car_list']);
+    _projectType = getDataList(snapshotData['project_type']);
+    _defaultStampField = snapshotData['default_stamp_field'] as String?;
+    _defaultObjectiveList = getDataList(snapshotData['default_objective_list']);
   }
 
   static CollectionReference get collection =>
@@ -67,11 +97,13 @@ class ConfigRecord extends FirestoreRecord {
 Map<String, dynamic> createConfigRecordData({
   int? backgroundImage,
   String? ocrApi,
+  String? defaultStampField,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'background_image': backgroundImage,
       'ocr_api': ocrApi,
+      'default_stamp_field': defaultStampField,
     }.withoutNulls,
   );
 
@@ -83,13 +115,26 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
 
   @override
   bool equals(ConfigRecord? e1, ConfigRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.backgroundImage == e2?.backgroundImage &&
-        e1?.ocrApi == e2?.ocrApi;
+        e1?.ocrApi == e2?.ocrApi &&
+        listEquality.equals(e1?.defaultStampList, e2?.defaultStampList) &&
+        listEquality.equals(e1?.defaultCarList, e2?.defaultCarList) &&
+        listEquality.equals(e1?.projectType, e2?.projectType) &&
+        e1?.defaultStampField == e2?.defaultStampField &&
+        listEquality.equals(e1?.defaultObjectiveList, e2?.defaultObjectiveList);
   }
 
   @override
-  int hash(ConfigRecord? e) =>
-      const ListEquality().hash([e?.backgroundImage, e?.ocrApi]);
+  int hash(ConfigRecord? e) => const ListEquality().hash([
+        e?.backgroundImage,
+        e?.ocrApi,
+        e?.defaultStampList,
+        e?.defaultCarList,
+        e?.projectType,
+        e?.defaultStampField,
+        e?.defaultObjectiveList
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ConfigRecord;

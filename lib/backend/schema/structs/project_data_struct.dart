@@ -15,12 +15,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
     List<String>? projectStampList,
     List<String>? projectObjectiveList,
     List<String>? projectCarList,
+    String? projectType,
+    String? stampField,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
         _projectStampList = projectStampList,
         _projectObjectiveList = projectObjectiveList,
         _projectCarList = projectCarList,
+        _projectType = projectType,
+        _stampField = stampField,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -43,7 +47,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
   set projectStampList(List<String>? val) => _projectStampList = val;
 
   void updateProjectStampList(Function(List<String>) updateFn) {
-    updateFn(projectStampList ??= []);
+    updateFn(_projectStampList ??= []);
   }
 
   bool hasProjectStampList() => _projectStampList != null;
@@ -54,7 +58,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
   set projectObjectiveList(List<String>? val) => _projectObjectiveList = val;
 
   void updateProjectObjectiveList(Function(List<String>) updateFn) {
-    updateFn(projectObjectiveList ??= []);
+    updateFn(_projectObjectiveList ??= []);
   }
 
   bool hasProjectObjectiveList() => _projectObjectiveList != null;
@@ -65,10 +69,24 @@ class ProjectDataStruct extends FFFirebaseStruct {
   set projectCarList(List<String>? val) => _projectCarList = val;
 
   void updateProjectCarList(Function(List<String>) updateFn) {
-    updateFn(projectCarList ??= []);
+    updateFn(_projectCarList ??= []);
   }
 
   bool hasProjectCarList() => _projectCarList != null;
+
+  // "project_type" field.
+  String? _projectType;
+  String get projectType => _projectType ?? '';
+  set projectType(String? val) => _projectType = val;
+
+  bool hasProjectType() => _projectType != null;
+
+  // "stamp_field" field.
+  String? _stampField;
+  String get stampField => _stampField ?? '';
+  set stampField(String? val) => _stampField = val;
+
+  bool hasStampField() => _stampField != null;
 
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
@@ -77,6 +95,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectStampList: getDataList(data['projectStampList']),
         projectObjectiveList: getDataList(data['projectObjectiveList']),
         projectCarList: getDataList(data['projectCarList']),
+        projectType: data['project_type'] as String?,
+        stampField: data['stamp_field'] as String?,
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -89,6 +109,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'projectStampList': _projectStampList,
         'projectObjectiveList': _projectObjectiveList,
         'projectCarList': _projectCarList,
+        'project_type': _projectType,
+        'stamp_field': _stampField,
       }.withoutNulls;
 
   @override
@@ -115,6 +137,14 @@ class ProjectDataStruct extends FFFirebaseStruct {
           _projectCarList,
           ParamType.String,
           isList: true,
+        ),
+        'project_type': serializeParam(
+          _projectType,
+          ParamType.String,
+        ),
+        'stamp_field': serializeParam(
+          _stampField,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -145,6 +175,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        projectType: deserializeParam(
+          data['project_type'],
+          ParamType.String,
+          false,
+        ),
+        stampField: deserializeParam(
+          data['stamp_field'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -158,7 +198,9 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectName == other.projectName &&
         listEquality.equals(projectStampList, other.projectStampList) &&
         listEquality.equals(projectObjectiveList, other.projectObjectiveList) &&
-        listEquality.equals(projectCarList, other.projectCarList);
+        listEquality.equals(projectCarList, other.projectCarList) &&
+        projectType == other.projectType &&
+        stampField == other.stampField;
   }
 
   @override
@@ -167,13 +209,17 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectName,
         projectStampList,
         projectObjectiveList,
-        projectCarList
+        projectCarList,
+        projectType,
+        stampField
       ]);
 }
 
 ProjectDataStruct createProjectDataStruct({
   String? projectDocID,
   String? projectName,
+  String? projectType,
+  String? stampField,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -182,6 +228,8 @@ ProjectDataStruct createProjectDataStruct({
     ProjectDataStruct(
       projectDocID: projectDocID,
       projectName: projectName,
+      projectType: projectType,
+      stampField: stampField,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

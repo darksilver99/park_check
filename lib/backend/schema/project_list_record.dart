@@ -51,6 +51,16 @@ class ProjectListRecord extends FirestoreRecord {
   List<String> get carList => _carList ?? const [];
   bool hasCarList() => _carList != null;
 
+  // "stamp_field" field.
+  String? _stampField;
+  String get stampField => _stampField ?? '';
+  bool hasStampField() => _stampField != null;
+
+  // "project_type" field.
+  String? _projectType;
+  String get projectType => _projectType ?? '';
+  bool hasProjectType() => _projectType != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -59,6 +69,8 @@ class ProjectListRecord extends FirestoreRecord {
     _objectiveList = getDataList(snapshotData['objective_list']);
     _stampList = getDataList(snapshotData['stamp_list']);
     _carList = getDataList(snapshotData['car_list']);
+    _stampField = snapshotData['stamp_field'] as String?;
+    _projectType = snapshotData['project_type'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -100,6 +112,8 @@ Map<String, dynamic> createProjectListRecordData({
   DocumentReference? createBy,
   int? status,
   String? name,
+  String? stampField,
+  String? projectType,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -107,6 +121,8 @@ Map<String, dynamic> createProjectListRecordData({
       'create_by': createBy,
       'status': status,
       'name': name,
+      'stamp_field': stampField,
+      'project_type': projectType,
     }.withoutNulls,
   );
 
@@ -125,7 +141,9 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.name == e2?.name &&
         listEquality.equals(e1?.objectiveList, e2?.objectiveList) &&
         listEquality.equals(e1?.stampList, e2?.stampList) &&
-        listEquality.equals(e1?.carList, e2?.carList);
+        listEquality.equals(e1?.carList, e2?.carList) &&
+        e1?.stampField == e2?.stampField &&
+        e1?.projectType == e2?.projectType;
   }
 
   @override
@@ -136,7 +154,9 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.name,
         e?.objectiveList,
         e?.stampList,
-        e?.carList
+        e?.carList,
+        e?.stampField,
+        e?.projectType
       ]);
 
   @override
