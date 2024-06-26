@@ -201,8 +201,8 @@ class _TransactionHistoryPageWidgetState
                                             initialDate: (_model.startDate ??
                                                 DateTime.now()),
                                             firstDate: DateTime(1900),
-                                            lastDate: (_model.startDate ??
-                                                DateTime.now()),
+                                            lastDate: (getCurrentTimestamp ??
+                                                DateTime(2050)),
                                             builder: (context, child) {
                                               return wrapInMaterialDatePickerTheme(
                                                 context,
