@@ -51,6 +51,8 @@ class TransactionHistoryPageModel
   List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
   DateTime? datePicked;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<TransactionListRecord>? rsDataList5;

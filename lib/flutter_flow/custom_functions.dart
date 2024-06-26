@@ -48,7 +48,7 @@ String getTimeDuration(
   StringBuffer result = StringBuffer();
 
   if (days > 0) {
-    result.write('$days วัน${days > 1 ? 's' : ''} ');
+    result.write('$days วัน ');
   }
 
   if (hours > 0 || days > 0) {
@@ -59,4 +59,11 @@ String getTimeDuration(
   result.write('$minutes นาที');
 
   return result.toString().trim(); // Trim any trailing spaces
+}
+
+List<TransactionListRecord> updateTrasactionList(
+  List<TransactionListRecord> transactionList,
+  bool isOut,
+) {
+  return [];
 }
