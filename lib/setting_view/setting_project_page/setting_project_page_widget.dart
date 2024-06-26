@@ -1203,7 +1203,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                       text: 'บันทึกข้อมูล',
                                       options: FFButtonOptions(
                                         width: double.infinity,
-                                        height: 40.0,
+                                        height: 50.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
@@ -1216,6 +1216,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                             .override(
                                               fontFamily: 'Readex Pro',
                                               color: Colors.white,
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
@@ -1224,7 +1225,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                           width: 1.0,
                                         ),
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(24.0),
                                       ),
                                     ),
                                   ],

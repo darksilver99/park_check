@@ -83,6 +83,20 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Text(
+                                      'ระบุรหัส 6 ตัวที่ได้รับจาก SMS',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 22.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
                                   PinCodeTextField(
                                     autoDisposeControllers: false,
                                     appContext: context,
@@ -187,6 +201,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            fontSize: 22.0,
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,

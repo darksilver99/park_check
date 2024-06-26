@@ -475,6 +475,39 @@ class _TransactionOutDetailViewWidgetState
                                       stamp: _model.stampSelectedValue,
                                       isOut: true,
                                     ));
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'ต้องการพิมพ์ใบขาออกหรือไม่'),
+                                                  content: Text(
+                                                      'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('ไม่พิมพ์'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('พิมพ์'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 2000));
+                                    }
                                     Navigator.pop(context, 'saved');
                                   } else {
                                     await showDialog(
@@ -496,7 +529,7 @@ class _TransactionOutDetailViewWidgetState
                                 },
                                 text: 'บันทึกรถออก',
                                 options: FFButtonOptions(
-                                  height: 57.0,
+                                  height: 50.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -515,7 +548,7 @@ class _TransactionOutDetailViewWidgetState
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(24.0),
                                 ),
                               ),
                             );
