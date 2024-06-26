@@ -56,6 +56,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectStampList: _model.projectData?.stampList,
           projectObjectiveList: _model.projectData?.objectiveList,
           projectCarList: _model.projectData?.carList,
+          projectType: _model.projectData?.projectType,
+          stampField: _model.projectData?.stampField,
         );
         _model.configResult = await queryConfigRecordOnce(
           singleRecord: true,
