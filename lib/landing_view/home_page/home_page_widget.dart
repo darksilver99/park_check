@@ -313,8 +313,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Expanded(
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed('TransactionHistoryPage');
                               },
                               text: 'รายการ รถออก/ค้าง',
                               icon: Icon(
