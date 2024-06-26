@@ -91,7 +91,7 @@ class _EditStampViewWidgetState extends State<EditStampViewWidget> {
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'ระบุคำ',
+                              labelText: 'ระบุคำ เช่น ตราประทับ, ลายเซ็นต์',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
