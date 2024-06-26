@@ -18,7 +18,7 @@ Future<List<TransactionListRecord>> searchTransactionData(
   bool isHistory,
 ) async {
   // Add your function code here!
-  var rs;
+  QuerySnapshot<Map<String, dynamic>> rs;
   if (isHistory) {
     rs = await FirebaseFirestore.instance
         .collection(
