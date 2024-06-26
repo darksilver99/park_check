@@ -96,7 +96,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 ],
                               ),
                               Text(
-                                'โครงการ ${FFAppState().projectData.projectName}',
+                                FFAppState().projectData.projectName,
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium

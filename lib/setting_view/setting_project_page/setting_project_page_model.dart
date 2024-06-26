@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/edit_stamp_view/edit_stamp_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -74,6 +75,8 @@ class SettingProjectPageModel
       objectiveListValueController?.value?.firstOrNull;
   set objectiveListValue(String? val) =>
       objectiveListValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Text widget.
+  String? stampValue;
   // State field(s) for stampValue widget.
   FocusNode? stampValueFocusNode;
   TextEditingController? stampValueTextController;

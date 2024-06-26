@@ -129,7 +129,7 @@ class _TransactionOutDetailViewWidgetState
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'โครงการ ${FFAppState().projectData.projectName}',
+                                      FFAppState().projectData.projectName,
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -288,7 +288,7 @@ class _TransactionOutDetailViewWidgetState
                                         ),
                                       ),
                                       Text(
-                                        'ตราประทับ',
+                                        FFAppState().projectData.stampField,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

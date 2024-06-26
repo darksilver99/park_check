@@ -236,7 +236,7 @@ class _TransactionDetailViewWidgetState
                               ),
                             ),
                             Text(
-                              'ตราประทับ',
+                              FFAppState().projectData.stampField,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
