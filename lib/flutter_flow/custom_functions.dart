@@ -72,7 +72,7 @@ List<TransactionListRecord> updateTransactionList(
       print("aaa");
       return (doc.carRegistration.contains(keyword) ||
               doc.firstName.contains(keyword)) &&
-          doc.isOut;
+          !doc.isOut;
     } else {
       print("bbb");
       return doc.carRegistration.contains(keyword) ||
