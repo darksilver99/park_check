@@ -198,7 +198,8 @@ class _TransactionHistoryPageWidgetState
                                             initialDate: (_model.startDate ??
                                                 DateTime.now()),
                                             firstDate: DateTime(1900),
-                                            lastDate: DateTime(2050),
+                                            lastDate: (_model.startDate ??
+                                                DateTime.now()),
                                             builder: (context, child) {
                                               return wrapInMaterialDatePickerTheme(
                                                 context,
@@ -255,6 +256,15 @@ class _TransactionHistoryPageWidgetState
                                               functions.getEndDayTime(
                                                   _model.datePicked!);
                                           _model.isLoading = true;
+                                          setState(() {
+                                            _model.textController?.text = '';
+                                            _model.textController?.selection =
+                                                TextSelection.collapsed(
+                                                    offset: _model
+                                                        .textController!
+                                                        .text
+                                                        .length);
+                                          });
                                           _model.rsDataList3 =
                                               await queryTransactionListRecordOnce(
                                             queryBuilder:
