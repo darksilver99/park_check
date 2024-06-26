@@ -1174,6 +1174,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,

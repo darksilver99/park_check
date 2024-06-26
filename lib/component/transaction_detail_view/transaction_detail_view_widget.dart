@@ -305,7 +305,7 @@ class _TransactionDetailViewWidgetState
                             size: 32.0,
                           ),
                           options: FFButtonOptions(
-                            height: 57.0,
+                            height: 50.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -324,7 +324,7 @@ class _TransactionDetailViewWidgetState
                               color: Colors.transparent,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
                       ),
