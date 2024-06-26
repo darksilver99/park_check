@@ -64,11 +64,11 @@ String getTimeDuration(
 List<TransactionListRecord> updateTransactionList(
   List<TransactionListRecord> transactionList,
   String keyword,
-  bool isOut,
+  bool isOnlyNotOut,
 ) {
   List<TransactionListRecord> transactionSearchedList =
       transactionList.where((doc) {
-    if (isOut) {
+    if (isOnlyNotOut) {
       print("aaa");
       return (doc.carRegistration.contains(keyword) ||
               doc.firstName.contains(keyword)) &&
