@@ -66,5 +66,18 @@ List<TransactionListRecord> updateTransactionList(
   String keyword,
   bool isOut,
 ) {
-  return transactionList.where((transaction) => transaction.isOut).toList();
+  List<TransactionListRecord> transactionSearchedList =
+      transactionList.where((doc) {
+    if (isOut) {
+      print("aaa");
+      return (doc.carRegistration.contains(keyword) ||
+              doc.firstName.contains(keyword)) &&
+          doc.isOut;
+    } else {
+      print("bbb");
+      return doc.carRegistration.contains(keyword) ||
+          doc.firstName.contains(keyword);
+    }
+  }).toList();
+  return transactionSearchedList;
 }
