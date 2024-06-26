@@ -66,6 +66,11 @@ class ProjectListRecord extends FirestoreRecord {
   DateTime? get updateDate => _updateDate;
   bool hasUpdateDate() => _updateDate != null;
 
+  // "enable_contact_adress" field.
+  bool? _enableContactAdress;
+  bool get enableContactAdress => _enableContactAdress ?? false;
+  bool hasEnableContactAdress() => _enableContactAdress != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -77,6 +82,7 @@ class ProjectListRecord extends FirestoreRecord {
     _stampField = snapshotData['stamp_field'] as String?;
     _projectType = snapshotData['project_type'] as String?;
     _updateDate = snapshotData['update_date'] as DateTime?;
+    _enableContactAdress = snapshotData['enable_contact_adress'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -121,6 +127,7 @@ Map<String, dynamic> createProjectListRecordData({
   String? stampField,
   String? projectType,
   DateTime? updateDate,
+  bool? enableContactAdress,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -131,6 +138,7 @@ Map<String, dynamic> createProjectListRecordData({
       'stamp_field': stampField,
       'project_type': projectType,
       'update_date': updateDate,
+      'enable_contact_adress': enableContactAdress,
     }.withoutNulls,
   );
 
@@ -152,7 +160,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         listEquality.equals(e1?.carList, e2?.carList) &&
         e1?.stampField == e2?.stampField &&
         e1?.projectType == e2?.projectType &&
-        e1?.updateDate == e2?.updateDate;
+        e1?.updateDate == e2?.updateDate &&
+        e1?.enableContactAdress == e2?.enableContactAdress;
   }
 
   @override
@@ -166,7 +175,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.carList,
         e?.stampField,
         e?.projectType,
-        e?.updateDate
+        e?.updateDate,
+        e?.enableContactAdress
       ]);
 
   @override

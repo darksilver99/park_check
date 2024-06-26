@@ -306,6 +306,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                   .defaultStampField,
                                               projectType: _model
                                                   .projectTypeSelectedValue,
+                                              enableContactAdress: true,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -334,6 +335,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                   .defaultStampField,
                                               projectType: _model
                                                   .projectTypeSelectedValue,
+                                              enableContactAdress: true,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -367,6 +369,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                 .projectInserted?.stampField,
                                             projectReference: _model
                                                 .projectInserted?.reference,
+                                            enableContactAddress: true,
                                           );
 
                                           context.goNamed('HomePage');

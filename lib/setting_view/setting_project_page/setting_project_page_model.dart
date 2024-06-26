@@ -50,11 +50,15 @@ class SettingProjectPageModel
 
   String? stampFieldName;
 
+  bool enableContactAddress = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // State field(s) for carTypeValue widget.
   FocusNode? carTypeValueFocusNode;
   TextEditingController? carTypeValueTextController;

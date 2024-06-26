@@ -44,9 +44,12 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
       _model.stampList =
           FFAppState().projectData.projectStampList.toList().cast<String>();
       _model.stampFieldName = FFAppState().projectData.stampField;
+      _model.enableContactAddress =
+          FFAppState().projectData.enableContactAddress;
       setState(() {});
     });
 
+    _model.switchValue = _model.enableContactAddress;
     _model.carTypeValueTextController ??= TextEditingController();
     _model.carTypeValueFocusNode ??= FocusNode();
 
@@ -141,6 +144,56 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'แสดงช่องกรอก \"ที่อยู่ที่มาติดต่อ\"',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                              Switch.adaptive(
+                                                value: _model.switchValue!,
+                                                onChanged: (newValue) async {
+                                                  setState(() => _model
+                                                      .switchValue = newValue!);
+                                                },
+                                                activeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                activeTrackColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                inactiveTrackColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                inactiveThumbColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
@@ -1072,6 +1125,8 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                           ...createProjectListRecordData(
                                             updateDate: getCurrentTimestamp,
                                             stampField: _model.stampFieldName,
+                                            enableContactAdress:
+                                                _model.switchValue,
                                           ),
                                           ...mapToFirestore(
                                             {
