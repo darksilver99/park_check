@@ -11,5 +11,6 @@ import 'package:flutter/material.dart';
 
 Future<String> getBase64(FFUploadedFile image) async {
   // Add your function code here!
-  return "aaa";
+  var base64 = base64Encode(image.bytes!.toList());
+  return base64;
 }
