@@ -123,7 +123,7 @@ class _TransactionDetailViewWidgetState
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'โครงการ ${FFAppState().projectData.projectName}',
+                                      FFAppState().projectData.projectName,
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -280,7 +280,7 @@ class _TransactionDetailViewWidgetState
                           onPressed: () async {
                             Navigator.pop(context);
                           },
-                          text: 'พิมพ์',
+                          text: 'พิมพ์ใบขาเข้า',
                           icon: Icon(
                             Icons.print_rounded,
                             size: 32.0,
