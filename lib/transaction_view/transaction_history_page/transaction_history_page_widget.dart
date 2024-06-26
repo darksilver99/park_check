@@ -955,7 +955,7 @@ class _TransactionHistoryPageWidgetState
                                                             .toList(),
                                                         _model.textController
                                                             .text,
-                                                        !_model.checkboxValue!)
+                                                        _model.checkboxValue!)
                                                     .toList()
                                                     .cast<
                                                         TransactionListRecord>();
