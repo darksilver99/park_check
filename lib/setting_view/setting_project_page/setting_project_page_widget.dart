@@ -44,12 +44,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
       _model.stampList =
           FFAppState().projectData.projectStampList.toList().cast<String>();
       _model.stampFieldName = FFAppState().projectData.stampField;
-      _model.enableContactAddress =
-          FFAppState().projectData.enableContactAddress;
       setState(() {});
     });
 
-    _model.switchValue = _model.enableContactAddress;
+    _model.switchValue = FFAppState().projectData.enableContactAddress;
     _model.carTypeValueTextController ??= TextEditingController();
     _model.carTypeValueFocusNode ??= FocusNode();
 

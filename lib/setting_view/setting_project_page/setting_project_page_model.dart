@@ -50,8 +50,6 @@ class SettingProjectPageModel
 
   String? stampFieldName;
 
-  bool enableContactAddress = false;
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
