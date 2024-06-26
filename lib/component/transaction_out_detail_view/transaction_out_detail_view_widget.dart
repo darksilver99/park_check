@@ -556,17 +556,21 @@ class _TransactionOutDetailViewWidgetState
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  'รายการนี้บันทึกออกแล้ว',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 24.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Text(
+                                    'รายการนี้บันทึกออกแล้ว',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 24.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -575,7 +579,7 @@ class _TransactionOutDetailViewWidgetState
                                     onPressed: () async {
                                       Navigator.pop(context);
                                     },
-                                    text: 'พิมพ์ใบขาออก',
+                                    text: 'พิมพ์ใบขาออกอีกครั้ง',
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 50.0,
