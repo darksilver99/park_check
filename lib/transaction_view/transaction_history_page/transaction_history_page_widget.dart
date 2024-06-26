@@ -623,6 +623,8 @@ class _TransactionHistoryPageWidgetState
                                         );
                                       },
                                     ).then((value) => safeSetState(() {}));
+
+                                    setState(() {});
                                   },
                                   child: Container(
                                     width: 100.0,

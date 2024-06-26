@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -476,9 +475,7 @@ class _TransactionOutDetailViewWidgetState
                                       stamp: _model.stampSelectedValue,
                                       isOut: true,
                                     ));
-                                    await actions.pushReplacement(
-                                      context,
-                                    );
+                                    Navigator.pop(context);
                                   } else {
                                     await showDialog(
                                       context: context,

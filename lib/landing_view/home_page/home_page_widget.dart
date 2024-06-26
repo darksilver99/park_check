@@ -675,6 +675,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     );
                                   },
                                 ).then((value) => safeSetState(() {}));
+
+                                await actions.pushReplacement(
+                                  context,
+                                );
                               } else {
                                 await showDialog(
                                   context: context,
