@@ -61,9 +61,10 @@ String getTimeDuration(
   return result.toString().trim(); // Trim any trailing spaces
 }
 
-List<TransactionListRecord> updateTrasactionList(
+List<TransactionListRecord> updateTransactionList(
   List<TransactionListRecord> transactionList,
+  String keyword,
   bool isOut,
 ) {
-  return [];
+  return transactionList.where((transaction) => transaction.isOut).toList();
 }

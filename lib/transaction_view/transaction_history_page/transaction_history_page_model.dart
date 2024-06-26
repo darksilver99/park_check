@@ -45,35 +45,17 @@ class TransactionHistoryPageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Firestore Query - Query a collection] action in TransactionHistoryPage widget.
-  List<TransactionListRecord>? rsDataList4;
-  // Stores action output result for [Firestore Query - Query a collection] action in TransactionHistoryPage widget.
-  List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
   DateTime? datePicked;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<TransactionListRecord>? rsDataList5;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<TransactionListRecord>? rsDataList3;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Custom Action - searchTransactionData] action in TextField widget.
-  List<TransactionListRecord>? searchResult;
-  // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
-  List<TransactionListRecord>? rsDataList2;
-  // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
-  List<TransactionListRecord>? rsDataList6;
   // Stores action output result for [Bottom Sheet - TransactionOutDetailView] action in Container widget.
   String? isSaved;
-  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
-  List<TransactionListRecord>? rsDataList7;
-  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
-  List<TransactionListRecord>? rsDataList8;
 
   @override
   void initState(BuildContext context) {
@@ -87,5 +69,24 @@ class TransactionHistoryPageModel
     mainBackgroundViewModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+  }
+
+  /// Action blocks.
+  Future getTransactionList(BuildContext context) async {
+    List<TransactionListRecord>? transactionResult;
+
+    transactionResult = await queryTransactionListRecordOnce(
+      queryBuilder: (transactionListRecord) => transactionListRecord
+          .where(
+            'date_in',
+            isGreaterThanOrEqualTo: startDate,
+          )
+          .where(
+            'date_in',
+            isLessThanOrEqualTo: endDate,
+          )
+          .orderBy('date_in', descending: true),
+    );
+    transactionList = transactionResult!.toList().cast<TransactionListRecord>();
   }
 }

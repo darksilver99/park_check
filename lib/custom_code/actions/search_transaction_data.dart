@@ -20,29 +20,14 @@ Future<List<TransactionListRecord>> searchTransactionData(
   // Add your function code here!
   QuerySnapshot<Map<String, dynamic>> rs;
   if (isHistory) {
-    if (functions.getStartDayTime(startDate) ==
-        functions.getStartDayTime(getCurrentTimestamp)) {
-      rs = await FirebaseFirestore.instance
-          .collection(
-              'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
-          .where("date_in",
-              isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
-          .where("date_in",
-              isLessThanOrEqualTo: functions.getEndDayTime(endDate))
-          .where("is_out", isEqualTo: true)
-          .orderBy("date_in", descending: true)
-          .get();
-    } else {
-      rs = await FirebaseFirestore.instance
-          .collection(
-              'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
-          .where("date_in",
-              isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
-          .where("date_in",
-              isLessThanOrEqualTo: functions.getEndDayTime(endDate))
-          .orderBy("date_in", descending: true)
-          .get();
-    }
+    rs = await FirebaseFirestore.instance
+        .collection(
+            'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
+        .where("date_in",
+            isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
+        .where("date_in", isLessThanOrEqualTo: functions.getEndDayTime(endDate))
+        .orderBy("date_in", descending: true)
+        .get();
   } else {
     rs = await FirebaseFirestore.instance
         .collection(
