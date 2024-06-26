@@ -28,6 +28,27 @@ class SettingProjectPageModel
   void updateCarListAtIndex(int index, Function(String) updateFn) =>
       carList[index] = updateFn(carList[index]);
 
+  List<String> objectiveList = [];
+  void addToObjectiveList(String item) => objectiveList.add(item);
+  void removeFromObjectiveList(String item) => objectiveList.remove(item);
+  void removeAtIndexFromObjectiveList(int index) =>
+      objectiveList.removeAt(index);
+  void insertAtIndexInObjectiveList(int index, String item) =>
+      objectiveList.insert(index, item);
+  void updateObjectiveListAtIndex(int index, Function(String) updateFn) =>
+      objectiveList[index] = updateFn(objectiveList[index]);
+
+  List<String> stampList = [];
+  void addToStampList(String item) => stampList.add(item);
+  void removeFromStampList(String item) => stampList.remove(item);
+  void removeAtIndexFromStampList(int index) => stampList.removeAt(index);
+  void insertAtIndexInStampList(int index, String item) =>
+      stampList.insert(index, item);
+  void updateStampListAtIndex(int index, Function(String) updateFn) =>
+      stampList[index] = updateFn(stampList[index]);
+
+  String? stampFieldName;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -42,6 +63,26 @@ class SettingProjectPageModel
   String? get carListValue => carListValueController?.value?.firstOrNull;
   set carListValue(String? val) =>
       carListValueController?.value = val != null ? [val] : [];
+  // State field(s) for objectiveValue widget.
+  FocusNode? objectiveValueFocusNode;
+  TextEditingController? objectiveValueTextController;
+  String? Function(BuildContext, String?)?
+      objectiveValueTextControllerValidator;
+  // State field(s) for objectiveList widget.
+  FormFieldController<List<String>>? objectiveListValueController;
+  String? get objectiveListValue =>
+      objectiveListValueController?.value?.firstOrNull;
+  set objectiveListValue(String? val) =>
+      objectiveListValueController?.value = val != null ? [val] : [];
+  // State field(s) for stampValue widget.
+  FocusNode? stampValueFocusNode;
+  TextEditingController? stampValueTextController;
+  String? Function(BuildContext, String?)? stampValueTextControllerValidator;
+  // State field(s) for stampList widget.
+  FormFieldController<List<String>>? stampListValueController;
+  String? get stampListValue => stampListValueController?.value?.firstOrNull;
+  set stampListValue(String? val) =>
+      stampListValueController?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {
@@ -55,5 +96,11 @@ class SettingProjectPageModel
     mainBackgroundViewModel.dispose();
     carTypeValueFocusNode?.dispose();
     carTypeValueTextController?.dispose();
+
+    objectiveValueFocusNode?.dispose();
+    objectiveValueTextController?.dispose();
+
+    stampValueFocusNode?.dispose();
+    stampValueTextController?.dispose();
   }
 }
