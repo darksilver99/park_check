@@ -160,6 +160,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             getCurrentTimestamp),
                                         functions
                                             .getEndDayTime(getCurrentTimestamp),
+                                        false,
                                       );
                                       _model.transactionList = _model
                                           .searchResult!
@@ -234,6 +235,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     getCurrentTimestamp),
                                                 functions.getEndDayTime(
                                                     getCurrentTimestamp),
+                                                false,
                                               );
                                               _model.transactionList = _model
                                                   .searchResult!

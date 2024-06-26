@@ -15,17 +15,31 @@ Future<List<TransactionListRecord>> searchTransactionData(
   String keyword,
   DateTime startDate,
   DateTime endDate,
+  bool isHistory,
 ) async {
   // Add your function code here!
-  var rs = await FirebaseFirestore.instance
-      .collection(
-          'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
-      .where("date_in",
-          isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
-      .where("date_in", isLessThanOrEqualTo: functions.getEndDayTime(endDate))
-      .where("is_out", isEqualTo: false)
-      .orderBy("date_in", descending: true)
-      .get();
+  var rs;
+  if (isHistory) {
+    rs = await FirebaseFirestore.instance
+        .collection(
+            'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
+        .where("date_in",
+            isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
+        .where("date_in", isLessThanOrEqualTo: functions.getEndDayTime(endDate))
+        .orderBy("date_in", descending: true)
+        .get();
+  } else {
+    rs = await FirebaseFirestore.instance
+        .collection(
+            'project_list/${FFAppState().projectData.projectDocID}/transaction_list')
+        .where("date_in",
+            isGreaterThanOrEqualTo: functions.getStartDayTime(startDate))
+        .where("date_in", isLessThanOrEqualTo: functions.getEndDayTime(endDate))
+        .where("is_out", isEqualTo: false)
+        .orderBy("date_in", descending: true)
+        .get();
+  }
+
   List<TransactionListRecord> transactionList = rs.docs.where((doc) {
     String carRegistration = doc['car_registration'] ?? '';
     String firstName = doc['first_name'] ?? '';

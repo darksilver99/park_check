@@ -341,6 +341,7 @@ class _TransactionHistoryPageWidgetState
                                             _model.textController.text,
                                             _model.startDate!,
                                             _model.endDate!,
+                                            true,
                                           );
                                           _model.transactionList = _model
                                               .searchResult!
@@ -418,6 +419,7 @@ class _TransactionHistoryPageWidgetState
                                                     _model.textController.text,
                                                     _model.startDate!,
                                                     _model.endDate!,
+                                                    true,
                                                   );
                                                   _model.transactionList = _model
                                                       .searchResult!
