@@ -448,7 +448,7 @@ class _TransactionHistoryPageWidgetState
                                           if ((_model.textController.text !=
                                                       null &&
                                                   _model.textController.text !=
-                                                      '') &&
+                                                      '') ||
                                               _model.checkboxValue!) {
                                             _model.searchedTransactionList =
                                                 functions
@@ -540,7 +540,7 @@ class _TransactionHistoryPageWidgetState
                                                               null &&
                                                           _model.textController
                                                                   .text !=
-                                                              '') &&
+                                                              '') ||
                                                       _model.checkboxValue!) {
                                                     _model.searchedTransactionList = functions
                                                         .updateTransactionList(
