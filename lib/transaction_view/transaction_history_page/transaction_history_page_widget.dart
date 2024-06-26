@@ -211,7 +211,19 @@ class _TransactionHistoryPageWidgetState
                                                         .updateTrasactionList(
                                                             _model
                                                                 .transactionList
-                                                                .toList())
+                                                                .toList(),
+                                                            true)
+                                                        .toList()
+                                                        .cast<
+                                                            TransactionListRecord>();
+                                                    setState(() {});
+                                                  } else {
+                                                    _model.transactionList = functions
+                                                        .updateTrasactionList(
+                                                            _model
+                                                                .transactionList
+                                                                .toList(),
+                                                            false)
                                                         .toList()
                                                         .cast<
                                                             TransactionListRecord>();

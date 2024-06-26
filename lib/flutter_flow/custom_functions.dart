@@ -62,6 +62,8 @@ String getTimeDuration(
 }
 
 List<TransactionListRecord> updateTrasactionList(
-    List<TransactionListRecord> transactionList) {
+  List<TransactionListRecord> transactionList,
+  bool isOut,
+) {
   return [];
 }
