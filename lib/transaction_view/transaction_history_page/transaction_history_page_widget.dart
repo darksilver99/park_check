@@ -192,6 +192,9 @@ class _TransactionHistoryPageWidgetState
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
+                                          await actions.hideKeyBoard(
+                                            context,
+                                          );
                                           final _datePickedDate =
                                               await showDatePicker(
                                             context: context,
@@ -532,6 +535,9 @@ class _TransactionHistoryPageWidgetState
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    await actions.hideKeyBoard(
+                                      context,
+                                    );
                                     await showModalBottomSheet(
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
