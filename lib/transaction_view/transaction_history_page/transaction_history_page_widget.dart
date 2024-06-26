@@ -445,11 +445,10 @@ class _TransactionHistoryPageWidgetState
                                         '_model.textController',
                                         Duration(milliseconds: 200),
                                         () async {
-                                          if ((_model.textController.text !=
-                                                      null &&
-                                                  _model.textController.text !=
-                                                      '') &&
-                                              _model.checkboxValue!) {
+                                          if (_model.textController.text !=
+                                                  null &&
+                                              _model.textController.text !=
+                                                  '') {
                                             _model.searchedTransactionList =
                                                 functions
                                                     .updateTransactionList(
@@ -535,13 +534,12 @@ class _TransactionHistoryPageWidgetState
                                                 onTap: () async {
                                                   _model.textController
                                                       ?.clear();
-                                                  if ((_model.textController
-                                                                  .text !=
-                                                              null &&
-                                                          _model.textController
-                                                                  .text !=
-                                                              '') &&
-                                                      _model.checkboxValue!) {
+                                                  if (_model.textController
+                                                              .text !=
+                                                          null &&
+                                                      _model.textController
+                                                              .text !=
+                                                          '') {
                                                     _model.searchedTransactionList = functions
                                                         .updateTransactionList(
                                                             _model
