@@ -116,6 +116,10 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
       objectiveSelectedValueController?.value?.firstOrNull;
   set objectiveSelectedValue(String? val) =>
       objectiveSelectedValueController?.value = val != null ? [val] : [];
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode7;
+  TextEditingController? textController7;
+  String? Function(BuildContext, String?)? textController7Validator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   TransactionListRecord? insertedTransaction;
 
@@ -152,5 +156,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
     textFieldFocusNode6?.dispose();
     textController6?.dispose();
+
+    textFieldFocusNode7?.dispose();
+    textController7?.dispose();
   }
 }

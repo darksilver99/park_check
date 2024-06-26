@@ -23,6 +23,7 @@ class TransactionDataStruct extends FFFirebaseStruct {
     String? objective,
     String? preName,
     String? stamp,
+    String? contactAddress,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _carRegistration = carRegistration,
         _carRegistrationProvince = carRegistrationProvince,
@@ -37,6 +38,7 @@ class TransactionDataStruct extends FFFirebaseStruct {
         _objective = objective,
         _preName = preName,
         _stamp = stamp,
+        _contactAddress = contactAddress,
         super(firestoreUtilData);
 
   // "car_registration" field.
@@ -130,6 +132,13 @@ class TransactionDataStruct extends FFFirebaseStruct {
 
   bool hasStamp() => _stamp != null;
 
+  // "contact_address" field.
+  String? _contactAddress;
+  String get contactAddress => _contactAddress ?? '';
+  set contactAddress(String? val) => _contactAddress = val;
+
+  bool hasContactAddress() => _contactAddress != null;
+
   static TransactionDataStruct fromMap(Map<String, dynamic> data) =>
       TransactionDataStruct(
         carRegistration: data['car_registration'] as String?,
@@ -145,6 +154,7 @@ class TransactionDataStruct extends FFFirebaseStruct {
         objective: data['objective'] as String?,
         preName: data['pre_name'] as String?,
         stamp: data['stamp'] as String?,
+        contactAddress: data['contact_address'] as String?,
       );
 
   static TransactionDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -165,6 +175,7 @@ class TransactionDataStruct extends FFFirebaseStruct {
         'objective': _objective,
         'pre_name': _preName,
         'stamp': _stamp,
+        'contact_address': _contactAddress,
       }.withoutNulls;
 
   @override
@@ -219,6 +230,10 @@ class TransactionDataStruct extends FFFirebaseStruct {
         ),
         'stamp': serializeParam(
           _stamp,
+          ParamType.String,
+        ),
+        'contact_address': serializeParam(
+          _contactAddress,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -290,6 +305,11 @@ class TransactionDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        contactAddress: deserializeParam(
+          data['contact_address'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -310,7 +330,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
         lastName == other.lastName &&
         objective == other.objective &&
         preName == other.preName &&
-        stamp == other.stamp;
+        stamp == other.stamp &&
+        contactAddress == other.contactAddress;
   }
 
   @override
@@ -327,7 +348,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
         lastName,
         objective,
         preName,
-        stamp
+        stamp,
+        contactAddress
       ]);
 }
 
@@ -345,6 +367,7 @@ TransactionDataStruct createTransactionDataStruct({
   String? objective,
   String? preName,
   String? stamp,
+  String? contactAddress,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -364,6 +387,7 @@ TransactionDataStruct createTransactionDataStruct({
       objective: objective,
       preName: preName,
       stamp: stamp,
+      contactAddress: contactAddress,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
