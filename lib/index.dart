@@ -8,3 +8,5 @@ export '/authen_view/create_project_page/create_project_page_widget.dart'
     show CreateProjectPageWidget;
 export '/transaction_view/transaction_in_page/transaction_in_page_widget.dart'
     show TransactionInPageWidget;
+export '/setting_view/setting_project_page/setting_project_page_widget.dart'
+    show SettingProjectPageWidget;

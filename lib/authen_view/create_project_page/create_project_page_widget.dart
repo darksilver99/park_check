@@ -365,6 +365,8 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                 .projectInserted?.projectType,
                                             stampField: _model
                                                 .projectInserted?.stampField,
+                                            projectReference: _model
+                                                .projectInserted?.reference,
                                           );
 
                                           context.goNamed('HomePage');
