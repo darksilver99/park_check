@@ -220,6 +220,25 @@ class _TransactionDetailViewWidgetState
                                     ),
                               ),
                             ),
+                            if (FFAppState().projectData.enableContactAddress)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Text(
+                                  'ที่อยู่ที่มาติดต่อ : ${valueOrDefault<String>(
+                                    widget.transactionParameter?.contactAddress,
+                                    '-',
+                                  )}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),

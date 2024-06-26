@@ -550,7 +550,7 @@ class _TransactionHistoryPageWidgetState
                                   },
                                   child: Container(
                                     width: 100.0,
-                                    height: 120.0,
+                                    height: 130.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -594,12 +594,15 @@ class _TransactionHistoryPageWidgetState
                                                         ),
                                                   ),
                                                 ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
                                                         'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -611,6 +614,8 @@ class _TransactionHistoryPageWidgetState
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .success,
+                                                                  fontSize:
+                                                                      12.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -618,58 +623,64 @@ class _TransactionHistoryPageWidgetState
                                                                           .bold,
                                                                 ),
                                                       ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Builder(
-                                                        builder: (context) {
-                                                          if (dataListItem
-                                                              .isOut) {
-                                                            return Text(
-                                                              'เวลาออก : ${dateTimeFormat('d/M/y', dataListItem.dateOut)} ${dateTimeFormat('Hm', dataListItem.dateOut)}',
-                                                              textAlign:
-                                                                  TextAlign.end,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                            );
-                                                          } else {
-                                                            return Text(
-                                                              'ยังไม่ออก',
-                                                              textAlign:
-                                                                  TextAlign.end,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                            );
-                                                          }
-                                                        },
+                                                      Expanded(
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            if (dataListItem
+                                                                .isOut) {
+                                                              return Text(
+                                                                'เวลาออก : ${dateTimeFormat('d/M/y', dataListItem.dateOut)} ${dateTimeFormat('Hm', dataListItem.dateOut)}',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              );
+                                                            } else {
+                                                              return Text(
+                                                                'ยังไม่ออก',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              );
+                                                            }
+                                                          },
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
