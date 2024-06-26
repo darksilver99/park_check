@@ -288,6 +288,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                     ),
                                                     FFButtonWidget(
                                                       onPressed: () async {
+                                                        await actions
+                                                            .hideKeyBoard(
+                                                          context,
+                                                        );
                                                         if (_model.carTypeValueTextController
                                                                     .text !=
                                                                 null &&
@@ -564,6 +568,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                     ),
                                                     FFButtonWidget(
                                                       onPressed: () async {
+                                                        await actions
+                                                            .hideKeyBoard(
+                                                          context,
+                                                        );
                                                         if (_model.objectiveValueTextController
                                                                     .text !=
                                                                 null &&
@@ -934,6 +942,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                     ),
                                                     FFButtonWidget(
                                                       onPressed: () async {
+                                                        await actions
+                                                            .hideKeyBoard(
+                                                          context,
+                                                        );
                                                         if (_model.stampValueTextController
                                                                     .text !=
                                                                 null &&
