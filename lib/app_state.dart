@@ -31,6 +31,22 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _tmpTransactionList = prefs
+              .getStringList('ff_tmpTransactionList')
+              ?.map((x) {
+                try {
+                  return TransactionDataStruct.fromSerializableMap(
+                      jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _tmpTransactionList;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -60,6 +76,48 @@ class FFAppState extends ChangeNotifier {
 
   void updateConfigDataStruct(Function(ConfigDataStruct) updateFn) {
     updateFn(_configData);
+  }
+
+  List<TransactionDataStruct> _tmpTransactionList = [];
+  List<TransactionDataStruct> get tmpTransactionList => _tmpTransactionList;
+  set tmpTransactionList(List<TransactionDataStruct> value) {
+    _tmpTransactionList = value;
+    prefs.setStringList(
+        'ff_tmpTransactionList', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToTmpTransactionList(TransactionDataStruct value) {
+    tmpTransactionList.add(value);
+    prefs.setStringList('ff_tmpTransactionList',
+        _tmpTransactionList.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromTmpTransactionList(TransactionDataStruct value) {
+    tmpTransactionList.remove(value);
+    prefs.setStringList('ff_tmpTransactionList',
+        _tmpTransactionList.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromTmpTransactionList(int index) {
+    tmpTransactionList.removeAt(index);
+    prefs.setStringList('ff_tmpTransactionList',
+        _tmpTransactionList.map((x) => x.serialize()).toList());
+  }
+
+  void updateTmpTransactionListAtIndex(
+    int index,
+    TransactionDataStruct Function(TransactionDataStruct) updateFn,
+  ) {
+    tmpTransactionList[index] = updateFn(_tmpTransactionList[index]);
+    prefs.setStringList('ff_tmpTransactionList',
+        _tmpTransactionList.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInTmpTransactionList(
+      int index, TransactionDataStruct value) {
+    tmpTransactionList.insert(index, value);
+    prefs.setStringList('ff_tmpTransactionList',
+        _tmpTransactionList.map((x) => x.serialize()).toList());
   }
 }
 

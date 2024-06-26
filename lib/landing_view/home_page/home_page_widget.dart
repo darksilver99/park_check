@@ -75,11 +75,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               )
               .where(
                 'date_in',
-                isGreaterThanOrEqualTo: functions.getStartDayTime(),
+                isGreaterThanOrEqualTo:
+                    functions.getStartDayTime(getCurrentTimestamp),
               )
               .where(
                 'date_in',
-                isLessThanOrEqualTo: functions.getEndDayTime(),
+                isLessThanOrEqualTo:
+                    functions.getEndDayTime(getCurrentTimestamp),
               )
               .orderBy('date_in', descending: true),
         );
@@ -154,6 +156,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       _model.searchResult =
                                           await actions.searchTransactionData(
                                         _model.textController.text,
+                                        functions.getStartDayTime(
+                                            getCurrentTimestamp),
+                                        functions
+                                            .getEndDayTime(getCurrentTimestamp),
                                       );
                                       _model.transactionList = _model
                                           .searchResult!
@@ -224,6 +230,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   await actions
                                                       .searchTransactionData(
                                                 _model.textController.text,
+                                                functions.getStartDayTime(
+                                                    getCurrentTimestamp),
+                                                functions.getEndDayTime(
+                                                    getCurrentTimestamp),
                                               );
                                               _model.transactionList = _model
                                                   .searchResult!
@@ -365,12 +375,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .where(
                                           'date_in',
                                           isGreaterThanOrEqualTo:
-                                              functions.getStartDayTime(),
+                                              functions.getStartDayTime(
+                                                  getCurrentTimestamp),
                                         )
                                         .where(
                                           'date_in',
                                           isLessThanOrEqualTo:
-                                              functions.getEndDayTime(),
+                                              functions.getEndDayTime(
+                                                  getCurrentTimestamp),
                                         )
                                         .orderBy('date_in', descending: true),
                               );
