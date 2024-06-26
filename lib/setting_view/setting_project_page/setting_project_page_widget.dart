@@ -162,6 +162,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -192,6 +193,11 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                         ],
                                       ),
                                     ),
+                                    Divider(
+                                      thickness: 3.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
@@ -218,167 +224,175 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               color: Colors.transparent,
                                               elevation: 1.0,
                                               child: Container(
-                                                height: 50.0,
+                                                height: 60.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .carTypeValueTextController,
-                                                        focusNode: _model
-                                                            .carTypeValueFocusNode,
-                                                        autofocus: false,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText:
-                                                              'ระบุประเภทรถ',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          hintStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          enabledBorder:
-                                                              InputBorder.none,
-                                                          focusedBorder:
-                                                              InputBorder.none,
-                                                          errorBorder:
-                                                              InputBorder.none,
-                                                          focusedErrorBorder:
-                                                              InputBorder.none,
-                                                          filled: true,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .carTypeValueTextController,
+                                                          focusNode: _model
+                                                              .carTypeValueFocusNode,
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText:
+                                                                'ระบุประเภทรถ',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            errorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedErrorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .carTypeValueTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        validator: _model
-                                                            .carTypeValueTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
-                                                    ),
-                                                    FFButtonWidget(
-                                                      onPressed: () async {
-                                                        await actions
-                                                            .hideKeyBoard(
-                                                          context,
-                                                        );
-                                                        if (_model.carTypeValueTextController
-                                                                    .text !=
-                                                                null &&
-                                                            _model.carTypeValueTextController
-                                                                    .text !=
-                                                                '') {
-                                                          if (!_model.carList
-                                                              .contains(_model
-                                                                  .carTypeValueTextController
-                                                                  .text)) {
-                                                            _model.addToCarList(
-                                                                _model
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await actions
+                                                              .hideKeyBoard(
+                                                            context,
+                                                          );
+                                                          if (_model.carTypeValueTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.carTypeValueTextController
+                                                                      .text !=
+                                                                  '') {
+                                                            if (!_model.carList
+                                                                .contains(_model
                                                                     .carTypeValueTextController
-                                                                    .text);
+                                                                    .text)) {
+                                                              _model.addToCarList(
+                                                                  _model
+                                                                      .carTypeValueTextController
+                                                                      .text);
+                                                            }
+                                                            setState(() {
+                                                              _model
+                                                                  .carTypeValueTextController
+                                                                  ?.text = '';
+                                                              _model.carTypeValueTextController
+                                                                      ?.selection =
+                                                                  TextSelection.collapsed(
+                                                                      offset: _model
+                                                                          .carTypeValueTextController!
+                                                                          .text
+                                                                          .length);
+                                                            });
                                                           }
-                                                          setState(() {
-                                                            _model
-                                                                .carTypeValueTextController
-                                                                ?.text = '';
-                                                            _model.carTypeValueTextController
-                                                                    ?.selection =
-                                                                TextSelection.collapsed(
-                                                                    offset: _model
-                                                                        .carTypeValueTextController!
-                                                                        .text
-                                                                        .length);
-                                                          });
-                                                        }
-                                                      },
-                                                      text: 'เพิ่ม',
-                                                      options: FFButtonOptions(
-                                                        height: 50.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
+                                                        },
+                                                        text: 'เพิ่ม',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 60.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
                                                                       0.0,
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
-                                                          width: 0.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  0.0),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 0.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -426,9 +440,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 4.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
@@ -448,9 +463,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 0.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             chipSpacing: 12.0,
                                             rowSpacing: 12.0,
@@ -468,7 +484,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                       ),
                                     ),
                                     Divider(
-                                      thickness: 1.0,
+                                      thickness: 3.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
                                     ),
@@ -498,168 +514,176 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               color: Colors.transparent,
                                               elevation: 1.0,
                                               child: Container(
-                                                height: 50.0,
+                                                height: 60.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .objectiveValueTextController,
-                                                        focusNode: _model
-                                                            .objectiveValueFocusNode,
-                                                        autofocus: false,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText:
-                                                              'ระบุวัตถุประสงค์',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          hintStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          enabledBorder:
-                                                              InputBorder.none,
-                                                          focusedBorder:
-                                                              InputBorder.none,
-                                                          errorBorder:
-                                                              InputBorder.none,
-                                                          focusedErrorBorder:
-                                                              InputBorder.none,
-                                                          filled: true,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .objectiveValueTextController,
+                                                          focusNode: _model
+                                                              .objectiveValueFocusNode,
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText:
+                                                                'ระบุวัตถุประสงค์',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            errorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedErrorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .objectiveValueTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        validator: _model
-                                                            .objectiveValueTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
-                                                    ),
-                                                    FFButtonWidget(
-                                                      onPressed: () async {
-                                                        await actions
-                                                            .hideKeyBoard(
-                                                          context,
-                                                        );
-                                                        if (_model.objectiveValueTextController
-                                                                    .text !=
-                                                                null &&
-                                                            _model.objectiveValueTextController
-                                                                    .text !=
-                                                                '') {
-                                                          if (!_model
-                                                              .objectiveList
-                                                              .contains(_model
-                                                                  .objectiveValueTextController
-                                                                  .text)) {
-                                                            _model.addToObjectiveList(
-                                                                _model
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await actions
+                                                              .hideKeyBoard(
+                                                            context,
+                                                          );
+                                                          if (_model.objectiveValueTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.objectiveValueTextController
+                                                                      .text !=
+                                                                  '') {
+                                                            if (!_model
+                                                                .objectiveList
+                                                                .contains(_model
                                                                     .objectiveValueTextController
-                                                                    .text);
+                                                                    .text)) {
+                                                              _model.addToObjectiveList(
+                                                                  _model
+                                                                      .objectiveValueTextController
+                                                                      .text);
+                                                            }
+                                                            setState(() {
+                                                              _model
+                                                                  .objectiveValueTextController
+                                                                  ?.text = '';
+                                                              _model.objectiveValueTextController
+                                                                      ?.selection =
+                                                                  TextSelection.collapsed(
+                                                                      offset: _model
+                                                                          .objectiveValueTextController!
+                                                                          .text
+                                                                          .length);
+                                                            });
                                                           }
-                                                          setState(() {
-                                                            _model
-                                                                .objectiveValueTextController
-                                                                ?.text = '';
-                                                            _model.objectiveValueTextController
-                                                                    ?.selection =
-                                                                TextSelection.collapsed(
-                                                                    offset: _model
-                                                                        .objectiveValueTextController!
-                                                                        .text
-                                                                        .length);
-                                                          });
-                                                        }
-                                                      },
-                                                      text: 'เพิ่ม',
-                                                      options: FFButtonOptions(
-                                                        height: 50.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
+                                                        },
+                                                        text: 'เพิ่ม',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 60.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
                                                                       0.0,
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
-                                                          width: 0.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  0.0),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 0.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -707,9 +731,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 4.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
@@ -729,9 +754,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 0.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             chipSpacing: 12.0,
                                             rowSpacing: 12.0,
@@ -749,7 +775,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                       ),
                                     ),
                                     Divider(
-                                      thickness: 1.0,
+                                      thickness: 3.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
                                     ),
@@ -872,167 +898,176 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               color: Colors.transparent,
                                               elevation: 1.0,
                                               child: Container(
-                                                height: 50.0,
+                                                height: 60.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .stampValueTextController,
-                                                        focusNode: _model
-                                                            .stampValueFocusNode,
-                                                        autofocus: false,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText:
-                                                              'ระบุ${_model.stampFieldName}',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          hintStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          enabledBorder:
-                                                              InputBorder.none,
-                                                          focusedBorder:
-                                                              InputBorder.none,
-                                                          errorBorder:
-                                                              InputBorder.none,
-                                                          focusedErrorBorder:
-                                                              InputBorder.none,
-                                                          filled: true,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .stampValueTextController,
+                                                          focusNode: _model
+                                                              .stampValueFocusNode,
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText:
+                                                                'ระบุ${_model.stampFieldName}',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            errorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedErrorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .stampValueTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        validator: _model
-                                                            .stampValueTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
-                                                    ),
-                                                    FFButtonWidget(
-                                                      onPressed: () async {
-                                                        await actions
-                                                            .hideKeyBoard(
-                                                          context,
-                                                        );
-                                                        if (_model.stampValueTextController
-                                                                    .text !=
-                                                                null &&
-                                                            _model.stampValueTextController
-                                                                    .text !=
-                                                                '') {
-                                                          if (!_model.stampList
-                                                              .contains(_model
-                                                                  .stampValueTextController
-                                                                  .text)) {
-                                                            _model.addToStampList(
-                                                                _model
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await actions
+                                                              .hideKeyBoard(
+                                                            context,
+                                                          );
+                                                          if (_model.stampValueTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.stampValueTextController
+                                                                      .text !=
+                                                                  '') {
+                                                            if (!_model
+                                                                .stampList
+                                                                .contains(_model
                                                                     .stampValueTextController
-                                                                    .text);
+                                                                    .text)) {
+                                                              _model.addToStampList(
+                                                                  _model
+                                                                      .stampValueTextController
+                                                                      .text);
+                                                            }
+                                                            setState(() {
+                                                              _model
+                                                                  .stampValueTextController
+                                                                  ?.text = '';
+                                                              _model.stampValueTextController
+                                                                      ?.selection =
+                                                                  TextSelection.collapsed(
+                                                                      offset: _model
+                                                                          .stampValueTextController!
+                                                                          .text
+                                                                          .length);
+                                                            });
                                                           }
-                                                          setState(() {
-                                                            _model
-                                                                .stampValueTextController
-                                                                ?.text = '';
-                                                            _model.stampValueTextController
-                                                                    ?.selection =
-                                                                TextSelection.collapsed(
-                                                                    offset: _model
-                                                                        .stampValueTextController!
-                                                                        .text
-                                                                        .length);
-                                                          });
-                                                        }
-                                                      },
-                                                      text: 'เพิ่ม',
-                                                      options: FFButtonOptions(
-                                                        height: 50.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
+                                                        },
+                                                        text: 'เพิ่ม',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 60.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
                                                                       0.0,
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
-                                                          width: 0.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  0.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  0.0),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 0.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    0.0),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1080,9 +1115,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 4.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
@@ -1102,9 +1138,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               iconSize: 18.0,
+                                              labelPadding: EdgeInsets.all(8.0),
                                               elevation: 0.0,
                                               borderRadius:
-                                                  BorderRadius.circular(16.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                             chipSpacing: 12.0,
                                             rowSpacing: 12.0,
@@ -1120,11 +1157,6 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Divider(
-                                      thickness: 1.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
