@@ -398,10 +398,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     .unfocus(),
                                                             child:
                                                                 CustomInfoAlertViewWidget(
-                                                              title: (_model
-                                                                      .apiReuslt
-                                                                      ?.exceptionMessage ??
-                                                                  ''),
+                                                              title: FFAppState()
+                                                                  .configData
+                                                                  .ocrErrorText
+                                                                  .first,
+                                                              detail: FFAppState()
+                                                                  .configData
+                                                                  .ocrErrorText
+                                                                  .last,
                                                             ),
                                                           ),
                                                         );
@@ -743,10 +747,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     .unfocus(),
                                                             child:
                                                                 CustomInfoAlertViewWidget(
-                                                              title: (_model
-                                                                      .apiReuslt2
-                                                                      ?.exceptionMessage ??
-                                                                  ''),
+                                                              title: FFAppState()
+                                                                  .configData
+                                                                  .ocrErrorText
+                                                                  .first,
+                                                              detail: FFAppState()
+                                                                  .configData
+                                                                  .ocrErrorText
+                                                                  .last,
                                                             ),
                                                           ),
                                                         );
