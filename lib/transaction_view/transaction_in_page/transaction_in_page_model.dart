@@ -1,7 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
+import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -10,6 +12,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'transaction_in_page_widget.dart' show TransactionInPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,14 +27,22 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   final formKey = GlobalKey<FormState>();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
-  String? base64;
+  String? base64Result;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
-  ApiCallResponse? apiResultz0r;
+  ApiCallResponse? apiReuslt;
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Stores action output result for [Custom Action - getBase64] action in Button widget.
+  String? base64Result2;
+  // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
+  ApiCallResponse? apiReuslt2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

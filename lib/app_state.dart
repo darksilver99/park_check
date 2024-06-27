@@ -47,6 +47,14 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _tmpTransactionList;
     });
+    _safeInit(() {
+      _isSkipOCRAlert = prefs.getBool('ff_isSkipOCRAlert') ?? _isSkipOCRAlert;
+    });
+    _safeInit(() {
+      _currentDate = prefs.containsKey('ff_currentDate')
+          ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_currentDate')!)
+          : _currentDate;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -118,6 +126,22 @@ class FFAppState extends ChangeNotifier {
     tmpTransactionList.insert(index, value);
     prefs.setStringList('ff_tmpTransactionList',
         _tmpTransactionList.map((x) => x.serialize()).toList());
+  }
+
+  bool _isSkipOCRAlert = false;
+  bool get isSkipOCRAlert => _isSkipOCRAlert;
+  set isSkipOCRAlert(bool value) {
+    _isSkipOCRAlert = value;
+    prefs.setBool('ff_isSkipOCRAlert', value);
+  }
+
+  DateTime? _currentDate = DateTime.fromMillisecondsSinceEpoch(13064400000);
+  DateTime? get currentDate => _currentDate;
+  set currentDate(DateTime? value) {
+    _currentDate = value;
+    value != null
+        ? prefs.setInt('ff_currentDate', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_currentDate');
   }
 }
 

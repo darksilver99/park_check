@@ -51,6 +51,16 @@ class ConfigRecord extends FirestoreRecord {
   List<String> get defaultObjectiveList => _defaultObjectiveList ?? const [];
   bool hasDefaultObjectiveList() => _defaultObjectiveList != null;
 
+  // "ocr_alert_text" field.
+  List<String>? _ocrAlertText;
+  List<String> get ocrAlertText => _ocrAlertText ?? const [];
+  bool hasOcrAlertText() => _ocrAlertText != null;
+
+  // "ocr_error_text" field.
+  List<String>? _ocrErrorText;
+  List<String> get ocrErrorText => _ocrErrorText ?? const [];
+  bool hasOcrErrorText() => _ocrErrorText != null;
+
   void _initializeFields() {
     _backgroundImage = castToType<int>(snapshotData['background_image']);
     _ocrApi = snapshotData['ocr_api'] as String?;
@@ -59,6 +69,8 @@ class ConfigRecord extends FirestoreRecord {
     _projectType = getDataList(snapshotData['project_type']);
     _defaultStampField = snapshotData['default_stamp_field'] as String?;
     _defaultObjectiveList = getDataList(snapshotData['default_objective_list']);
+    _ocrAlertText = getDataList(snapshotData['ocr_alert_text']);
+    _ocrErrorText = getDataList(snapshotData['ocr_error_text']);
   }
 
   static CollectionReference get collection =>
@@ -122,7 +134,10 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         listEquality.equals(e1?.defaultCarList, e2?.defaultCarList) &&
         listEquality.equals(e1?.projectType, e2?.projectType) &&
         e1?.defaultStampField == e2?.defaultStampField &&
-        listEquality.equals(e1?.defaultObjectiveList, e2?.defaultObjectiveList);
+        listEquality.equals(
+            e1?.defaultObjectiveList, e2?.defaultObjectiveList) &&
+        listEquality.equals(e1?.ocrAlertText, e2?.ocrAlertText) &&
+        listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText);
   }
 
   @override
@@ -133,7 +148,9 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.defaultCarList,
         e?.projectType,
         e?.defaultStampField,
-        e?.defaultObjectiveList
+        e?.defaultObjectiveList,
+        e?.ocrAlertText,
+        e?.ocrErrorText
       ]);
 
   @override
