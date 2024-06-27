@@ -19,6 +19,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     List<String>? projectType,
     List<String>? ocrAlertText,
     List<String>? ocrErrorText,
+    List<String>? provinceList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _backgroudImage = backgroudImage,
         _ocrApi = ocrApi,
@@ -29,6 +30,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _projectType = projectType,
         _ocrAlertText = ocrAlertText,
         _ocrErrorText = ocrErrorText,
+        _provinceList = provinceList,
         super(firestoreUtilData);
 
   // "backgroudImage" field.
@@ -121,6 +123,17 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasOcrErrorText() => _ocrErrorText != null;
 
+  // "province_list" field.
+  List<String>? _provinceList;
+  List<String> get provinceList => _provinceList ?? const [];
+  set provinceList(List<String>? val) => _provinceList = val;
+
+  void updateProvinceList(Function(List<String>) updateFn) {
+    updateFn(_provinceList ??= []);
+  }
+
+  bool hasProvinceList() => _provinceList != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         backgroudImage: castToType<int>(data['backgroudImage']),
@@ -132,6 +145,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         projectType: getDataList(data['project_type']),
         ocrAlertText: getDataList(data['ocr_alert_text']),
         ocrErrorText: getDataList(data['ocr_error_text']),
+        provinceList: getDataList(data['province_list']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -148,6 +162,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'project_type': _projectType,
         'ocr_alert_text': _ocrAlertText,
         'ocr_error_text': _ocrErrorText,
+        'province_list': _provinceList,
       }.withoutNulls;
 
   @override
@@ -191,6 +206,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ),
         'ocr_error_text': serializeParam(
           _ocrErrorText,
+          ParamType.String,
+          isList: true,
+        ),
+        'province_list': serializeParam(
+          _provinceList,
           ParamType.String,
           isList: true,
         ),
@@ -243,6 +263,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        provinceList: deserializeParam<String>(
+          data['province_list'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -260,7 +285,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         listEquality.equals(defaultObjectiveList, other.defaultObjectiveList) &&
         listEquality.equals(projectType, other.projectType) &&
         listEquality.equals(ocrAlertText, other.ocrAlertText) &&
-        listEquality.equals(ocrErrorText, other.ocrErrorText);
+        listEquality.equals(ocrErrorText, other.ocrErrorText) &&
+        listEquality.equals(provinceList, other.provinceList);
   }
 
   @override
@@ -273,7 +299,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultObjectiveList,
         projectType,
         ocrAlertText,
-        ocrErrorText
+        ocrErrorText,
+        provinceList
       ]);
 }
 

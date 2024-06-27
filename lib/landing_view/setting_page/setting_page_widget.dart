@@ -102,7 +102,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontSize: 18.0,
+                                      fontSize: 22.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -131,7 +131,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   text: 'ตั้งค่าโครงการ',
                                   options: FFButtonOptions(
                                     width: double.infinity,
-                                    height: 40.0,
+                                    height: 50.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -144,7 +144,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                     elevation: 3.0,
                                     borderSide: BorderSide(
@@ -165,7 +167,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   text: 'ตั้งค่าอื่นๆ',
                                   options: FFButtonOptions(
                                     width: double.infinity,
-                                    height: 40.0,
+                                    height: 50.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -178,7 +180,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                     elevation: 3.0,
                                     borderSide: BorderSide(
@@ -239,7 +243,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 ),
                                 options: FFButtonOptions(
                                   width: double.infinity,
-                                  height: 40.0,
+                                  height: 50.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -250,7 +254,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                   elevation: 3.0,
                                   borderSide: BorderSide(

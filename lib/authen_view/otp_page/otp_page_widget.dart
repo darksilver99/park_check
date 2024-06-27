@@ -94,6 +94,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                                             fontFamily: 'Readex Pro',
                                             fontSize: 22.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                   ),

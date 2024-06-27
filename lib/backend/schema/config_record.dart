@@ -61,6 +61,11 @@ class ConfigRecord extends FirestoreRecord {
   List<String> get ocrErrorText => _ocrErrorText ?? const [];
   bool hasOcrErrorText() => _ocrErrorText != null;
 
+  // "province_list" field.
+  List<String>? _provinceList;
+  List<String> get provinceList => _provinceList ?? const [];
+  bool hasProvinceList() => _provinceList != null;
+
   void _initializeFields() {
     _backgroundImage = castToType<int>(snapshotData['background_image']);
     _ocrApi = snapshotData['ocr_api'] as String?;
@@ -71,6 +76,7 @@ class ConfigRecord extends FirestoreRecord {
     _defaultObjectiveList = getDataList(snapshotData['default_objective_list']);
     _ocrAlertText = getDataList(snapshotData['ocr_alert_text']);
     _ocrErrorText = getDataList(snapshotData['ocr_error_text']);
+    _provinceList = getDataList(snapshotData['province_list']);
   }
 
   static CollectionReference get collection =>
@@ -137,7 +143,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         listEquality.equals(
             e1?.defaultObjectiveList, e2?.defaultObjectiveList) &&
         listEquality.equals(e1?.ocrAlertText, e2?.ocrAlertText) &&
-        listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText);
+        listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText) &&
+        listEquality.equals(e1?.provinceList, e2?.provinceList);
   }
 
   @override
@@ -150,7 +157,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.defaultStampField,
         e?.defaultObjectiveList,
         e?.ocrAlertText,
-        e?.ocrErrorText
+        e?.ocrErrorText,
+        e?.provinceList
       ]);
 
   @override
