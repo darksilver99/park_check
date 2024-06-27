@@ -86,6 +86,16 @@ class TransactionListRecord extends FirestoreRecord {
   String get contactAddress => _contactAddress ?? '';
   bool hasContactAddress() => _contactAddress != null;
 
+  // "all_card_data" field.
+  String? _allCardData;
+  String get allCardData => _allCardData ?? '';
+  bool hasAllCardData() => _allCardData != null;
+
+  // "all_registration_data" field.
+  String? _allRegistrationData;
+  String get allRegistrationData => _allRegistrationData ?? '';
+  bool hasAllRegistrationData() => _allRegistrationData != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _cardNumber = snapshotData['card_number'] as String?;
@@ -102,6 +112,8 @@ class TransactionListRecord extends FirestoreRecord {
     _dateOut = snapshotData['date_out'] as DateTime?;
     _isOut = snapshotData['is_out'] as bool?;
     _contactAddress = snapshotData['contact_address'] as String?;
+    _allCardData = snapshotData['all_card_data'] as String?;
+    _allRegistrationData = snapshotData['all_registration_data'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -153,6 +165,8 @@ Map<String, dynamic> createTransactionListRecordData({
   DateTime? dateOut,
   bool? isOut,
   String? contactAddress,
+  String? allCardData,
+  String? allRegistrationData,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -170,6 +184,8 @@ Map<String, dynamic> createTransactionListRecordData({
       'date_out': dateOut,
       'is_out': isOut,
       'contact_address': contactAddress,
+      'all_card_data': allCardData,
+      'all_registration_data': allRegistrationData,
     }.withoutNulls,
   );
 
@@ -195,7 +211,9 @@ class TransactionListRecordDocumentEquality
         e1?.dateIn == e2?.dateIn &&
         e1?.dateOut == e2?.dateOut &&
         e1?.isOut == e2?.isOut &&
-        e1?.contactAddress == e2?.contactAddress;
+        e1?.contactAddress == e2?.contactAddress &&
+        e1?.allCardData == e2?.allCardData &&
+        e1?.allRegistrationData == e2?.allRegistrationData;
   }
 
   @override
@@ -213,7 +231,9 @@ class TransactionListRecordDocumentEquality
         e?.dateIn,
         e?.dateOut,
         e?.isOut,
-        e?.contactAddress
+        e?.contactAddress,
+        e?.allCardData,
+        e?.allRegistrationData
       ]);
 
   @override

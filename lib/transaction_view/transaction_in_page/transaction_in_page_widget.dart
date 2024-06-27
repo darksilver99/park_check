@@ -39,26 +39,26 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
     super.initState();
     _model = createModel(context, () => TransactionInPageModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.preNameTextController ??= TextEditingController();
+    _model.preNameFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.firstNameTextController ??= TextEditingController();
+    _model.firstNameFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.lastNameTextController ??= TextEditingController();
+    _model.lastNameFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.idNumberTextController ??= TextEditingController();
+    _model.idNumberFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.registrationTextController ??= TextEditingController();
+    _model.registrationFocusNode ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
+    _model.provinceTextController ??= TextEditingController();
+    _model.provinceFocusNode ??= FocusNode();
 
     _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -242,10 +242,47 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         1) {
                                                       if (FFAppState()
                                                           .isSkipOCRAlert) {
-                                                        await Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    1000));
+                                                        setState(() {
+                                                          _model.registrationTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.registration''',
+                                                          ).toString();
+                                                          _model.registrationTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .registrationTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        setState(() {
+                                                          _model.provinceTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.province''',
+                                                          ).toString();
+                                                          _model.provinceTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .provinceTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        _model.allRegistrationData =
+                                                            getJsonField(
+                                                          (_model.apiReuslt
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.all_data''',
+                                                        ).toString();
                                                       } else {
                                                         await showDialog(
                                                           context: context,
@@ -517,10 +554,81 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         1) {
                                                       if (FFAppState()
                                                           .isSkipOCRAlert) {
-                                                        await Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    1000));
+                                                        setState(() {
+                                                          _model.preNameTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt2
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.pre_name''',
+                                                          ).toString();
+                                                          _model.preNameTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .preNameTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        setState(() {
+                                                          _model.firstNameTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt2
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.first_name''',
+                                                          ).toString();
+                                                          _model.firstNameTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .firstNameTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        setState(() {
+                                                          _model.lastNameTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt2
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.last_name''',
+                                                          ).toString();
+                                                          _model.lastNameTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .lastNameTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        setState(() {
+                                                          _model.idNumberTextController
+                                                                  ?.text =
+                                                              getJsonField(
+                                                            (_model.apiReuslt2
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.id_card_number''',
+                                                          ).toString();
+                                                          _model.idNumberTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .idNumberTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        _model.allCardData =
+                                                            getJsonField(
+                                                          (_model.apiReuslt2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.all_data''',
+                                                        ).toString();
                                                       } else {
                                                         await showDialog(
                                                           context: context,
@@ -716,8 +824,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController1,
-                                    focusNode: _model.textFieldFocusNode1,
+                                    controller: _model.preNameTextController,
+                                    focusNode: _model.preNameFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -778,7 +886,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController1Validator
+                                    validator: _model
+                                        .preNameTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -786,8 +895,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController2,
-                                    focusNode: _model.textFieldFocusNode2,
+                                    controller: _model.firstNameTextController,
+                                    focusNode: _model.firstNameFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -848,7 +957,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController2Validator
+                                    validator: _model
+                                        .firstNameTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -856,8 +966,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController3,
-                                    focusNode: _model.textFieldFocusNode3,
+                                    controller: _model.lastNameTextController,
+                                    focusNode: _model.lastNameFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -918,7 +1028,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController3Validator
+                                    validator: _model
+                                        .lastNameTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -926,8 +1037,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController4,
-                                    focusNode: _model.textFieldFocusNode4,
+                                    controller: _model.idNumberTextController,
+                                    focusNode: _model.idNumberFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -988,7 +1099,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController4Validator
+                                    validator: _model
+                                        .idNumberTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -1014,8 +1126,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController5,
-                                    focusNode: _model.textFieldFocusNode5,
+                                    controller:
+                                        _model.registrationTextController,
+                                    focusNode: _model.registrationFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1076,7 +1189,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController5Validator
+                                    validator: _model
+                                        .registrationTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -1084,8 +1198,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
-                                    controller: _model.textController6,
-                                    focusNode: _model.textFieldFocusNode6,
+                                    controller: _model.provinceTextController,
+                                    focusNode: _model.provinceFocusNode,
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1146,7 +1260,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController6Validator
+                                    validator: _model
+                                        .provinceTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -1338,7 +1453,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             0.0, 0.0, 0.0, 8.0),
                                         child: TextFormField(
                                           controller: _model.textController7,
-                                          focusNode: _model.textFieldFocusNode7,
+                                          focusNode: _model.textFieldFocusNode,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -1432,16 +1547,18 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .set(
                                                 createTransactionListRecordData(
                                           createDate: getCurrentTimestamp,
-                                          cardNumber:
-                                              _model.textController4.text,
-                                          preName: _model.textController1.text,
-                                          firstName:
-                                              _model.textController2.text,
-                                          lastName: _model.textController3.text,
-                                          carRegistration:
-                                              _model.textController5.text,
-                                          carRegistrationProvince:
-                                              _model.textController6.text,
+                                          cardNumber: _model
+                                              .idNumberTextController.text,
+                                          preName:
+                                              _model.preNameTextController.text,
+                                          firstName: _model
+                                              .firstNameTextController.text,
+                                          lastName: _model
+                                              .lastNameTextController.text,
+                                          carRegistration: _model
+                                              .registrationTextController.text,
+                                          carRegistrationProvince: _model
+                                              .provinceTextController.text,
                                           objective:
                                               _model.objectiveSelectedValue,
                                           carType: _model.carSelectedValue,
@@ -1449,6 +1566,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           isOut: false,
                                           contactAddress:
                                               _model.textController7.text,
+                                          allCardData: _model.allCardData,
+                                          allRegistrationData:
+                                              _model.allRegistrationData,
                                         ));
                                         _model.insertedTransaction =
                                             TransactionListRecord.getDocumentFromData(
@@ -1456,18 +1576,23 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   createDate:
                                                       getCurrentTimestamp,
                                                   cardNumber: _model
-                                                      .textController4.text,
+                                                      .idNumberTextController
+                                                      .text,
                                                   preName: _model
-                                                      .textController1.text,
+                                                      .preNameTextController
+                                                      .text,
                                                   firstName: _model
-                                                      .textController2.text,
+                                                      .firstNameTextController
+                                                      .text,
                                                   lastName: _model
-                                                      .textController3.text,
+                                                      .lastNameTextController
+                                                      .text,
                                                   carRegistration: _model
-                                                      .textController5.text,
-                                                  carRegistrationProvince:
-                                                      _model
-                                                          .textController6.text,
+                                                      .registrationTextController
+                                                      .text,
+                                                  carRegistrationProvince: _model
+                                                      .provinceTextController
+                                                      .text,
                                                   objective: _model
                                                       .objectiveSelectedValue,
                                                   carType:
@@ -1476,6 +1601,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   isOut: false,
                                                   contactAddress: _model
                                                       .textController7.text,
+                                                  allCardData:
+                                                      _model.allCardData,
+                                                  allRegistrationData: _model
+                                                      .allRegistrationData,
                                                 ),
                                                 transactionListRecordReference);
                                         await showModalBottomSheet(

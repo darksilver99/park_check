@@ -21,6 +21,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
+  ///  Local state fields for this page.
+
+  String? allCardData;
+
+  String? allRegistrationData;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -43,11 +49,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   String? base64Result2;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
   ApiCallResponse? apiReuslt2;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
+  // State field(s) for preName widget.
+  FocusNode? preNameFocusNode;
+  TextEditingController? preNameTextController;
+  String? Function(BuildContext, String?)? preNameTextControllerValidator;
+  String? _preNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -55,11 +61,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
+  // State field(s) for firstName widget.
+  FocusNode? firstNameFocusNode;
+  TextEditingController? firstNameTextController;
+  String? Function(BuildContext, String?)? firstNameTextControllerValidator;
+  String? _firstNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -67,11 +73,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
+  // State field(s) for lastName widget.
+  FocusNode? lastNameFocusNode;
+  TextEditingController? lastNameTextController;
+  String? Function(BuildContext, String?)? lastNameTextControllerValidator;
+  String? _lastNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -79,11 +85,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
+  // State field(s) for idNumber widget.
+  FocusNode? idNumberFocusNode;
+  TextEditingController? idNumberTextController;
+  String? Function(BuildContext, String?)? idNumberTextControllerValidator;
+  String? _idNumberTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -91,11 +97,12 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  String? _textController5Validator(BuildContext context, String? val) {
+  // State field(s) for registration widget.
+  FocusNode? registrationFocusNode;
+  TextEditingController? registrationTextController;
+  String? Function(BuildContext, String?)? registrationTextControllerValidator;
+  String? _registrationTextControllerValidator(
+      BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -103,11 +110,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  String? _textController6Validator(BuildContext context, String? val) {
+  // State field(s) for province widget.
+  FocusNode? provinceFocusNode;
+  TextEditingController? provinceTextController;
+  String? Function(BuildContext, String?)? provinceTextControllerValidator;
+  String? _provinceTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -128,7 +135,7 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   set objectiveSelectedValue(String? val) =>
       objectiveSelectedValueController?.value = val != null ? [val] : [];
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController7;
   String? Function(BuildContext, String?)? textController7Validator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
@@ -138,37 +145,37 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   void initState(BuildContext context) {
     mainBackgroundViewModel =
         createModel(context, () => MainBackgroundViewModel());
-    textController1Validator = _textController1Validator;
-    textController2Validator = _textController2Validator;
-    textController3Validator = _textController3Validator;
-    textController4Validator = _textController4Validator;
-    textController5Validator = _textController5Validator;
-    textController6Validator = _textController6Validator;
+    preNameTextControllerValidator = _preNameTextControllerValidator;
+    firstNameTextControllerValidator = _firstNameTextControllerValidator;
+    lastNameTextControllerValidator = _lastNameTextControllerValidator;
+    idNumberTextControllerValidator = _idNumberTextControllerValidator;
+    registrationTextControllerValidator = _registrationTextControllerValidator;
+    provinceTextControllerValidator = _provinceTextControllerValidator;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    preNameFocusNode?.dispose();
+    preNameTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    firstNameFocusNode?.dispose();
+    firstNameTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    lastNameFocusNode?.dispose();
+    lastNameTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    idNumberFocusNode?.dispose();
+    idNumberTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    registrationFocusNode?.dispose();
+    registrationTextController?.dispose();
 
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
+    provinceFocusNode?.dispose();
+    provinceTextController?.dispose();
 
-    textFieldFocusNode7?.dispose();
+    textFieldFocusNode?.dispose();
     textController7?.dispose();
   }
 }

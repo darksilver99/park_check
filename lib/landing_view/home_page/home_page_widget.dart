@@ -69,6 +69,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ocrApi: _model.configResult?.ocrApi,
           ocrAlertText: _model.configResult?.ocrAlertText,
           ocrErrorText: _model.configResult?.ocrErrorText,
+          provinceList: _model.configResult?.provinceList,
         );
         _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) => transactionListRecord
