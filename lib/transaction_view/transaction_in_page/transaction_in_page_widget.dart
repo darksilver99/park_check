@@ -240,50 +240,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     ''))
                                                             ?.status ==
                                                         1) {
-                                                      if (FFAppState()
+                                                      if (!FFAppState()
                                                           .isSkipOCRAlert) {
-                                                        setState(() {
-                                                          _model.registrationTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.registration''',
-                                                          ).toString();
-                                                          _model.registrationTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .registrationTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        setState(() {
-                                                          _model.provinceTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.province''',
-                                                          ).toString();
-                                                          _model.provinceTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .provinceTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        _model.allRegistrationData =
-                                                            getJsonField(
-                                                          (_model.apiReuslt
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.data.all_data''',
-                                                        ).toString();
-                                                      } else {
                                                         await showDialog(
                                                           context: context,
                                                           builder:
@@ -321,6 +279,47 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         ).then((value) =>
                                                             setState(() {}));
                                                       }
+                                                      setState(() {
+                                                        _model
+                                                            .registrationTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.registration''',
+                                                        ).toString();
+                                                        _model.registrationTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .registrationTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      setState(() {
+                                                        _model
+                                                            .provinceTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.province''',
+                                                        ).toString();
+                                                        _model.provinceTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .provinceTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      _model.allRegistrationData =
+                                                          getJsonField(
+                                                        (_model.apiReuslt
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.data.all_data''',
+                                                      ).toString();
                                                     } else {
                                                       await showDialog(
                                                         context: context,
@@ -552,84 +551,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     ''))
                                                             ?.status ==
                                                         1) {
-                                                      if (FFAppState()
+                                                      if (!FFAppState()
                                                           .isSkipOCRAlert) {
-                                                        setState(() {
-                                                          _model.preNameTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt2
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.pre_name''',
-                                                          ).toString();
-                                                          _model.preNameTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .preNameTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        setState(() {
-                                                          _model.firstNameTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt2
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.first_name''',
-                                                          ).toString();
-                                                          _model.firstNameTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .firstNameTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        setState(() {
-                                                          _model.lastNameTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt2
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.last_name''',
-                                                          ).toString();
-                                                          _model.lastNameTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .lastNameTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        setState(() {
-                                                          _model.idNumberTextController
-                                                                  ?.text =
-                                                              getJsonField(
-                                                            (_model.apiReuslt2
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$.data.id_card_number''',
-                                                          ).toString();
-                                                          _model.idNumberTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .idNumberTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                        _model.allCardData =
-                                                            getJsonField(
-                                                          (_model.apiReuslt2
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.data.all_data''',
-                                                        ).toString();
-                                                      } else {
                                                         await showDialog(
                                                           context: context,
                                                           builder:
@@ -667,6 +590,81 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         ).then((value) =>
                                                             setState(() {}));
                                                       }
+                                                      setState(() {
+                                                        _model
+                                                            .preNameTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.pre_name''',
+                                                        ).toString();
+                                                        _model.preNameTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .preNameTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      setState(() {
+                                                        _model
+                                                            .firstNameTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.first_name''',
+                                                        ).toString();
+                                                        _model.firstNameTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .firstNameTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      setState(() {
+                                                        _model
+                                                            .lastNameTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.last_name''',
+                                                        ).toString();
+                                                        _model.lastNameTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .lastNameTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      setState(() {
+                                                        _model
+                                                            .idNumberTextController
+                                                            ?.text = getJsonField(
+                                                          (_model.apiReuslt2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.data.id_card_number''',
+                                                        ).toString();
+                                                        _model.idNumberTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .idNumberTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                      _model.allCardData =
+                                                          getJsonField(
+                                                        (_model.apiReuslt2
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.data.all_data''',
+                                                      ).toString();
                                                     } else {
                                                       await showDialog(
                                                         context: context,
