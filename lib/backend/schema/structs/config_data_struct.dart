@@ -17,6 +17,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
     List<String>? defaultStampList,
     List<String>? defaultObjectiveList,
     List<String>? projectType,
+    List<String>? ocrAlertText,
+    List<String>? ocrErrorText,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _backgroudImage = backgroudImage,
         _ocrApi = ocrApi,
@@ -25,6 +27,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _defaultStampList = defaultStampList,
         _defaultObjectiveList = defaultObjectiveList,
         _projectType = projectType,
+        _ocrAlertText = ocrAlertText,
+        _ocrErrorText = ocrErrorText,
         super(firestoreUtilData);
 
   // "backgroudImage" field.
@@ -95,6 +99,28 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasProjectType() => _projectType != null;
 
+  // "ocr_alert_text" field.
+  List<String>? _ocrAlertText;
+  List<String> get ocrAlertText => _ocrAlertText ?? const [];
+  set ocrAlertText(List<String>? val) => _ocrAlertText = val;
+
+  void updateOcrAlertText(Function(List<String>) updateFn) {
+    updateFn(_ocrAlertText ??= []);
+  }
+
+  bool hasOcrAlertText() => _ocrAlertText != null;
+
+  // "ocr_error_text" field.
+  List<String>? _ocrErrorText;
+  List<String> get ocrErrorText => _ocrErrorText ?? const [];
+  set ocrErrorText(List<String>? val) => _ocrErrorText = val;
+
+  void updateOcrErrorText(Function(List<String>) updateFn) {
+    updateFn(_ocrErrorText ??= []);
+  }
+
+  bool hasOcrErrorText() => _ocrErrorText != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         backgroudImage: castToType<int>(data['backgroudImage']),
@@ -104,6 +130,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultStampList: getDataList(data['default_stamp_list']),
         defaultObjectiveList: getDataList(data['default_objective_list']),
         projectType: getDataList(data['project_type']),
+        ocrAlertText: getDataList(data['ocr_alert_text']),
+        ocrErrorText: getDataList(data['ocr_error_text']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -118,6 +146,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_stamp_list': _defaultStampList,
         'default_objective_list': _defaultObjectiveList,
         'project_type': _projectType,
+        'ocr_alert_text': _ocrAlertText,
+        'ocr_error_text': _ocrErrorText,
       }.withoutNulls;
 
   @override
@@ -151,6 +181,16 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ),
         'project_type': serializeParam(
           _projectType,
+          ParamType.String,
+          isList: true,
+        ),
+        'ocr_alert_text': serializeParam(
+          _ocrAlertText,
+          ParamType.String,
+          isList: true,
+        ),
+        'ocr_error_text': serializeParam(
+          _ocrErrorText,
           ParamType.String,
           isList: true,
         ),
@@ -193,6 +233,16 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        ocrAlertText: deserializeParam<String>(
+          data['ocr_alert_text'],
+          ParamType.String,
+          true,
+        ),
+        ocrErrorText: deserializeParam<String>(
+          data['ocr_error_text'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -208,7 +258,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         listEquality.equals(defaultCarList, other.defaultCarList) &&
         listEquality.equals(defaultStampList, other.defaultStampList) &&
         listEquality.equals(defaultObjectiveList, other.defaultObjectiveList) &&
-        listEquality.equals(projectType, other.projectType);
+        listEquality.equals(projectType, other.projectType) &&
+        listEquality.equals(ocrAlertText, other.ocrAlertText) &&
+        listEquality.equals(ocrErrorText, other.ocrErrorText);
   }
 
   @override
@@ -219,7 +271,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultCarList,
         defaultStampList,
         defaultObjectiveList,
-        projectType
+        projectType,
+        ocrAlertText,
+        ocrErrorText
       ]);
 }
 

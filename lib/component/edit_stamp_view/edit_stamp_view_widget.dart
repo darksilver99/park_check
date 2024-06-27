@@ -49,7 +49,7 @@ class _EditStampViewWidgetState extends State<EditStampViewWidget> {
           width: double.infinity,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            borderRadius: BorderRadius.circular(24.0),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: SingleChildScrollView(
             child: Column(

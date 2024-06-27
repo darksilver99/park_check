@@ -67,6 +67,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().configData = ConfigDataStruct(
           backgroudImage: _model.configResult?.backgroundImage,
           ocrApi: _model.configResult?.ocrApi,
+          ocrAlertText: _model.configResult?.ocrAlertText,
+          ocrErrorText: _model.configResult?.ocrErrorText,
         );
         _model.rsDataList = await queryTransactionListRecordOnce(
           queryBuilder: (transactionListRecord) => transactionListRecord
@@ -90,6 +92,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         _model.transactionList =
             _model.rsDataList!.toList().cast<TransactionListRecord>();
         setState(() {});
+        if (functions.getStartDayTime(getCurrentTimestamp) !=
+            functions.getStartDayTime(FFAppState().currentDate!)) {
+          FFAppState().currentDate =
+              functions.getStartDayTime(getCurrentTimestamp);
+          FFAppState().isSkipOCRAlert = false;
+        }
       } else {
         context.goNamed('CreateProjectPage');
       }
