@@ -345,7 +345,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: Colors.white,
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
@@ -511,7 +513,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .success,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                         ),
                                                   ),
                                                 ],
