@@ -155,9 +155,10 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    FFAppState().projectData =
-                                                        ProjectDataStruct(
-                                                      backgroundImage: 1,
+                                                    FFAppState()
+                                                        .updateProjectDataStruct(
+                                                      (e) => e
+                                                        ..backgroundImage = 1,
                                                     );
                                                     setState(() {});
                                                   },
@@ -218,9 +219,10 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    FFAppState().projectData =
-                                                        ProjectDataStruct(
-                                                      backgroundImage: 2,
+                                                    FFAppState()
+                                                        .updateProjectDataStruct(
+                                                      (e) => e
+                                                        ..backgroundImage = 2,
                                                     );
                                                     setState(() {});
                                                   },
@@ -281,9 +283,10 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    FFAppState().projectData =
-                                                        ProjectDataStruct(
-                                                      backgroundImage: 3,
+                                                    FFAppState()
+                                                        .updateProjectDataStruct(
+                                                      (e) => e
+                                                        ..backgroundImage = 3,
                                                     );
                                                     setState(() {});
                                                   },
