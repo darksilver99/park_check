@@ -59,11 +59,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   List<TransactionListRecord>? searchResult;
   // Stores action output result for [Firestore Query - Query a collection] action in ListView widget.
   List<TransactionListRecord>? rsDataList2;
+  // Model for LoadingListView component.
+  late LoadingListViewModel loadingListViewModel;
   var qrCode = '';
   // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
   TransactionListRecord? transactionDocumentResult;
-  // Model for LoadingListView component.
-  late LoadingListViewModel loadingListViewModel;
 
   @override
   void initState(BuildContext context) {

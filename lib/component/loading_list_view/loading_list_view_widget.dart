@@ -46,14 +46,17 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget> {
             mainAxisSize: MainAxisSize.min,
             children: List.generate(list.length, (listIndex) {
               final listItem = list[listIndex];
-              return Container(
-                width: double.infinity,
-                height: 120.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+              return Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 120.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
                 ),
               );
-            }).divide(SizedBox(height: 8.0)),
+            }),
           );
         },
       ),
