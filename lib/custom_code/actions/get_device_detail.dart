@@ -22,7 +22,7 @@ Future<String> getDeviceDetail() async {
     deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
   }
 
-  return deviceData.toString();
+  return jsonEncode(deviceData);
 }
 
 Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
