@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'dart:io';
 
 Future<String> getDeviceDetail() async {
   // Add your function code here!

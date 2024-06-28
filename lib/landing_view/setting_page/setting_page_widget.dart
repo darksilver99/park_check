@@ -220,7 +220,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     0.0, 0.0, 0.0, 8.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('SettingGeneralPage');
+                                    context.pushNamed('IssueView');
                                   },
                                   text: 'แจ้งปัญหาการใช้งาน',
                                   options: FFButtonOptions(
