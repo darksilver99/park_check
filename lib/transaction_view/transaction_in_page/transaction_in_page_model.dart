@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/gemini/gemini.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -38,8 +37,10 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // Stores action output result for [Gemini - Text From Image] action in Button widget.
-  String? aiResult;
+  // Stores action output result for [Custom Action - getBase64] action in Button widget.
+  String? base64Result;
+  // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
+  ApiCallResponse? apiReuslt;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
