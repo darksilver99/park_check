@@ -157,7 +157,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 final selectedMedia =
                                                     await selectMediaWithSourceBottomSheet(
                                                   context: context,
-                                                  maxWidth: 800.00,
                                                   imageQuality: 100,
                                                   allowPhoto: true,
                                                 );
@@ -462,7 +461,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 final selectedMedia =
                                                     await selectMediaWithSourceBottomSheet(
                                                   context: context,
-                                                  maxWidth: 800.00,
+                                                  maxWidth: 600.00,
                                                   imageQuality: 100,
                                                   allowPhoto: true,
                                                 );
