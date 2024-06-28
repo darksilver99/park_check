@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/gemini/gemini.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -147,315 +148,113 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
-                                        child: Builder(
-                                          builder: (context) => Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 4.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                final selectedMedia =
-                                                    await selectMediaWithSourceBottomSheet(
-                                                  context: context,
-                                                  maxWidth: 800.00,
-                                                  imageQuality: 100,
-                                                  allowPhoto: true,
-                                                );
-                                                if (selectedMedia != null &&
-                                                    selectedMedia.every((m) =>
-                                                        validateFileFormat(
-                                                            m.storagePath,
-                                                            context))) {
-                                                  setState(() => _model
-                                                      .isDataUploading1 = true);
-                                                  var selectedUploadedFiles =
-                                                      <FFUploadedFile>[];
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 4.0, 0.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              final selectedMedia =
+                                                  await selectMediaWithSourceBottomSheet(
+                                                context: context,
+                                                maxWidth: 800.00,
+                                                imageQuality: 100,
+                                                allowPhoto: true,
+                                              );
+                                              if (selectedMedia != null &&
+                                                  selectedMedia.every((m) =>
+                                                      validateFileFormat(
+                                                          m.storagePath,
+                                                          context))) {
+                                                setState(() => _model
+                                                    .isDataUploading1 = true);
+                                                var selectedUploadedFiles =
+                                                    <FFUploadedFile>[];
 
-                                                  try {
-                                                    selectedUploadedFiles =
-                                                        selectedMedia
-                                                            .map((m) =>
-                                                                FFUploadedFile(
-                                                                  name: m
-                                                                      .storagePath
-                                                                      .split(
-                                                                          '/')
-                                                                      .last,
-                                                                  bytes:
-                                                                      m.bytes,
-                                                                  height: m
-                                                                      .dimensions
-                                                                      ?.height,
-                                                                  width: m
-                                                                      .dimensions
-                                                                      ?.width,
-                                                                  blurHash: m
-                                                                      .blurHash,
-                                                                ))
-                                                            .toList();
-                                                  } finally {
-                                                    _model.isDataUploading1 =
-                                                        false;
-                                                  }
-                                                  if (selectedUploadedFiles
-                                                          .length ==
-                                                      selectedMedia.length) {
-                                                    setState(() {
-                                                      _model.uploadedLocalFile1 =
-                                                          selectedUploadedFiles
-                                                              .first;
-                                                    });
-                                                  } else {
-                                                    setState(() {});
-                                                    return;
-                                                  }
-                                                }
-
-                                                if (_model.uploadedLocalFile1 !=
-                                                        null &&
-                                                    (_model
-                                                            .uploadedLocalFile1
-                                                            .bytes
-                                                            ?.isNotEmpty ??
-                                                        false)) {
-                                                  _model.base64Result =
-                                                      await actions.getBase64(
-                                                    _model.uploadedLocalFile1,
-                                                  );
-                                                  _model.apiReuslt =
-                                                      await GetORCDataCall.call(
-                                                    api: FFAppState()
-                                                        .configData
-                                                        .ocrApi,
-                                                    base64: _model.base64Result,
-                                                  );
-
-                                                  if ((_model.apiReuslt
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    if (GeneralDataStruct
-                                                                .maybeFromMap((_model
-                                                                        .apiReuslt
-                                                                        ?.jsonBody ??
-                                                                    ''))
-                                                            ?.status ==
-                                                        1) {
-                                                      if (!FFAppState()
-                                                          .isSkipOCRAlert) {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (dialogContext) {
-                                                            return Dialog(
-                                                              elevation: 0,
-                                                              insetPadding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              alignment: AlignmentDirectional(
-                                                                      0.0, 0.0)
-                                                                  .resolve(
-                                                                      Directionality.of(
-                                                                          context)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
-                                                                child:
-                                                                    OCRAlertViewWidget(),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            setState(() {}));
-                                                      }
-                                                      setState(() {
-                                                        _model
-                                                            .registrationTextController
-                                                            ?.text = getJsonField(
-                                                          (_model.apiReuslt
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.data.registration''',
-                                                        ).toString();
-                                                        _model.registrationTextController
-                                                                ?.selection =
-                                                            TextSelection.collapsed(
-                                                                offset: _model
-                                                                    .registrationTextController!
-                                                                    .text
-                                                                    .length);
-                                                      });
-                                                      setState(() {
-                                                        _model
-                                                            .provinceTextController
-                                                            ?.text = getJsonField(
-                                                          (_model.apiReuslt
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.data.province''',
-                                                        ).toString();
-                                                        _model.provinceTextController
-                                                                ?.selection =
-                                                            TextSelection.collapsed(
-                                                                offset: _model
-                                                                    .provinceTextController!
-                                                                    .text
-                                                                    .length);
-                                                      });
-                                                      _model.allRegistrationData =
-                                                          getJsonField(
-                                                        (_model.apiReuslt
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.all_data''',
-                                                      ).toString();
-                                                    } else {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            alignment: AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child:
-                                                                  CustomInfoAlertViewWidget(
-                                                                title: FFAppState()
-                                                                    .configData
-                                                                    .ocrErrorText
-                                                                    .first,
-                                                                detail: FFAppState()
-                                                                    .configData
-                                                                    .ocrErrorText
+                                                try {
+                                                  selectedUploadedFiles =
+                                                      selectedMedia
+                                                          .map((m) =>
+                                                              FFUploadedFile(
+                                                                name: m
+                                                                    .storagePath
+                                                                    .split('/')
                                                                     .last,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          setState(() {}));
-                                                    }
-                                                  } else {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                CustomInfoAlertViewWidget(
-                                                              title: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .first,
-                                                              detail: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .last,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        setState(() {}));
-                                                  }
-
-                                                  setState(() {
-                                                    _model.isDataUploading1 =
-                                                        false;
-                                                    _model.uploadedLocalFile1 =
-                                                        FFUploadedFile(
-                                                            bytes: Uint8List
-                                                                .fromList([]));
-                                                  });
+                                                                bytes: m.bytes,
+                                                                height: m
+                                                                    .dimensions
+                                                                    ?.height,
+                                                                width: m
+                                                                    .dimensions
+                                                                    ?.width,
+                                                                blurHash:
+                                                                    m.blurHash,
+                                                              ))
+                                                          .toList();
+                                                } finally {
+                                                  _model.isDataUploading1 =
+                                                      false;
                                                 }
+                                                if (selectedUploadedFiles
+                                                        .length ==
+                                                    selectedMedia.length) {
+                                                  setState(() {
+                                                    _model.uploadedLocalFile1 =
+                                                        selectedUploadedFiles
+                                                            .first;
+                                                  });
+                                                } else {
+                                                  setState(() {});
+                                                  return;
+                                                }
+                                              }
 
-                                                setState(() {});
-                                              },
-                                              text: 'ถ่ายรูปทะเบียนรถ',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                              if (_model.uploadedLocalFile1 !=
+                                                      null &&
+                                                  (_model.uploadedLocalFile1
+                                                          .bytes?.isNotEmpty ??
+                                                      false)) {
+                                                await geminiTextFromImage(
+                                                  context,
+                                                  'ขอ เลขทะเบียน กับ จังหวัด ในรูปป้ายทะเบียนรถให้หน่อย',
+                                                  uploadImageBytes:
+                                                      _model.uploadedLocalFile1,
+                                                ).then((generatedText) {
+                                                  safeSetState(() =>
+                                                      _model.aiResult =
+                                                          generatedText);
+                                                });
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            text: 'ถ่ายรูปทะเบียนรถ',
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
                                               ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         ),
