@@ -76,6 +76,11 @@ class ProjectListRecord extends FirestoreRecord {
   String get logo => _logo ?? '';
   bool hasLogo() => _logo != null;
 
+  // "background_image" field.
+  int? _backgroundImage;
+  int get backgroundImage => _backgroundImage ?? 0;
+  bool hasBackgroundImage() => _backgroundImage != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -89,6 +94,7 @@ class ProjectListRecord extends FirestoreRecord {
     _updateDate = snapshotData['update_date'] as DateTime?;
     _enableContactAdress = snapshotData['enable_contact_adress'] as bool?;
     _logo = snapshotData['logo'] as String?;
+    _backgroundImage = castToType<int>(snapshotData['background_image']);
   }
 
   static CollectionReference get collection =>
@@ -135,6 +141,7 @@ Map<String, dynamic> createProjectListRecordData({
   DateTime? updateDate,
   bool? enableContactAdress,
   String? logo,
+  int? backgroundImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -147,6 +154,7 @@ Map<String, dynamic> createProjectListRecordData({
       'update_date': updateDate,
       'enable_contact_adress': enableContactAdress,
       'logo': logo,
+      'background_image': backgroundImage,
     }.withoutNulls,
   );
 
@@ -170,7 +178,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.projectType == e2?.projectType &&
         e1?.updateDate == e2?.updateDate &&
         e1?.enableContactAdress == e2?.enableContactAdress &&
-        e1?.logo == e2?.logo;
+        e1?.logo == e2?.logo &&
+        e1?.backgroundImage == e2?.backgroundImage;
   }
 
   @override
@@ -186,7 +195,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.projectType,
         e?.updateDate,
         e?.enableContactAdress,
-        e?.logo
+        e?.logo,
+        e?.backgroundImage
       ]);
 
   @override

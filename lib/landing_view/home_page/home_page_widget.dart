@@ -61,12 +61,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectReference: _model.projectData?.reference,
           enableContactAddress: _model.projectData?.enableContactAdress,
           logo: _model.projectData?.logo,
+          backgroundImage: _model.projectData?.backgroundImage,
         );
         _model.configResult = await queryConfigRecordOnce(
           singleRecord: true,
         ).then((s) => s.firstOrNull);
         FFAppState().configData = ConfigDataStruct(
-          backgroudImage: _model.configResult?.backgroundImage,
           ocrApi: _model.configResult?.ocrApi,
           ocrAlertText: _model.configResult?.ocrAlertText,
           ocrErrorText: _model.configResult?.ocrErrorText,

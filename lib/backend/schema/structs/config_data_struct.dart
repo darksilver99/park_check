@@ -10,7 +10,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ConfigDataStruct extends FFFirebaseStruct {
   ConfigDataStruct({
-    int? backgroudImage,
     String? ocrApi,
     String? defaultStampField,
     List<String>? defaultCarList,
@@ -20,9 +19,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
     List<String>? ocrAlertText,
     List<String>? ocrErrorText,
     List<String>? provinceList,
+    int? defaultBackgroundImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _backgroudImage = backgroudImage,
-        _ocrApi = ocrApi,
+  })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
         _defaultCarList = defaultCarList,
         _defaultStampList = defaultStampList,
@@ -31,17 +30,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _ocrAlertText = ocrAlertText,
         _ocrErrorText = ocrErrorText,
         _provinceList = provinceList,
+        _defaultBackgroundImage = defaultBackgroundImage,
         super(firestoreUtilData);
-
-  // "backgroudImage" field.
-  int? _backgroudImage;
-  int get backgroudImage => _backgroudImage ?? 0;
-  set backgroudImage(int? val) => _backgroudImage = val;
-
-  void incrementBackgroudImage(int amount) =>
-      backgroudImage = backgroudImage + amount;
-
-  bool hasBackgroudImage() => _backgroudImage != null;
 
   // "ocr_api" field.
   String? _ocrApi;
@@ -134,9 +124,18 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasProvinceList() => _provinceList != null;
 
+  // "default_background_image" field.
+  int? _defaultBackgroundImage;
+  int get defaultBackgroundImage => _defaultBackgroundImage ?? 0;
+  set defaultBackgroundImage(int? val) => _defaultBackgroundImage = val;
+
+  void incrementDefaultBackgroundImage(int amount) =>
+      defaultBackgroundImage = defaultBackgroundImage + amount;
+
+  bool hasDefaultBackgroundImage() => _defaultBackgroundImage != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
-        backgroudImage: castToType<int>(data['backgroudImage']),
         ocrApi: data['ocr_api'] as String?,
         defaultStampField: data['default_stamp_field'] as String?,
         defaultCarList: getDataList(data['default_car_list']),
@@ -146,6 +145,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ocrAlertText: getDataList(data['ocr_alert_text']),
         ocrErrorText: getDataList(data['ocr_error_text']),
         provinceList: getDataList(data['province_list']),
+        defaultBackgroundImage:
+            castToType<int>(data['default_background_image']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -153,7 +154,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'backgroudImage': _backgroudImage,
         'ocr_api': _ocrApi,
         'default_stamp_field': _defaultStampField,
         'default_car_list': _defaultCarList,
@@ -163,14 +163,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'ocr_alert_text': _ocrAlertText,
         'ocr_error_text': _ocrErrorText,
         'province_list': _provinceList,
+        'default_background_image': _defaultBackgroundImage,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'backgroudImage': serializeParam(
-          _backgroudImage,
-          ParamType.int,
-        ),
         'ocr_api': serializeParam(
           _ocrApi,
           ParamType.String,
@@ -214,15 +211,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           isList: true,
         ),
+        'default_background_image': serializeParam(
+          _defaultBackgroundImage,
+          ParamType.int,
+        ),
       }.withoutNulls;
 
   static ConfigDataStruct fromSerializableMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
-        backgroudImage: deserializeParam(
-          data['backgroudImage'],
-          ParamType.int,
-          false,
-        ),
         ocrApi: deserializeParam(
           data['ocr_api'],
           ParamType.String,
@@ -268,6 +264,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        defaultBackgroundImage: deserializeParam(
+          data['default_background_image'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -277,7 +278,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
   bool operator ==(Object other) {
     const listEquality = ListEquality();
     return other is ConfigDataStruct &&
-        backgroudImage == other.backgroudImage &&
         ocrApi == other.ocrApi &&
         defaultStampField == other.defaultStampField &&
         listEquality.equals(defaultCarList, other.defaultCarList) &&
@@ -286,12 +286,12 @@ class ConfigDataStruct extends FFFirebaseStruct {
         listEquality.equals(projectType, other.projectType) &&
         listEquality.equals(ocrAlertText, other.ocrAlertText) &&
         listEquality.equals(ocrErrorText, other.ocrErrorText) &&
-        listEquality.equals(provinceList, other.provinceList);
+        listEquality.equals(provinceList, other.provinceList) &&
+        defaultBackgroundImage == other.defaultBackgroundImage;
   }
 
   @override
   int get hashCode => const ListEquality().hash([
-        backgroudImage,
         ocrApi,
         defaultStampField,
         defaultCarList,
@@ -300,23 +300,24 @@ class ConfigDataStruct extends FFFirebaseStruct {
         projectType,
         ocrAlertText,
         ocrErrorText,
-        provinceList
+        provinceList,
+        defaultBackgroundImage
       ]);
 }
 
 ConfigDataStruct createConfigDataStruct({
-  int? backgroudImage,
   String? ocrApi,
   String? defaultStampField,
+  int? defaultBackgroundImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     ConfigDataStruct(
-      backgroudImage: backgroudImage,
       ocrApi: ocrApi,
       defaultStampField: defaultStampField,
+      defaultBackgroundImage: defaultBackgroundImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

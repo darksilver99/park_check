@@ -190,8 +190,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    context.pushNamed('SettingGeneralPage');
                                   },
                                   text: 'ตั้งค่าอื่นๆ',
                                   options: FFButtonOptions(
