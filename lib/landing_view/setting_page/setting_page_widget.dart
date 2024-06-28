@@ -3,6 +3,7 @@ import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -81,17 +82,45 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 8.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/parking_1022847.png',
-                                        height: 86.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                                  Builder(
+                                    builder: (context) {
+                                      if (FFAppState().projectData.logo !=
+                                              null &&
+                                          FFAppState().projectData.logo != '') {
+                                        return Container(
+                                          width: 80.0,
+                                          height: 80.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CachedNetworkImage(
+                                            fadeInDuration:
+                                                Duration(milliseconds: 500),
+                                            fadeOutDuration:
+                                                Duration(milliseconds: 500),
+                                            imageUrl:
+                                                FFAppState().projectData.logo,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        );
+                                      } else {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/parking_1022847.png',
+                                              height: 80.0,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
                                   ),
                                 ],
                               ),

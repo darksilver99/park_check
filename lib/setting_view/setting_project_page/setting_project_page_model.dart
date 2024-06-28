@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/component/edit_stamp_view/edit_stamp_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'setting_project_page_widget.dart' show SettingProjectPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,11 +52,18 @@ class SettingProjectPageModel
 
   String? stampFieldName;
 
+  String? logo;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for Switch widget.
   bool? switchValue;
   // State field(s) for carTypeValue widget.
