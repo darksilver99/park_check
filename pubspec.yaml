@@ -112,6 +112,7 @@ dependencies:
 
   # custom
   skeleton_text: ^3.0.1
+  device_info_plus: ^10.1.0
 
 dependency_overrides:
   http: 1.2.1
