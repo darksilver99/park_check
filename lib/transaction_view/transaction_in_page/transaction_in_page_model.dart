@@ -27,6 +27,10 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
   String? allRegistrationData;
 
+  String? tmpCardImagePath;
+
+  String? tmpRegistrationImagePath;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -138,6 +142,10 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController7;
   String? Function(BuildContext, String?)? textController7Validator;
+  // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
+  String? registrationImagePath;
+  // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
+  String? cardImagePath;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   TransactionListRecord? insertedTransaction;
 
