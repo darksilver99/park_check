@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/component/loading_view/loading_view_widget.dart';
+import '/component/loading_list_view/loading_list_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
@@ -62,14 +62,14 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   var qrCode = '';
   // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
   TransactionListRecord? transactionDocumentResult;
-  // Model for LoadingView component.
-  late LoadingViewModel loadingViewModel;
+  // Model for LoadingListView component.
+  late LoadingListViewModel loadingListViewModel;
 
   @override
   void initState(BuildContext context) {
     mainBackgroundViewModel =
         createModel(context, () => MainBackgroundViewModel());
-    loadingViewModel = createModel(context, () => LoadingViewModel());
+    loadingListViewModel = createModel(context, () => LoadingListViewModel());
   }
 
   @override
@@ -79,6 +79,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    loadingViewModel.dispose();
+    loadingListViewModel.dispose();
   }
 }

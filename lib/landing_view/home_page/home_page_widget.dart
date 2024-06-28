@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/component/loading_view/loading_view_widget.dart';
+import '/component/loading_list_view/loading_list_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
@@ -756,13 +756,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               ),
               if (_model.isLoading)
-                Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.loadingViewModel,
-                    updateCallback: () => setState(() {}),
-                    child: LoadingViewWidget(),
-                  ),
+                wrapWithModel(
+                  model: _model.loadingListViewModel,
+                  updateCallback: () => setState(() {}),
+                  child: LoadingListViewWidget(),
                 ),
             ],
           ),
