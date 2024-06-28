@@ -198,16 +198,20 @@ class _TransactionOutDetailViewWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Flexible(
-                                    child: Text(
-                                      'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: Text(
+                                        'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                   if (widget.transactionParameter

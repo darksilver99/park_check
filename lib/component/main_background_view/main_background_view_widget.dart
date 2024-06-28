@@ -47,7 +47,7 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
         children: [
           Builder(
             builder: (context) {
-              if (FFAppState().configData.backgroudImage == 2) {
+              if (FFAppState().projectData.backgroundImage == 2) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -57,7 +57,7 @@ class _MainBackgroundViewWidgetState extends State<MainBackgroundViewWidget> {
                     fit: BoxFit.cover,
                   ),
                 );
-              } else if (FFAppState().configData.backgroudImage == 3) {
+              } else if (FFAppState().projectData.backgroundImage == 3) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(

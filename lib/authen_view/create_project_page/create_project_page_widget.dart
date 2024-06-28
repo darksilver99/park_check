@@ -41,13 +41,13 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       FFAppState().configData = ConfigDataStruct(
-        backgroudImage: _model.configResult?.backgroundImage,
         ocrApi: _model.configResult?.ocrApi,
         defaultStampField: _model.configResult?.defaultStampField,
         defaultCarList: _model.configResult?.defaultCarList,
         defaultStampList: _model.configResult?.defaultStampList,
         defaultObjectiveList: _model.configResult?.defaultObjectiveList,
         projectType: _model.configResult?.projectType,
+        defaultBackgroundImage: _model.configResult?.defaultBackgroundImage,
       );
       _model.isLoading = false;
       setState(() {});
@@ -307,6 +307,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               projectType: _model
                                                   .projectTypeSelectedValue,
                                               enableContactAdress: true,
+                                              backgroundImage: FFAppState()
+                                                  .configData
+                                                  .defaultBackgroundImage,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -336,6 +339,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               projectType: _model
                                                   .projectTypeSelectedValue,
                                               enableContactAdress: true,
+                                              backgroundImage: FFAppState()
+                                                  .configData
+                                                  .defaultBackgroundImage,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -370,6 +376,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                             projectReference: _model
                                                 .projectInserted?.reference,
                                             enableContactAddress: true,
+                                            backgroundImage: _model
+                                                .projectInserted
+                                                ?.backgroundImage,
                                           );
 
                                           context.goNamed('HomePage');

@@ -16,11 +16,6 @@ class ConfigRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "background_image" field.
-  int? _backgroundImage;
-  int get backgroundImage => _backgroundImage ?? 0;
-  bool hasBackgroundImage() => _backgroundImage != null;
-
   // "ocr_api" field.
   String? _ocrApi;
   String get ocrApi => _ocrApi ?? '';
@@ -66,8 +61,12 @@ class ConfigRecord extends FirestoreRecord {
   List<String> get provinceList => _provinceList ?? const [];
   bool hasProvinceList() => _provinceList != null;
 
+  // "default_background_image" field.
+  int? _defaultBackgroundImage;
+  int get defaultBackgroundImage => _defaultBackgroundImage ?? 0;
+  bool hasDefaultBackgroundImage() => _defaultBackgroundImage != null;
+
   void _initializeFields() {
-    _backgroundImage = castToType<int>(snapshotData['background_image']);
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
     _defaultCarList = getDataList(snapshotData['default_car_list']);
@@ -77,6 +76,8 @@ class ConfigRecord extends FirestoreRecord {
     _ocrAlertText = getDataList(snapshotData['ocr_alert_text']);
     _ocrErrorText = getDataList(snapshotData['ocr_error_text']);
     _provinceList = getDataList(snapshotData['province_list']);
+    _defaultBackgroundImage =
+        castToType<int>(snapshotData['default_background_image']);
   }
 
   static CollectionReference get collection =>
@@ -113,15 +114,15 @@ class ConfigRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createConfigRecordData({
-  int? backgroundImage,
   String? ocrApi,
   String? defaultStampField,
+  int? defaultBackgroundImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'background_image': backgroundImage,
       'ocr_api': ocrApi,
       'default_stamp_field': defaultStampField,
+      'default_background_image': defaultBackgroundImage,
     }.withoutNulls,
   );
 
@@ -134,8 +135,7 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
   @override
   bool equals(ConfigRecord? e1, ConfigRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.backgroundImage == e2?.backgroundImage &&
-        e1?.ocrApi == e2?.ocrApi &&
+    return e1?.ocrApi == e2?.ocrApi &&
         listEquality.equals(e1?.defaultStampList, e2?.defaultStampList) &&
         listEquality.equals(e1?.defaultCarList, e2?.defaultCarList) &&
         listEquality.equals(e1?.projectType, e2?.projectType) &&
@@ -144,12 +144,12 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
             e1?.defaultObjectiveList, e2?.defaultObjectiveList) &&
         listEquality.equals(e1?.ocrAlertText, e2?.ocrAlertText) &&
         listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText) &&
-        listEquality.equals(e1?.provinceList, e2?.provinceList);
+        listEquality.equals(e1?.provinceList, e2?.provinceList) &&
+        e1?.defaultBackgroundImage == e2?.defaultBackgroundImage;
   }
 
   @override
   int hash(ConfigRecord? e) => const ListEquality().hash([
-        e?.backgroundImage,
         e?.ocrApi,
         e?.defaultStampList,
         e?.defaultCarList,
@@ -158,7 +158,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.defaultObjectiveList,
         e?.ocrAlertText,
         e?.ocrErrorText,
-        e?.provinceList
+        e?.provinceList,
+        e?.defaultBackgroundImage
       ]);
 
   @override

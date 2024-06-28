@@ -20,6 +20,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
     DocumentReference? projectReference,
     bool? enableContactAddress,
     String? logo,
+    int? backgroundImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -31,6 +32,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _projectReference = projectReference,
         _enableContactAddress = enableContactAddress,
         _logo = logo,
+        _backgroundImage = backgroundImage,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -115,6 +117,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasLogo() => _logo != null;
 
+  // "background_image" field.
+  int? _backgroundImage;
+  int get backgroundImage => _backgroundImage ?? 0;
+  set backgroundImage(int? val) => _backgroundImage = val;
+
+  void incrementBackgroundImage(int amount) =>
+      backgroundImage = backgroundImage + amount;
+
+  bool hasBackgroundImage() => _backgroundImage != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -127,6 +139,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectReference: data['projectReference'] as DocumentReference?,
         enableContactAddress: data['enable_contact_address'] as bool?,
         logo: data['logo'] as String?,
+        backgroundImage: castToType<int>(data['background_image']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -144,6 +157,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'projectReference': _projectReference,
         'enable_contact_address': _enableContactAddress,
         'logo': _logo,
+        'background_image': _backgroundImage,
       }.withoutNulls;
 
   @override
@@ -190,6 +204,10 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'logo': serializeParam(
           _logo,
           ParamType.String,
+        ),
+        'background_image': serializeParam(
+          _backgroundImage,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -246,6 +264,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        backgroundImage: deserializeParam(
+          data['background_image'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -264,7 +287,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         stampField == other.stampField &&
         projectReference == other.projectReference &&
         enableContactAddress == other.enableContactAddress &&
-        logo == other.logo;
+        logo == other.logo &&
+        backgroundImage == other.backgroundImage;
   }
 
   @override
@@ -278,7 +302,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         stampField,
         projectReference,
         enableContactAddress,
-        logo
+        logo,
+        backgroundImage
       ]);
 }
 
@@ -290,6 +315,7 @@ ProjectDataStruct createProjectDataStruct({
   DocumentReference? projectReference,
   bool? enableContactAddress,
   String? logo,
+  int? backgroundImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -303,6 +329,7 @@ ProjectDataStruct createProjectDataStruct({
       projectReference: projectReference,
       enableContactAddress: enableContactAddress,
       logo: logo,
+      backgroundImage: backgroundImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
