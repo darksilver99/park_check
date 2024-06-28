@@ -87,22 +87,15 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       if (FFAppState().projectData.logo !=
                                               null &&
                                           FFAppState().projectData.logo != '') {
-                                        return Container(
-                                          width: 80.0,
+                                        return CachedNetworkImage(
+                                          fadeInDuration:
+                                              Duration(milliseconds: 500),
+                                          fadeOutDuration:
+                                              Duration(milliseconds: 500),
+                                          imageUrl:
+                                              FFAppState().projectData.logo,
                                           height: 80.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: CachedNetworkImage(
-                                            fadeInDuration:
-                                                Duration(milliseconds: 500),
-                                            fadeOutDuration:
-                                                Duration(milliseconds: 500),
-                                            imageUrl:
-                                                FFAppState().projectData.logo,
-                                            fit: BoxFit.cover,
-                                          ),
+                                          fit: BoxFit.cover,
                                         );
                                       } else {
                                         return Padding(

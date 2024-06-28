@@ -172,18 +172,10 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                 builder: (context) {
                                                   if (_model.logo != null &&
                                                       _model.logo != '') {
-                                                    return Container(
+                                                    return Image.network(
+                                                      _model.logo!,
                                                       width: 80.0,
-                                                      height: 80.0,
-                                                      clipBehavior:
-                                                          Clip.antiAlias,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: Image.network(
-                                                        _model.logo!,
-                                                        fit: BoxFit.cover,
-                                                      ),
+                                                      fit: BoxFit.cover,
                                                     );
                                                   } else {
                                                     return Material(

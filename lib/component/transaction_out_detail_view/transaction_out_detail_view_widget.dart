@@ -130,17 +130,10 @@ class _TransactionOutDetailViewWidgetState
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 80.0,
+                                    Image.network(
+                                      FFAppState().projectData.logo,
                                       height: 80.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        FFAppState().projectData.logo,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      fit: BoxFit.cover,
                                     ),
                                   ],
                                 ),
