@@ -519,6 +519,7 @@ class _IssueViewWidgetState extends State<IssueViewWidget> {
                                                             'ส่งข้อมูลไปยังระบบเรียบร้อยแล้ว',
                                                         detail:
                                                             'เราจะแก้ปัญหาของท่านโดยเร็วที่สุด ขออภัยในความไม่สะดวก',
+                                                        status: 'success',
                                                       ),
                                                     ),
                                                   );

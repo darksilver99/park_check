@@ -12,10 +12,12 @@ class CustomInfoAlertViewWidget extends StatefulWidget {
     super.key,
     required this.title,
     this.detail,
-  });
+    String? status,
+  }) : this.status = status ?? 'error';
 
   final String? title;
   final String? detail;
+  final String status;
 
   @override
   State<CustomInfoAlertViewWidget> createState() =>
@@ -94,7 +96,15 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context).error,
+                            color: () {
+                              if (widget.status == 'error') {
+                                return FlutterFlowTheme.of(context).error;
+                              } else if (widget.status == 'info') {
+                                return FlutterFlowTheme.of(context).primaryText;
+                              } else {
+                                return FlutterFlowTheme.of(context).success;
+                              }
+                            }(),
                             fontSize: 20.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
