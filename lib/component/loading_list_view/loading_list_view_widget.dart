@@ -42,7 +42,7 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
-            duration: 100.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -54,8 +54,8 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 100.0.ms,
+            delay: 100.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -67,8 +67,8 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 100.0.ms,
-            duration: 100.0.ms,
+            delay: 200.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -80,8 +80,8 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 100.0.ms,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -93,8 +93,8 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 100.0.ms,
+            delay: 100.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -106,22 +106,9 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 100.0.ms,
-            duration: 100.0.ms,
+            delay: 200.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation7': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 100.0.ms,
-            begin: 200.0,
             end: 1.0,
           ),
         ],
@@ -147,205 +134,92 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget>
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation1']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation1']!),
           Container(
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation2']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation2']!),
           Container(
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation3']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation3']!),
           Container(
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation4']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation4']!),
           Container(
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation5']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation5']!),
           Container(
             width: double.infinity,
             height: 120.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).secondaryBackground,
+                  Color(0xFF5E5E5E)
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation6']!),
-              ],
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 120.0,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 1100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                        Color(0xFF5E5E5E)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: AlignmentDirectional(0.0, -1.0),
-                      end: AlignmentDirectional(0, 1.0),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation7']!),
-              ],
-            ),
-          ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation6']!),
         ].divide(SizedBox(height: 8.0)),
       ),
     );
