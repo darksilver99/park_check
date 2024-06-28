@@ -363,208 +363,234 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Expanded(
-                      child: Builder(
-                        builder: (context) {
-                          final dataList = _model.transactionList.toList();
-                          if (dataList.isEmpty) {
-                            return NoDataViewWidget();
-                          }
-                          return RefreshIndicator(
-                            onRefresh: () async {
-                              _model.isLoading = true;
-                              setState(() {
-                                _model.textController?.text = '';
-                                _model.textController?.selection =
-                                    TextSelection.collapsed(
-                                        offset:
-                                            _model.textController!.text.length);
-                              });
-                              _model.rsDataList2 =
-                                  await queryTransactionListRecordOnce(
-                                queryBuilder: (transactionListRecord) =>
-                                    transactionListRecord
-                                        .where(
-                                          'is_out',
-                                          isEqualTo: false,
-                                        )
-                                        .where(
-                                          'date_in',
-                                          isGreaterThanOrEqualTo:
-                                              functions.getStartDayTime(
-                                                  getCurrentTimestamp),
-                                        )
-                                        .where(
-                                          'date_in',
-                                          isLessThanOrEqualTo:
-                                              functions.getEndDayTime(
-                                                  getCurrentTimestamp),
-                                        )
-                                        .orderBy('date_in', descending: true),
-                              );
-                              _model.isLoading = false;
-                              _model.transactionList = _model.rsDataList2!
-                                  .toList()
-                                  .cast<TransactionListRecord>();
-                              setState(() {});
-                            },
-                            child: ListView.separated(
-                              padding: EdgeInsets.fromLTRB(
-                                0,
-                                0,
-                                0,
-                                64.0,
-                              ),
-                              scrollDirection: Axis.vertical,
-                              itemCount: dataList.length,
-                              separatorBuilder: (_, __) =>
-                                  SizedBox(height: 8.0),
-                              itemBuilder: (context, dataListIndex) {
-                                final dataListItem = dataList[dataListIndex];
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await actions.hideKeyBoard(
-                                        context,
-                                      );
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        enableDrag: false,
-                                        useSafeArea: true,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child:
-                                                  TransactionDetailViewWidget(
-                                                transactionParameter:
-                                                    dataListItem,
-                                              ),
-                                            ),
+                      child: Stack(
+                        children: [
+                          Builder(
+                            builder: (context) {
+                              final dataList = _model.transactionList.toList();
+                              if (dataList.isEmpty) {
+                                return NoDataViewWidget();
+                              }
+                              return RefreshIndicator(
+                                onRefresh: () async {
+                                  _model.isLoading = true;
+                                  setState(() {
+                                    _model.textController?.text = '';
+                                    _model.textController?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .textController!.text.length);
+                                  });
+                                  _model.rsDataList2 =
+                                      await queryTransactionListRecordOnce(
+                                    queryBuilder: (transactionListRecord) =>
+                                        transactionListRecord
+                                            .where(
+                                              'is_out',
+                                              isEqualTo: false,
+                                            )
+                                            .where(
+                                              'date_in',
+                                              isGreaterThanOrEqualTo:
+                                                  functions.getStartDayTime(
+                                                      getCurrentTimestamp),
+                                            )
+                                            .where(
+                                              'date_in',
+                                              isLessThanOrEqualTo:
+                                                  functions.getEndDayTime(
+                                                      getCurrentTimestamp),
+                                            )
+                                            .orderBy('date_in',
+                                                descending: true),
+                                  );
+                                  _model.isLoading = false;
+                                  _model.transactionList = _model.rsDataList2!
+                                      .toList()
+                                      .cast<TransactionListRecord>();
+                                  setState(() {});
+                                },
+                                child: ListView.separated(
+                                  padding: EdgeInsets.fromLTRB(
+                                    0,
+                                    0,
+                                    0,
+                                    64.0,
+                                  ),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: dataList.length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 8.0),
+                                  itemBuilder: (context, dataListIndex) {
+                                    final dataListItem =
+                                        dataList[dataListIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await actions.hideKeyBoard(
+                                            context,
                                           );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 120.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'ทะเบียน : ${dataListItem.carRegistration}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            useSafeArea: true,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      TransactionDetailViewWidget(
+                                                    transactionParameter:
+                                                        dataListItem,
                                                   ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${dataListItem.preName} ${dataListItem.firstName} ${dataListItem.lastName}',
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 120.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'ทะเบียน : ${dataListItem.carRegistration}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 20.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          '${dataListItem.preName} ${dataListItem.firstName} ${dataListItem.lastName}',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .content_paste_search_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    Text(
+                                                      'ดูรายละเอียด',
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
-                                                            fontSize: 16.0,
+                                                            fontSize: 8.0,
                                                             letterSpacing: 0.0,
+                                                            lineHeight: 1.2,
                                                           ),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .success,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons
-                                                      .content_paste_search_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                                Text(
-                                                  'ดูรายละเอียด',
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 8.0,
-                                                        letterSpacing: 0.0,
-                                                        lineHeight: 1.2,
-                                                      ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                );
-                              },
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                          if (_model.isLoading)
+                            wrapWithModel(
+                              model: _model.loadingListViewModel,
+                              updateCallback: () => setState(() {}),
+                              child: LoadingListViewWidget(),
                             ),
-                          );
-                        },
+                        ],
                       ),
                     ),
                   ],
@@ -755,12 +781,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
               ),
-              if (_model.isLoading)
-                wrapWithModel(
-                  model: _model.loadingListViewModel,
-                  updateCallback: () => setState(() {}),
-                  child: LoadingListViewWidget(),
-                ),
             ],
           ),
         ),
