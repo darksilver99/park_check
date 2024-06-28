@@ -1536,6 +1536,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               await actions
                                                   .uploadImageToFirebase(
                                             _model.uploadedLocalFile1,
+                                            'registrations',
                                           );
                                           _model.tmpRegistrationImagePath =
                                               _model.registrationImagePath;
@@ -1547,6 +1548,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           _model.cardImagePath = await actions
                                               .uploadImageToFirebase(
                                             _model.uploadedLocalFile2,
+                                            'cards',
                                           );
                                           _model.tmpCardImagePath =
                                               _model.cardImagePath;
