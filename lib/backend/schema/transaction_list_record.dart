@@ -96,6 +96,16 @@ class TransactionListRecord extends FirestoreRecord {
   String get allRegistrationData => _allRegistrationData ?? '';
   bool hasAllRegistrationData() => _allRegistrationData != null;
 
+  // "card_image" field.
+  String? _cardImage;
+  String get cardImage => _cardImage ?? '';
+  bool hasCardImage() => _cardImage != null;
+
+  // "registration_image" field.
+  String? _registrationImage;
+  String get registrationImage => _registrationImage ?? '';
+  bool hasRegistrationImage() => _registrationImage != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _cardNumber = snapshotData['card_number'] as String?;
@@ -114,6 +124,8 @@ class TransactionListRecord extends FirestoreRecord {
     _contactAddress = snapshotData['contact_address'] as String?;
     _allCardData = snapshotData['all_card_data'] as String?;
     _allRegistrationData = snapshotData['all_registration_data'] as String?;
+    _cardImage = snapshotData['card_image'] as String?;
+    _registrationImage = snapshotData['registration_image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -167,6 +179,8 @@ Map<String, dynamic> createTransactionListRecordData({
   String? contactAddress,
   String? allCardData,
   String? allRegistrationData,
+  String? cardImage,
+  String? registrationImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -186,6 +200,8 @@ Map<String, dynamic> createTransactionListRecordData({
       'contact_address': contactAddress,
       'all_card_data': allCardData,
       'all_registration_data': allRegistrationData,
+      'card_image': cardImage,
+      'registration_image': registrationImage,
     }.withoutNulls,
   );
 
@@ -213,7 +229,9 @@ class TransactionListRecordDocumentEquality
         e1?.isOut == e2?.isOut &&
         e1?.contactAddress == e2?.contactAddress &&
         e1?.allCardData == e2?.allCardData &&
-        e1?.allRegistrationData == e2?.allRegistrationData;
+        e1?.allRegistrationData == e2?.allRegistrationData &&
+        e1?.cardImage == e2?.cardImage &&
+        e1?.registrationImage == e2?.registrationImage;
   }
 
   @override
@@ -233,7 +251,9 @@ class TransactionListRecordDocumentEquality
         e?.isOut,
         e?.contactAddress,
         e?.allCardData,
-        e?.allRegistrationData
+        e?.allRegistrationData,
+        e?.cardImage,
+        e?.registrationImage
       ]);
 
   @override

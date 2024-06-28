@@ -413,15 +413,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     ).then((value) =>
                                                         setState(() {}));
                                                   }
-
-                                                  setState(() {
-                                                    _model.isDataUploading1 =
-                                                        false;
-                                                    _model.uploadedLocalFile1 =
-                                                        FFUploadedFile(
-                                                            bytes: Uint8List
-                                                                .fromList([]));
-                                                  });
                                                 }
 
                                                 setState(() {});
@@ -762,15 +753,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     ).then((value) =>
                                                         setState(() {}));
                                                   }
-
-                                                  setState(() {
-                                                    _model.isDataUploading2 =
-                                                        false;
-                                                    _model.uploadedLocalFile2 =
-                                                        FFUploadedFile(
-                                                            bytes: Uint8List
-                                                                .fromList([]));
-                                                  });
                                                 }
 
                                                 setState(() {});
@@ -1546,6 +1528,30 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       if (_model.objectiveSelectedValue !=
                                               null &&
                                           _model.objectiveSelectedValue != '') {
+                                        if (_model.uploadedLocalFile1 != null &&
+                                            (_model.uploadedLocalFile1.bytes
+                                                    ?.isNotEmpty ??
+                                                false)) {
+                                          _model.registrationImagePath =
+                                              await actions
+                                                  .uploadImageToFirebase(
+                                            _model.uploadedLocalFile1,
+                                          );
+                                          _model.tmpRegistrationImagePath =
+                                              _model.registrationImagePath;
+                                        }
+                                        if (_model.uploadedLocalFile2 != null &&
+                                            (_model.uploadedLocalFile2.bytes
+                                                    ?.isNotEmpty ??
+                                                false)) {
+                                          _model.cardImagePath = await actions
+                                              .uploadImageToFirebase(
+                                            _model.uploadedLocalFile2,
+                                          );
+                                          _model.tmpCardImagePath =
+                                              _model.cardImagePath;
+                                        }
+
                                         var transactionListRecordReference =
                                             TransactionListRecord.collection
                                                 .doc();
@@ -1575,6 +1581,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           allCardData: _model.allCardData,
                                           allRegistrationData:
                                               _model.allRegistrationData,
+                                          registrationImage:
+                                              _model.tmpRegistrationImagePath,
+                                          cardImage: _model.tmpCardImagePath,
                                         ));
                                         _model.insertedTransaction =
                                             TransactionListRecord.getDocumentFromData(
@@ -1611,6 +1620,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                       _model.allCardData,
                                                   allRegistrationData: _model
                                                       .allRegistrationData,
+                                                  registrationImage: _model
+                                                      .tmpRegistrationImagePath,
+                                                  cardImage:
+                                                      _model.tmpCardImagePath,
                                                 ),
                                                 transactionListRecordReference);
                                         await showModalBottomSheet(
