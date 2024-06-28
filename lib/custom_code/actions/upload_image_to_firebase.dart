@@ -9,7 +9,15 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<String> uploadImageToFirebase(FFUploadedFile image) async {
+import 'package:park_check/backend/firebase_storage/storage.dart';
+
+Future<String> uploadImageToFirebase(
+  FFUploadedFile image,
+  String type,
+) async {
   // Add your function code here!
-  return "aaa";
+  String path =
+      'transaction/${FFAppState().projectData.projectDocID}/$type/${image.name}';
+  var url = await uploadData(path, image.bytes!);
+  return url ?? '';
 }
