@@ -1,3 +1,5 @@
+import 'package:park_check/custom_toon/SkeletonView.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +57,7 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget> {
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
+                    child: SkeletonView(index: listIndex,),
                   ),
                 );
               }),
