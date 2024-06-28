@@ -296,7 +296,7 @@ class _SettingGeneralPageWidgetState extends State<SettingGeneralPageWidget> {
                                                         color: FFAppState()
                                                                     .projectData
                                                                     .backgroundImage ==
-                                                                1
+                                                                3
                                                             ? FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondary
