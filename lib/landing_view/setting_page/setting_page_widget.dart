@@ -184,7 +184,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     0.0, 0.0, 0.0, 8.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('SettingProjectPage');
+                                    context.pushNamed('SettingPrinterPage');
                                   },
                                   text: 'ตั้งค่าเครื่องพิมพ์',
                                   options: FFButtonOptions(
