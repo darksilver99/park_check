@@ -141,6 +141,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'IssueView',
           path: '/issueView',
           builder: (context, params) => IssueViewWidget(),
+        ),
+        FFRoute(
+          name: 'SettingPrinterPage',
+          path: '/settingPrinterPage',
+          builder: (context, params) => SettingPrinterPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
