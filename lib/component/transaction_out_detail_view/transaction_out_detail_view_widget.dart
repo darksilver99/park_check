@@ -355,11 +355,12 @@ class _TransactionOutDetailViewWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color:
-                                          FlutterFlowTheme.of(context).success,
-                                      fontSize: 18.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline,
                                     ),
                               ),
                             ),
@@ -375,17 +376,19 @@ class _TransactionOutDetailViewWidgetState
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Text(
-                                          'เวลาออก : ตอนนี้',
+                                          'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .error,
-                                                fontSize: 18.0,
+                                                        .primaryText,
+                                                fontSize: 20.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
+                                                decoration:
+                                                    TextDecoration.underline,
                                               ),
                                         ),
                                       ),
@@ -400,8 +403,8 @@ class _TransactionOutDetailViewWidgetState
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 22.0,
+                                                        .primaryText,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -430,7 +433,7 @@ class _TransactionOutDetailViewWidgetState
                                         selectedChipStyle: ChipStyle(
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
-                                                  .secondary,
+                                                  .secondaryBackground,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .bodyMedium
@@ -438,7 +441,7 @@ class _TransactionOutDetailViewWidgetState
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .info,
+                                                        .primaryText,
                                                 fontSize: 18.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -450,13 +453,17 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 8.0),
                                           elevation: 4.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          borderWidth: 2.0,
                                           borderRadius:
                                               BorderRadius.circular(24.0),
                                         ),
                                         unselectedChipStyle: ChipStyle(
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
-                                                  .alternate,
+                                                  .secondaryBackground,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .bodyMedium
@@ -476,6 +483,10 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 8.0),
                                           elevation: 0.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          borderWidth: 2.0,
                                           borderRadius:
                                               BorderRadius.circular(24.0),
                                         ),
@@ -509,10 +520,12 @@ class _TransactionOutDetailViewWidgetState
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .error,
-                                                fontSize: 18.0,
+                                                        .primaryText,
+                                                fontSize: 20.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
+                                                decoration:
+                                                    TextDecoration.underline,
                                               ),
                                         ),
                                       ),
@@ -527,8 +540,8 @@ class _TransactionOutDetailViewWidgetState
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 22.0,
+                                                        .primaryText,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
