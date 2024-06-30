@@ -622,7 +622,7 @@ class _TransactionOutDetailViewWidgetState
                                       if (confirmDialogResponse) {
                                         _model.printResult2 =
                                             await actions.printSlip(
-                                          null!,
+                                          controller,
                                         );
                                         if (_model.printResult2?.status != 1) {
                                           await showDialog(
