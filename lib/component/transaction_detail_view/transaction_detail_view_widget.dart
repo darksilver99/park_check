@@ -1,8 +1,11 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -391,39 +394,63 @@ class _TransactionDetailViewWidgetState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          text: 'พิมพ์ใบขาเข้า',
-                          icon: Icon(
-                            Icons.print_rounded,
-                            size: 32.0,
-                          ),
-                          options: FFButtonOptions(
-                            height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: 22.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                      child: Builder(
+                        builder: (context) => Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              _model.printResult = await actions.printSlip(
+                                null!,
+                              );
+                              if (_model.printResult?.status == 1) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: CustomInfoAlertViewWidget(
+                                        title: _model.printResult!.msg,
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              }
+                              Navigator.pop(context);
+
+                              setState(() {});
+                            },
+                            text: 'พิมพ์ใบขาเข้า',
+                            icon: Icon(
+                              Icons.print_rounded,
+                              size: 32.0,
                             ),
-                            borderRadius: BorderRadius.circular(24.0),
+                            options: FFButtonOptions(
+                              height: 50.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: 22.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(24.0),
+                            ),
                           ),
                         ),
                       ),

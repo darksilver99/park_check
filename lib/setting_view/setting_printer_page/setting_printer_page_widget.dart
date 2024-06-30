@@ -93,6 +93,13 @@ class _SettingPrinterPageWidgetState extends State<SettingPrinterPageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainBackgroundViewWidget(),
               ),
+              /*Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+              ),*/
               PrinterListView(),
             ],
           ),
