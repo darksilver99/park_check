@@ -564,93 +564,123 @@ class _TransactionOutDetailViewWidgetState
                       child: Builder(
                         builder: (context) {
                           if (!widget.transactionParameter!.isOut) {
-                            return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (_model.stampSelectedValue != null &&
-                                      _model.stampSelectedValue != '') {
-                                    await widget.transactionParameter!.reference
-                                        .update(createTransactionListRecordData(
-                                      dateOut: getCurrentTimestamp,
-                                      stamp: _model.stampSelectedValue,
-                                      isOut: true,
-                                    ));
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text(
-                                                      'ต้องการพิมพ์ใบขาออกหรือไม่'),
-                                                  content: Text(
-                                                      'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('ไม่พิมพ์'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              true),
-                                                      child: Text('พิมพ์'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                    if (confirmDialogResponse) {
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 2000));
-                                    }
-                                    Navigator.pop(context, 'saved');
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('กรุณาเลือกตราประทับ'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('ตกลง'),
-                                            ),
-                                          ],
+                            return Builder(
+                              builder: (context) => Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (_model.stampSelectedValue != null &&
+                                        _model.stampSelectedValue != '') {
+                                      await widget
+                                          .transactionParameter!.reference
+                                          .update(
+                                              createTransactionListRecordData(
+                                        dateOut: getCurrentTimestamp,
+                                        stamp: _model.stampSelectedValue,
+                                        isOut: true,
+                                      ));
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'ต้องการพิมพ์ใบขาออกหรือไม่'),
+                                                    content: Text(
+                                                        'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: Text('ไม่พิมพ์'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: Text('พิมพ์'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.printResult2 =
+                                            await actions.printSlip(
+                                          null!,
                                         );
-                                      },
-                                    );
-                                  }
-                                },
-                                text: 'บันทึกรถออก',
-                                options: FFButtonOptions(
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).error,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.white,
-                                        fontSize: 22.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                        if (_model.printResult2?.status != 1) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child:
+                                                    CustomInfoAlertViewWidget(
+                                                  title:
+                                                      _model.printResult2!.msg,
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
+                                        }
+                                      }
+                                      Navigator.pop(context, 'saved');
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('กรุณาเลือกตราประทับ'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('ตกลง'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+
+                                    setState(() {});
+                                  },
+                                  text: 'บันทึกรถออก',
+                                  options: FFButtonOptions(
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).error,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.white,
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
                                 ),
                               ),
                             );

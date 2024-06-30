@@ -30,6 +30,8 @@ class TransactionOutDetailViewModel
   set stampSelectedValue(String? val) =>
       stampSelectedValueController?.value = val != null ? [val] : [];
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
+  PrintStatusDataStruct? printResult2;
+  // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult;
 
   @override
