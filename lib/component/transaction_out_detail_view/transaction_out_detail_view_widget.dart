@@ -684,7 +684,7 @@ class _TransactionOutDetailViewWidgetState
                                             await actions.printSlip(
                                           null!,
                                         );
-                                        if (_model.printResult?.status == 1) {
+                                        if (_model.printResult?.status != 1) {
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
