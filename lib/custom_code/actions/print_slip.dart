@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 
 Future<PrintStatusDataStruct> printSlip(dynamic imageSlip) async {
   // Add your function code here!
-  PrintStatusDataStruct data = PrintStatusDataStruct(status: 2, msg: "error");
-  return data;
+  PrintStatusDataStruct data =
+      PrintStatusDataStruct(status: 2, msg: "no data print");
+  if (imageSlip == null) {
+    return data;
+  }
 }
