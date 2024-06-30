@@ -1,3 +1,6 @@
+import 'package:bluetooth_print/bluetooth_print.dart';
+import 'package:bluetooth_print/bluetooth_print_model.dart';
+
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -42,6 +45,46 @@ class _SettingPrinterPageWidgetState extends State<SettingPrinterPageWidget> {
     _model.dispose();
 
     super.dispose();
+  }
+
+  BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
+  bool _connected = false;
+  BluetoothDevice? _device;
+  String tips = 'no device connect';
+
+  Future<void> initBluetooth() async {
+    bluetoothPrint.startScan(timeout: Duration(seconds: 4));
+
+    bool isConnected=await bluetoothPrint.isConnected??false;
+
+    bluetoothPrint.state.listen((state) {
+      print('******************* cur device status: $state');
+
+      switch (state) {
+        case BluetoothPrint.CONNECTED:
+          setState(() {
+            _connected = true;
+            tips = 'connect success';
+          });
+          break;
+        case BluetoothPrint.DISCONNECTED:
+          setState(() {
+            _connected = false;
+            tips = 'disconnect success';
+          });
+          break;
+        default:
+          break;
+      }
+    });
+
+    if (!mounted) return;
+
+    if(isConnected) {
+      setState(() {
+        _connected=true;
+      });
+    }
   }
 
   @override
