@@ -401,7 +401,7 @@ class _TransactionDetailViewWidgetState
                           child: FFButtonWidget(
                             onPressed: () async {
                               _model.printResult = await actions.printSlip(
-                                null!,
+                                null,
                               );
                               if (_model.printResult?.status != 1) {
                                 await showDialog(

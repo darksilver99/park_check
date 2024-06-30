@@ -16,4 +16,5 @@ Future<PrintStatusDataStruct> printSlip(dynamic imageSlip) async {
   if (imageSlip == null) {
     return data;
   }
+  return data;
 }

@@ -3,6 +3,7 @@ import 'package:bluetooth_print/bluetooth_print_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:park_check/flutter_flow/flutter_flow_theme.dart';
+import 'package:park_check/flutter_flow/flutter_flow_widgets.dart';
 
 class PrinterListView extends StatefulWidget {
   const PrinterListView({super.key});
@@ -64,40 +65,115 @@ class _PrinterListViewState extends State<PrinterListView> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        StreamBuilder<bool>(
-          stream: bluetoothPrint.isScanning,
-          initialData: false,
-          builder: (c, snapshot) {
-            if (snapshot.data == true) {
-              return FloatingActionButton(
-                child: Icon(Icons.stop),
-                onPressed: () => bluetoothPrint.stopScan(),
-                backgroundColor: Colors.red,
-              );
-            } else {
-              return FloatingActionButton(child: Icon(Icons.search), onPressed: () => bluetoothPrint.startScan(timeout: Duration(seconds: 4)));
-            }
-          },
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Flexible(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  child: StreamBuilder<bool>(
+                    stream: bluetoothPrint.isScanning,
+                    initialData: false,
+                    builder: (c, snapshot) {
+                      if (snapshot.data == true) {
+                        return FFButtonWidget(
+                          onPressed: () {
+                            print('Button pressed ...');
+                            //bluetoothPrint.stopScan();
+                          },
+                          text: 'กำลังค้นหา...',
+                          options: FFButtonOptions(
+                            height: 40,
+                            padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        );
+                      } else {
+                        return // Generated code for this Button Widget...
+                            FFButtonWidget(
+                          onPressed: () {
+                            bluetoothPrint.startScan(timeout: Duration(seconds: 4));
+                          },
+                          text: 'ค้นหา',
+                          options: FFButtonOptions(
+                            height: 40,
+                            padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0,
+                                ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ),
+              Flexible(
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    if (_connected) return;
+                    if (_device != null && _device!.address != null) {
+                      setState(() {
+                        tips = 'connecting...';
+                      });
+                      await bluetoothPrint.connect(_device!);
+                    } else {
+                      setState(() {
+                        tips = 'please select device';
+                      });
+                      print('please select device');
+                    }
+                  },
+                  text: 'เชื่อมต่อ',
+                  options: FFButtonOptions(
+                    height: 40,
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          letterSpacing: 0,
+                        ),
+                    elevation: 3,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-
-        OutlinedButton(
-          child: Text('connect'),
-          onPressed:  _connected?null:() async {
-            if(_device!=null && _device!.address !=null){
-              setState(() {
-                tips = 'connecting...';
-              });
-              await bluetoothPrint.connect(_device!);
-            }else{
-              setState(() {
-                tips = 'please select device';
-              });
-              print('please select device');
-            }
-          },
-        ),
-
         Expanded(
           child: StreamBuilder<List<BluetoothDevice>>(
             stream: bluetoothPrint.scanResults,
