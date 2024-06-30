@@ -91,19 +91,12 @@ class _SettingPrinterPageWidgetState extends State<SettingPrinterPageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainBackgroundViewWidget(),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                    ),
-                  ),
-                ],
+              Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
               ),
             ],
           ),
