@@ -2,6 +2,7 @@ import 'package:bluetooth_print/bluetooth_print.dart';
 import 'package:bluetooth_print/bluetooth_print_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:park_check/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import 'package:park_check/flutter_flow/flutter_flow_theme.dart';
 import 'package:park_check/flutter_flow/flutter_flow_widgets.dart';
 
@@ -33,24 +34,31 @@ class _PrinterListViewState extends State<PrinterListView> {
 
     bluetoothPrint.state.listen((state) {
       print('******************* cur device status: $state');
+      print("BluetoothPrint.CONNECTED : ${BluetoothPrint.CONNECTED}");
+      print("BluetoothPrint.DISCONNECTED : ${BluetoothPrint.DISCONNECTED}");
 
       switch (state) {
         case BluetoothPrint.CONNECTED:
+          print(">>>a");
           setState(() {
             _connected = true;
             tips = 'connect success';
           });
           break;
         case BluetoothPrint.DISCONNECTED:
+          print(">>>b");
           setState(() {
             _connected = false;
             tips = 'disconnect success';
           });
           break;
         default:
+          print(">>>c");
           break;
       }
     });
+
+    print("tips $tips");
 
     if (!mounted) return;
 
@@ -112,6 +120,10 @@ class _PrinterListViewState extends State<PrinterListView> {
                             bluetoothPrint.startScan(timeout: Duration(seconds: 4));
                           },
                           text: 'ค้นหา',
+                          icon: Icon(
+                            Icons.search_rounded,
+                            size: 22,
+                          ),
                           options: FFButtonOptions(
                             height: 40,
                             padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
@@ -121,6 +133,7 @@ class _PrinterListViewState extends State<PrinterListView> {
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
                                   letterSpacing: 0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                             elevation: 3,
                             borderSide: BorderSide(
@@ -138,20 +151,53 @@ class _PrinterListViewState extends State<PrinterListView> {
               Flexible(
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_connected) return;
+                    if (_connected) {
+                      await bluetoothPrint.disconnect();
+                      await bluetoothPrint.destroy();
+                      _connected = false;
+                      setState(() {});
+                      return;
+                    }
                     if (_device != null && _device!.address != null) {
                       setState(() {
                         tips = 'connecting...';
                       });
                       await bluetoothPrint.connect(_device!);
+                      await showDialog(
+                        context: context,
+                        builder: (dialogContext) {
+                          return Dialog(
+                            elevation: 0,
+                            insetPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                            child: CustomInfoAlertViewWidget(
+                              title: "เชื่อมต่อสำเร็จ",
+                            ),
+                          );
+                        },
+                      ).then((value) => setState(() {}));
                     } else {
                       setState(() {
                         tips = 'please select device';
                       });
-                      print('please select device');
+                      await showDialog(
+                        context: context,
+                        builder: (dialogContext) {
+                          return Dialog(
+                            elevation: 0,
+                            insetPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                            child: CustomInfoAlertViewWidget(
+                              title: "กรุณาเลือกเครื่องพิมพ์",
+                            ),
+                          );
+                        },
+                      ).then((value) => setState(() {}));
                     }
                   },
-                  text: 'เชื่อมต่อ',
+                  text: (_connected) ? 'ยกเลิกเชื่อมต่อ' : 'เชื่อมต่อ',
                   options: FFButtonOptions(
                     height: 40,
                     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
@@ -161,6 +207,7 @@ class _PrinterListViewState extends State<PrinterListView> {
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
                           letterSpacing: 0,
+                          fontWeight: FontWeight.bold,
                         ),
                     elevation: 3,
                     borderSide: BorderSide(
