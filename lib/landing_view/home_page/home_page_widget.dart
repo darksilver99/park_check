@@ -59,7 +59,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           projectType: _model.projectData?.projectType,
           stampField: _model.projectData?.stampField,
           projectReference: _model.projectData?.reference,
-          enableContactAddress: _model.projectData?.enableContactAdress,
+          enableContactAddress: _model.projectData?.enableContactAddress,
           logo: _model.projectData?.logo,
           backgroundImage: _model.projectData?.backgroundImage,
         );

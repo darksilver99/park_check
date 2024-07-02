@@ -1380,9 +1380,9 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                           ...createProjectListRecordData(
                                             updateDate: getCurrentTimestamp,
                                             stampField: _model.stampFieldName,
-                                            enableContactAdress:
-                                                _model.switchValue,
                                             logo: _model.logo,
+                                            enableContactAddress:
+                                                _model.switchValue,
                                           ),
                                           ...mapToFirestore(
                                             {
