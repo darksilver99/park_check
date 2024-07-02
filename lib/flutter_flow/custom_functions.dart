@@ -17,7 +17,7 @@ String convertPhoneNumber(String phoneNumber) {
   if (phoneNumber.startsWith('0')) {
     return '+66' + phoneNumber.substring(1);
   }
-  return phoneNumber; // Return as is if it doesn't start with '0'
+  return phoneNumber;
 }
 
 DateTime getStartDayTime(DateTime currentDate) {
