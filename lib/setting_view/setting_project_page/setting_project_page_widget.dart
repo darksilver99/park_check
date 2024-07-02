@@ -631,9 +631,41 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               setState(() =>
                                                   _model.carListValue =
                                                       val?.firstOrNull);
-                                              _model.removeFromCarList(
-                                                  _model.carListValue!);
-                                              setState(() {});
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'ต้องการลบ?'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: Text(
+                                                                    'ยกเลิก'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: Text(
+                                                                    'ยืนยัน'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                _model.removeFromCarList(
+                                                    _model.carListValue!);
+                                                setState(() {});
+                                              }
                                             },
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
@@ -922,9 +954,41 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               setState(() =>
                                                   _model.objectiveListValue =
                                                       val?.firstOrNull);
-                                              _model.removeFromObjectiveList(
-                                                  _model.objectiveListValue!);
-                                              setState(() {});
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'ต้องการลบ?'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: Text(
+                                                                    'ยกเลิก'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: Text(
+                                                                    'ยืนยัน'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                _model.removeFromObjectiveList(
+                                                    _model.objectiveListValue!);
+                                                setState(() {});
+                                              }
                                             },
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
@@ -1306,9 +1370,41 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                               setState(() =>
                                                   _model.stampListValue =
                                                       val?.firstOrNull);
-                                              _model.removeFromStampList(
-                                                  _model.stampListValue!);
-                                              setState(() {});
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'ต้องการลบ?'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: Text(
+                                                                    'ยกเลิก'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: Text(
+                                                                    'ยืนยัน'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                _model.removeFromStampList(
+                                                    _model.stampListValue!);
+                                                setState(() {});
+                                              }
                                             },
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
