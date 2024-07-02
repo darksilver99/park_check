@@ -87,7 +87,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Text(
-                                      'ระบุรหัส 6 ตัวที่ได้รับจาก SMS',
+                                      'ระบุรหัส 6 หลักที่ได้รับจาก SMS',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

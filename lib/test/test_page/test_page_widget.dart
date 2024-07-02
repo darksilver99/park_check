@@ -115,6 +115,10 @@ class _TestPageWidgetState extends State<TestPageWidget> {
                         print('Button pressed ...');
                       },
                       text: 'ค้นหา',
+                      icon: Icon(
+                        Icons.search_rounded,
+                        size: 22.0,
+                      ),
                       options: FFButtonOptions(
                         height: 40.0,
                         padding: EdgeInsetsDirectional.fromSTEB(

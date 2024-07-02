@@ -306,10 +306,10 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                   .defaultStampField,
                                               projectType: _model
                                                   .projectTypeSelectedValue,
-                                              enableContactAdress: true,
                                               backgroundImage: FFAppState()
                                                   .configData
                                                   .defaultBackgroundImage,
+                                              enableContactAddress: true,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -338,10 +338,10 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                   .defaultStampField,
                                               projectType: _model
                                                   .projectTypeSelectedValue,
-                                              enableContactAdress: true,
                                               backgroundImage: FFAppState()
                                                   .configData
                                                   .defaultBackgroundImage,
+                                              enableContactAddress: true,
                                             ),
                                             ...mapToFirestore(
                                               {

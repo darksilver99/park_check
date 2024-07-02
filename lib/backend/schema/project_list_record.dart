@@ -66,11 +66,6 @@ class ProjectListRecord extends FirestoreRecord {
   DateTime? get updateDate => _updateDate;
   bool hasUpdateDate() => _updateDate != null;
 
-  // "enable_contact_adress" field.
-  bool? _enableContactAdress;
-  bool get enableContactAdress => _enableContactAdress ?? false;
-  bool hasEnableContactAdress() => _enableContactAdress != null;
-
   // "logo" field.
   String? _logo;
   String get logo => _logo ?? '';
@@ -80,6 +75,11 @@ class ProjectListRecord extends FirestoreRecord {
   int? _backgroundImage;
   int get backgroundImage => _backgroundImage ?? 0;
   bool hasBackgroundImage() => _backgroundImage != null;
+
+  // "enable_contact_address" field.
+  bool? _enableContactAddress;
+  bool get enableContactAddress => _enableContactAddress ?? false;
+  bool hasEnableContactAddress() => _enableContactAddress != null;
 
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
@@ -92,9 +92,9 @@ class ProjectListRecord extends FirestoreRecord {
     _stampField = snapshotData['stamp_field'] as String?;
     _projectType = snapshotData['project_type'] as String?;
     _updateDate = snapshotData['update_date'] as DateTime?;
-    _enableContactAdress = snapshotData['enable_contact_adress'] as bool?;
     _logo = snapshotData['logo'] as String?;
     _backgroundImage = castToType<int>(snapshotData['background_image']);
+    _enableContactAddress = snapshotData['enable_contact_address'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -139,9 +139,9 @@ Map<String, dynamic> createProjectListRecordData({
   String? stampField,
   String? projectType,
   DateTime? updateDate,
-  bool? enableContactAdress,
   String? logo,
   int? backgroundImage,
+  bool? enableContactAddress,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -152,9 +152,9 @@ Map<String, dynamic> createProjectListRecordData({
       'stamp_field': stampField,
       'project_type': projectType,
       'update_date': updateDate,
-      'enable_contact_adress': enableContactAdress,
       'logo': logo,
       'background_image': backgroundImage,
+      'enable_contact_address': enableContactAddress,
     }.withoutNulls,
   );
 
@@ -177,9 +177,9 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.stampField == e2?.stampField &&
         e1?.projectType == e2?.projectType &&
         e1?.updateDate == e2?.updateDate &&
-        e1?.enableContactAdress == e2?.enableContactAdress &&
         e1?.logo == e2?.logo &&
-        e1?.backgroundImage == e2?.backgroundImage;
+        e1?.backgroundImage == e2?.backgroundImage &&
+        e1?.enableContactAddress == e2?.enableContactAddress;
   }
 
   @override
@@ -194,9 +194,9 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.stampField,
         e?.projectType,
         e?.updateDate,
-        e?.enableContactAdress,
         e?.logo,
-        e?.backgroundImage
+        e?.backgroundImage,
+        e?.enableContactAddress
       ]);
 
   @override
