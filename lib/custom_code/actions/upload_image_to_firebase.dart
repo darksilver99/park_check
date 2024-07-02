@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:park_check/backend/firebase_storage/storage.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 Future<String> uploadImageToFirebase(
   FFUploadedFile image,
@@ -18,6 +19,13 @@ Future<String> uploadImageToFirebase(
   // Add your function code here!
   String path =
       'transaction/${FFAppState().projectData.projectDocID}/$type/${image.name}';
-  var url = await uploadData(path, image.bytes!);
+
+  Uint8List compress = await FlutterImageCompress.compressWithList(
+    image.bytes!,
+    minWidth: 300,
+    quality: 50,
+  );
+
+  var url = await uploadData(path, compress);
   return url ?? '';
 }
