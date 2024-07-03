@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'transaction_out_detail_view_model.dart';
 export 'transaction_out_detail_view_model.dart';
 
@@ -597,27 +598,30 @@ class _TransactionOutDetailViewWidgetState
                                           await showDialog<bool>(
                                                 context: context,
                                                 builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'ต้องการพิมพ์ใบขาออกหรือไม่'),
-                                                    content: Text(
-                                                        'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                false),
-                                                        child: Text('ไม่พิมพ์'),
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                true),
-                                                        child: Text('พิมพ์'),
-                                                      ),
-                                                    ],
+                                                  return WebViewAware(
+                                                    child: AlertDialog(
+                                                      title: Text(
+                                                          'ต้องการพิมพ์ใบขาออกหรือไม่'),
+                                                      content: Text(
+                                                          'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child:
+                                                              Text('ไม่พิมพ์'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child: Text('พิมพ์'),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   );
                                                 },
                                               ) ??
@@ -640,10 +644,12 @@ class _TransactionOutDetailViewWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child:
-                                                    CustomInfoAlertViewWidget(
-                                                  title:
-                                                      _model.printResult2!.msg,
+                                                child: WebViewAware(
+                                                  child:
+                                                      CustomInfoAlertViewWidget(
+                                                    title: _model
+                                                        .printResult2!.msg,
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -655,15 +661,19 @@ class _TransactionOutDetailViewWidgetState
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('กรุณาเลือกตราประทับ'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('ตกลง'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title:
+                                                  Text('กรุณาเลือกตราประทับ'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('ตกลง'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       );
@@ -740,10 +750,12 @@ class _TransactionOutDetailViewWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child:
-                                                    CustomInfoAlertViewWidget(
-                                                  title:
-                                                      _model.printResult!.msg,
+                                                child: WebViewAware(
+                                                  child:
+                                                      CustomInfoAlertViewWidget(
+                                                    title:
+                                                        _model.printResult!.msg,
+                                                  ),
                                                 ),
                                               );
                                             },

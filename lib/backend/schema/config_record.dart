@@ -66,6 +66,11 @@ class ConfigRecord extends FirestoreRecord {
   int get defaultBackgroundImage => _defaultBackgroundImage ?? 0;
   bool hasDefaultBackgroundImage() => _defaultBackgroundImage != null;
 
+  // "policy_url" field.
+  String? _policyUrl;
+  String get policyUrl => _policyUrl ?? '';
+  bool hasPolicyUrl() => _policyUrl != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -78,6 +83,7 @@ class ConfigRecord extends FirestoreRecord {
     _provinceList = getDataList(snapshotData['province_list']);
     _defaultBackgroundImage =
         castToType<int>(snapshotData['default_background_image']);
+    _policyUrl = snapshotData['policy_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -117,12 +123,14 @@ Map<String, dynamic> createConfigRecordData({
   String? ocrApi,
   String? defaultStampField,
   int? defaultBackgroundImage,
+  String? policyUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'ocr_api': ocrApi,
       'default_stamp_field': defaultStampField,
       'default_background_image': defaultBackgroundImage,
+      'policy_url': policyUrl,
     }.withoutNulls,
   );
 
@@ -145,7 +153,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         listEquality.equals(e1?.ocrAlertText, e2?.ocrAlertText) &&
         listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText) &&
         listEquality.equals(e1?.provinceList, e2?.provinceList) &&
-        e1?.defaultBackgroundImage == e2?.defaultBackgroundImage;
+        e1?.defaultBackgroundImage == e2?.defaultBackgroundImage &&
+        e1?.policyUrl == e2?.policyUrl;
   }
 
   @override
@@ -159,7 +168,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.ocrAlertText,
         e?.ocrErrorText,
         e?.provinceList,
-        e?.defaultBackgroundImage
+        e?.defaultBackgroundImage,
+        e?.policyUrl
       ]);
 
   @override

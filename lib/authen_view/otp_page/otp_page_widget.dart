@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -160,31 +159,6 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                                               .validate()) {
                                         return;
                                       }
-                                      GoRouter.of(context).prepareAuthEvent();
-                                      final smsCodeVal =
-                                          _model.pinCodeController!.text;
-                                      if (smsCodeVal == null ||
-                                          smsCodeVal.isEmpty) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                                'Enter SMS verification code.'),
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      final phoneVerifiedUser =
-                                          await authManager.verifySmsCode(
-                                        context: context,
-                                        smsCode: smsCodeVal,
-                                      );
-                                      if (phoneVerifiedUser == null) {
-                                        return;
-                                      }
-
-                                      context.goNamedAuth(
-                                          'HomePage', context.mounted);
                                     },
                                     text: 'ยืนยัน',
                                     options: FFButtonOptions(

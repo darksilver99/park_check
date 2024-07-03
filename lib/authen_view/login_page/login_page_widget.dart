@@ -4,7 +4,6 @@ import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,10 +33,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       FFAppState().projectData = ProjectDataStruct();
     });
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.emailTextController ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
 
-    authManager.handlePhoneAuthStateChanges(context);
+    _model.passwordTextController ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
   }
 
   @override
@@ -101,12 +101,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: TextFormField(
-                                      controller: _model.textController,
-                                      focusNode: _model.textFieldFocusNode,
+                                      controller: _model.emailTextController,
+                                      focusNode: _model.textFieldFocusNode1,
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'เบอร์โทรศัพท์',
+                                        labelText: 'อีเมล',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
@@ -163,78 +163,252 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                           ),
-                                      keyboardType: TextInputType.phone,
-                                      validator: _model.textControllerValidator
+                                      validator: _model
+                                          .emailTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      setState(() {
-                                        _model.textController?.text =
-                                            functions.convertPhoneNumber(
-                                                _model.textController.text);
-                                        _model.textController?.selection =
-                                            TextSelection.collapsed(
-                                                offset: _model.textController!
-                                                    .text.length);
-                                      });
-                                      final phoneNumberVal =
-                                          _model.textController.text;
-                                      if (phoneNumberVal == null ||
-                                          phoneNumberVal.isEmpty ||
-                                          !phoneNumberVal.startsWith('+')) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                                'Phone Number is required and has to start with +.'),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: TextFormField(
+                                      controller: _model.passwordTextController,
+                                      focusNode: _model.textFieldFocusNode2,
+                                      autofocus: false,
+                                      obscureText: !_model.passwordVisibility,
+                                      decoration: InputDecoration(
+                                        labelText: 'รหัสผ่าน',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
                                           ),
-                                        );
-                                        return;
-                                      }
-                                      await authManager.beginPhoneAuth(
-                                        context: context,
-                                        phoneNumber: phoneNumberVal,
-                                        onCodeSent: (context) async {
-                                          context.goNamedAuth(
-                                            'OtpPage',
-                                            context.mounted,
-                                            ignoreRedirect: true,
-                                          );
-                                        },
-                                      );
-                                    },
-                                    text: 'เข้าใช้งาน',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        filled: true,
+                                        suffixIcon: InkWell(
+                                          onTap: () => setState(
+                                            () => _model.passwordVisibility =
+                                                !_model.passwordVisibility,
+                                          ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
+                                          child: Icon(
+                                            _model.passwordVisibility
+                                                ? Icons.visibility_outlined
+                                                : Icons.visibility_off_outlined,
+                                            size: 22.0,
+                                          ),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: Colors.white,
-                                            fontSize: 22.0,
                                             letterSpacing: 0.0,
                                           ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                      validator: _model
+                                          .passwordTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          'ลืมรหัสผ่าน ?',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .link,
+                                                letterSpacing: 0.0,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        GoRouter.of(context).prepareAuthEvent();
+
+                                        final user =
+                                            await authManager.signInWithEmail(
+                                          context,
+                                          _model.emailTextController.text,
+                                          _model.passwordTextController.text,
+                                        );
+                                        if (user == null) {
+                                          return;
+                                        }
+
+                                        context.goNamedAuth(
+                                            'HomePage', context.mounted);
+                                      },
+                                      text: 'เข้าสู่ระบบ',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.white,
+                                              fontSize: 22.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 16.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            height: 1.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 4.0, 0.0),
+                                          child: Text(
+                                            'หรือ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            height: 1.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('RegisterPage');
+                                      },
+                                      text: 'สมัครสมาชิก',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.white,
+                                              fontSize: 22.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
                                     ),
                                   ),
                                 ],

@@ -151,6 +151,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TestPage',
           path: '/testPage',
           builder: (context, params) => TestPageWidget(),
+        ),
+        FFRoute(
+          name: 'RegisterPage',
+          path: '/registerPage',
+          builder: (context, params) => RegisterPageWidget(),
+        ),
+        FFRoute(
+          name: 'WebViewPage',
+          path: '/webViewPage',
+          builder: (context, params) => WebViewPageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            url: params.getParam(
+              'url',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

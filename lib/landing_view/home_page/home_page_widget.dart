@@ -20,6 +20,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -433,22 +434,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             useSafeArea: true,
                                             context: context,
                                             builder: (context) {
-                                              return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child:
-                                                      TransactionDetailViewWidget(
-                                                    transactionParameter:
-                                                        dataListItem,
+                                              return WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        TransactionDetailViewWidget(
+                                                      transactionParameter:
+                                                          dataListItem,
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -692,18 +696,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   useSafeArea: true,
                                   context: context,
                                   builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: TransactionOutDetailViewWidget(
-                                          transactionParameter:
-                                              _model.transactionDocumentResult!,
+                                    return WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: TransactionOutDetailViewWidget(
+                                            transactionParameter: _model
+                                                .transactionDocumentResult!,
+                                          ),
                                         ),
                                       ),
                                     );
@@ -717,17 +724,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('ไม่พบข้อมูล'),
-                                      content: Text(
-                                          'กรุณาตรวจสอบ QR Code / ทะเบียนรถ'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('ตกลง'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        title: Text('ไม่พบข้อมูล'),
+                                        content: Text(
+                                            'กรุณาตรวจสอบ QR Code / ทะเบียนรถ'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('ตกลง'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 );
