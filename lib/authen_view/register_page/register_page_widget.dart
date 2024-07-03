@@ -656,7 +656,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                 .validate()) {
                                           return;
                                         }
-                                        if (_model.checkboxValue != null) {
+                                        if (_model.checkboxValue == true) {
                                           GoRouter.of(context)
                                               .prepareAuthEvent();
                                           if (_model.passwordTextController
