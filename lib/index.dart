@@ -18,3 +18,7 @@ export '/contact_view/issue_view/issue_view_widget.dart' show IssueViewWidget;
 export '/setting_view/setting_printer_page/setting_printer_page_widget.dart'
     show SettingPrinterPageWidget;
 export '/test/test_page/test_page_widget.dart' show TestPageWidget;
+export '/authen_view/register_page/register_page_widget.dart'
+    show RegisterPageWidget;
+export '/authen_view/web_view_page/web_view_page_widget.dart'
+    show WebViewPageWidget;

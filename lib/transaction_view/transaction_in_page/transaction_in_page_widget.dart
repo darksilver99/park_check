@@ -18,6 +18,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'transaction_in_page_model.dart';
 export 'transaction_in_page_model.dart';
 
@@ -259,19 +260,22 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    OCRAlertViewWidget(),
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      OCRAlertViewWidget(),
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -336,6 +340,54 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    CustomInfoAlertViewWidget(
+                                                                  title: FFAppState()
+                                                                      .configData
+                                                                      .ocrErrorText
+                                                                      .first,
+                                                                  detail: FFAppState()
+                                                                      .configData
+                                                                      .ocrErrorText
+                                                                      .last,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    }
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: WebViewAware(
                                                             child:
                                                                 GestureDetector(
                                                               onTap: () => _model
@@ -360,51 +412,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     .ocrErrorText
                                                                     .last,
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          setState(() {}));
-                                                    }
-                                                  } else {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                CustomInfoAlertViewWidget(
-                                                              title: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .first,
-                                                              detail: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .last,
                                                             ),
                                                           ),
                                                         );
@@ -565,19 +572,22 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    OCRAlertViewWidget(),
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      OCRAlertViewWidget(),
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -676,6 +686,54 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    CustomInfoAlertViewWidget(
+                                                                  title: FFAppState()
+                                                                      .configData
+                                                                      .ocrErrorText
+                                                                      .first,
+                                                                  detail: FFAppState()
+                                                                      .configData
+                                                                      .ocrErrorText
+                                                                      .last,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    }
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: WebViewAware(
                                                             child:
                                                                 GestureDetector(
                                                               onTap: () => _model
@@ -700,51 +758,6 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     .ocrErrorText
                                                                     .last,
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          setState(() {}));
-                                                    }
-                                                  } else {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                CustomInfoAlertViewWidget(
-                                                              title: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .first,
-                                                              detail: FFAppState()
-                                                                  .configData
-                                                                  .ocrErrorText
-                                                                  .last,
                                                             ),
                                                           ),
                                                         );
@@ -1634,22 +1647,24 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           useSafeArea: true,
                                           context: context,
                                           builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child:
-                                                    TransactionDetailViewWidget(
-                                                  transactionParameter: _model
-                                                      .insertedTransaction!,
+                                            return WebViewAware(
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      TransactionDetailViewWidget(
+                                                    transactionParameter: _model
+                                                        .insertedTransaction!,
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1663,17 +1678,19 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                  'กรุณาเลือกวัตถุประสงค์'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('ตกลง'),
-                                                ),
-                                              ],
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text(
+                                                    'กรุณาเลือกวัตถุประสงค์'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('ตกลง'),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         );
@@ -1682,15 +1699,18 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('กรุณาเลือกประเภทรถ'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('ตกลง'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text('กรุณาเลือกประเภทรถ'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('ตกลง'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       );
