@@ -548,6 +548,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
+                                    keyboardType: TextInputType.phone,
                                     validator: _model
                                         .phoneTextControllerValidator
                                         .asValidator(context),
