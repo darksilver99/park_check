@@ -96,12 +96,14 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  FlutterFlowWebView(
-                    content: widget.url!,
-                    bypass: false,
-                    height: MediaQuery.sizeOf(context).height * 1.0,
-                    verticalScroll: false,
-                    horizontalScroll: false,
+                  Expanded(
+                    child: FlutterFlowWebView(
+                      content: widget.url!,
+                      bypass: false,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      verticalScroll: false,
+                      horizontalScroll: false,
+                    ),
                   ),
                 ],
               ),
