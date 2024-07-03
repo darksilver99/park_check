@@ -295,10 +295,10 @@ class FirebaseAuthManager extends AuthManager
     } on FirebaseAuthException catch (e) {
       final errorMsg = switch (e.code) {
         'email-already-in-use' =>
-          'Error: The email is already in use by a different account',
+          'อีเมลนี้ถูกใช้ไปแล้ว',
         'INVALID_LOGIN_CREDENTIALS' =>
-          'Error: The supplied auth credential is incorrect, malformed or has expired',
-        _ => 'Error: ${e.message!}',
+          'รหัสผ่านไม่ถูกต้อง',
+        _ => 'ไม่พบอีเมลนี้ในระบบหรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีเมลและรหัสผ่านของท่าน',
       };
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
