@@ -22,3 +22,5 @@ export '/authen_view/register_page/register_page_widget.dart'
     show RegisterPageWidget;
 export '/authen_view/web_view_page/web_view_page_widget.dart'
     show WebViewPageWidget;
+export '/authen_view/forget_password_page/forget_password_page_widget.dart'
+    show ForgetPasswordPageWidget;
