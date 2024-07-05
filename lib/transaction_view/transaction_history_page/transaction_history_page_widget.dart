@@ -270,23 +270,26 @@ class _TransactionHistoryPageWidgetState
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Text(
-                                                        functions.dateTh(
-                                                            _model.startDate!),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
+                                                      if (_model.startDate !=
+                                                          null)
+                                                        Text(
+                                                          functions.dateTh(
+                                                              _model
+                                                                  .startDate!),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
                                                     ],
                                                   ),
                                                 ),
