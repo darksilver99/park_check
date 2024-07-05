@@ -138,9 +138,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SettingGeneralPageWidget(),
         ),
         FFRoute(
-          name: 'IssueView',
-          path: '/issueView',
-          builder: (context, params) => IssueViewWidget(),
+          name: 'IssuePage',
+          path: '/issuePage',
+          builder: (context, params) => IssuePageWidget(),
         ),
         FFRoute(
           name: 'SettingPrinterPage',

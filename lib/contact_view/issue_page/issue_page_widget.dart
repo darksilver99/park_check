@@ -12,25 +12,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'issue_view_model.dart';
-export 'issue_view_model.dart';
+import 'issue_page_model.dart';
+export 'issue_page_model.dart';
 
-class IssueViewWidget extends StatefulWidget {
-  const IssueViewWidget({super.key});
+class IssuePageWidget extends StatefulWidget {
+  const IssuePageWidget({super.key});
 
   @override
-  State<IssueViewWidget> createState() => _IssueViewWidgetState();
+  State<IssuePageWidget> createState() => _IssuePageWidgetState();
 }
 
-class _IssueViewWidgetState extends State<IssueViewWidget> {
-  late IssueViewModel _model;
+class _IssuePageWidgetState extends State<IssuePageWidget> {
+  late IssuePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => IssueViewModel());
+    _model = createModel(context, () => IssuePageModel());
 
     _model.textController1 ??=
         TextEditingController(text: currentUserDisplayName);
