@@ -212,8 +212,13 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                     ParamType.String,
                                                   ),
                                                   'url': serializeParam(
-                                                    columnParkCarMenuListRecord
-                                                        .pathName,
+                                                    columnParkCarMenuListRecord.subject ==
+                                                            'คู่มือการใช้งาน'
+                                                        ? FFAppState()
+                                                            .configData
+                                                            .guideUrl
+                                                        : columnParkCarMenuListRecord
+                                                            .pathName,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
