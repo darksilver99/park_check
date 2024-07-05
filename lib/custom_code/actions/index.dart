@@ -6,3 +6,4 @@ export 'hide_key_board.dart' show hideKeyBoard;
 export 'upload_image_to_firebase.dart' show uploadImageToFirebase;
 export 'get_device_detail.dart' show getDeviceDetail;
 export 'print_slip.dart' show printSlip;
+export 'go_to_page.dart' show goToPage;

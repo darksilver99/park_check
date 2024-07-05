@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "park_car_menu_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "seq",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "transaction_list",
       "queryScope": "COLLECTION",
       "fields": [
