@@ -99,3 +99,7 @@ String dateTh(DateTime date) {
   final buddhistYear = date.year + 543;
   return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
 }
+
+DocumentReference configReference() {
+  return FirebaseFirestore.instance.doc("config/park_car_app");
+}

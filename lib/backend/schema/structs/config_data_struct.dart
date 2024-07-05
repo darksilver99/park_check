@@ -20,6 +20,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
     List<String>? ocrErrorText,
     List<String>? provinceList,
     int? defaultBackgroundImage,
+    int? storeVersion,
+    String? storeAndroidLink,
+    String? storeIosLink,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -31,6 +34,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _ocrErrorText = ocrErrorText,
         _provinceList = provinceList,
         _defaultBackgroundImage = defaultBackgroundImage,
+        _storeVersion = storeVersion,
+        _storeAndroidLink = storeAndroidLink,
+        _storeIosLink = storeIosLink,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -134,6 +140,30 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasDefaultBackgroundImage() => _defaultBackgroundImage != null;
 
+  // "store_version" field.
+  int? _storeVersion;
+  int get storeVersion => _storeVersion ?? 0;
+  set storeVersion(int? val) => _storeVersion = val;
+
+  void incrementStoreVersion(int amount) =>
+      storeVersion = storeVersion + amount;
+
+  bool hasStoreVersion() => _storeVersion != null;
+
+  // "store_android_link" field.
+  String? _storeAndroidLink;
+  String get storeAndroidLink => _storeAndroidLink ?? '';
+  set storeAndroidLink(String? val) => _storeAndroidLink = val;
+
+  bool hasStoreAndroidLink() => _storeAndroidLink != null;
+
+  // "store_ios_link" field.
+  String? _storeIosLink;
+  String get storeIosLink => _storeIosLink ?? '';
+  set storeIosLink(String? val) => _storeIosLink = val;
+
+  bool hasStoreIosLink() => _storeIosLink != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -147,6 +177,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         provinceList: getDataList(data['province_list']),
         defaultBackgroundImage:
             castToType<int>(data['default_background_image']),
+        storeVersion: castToType<int>(data['store_version']),
+        storeAndroidLink: data['store_android_link'] as String?,
+        storeIosLink: data['store_ios_link'] as String?,
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -164,6 +197,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'ocr_error_text': _ocrErrorText,
         'province_list': _provinceList,
         'default_background_image': _defaultBackgroundImage,
+        'store_version': _storeVersion,
+        'store_android_link': _storeAndroidLink,
+        'store_ios_link': _storeIosLink,
       }.withoutNulls;
 
   @override
@@ -214,6 +250,18 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_background_image': serializeParam(
           _defaultBackgroundImage,
           ParamType.int,
+        ),
+        'store_version': serializeParam(
+          _storeVersion,
+          ParamType.int,
+        ),
+        'store_android_link': serializeParam(
+          _storeAndroidLink,
+          ParamType.String,
+        ),
+        'store_ios_link': serializeParam(
+          _storeIosLink,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -269,6 +317,21 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        storeVersion: deserializeParam(
+          data['store_version'],
+          ParamType.int,
+          false,
+        ),
+        storeAndroidLink: deserializeParam(
+          data['store_android_link'],
+          ParamType.String,
+          false,
+        ),
+        storeIosLink: deserializeParam(
+          data['store_ios_link'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -287,7 +350,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         listEquality.equals(ocrAlertText, other.ocrAlertText) &&
         listEquality.equals(ocrErrorText, other.ocrErrorText) &&
         listEquality.equals(provinceList, other.provinceList) &&
-        defaultBackgroundImage == other.defaultBackgroundImage;
+        defaultBackgroundImage == other.defaultBackgroundImage &&
+        storeVersion == other.storeVersion &&
+        storeAndroidLink == other.storeAndroidLink &&
+        storeIosLink == other.storeIosLink;
   }
 
   @override
@@ -301,7 +367,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ocrAlertText,
         ocrErrorText,
         provinceList,
-        defaultBackgroundImage
+        defaultBackgroundImage,
+        storeVersion,
+        storeAndroidLink,
+        storeIosLink
       ]);
 }
 
@@ -309,6 +378,9 @@ ConfigDataStruct createConfigDataStruct({
   String? ocrApi,
   String? defaultStampField,
   int? defaultBackgroundImage,
+  int? storeVersion,
+  String? storeAndroidLink,
+  String? storeIosLink,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -318,6 +390,9 @@ ConfigDataStruct createConfigDataStruct({
       ocrApi: ocrApi,
       defaultStampField: defaultStampField,
       defaultBackgroundImage: defaultBackgroundImage,
+      storeVersion: storeVersion,
+      storeAndroidLink: storeAndroidLink,
+      storeIosLink: storeIosLink,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

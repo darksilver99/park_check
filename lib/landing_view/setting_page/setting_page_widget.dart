@@ -137,7 +137,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
-                                  '(Version 1.0.0)',
+                                  FFAppState().appVersion,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(

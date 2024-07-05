@@ -71,6 +71,21 @@ class ConfigRecord extends FirestoreRecord {
   String get policyUrl => _policyUrl ?? '';
   bool hasPolicyUrl() => _policyUrl != null;
 
+  // "store_version" field.
+  int? _storeVersion;
+  int get storeVersion => _storeVersion ?? 0;
+  bool hasStoreVersion() => _storeVersion != null;
+
+  // "store_android_link" field.
+  String? _storeAndroidLink;
+  String get storeAndroidLink => _storeAndroidLink ?? '';
+  bool hasStoreAndroidLink() => _storeAndroidLink != null;
+
+  // "store_ios_link" field.
+  String? _storeIosLink;
+  String get storeIosLink => _storeIosLink ?? '';
+  bool hasStoreIosLink() => _storeIosLink != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -84,6 +99,9 @@ class ConfigRecord extends FirestoreRecord {
     _defaultBackgroundImage =
         castToType<int>(snapshotData['default_background_image']);
     _policyUrl = snapshotData['policy_url'] as String?;
+    _storeVersion = castToType<int>(snapshotData['store_version']);
+    _storeAndroidLink = snapshotData['store_android_link'] as String?;
+    _storeIosLink = snapshotData['store_ios_link'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -124,6 +142,9 @@ Map<String, dynamic> createConfigRecordData({
   String? defaultStampField,
   int? defaultBackgroundImage,
   String? policyUrl,
+  int? storeVersion,
+  String? storeAndroidLink,
+  String? storeIosLink,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -131,6 +152,9 @@ Map<String, dynamic> createConfigRecordData({
       'default_stamp_field': defaultStampField,
       'default_background_image': defaultBackgroundImage,
       'policy_url': policyUrl,
+      'store_version': storeVersion,
+      'store_android_link': storeAndroidLink,
+      'store_ios_link': storeIosLink,
     }.withoutNulls,
   );
 
@@ -154,7 +178,10 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         listEquality.equals(e1?.ocrErrorText, e2?.ocrErrorText) &&
         listEquality.equals(e1?.provinceList, e2?.provinceList) &&
         e1?.defaultBackgroundImage == e2?.defaultBackgroundImage &&
-        e1?.policyUrl == e2?.policyUrl;
+        e1?.policyUrl == e2?.policyUrl &&
+        e1?.storeVersion == e2?.storeVersion &&
+        e1?.storeAndroidLink == e2?.storeAndroidLink &&
+        e1?.storeIosLink == e2?.storeIosLink;
   }
 
   @override
@@ -169,7 +196,10 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.ocrErrorText,
         e?.provinceList,
         e?.defaultBackgroundImage,
-        e?.policyUrl
+        e?.policyUrl,
+        e?.storeVersion,
+        e?.storeAndroidLink,
+        e?.storeIosLink
       ]);
 
   @override
