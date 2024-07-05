@@ -138,6 +138,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           } else {
             await launchURL(FFAppState().configData.storeIosLink);
           }
+
+          await actions.closeApp();
         }
       } else {
         context.goNamed('CreateProjectPage');

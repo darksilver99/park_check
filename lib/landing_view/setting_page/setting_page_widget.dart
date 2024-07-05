@@ -192,11 +192,37 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                             0.0, 0.0, 0.0, 8.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            await actions.goToPage(
-                                              context,
-                                              columnParkCarMenuListRecord
-                                                  .pathName,
-                                            );
+                                            if (columnParkCarMenuListRecord
+                                                    .type ==
+                                                'app') {
+                                              await actions.goToPage(
+                                                context,
+                                                columnParkCarMenuListRecord
+                                                    .pathName,
+                                              );
+                                            } else if (columnParkCarMenuListRecord
+                                                    .type ==
+                                                'web') {
+                                              context.pushNamed(
+                                                'WebViewPage',
+                                                queryParameters: {
+                                                  'title': serializeParam(
+                                                    columnParkCarMenuListRecord
+                                                        .subject,
+                                                    ParamType.String,
+                                                  ),
+                                                  'url': serializeParam(
+                                                    columnParkCarMenuListRecord
+                                                        .pathName,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            } else {
+                                              await launchURL(
+                                                  columnParkCarMenuListRecord
+                                                      .pathName);
+                                            }
                                           },
                                           text: columnParkCarMenuListRecord
                                               .subject,
