@@ -43,17 +43,17 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
-  String? base64Result;
+  String? base64Result2;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
-  ApiCallResponse? apiReuslt;
+  ApiCallResponse? apiReuslt2;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
-  String? base64Result2;
+  String? base64Result;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
-  ApiCallResponse? apiReuslt2;
+  ApiCallResponse? apiReuslt;
   // State field(s) for preName widget.
   FocusNode? preNameFocusNode;
   TextEditingController? preNameTextController;
