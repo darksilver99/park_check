@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/loading_list_view/loading_list_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
@@ -46,8 +47,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ProjectListRecord? projectData;
-  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
-  ConfigRecord? configResult;
+  // Stores action output result for [Backend Call - Read Document] action in HomePage widget.
+  ConfigRecord? config;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.

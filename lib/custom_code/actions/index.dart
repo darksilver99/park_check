@@ -7,3 +7,5 @@ export 'upload_image_to_firebase.dart' show uploadImageToFirebase;
 export 'get_device_detail.dart' show getDeviceDetail;
 export 'print_slip.dart' show printSlip;
 export 'go_to_page.dart' show goToPage;
+export 'set_app_version.dart' show setAppVersion;
+export 'close_app.dart' show closeApp;

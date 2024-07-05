@@ -143,6 +143,18 @@ class FFAppState extends ChangeNotifier {
         ? prefs.setInt('ff_currentDate', value.millisecondsSinceEpoch)
         : prefs.remove('ff_currentDate');
   }
+
+  String _appVersion = '';
+  String get appVersion => _appVersion;
+  set appVersion(String value) {
+    _appVersion = value;
+  }
+
+  int _appBuildVersion = 0;
+  int get appBuildVersion => _appBuildVersion;
+  set appBuildVersion(int value) {
+    _appBuildVersion = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
