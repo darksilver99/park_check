@@ -271,8 +271,8 @@ class _TransactionHistoryPageWidgetState
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        dateTimeFormat('d/M/y',
-                                                            _model.startDate),
+                                                        functions.dateTh(
+                                                            _model.startDate!),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -1033,7 +1033,7 @@ class _TransactionHistoryPageWidgetState
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
+                                                              'เวลาเข้า : ${functions.dateTimeTh(dataListItem.dateIn!)}',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1059,7 +1059,7 @@ class _TransactionHistoryPageWidgetState
                                                                   if (dataListItem
                                                                       .isOut) {
                                                                     return Text(
-                                                                      'เวลาออก : ${dateTimeFormat('d/M/y', dataListItem.dateOut)} ${dateTimeFormat('Hm', dataListItem.dateOut)}',
+                                                                      'เวลาออก : ${functions.dateTimeTh(dataListItem.dateOut!)}',
                                                                       textAlign:
                                                                           TextAlign
                                                                               .end,
