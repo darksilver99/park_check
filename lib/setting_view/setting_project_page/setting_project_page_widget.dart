@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/component/edit_stamp_view/edit_stamp_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -1069,110 +1068,15 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Builder(
-                                                builder: (context) => InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child: WebViewAware(
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child:
-                                                                  EditStampViewWidget(),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() =>
-                                                            _model.stampValue =
-                                                                value));
-
-                                                    if (_model.stampValue !=
-                                                            null &&
-                                                        _model.stampValue !=
-                                                            '') {
-                                                      _model.stampFieldName =
-                                                          _model.stampValue;
-                                                      setState(() {});
-                                                    }
-
-                                                    setState(() {});
-                                                  },
-                                                  child: Text(
-                                                    'แก้ไขคำ ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFF0692F2),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
-                                                        ),
-                                                  ),
+                                          Text(
+                                            'ตราประทับ/ลายเซ็นต์',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    _model.stampFieldName,
-                                                    '-',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ),
-                                            ],
                                           ),
                                           Padding(
                                             padding:
@@ -1207,7 +1111,7 @@ class _SettingProjectPageWidgetState extends State<SettingProjectPageWidget> {
                                                           decoration:
                                                               InputDecoration(
                                                             labelText:
-                                                                'ระบุ${_model.stampFieldName}',
+                                                                'ตราประทับ/ลายเซ็นต์',
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)

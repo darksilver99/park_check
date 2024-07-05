@@ -360,7 +360,7 @@ class _TransactionOutDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'เวลาเข้า : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateIn)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateIn)}',
+                                  'เวลาเข้า : ${functions.dateTimeTh(widget.transactionParameter!.dateIn!)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -386,7 +386,7 @@ class _TransactionOutDetailViewWidgetState
                                           padding: EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'เวลาออก : ${dateTimeFormat('d/M/y', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
+                                            'เวลาออก : ${functions.dateTimeTh(getCurrentTimestamp)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -523,7 +523,7 @@ class _TransactionOutDetailViewWidgetState
                                           padding: EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'เวลาออก : ${dateTimeFormat('d/M/y', widget.transactionParameter?.dateOut)} ${dateTimeFormat('Hm', widget.transactionParameter?.dateOut)}',
+                                            'เวลาออก : ${functions.dateTimeTh(widget.transactionParameter!.dateOut!)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(

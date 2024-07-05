@@ -300,7 +300,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                               ),
                               Text(
-                                dateTimeFormat('d/M/y', getCurrentTimestamp),
+                                functions.dateTh(getCurrentTimestamp),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -512,7 +512,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                       ),
                                                       Text(
-                                                        'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
+                                                        'เวลาเข้า : ${functions.dateTimeTh(dataListItem.dateIn!)}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
