@@ -511,6 +511,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               onPressed: () async {
                                                 final selectedMedia =
                                                     await selectMedia(
+                                                  maxWidth: 600.00,
                                                   imageQuality: 100,
                                                   multiImage: false,
                                                 );
