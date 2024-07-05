@@ -154,11 +154,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 final selectedMedia =
-                                                    await selectMediaWithSourceBottomSheet(
-                                                  context: context,
+                                                    await selectMedia(
                                                   maxWidth: 600.00,
                                                   imageQuality: 100,
-                                                  allowPhoto: true,
+                                                  multiImage: false,
                                                 );
                                                 if (selectedMedia != null &&
                                                     selectedMedia.every((m) =>
@@ -511,10 +510,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 final selectedMedia =
-                                                    await selectMediaWithSourceBottomSheet(
-                                                  context: context,
+                                                    await selectMedia(
                                                   imageQuality: 100,
-                                                  allowPhoto: true,
+                                                  multiImage: false,
                                                 );
                                                 if (selectedMedia != null &&
                                                     selectedMedia.every((m) =>
