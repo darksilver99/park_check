@@ -86,6 +86,11 @@ class ConfigRecord extends FirestoreRecord {
   String get storeIosLink => _storeIosLink ?? '';
   bool hasStoreIosLink() => _storeIosLink != null;
 
+  // "guide_url" field.
+  String? _guideUrl;
+  String get guideUrl => _guideUrl ?? '';
+  bool hasGuideUrl() => _guideUrl != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -102,6 +107,7 @@ class ConfigRecord extends FirestoreRecord {
     _storeVersion = castToType<int>(snapshotData['store_version']);
     _storeAndroidLink = snapshotData['store_android_link'] as String?;
     _storeIosLink = snapshotData['store_ios_link'] as String?;
+    _guideUrl = snapshotData['guide_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -145,6 +151,7 @@ Map<String, dynamic> createConfigRecordData({
   int? storeVersion,
   String? storeAndroidLink,
   String? storeIosLink,
+  String? guideUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -155,6 +162,7 @@ Map<String, dynamic> createConfigRecordData({
       'store_version': storeVersion,
       'store_android_link': storeAndroidLink,
       'store_ios_link': storeIosLink,
+      'guide_url': guideUrl,
     }.withoutNulls,
   );
 
@@ -181,7 +189,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.policyUrl == e2?.policyUrl &&
         e1?.storeVersion == e2?.storeVersion &&
         e1?.storeAndroidLink == e2?.storeAndroidLink &&
-        e1?.storeIosLink == e2?.storeIosLink;
+        e1?.storeIosLink == e2?.storeIosLink &&
+        e1?.guideUrl == e2?.guideUrl;
   }
 
   @override
@@ -199,7 +208,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.policyUrl,
         e?.storeVersion,
         e?.storeAndroidLink,
-        e?.storeIosLink
+        e?.storeIosLink,
+        e?.guideUrl
       ]);
 
   @override

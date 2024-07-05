@@ -23,6 +23,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     int? storeVersion,
     String? storeAndroidLink,
     String? storeIosLink,
+    String? guideUrl,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -37,6 +38,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _storeVersion = storeVersion,
         _storeAndroidLink = storeAndroidLink,
         _storeIosLink = storeIosLink,
+        _guideUrl = guideUrl,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -164,6 +166,13 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasStoreIosLink() => _storeIosLink != null;
 
+  // "guide_url" field.
+  String? _guideUrl;
+  String get guideUrl => _guideUrl ?? '';
+  set guideUrl(String? val) => _guideUrl = val;
+
+  bool hasGuideUrl() => _guideUrl != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -180,6 +189,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion: castToType<int>(data['store_version']),
         storeAndroidLink: data['store_android_link'] as String?,
         storeIosLink: data['store_ios_link'] as String?,
+        guideUrl: data['guide_url'] as String?,
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -200,6 +210,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'store_version': _storeVersion,
         'store_android_link': _storeAndroidLink,
         'store_ios_link': _storeIosLink,
+        'guide_url': _guideUrl,
       }.withoutNulls;
 
   @override
@@ -261,6 +272,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ),
         'store_ios_link': serializeParam(
           _storeIosLink,
+          ParamType.String,
+        ),
+        'guide_url': serializeParam(
+          _guideUrl,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -332,6 +347,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        guideUrl: deserializeParam(
+          data['guide_url'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -353,7 +373,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultBackgroundImage == other.defaultBackgroundImage &&
         storeVersion == other.storeVersion &&
         storeAndroidLink == other.storeAndroidLink &&
-        storeIosLink == other.storeIosLink;
+        storeIosLink == other.storeIosLink &&
+        guideUrl == other.guideUrl;
   }
 
   @override
@@ -370,7 +391,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultBackgroundImage,
         storeVersion,
         storeAndroidLink,
-        storeIosLink
+        storeIosLink,
+        guideUrl
       ]);
 }
 
@@ -381,6 +403,7 @@ ConfigDataStruct createConfigDataStruct({
   int? storeVersion,
   String? storeAndroidLink,
   String? storeIosLink,
+  String? guideUrl,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -393,6 +416,7 @@ ConfigDataStruct createConfigDataStruct({
       storeVersion: storeVersion,
       storeAndroidLink: storeAndroidLink,
       storeIosLink: storeIosLink,
+      guideUrl: guideUrl,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
