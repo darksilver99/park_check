@@ -6,6 +6,7 @@ import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -115,18 +116,9 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     return null;
   }
 
-  // State field(s) for province widget.
-  FocusNode? provinceFocusNode;
-  TextEditingController? provinceTextController;
-  String? Function(BuildContext, String?)? provinceTextControllerValidator;
-  String? _provinceTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for carSelected widget.
   FormFieldController<List<String>>? carSelectedValueController;
   String? get carSelectedValue =>
@@ -139,10 +131,11 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
       objectiveSelectedValueController?.value?.firstOrNull;
   set objectiveSelectedValue(String? val) =>
       objectiveSelectedValueController?.value = val != null ? [val] : [];
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
+  // State field(s) for contact_address widget.
+  FocusNode? contactAddressFocusNode;
+  TextEditingController? contactAddressTextController;
+  String? Function(BuildContext, String?)?
+      contactAddressTextControllerValidator;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   String? registrationImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
@@ -159,7 +152,6 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     lastNameTextControllerValidator = _lastNameTextControllerValidator;
     idNumberTextControllerValidator = _idNumberTextControllerValidator;
     registrationTextControllerValidator = _registrationTextControllerValidator;
-    provinceTextControllerValidator = _provinceTextControllerValidator;
   }
 
   @override
@@ -181,10 +173,7 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
     registrationFocusNode?.dispose();
     registrationTextController?.dispose();
 
-    provinceFocusNode?.dispose();
-    provinceTextController?.dispose();
-
-    textFieldFocusNode?.dispose();
-    textController7?.dispose();
+    contactAddressFocusNode?.dispose();
+    contactAddressTextController?.dispose();
   }
 }

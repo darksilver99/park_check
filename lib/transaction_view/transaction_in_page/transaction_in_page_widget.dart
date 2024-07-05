@@ -6,6 +6,7 @@ import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
 import '/component/transaction_detail_view/transaction_detail_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -55,11 +56,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
     _model.registrationTextController ??= TextEditingController();
     _model.registrationFocusNode ??= FocusNode();
 
-    _model.provinceTextController ??= TextEditingController();
-    _model.provinceFocusNode ??= FocusNode();
-
-    _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.contactAddressTextController ??= TextEditingController();
+    _model.contactAddressFocusNode ??= FocusNode();
   }
 
   @override
@@ -649,21 +647,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                                     .length);
                                                       });
                                                       setState(() {
-                                                        _model
-                                                            .provinceTextController
-                                                            ?.text = getJsonField(
+                                                        _model.dropDownValueController
+                                                                ?.value =
+                                                            getJsonField(
                                                           (_model.apiReuslt
                                                                   ?.jsonBody ??
                                                               ''),
                                                           r'''$.data.province''',
                                                         ).toString();
-                                                        _model.provinceTextController
-                                                                ?.selection =
-                                                            TextSelection.collapsed(
-                                                                offset: _model
-                                                                    .provinceTextController!
-                                                                    .text
-                                                                    .length);
                                                       });
                                                       _model.allRegistrationData =
                                                           getJsonField(
@@ -1251,84 +1242,57 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .asValidator(context),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: TextFormField(
-                                        controller:
-                                            _model.provinceTextController,
-                                        focusNode: _model.provinceFocusNode,
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'จังหวัด',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
+                                    FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.dropDownValueController ??=
+                                              FormFieldController<String>(null),
+                                      options:
+                                          FFAppState().configData.provinceList,
+                                      onChanged: (val) => setState(
+                                          () => _model.dropDownValue = val),
+                                      width: double.infinity,
+                                      height: 56.0,
+                                      searchHintTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                      searchTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          filled: true,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        validator: _model
-                                            .provinceTextControllerValidator
-                                            .asValidator(context),
+                                      hintText: 'เลือกจังหวัด',
+                                      searchHintText: 'เลือกจังหวัด',
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
                                       ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      elevation: 0.0,
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderWidth: 1.0,
+                                      borderRadius: 24.0,
+                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 4.0, 16.0, 4.0),
+                                      hidesUnderline: true,
+                                      isOverButton: true,
+                                      isSearchable: true,
+                                      isMultiSelect: false,
                                     ),
                                   ],
                                 ),
@@ -1521,8 +1485,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: TextFormField(
-                                          controller: _model.textController7,
-                                          focusNode: _model.textFieldFocusNode,
+                                          controller: _model
+                                              .contactAddressTextController,
+                                          focusNode:
+                                              _model.contactAddressFocusNode,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -1591,7 +1557,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
-                                              .textController7Validator
+                                              .contactAddressTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -1602,6 +1568,27 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
+                                      return;
+                                    }
+                                    if (_model.dropDownValue == null) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text('กรุณาเลือกจังหวัด'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('ตกลง'),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
                                       return;
                                     }
                                     if (_model.carSelectedValue != null &&
@@ -1652,15 +1639,16 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .lastNameTextController.text,
                                           carRegistration: _model
                                               .registrationTextController.text,
-                                          carRegistrationProvince: _model
-                                              .provinceTextController.text,
+                                          carRegistrationProvince:
+                                              _model.dropDownValue,
                                           objective:
                                               _model.objectiveSelectedValue,
                                           carType: _model.carSelectedValue,
                                           dateIn: getCurrentTimestamp,
                                           isOut: false,
-                                          contactAddress:
-                                              _model.textController7.text,
+                                          contactAddress: _model
+                                              .contactAddressTextController
+                                              .text,
                                           allCardData: _model.allCardData,
                                           allRegistrationData:
                                               _model.allRegistrationData,
@@ -1688,9 +1676,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   carRegistration: _model
                                                       .registrationTextController
                                                       .text,
-                                                  carRegistrationProvince: _model
-                                                      .provinceTextController
-                                                      .text,
+                                                  carRegistrationProvince:
+                                                      _model.dropDownValue,
                                                   objective: _model
                                                       .objectiveSelectedValue,
                                                   carType:
@@ -1698,7 +1685,8 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   dateIn: getCurrentTimestamp,
                                                   isOut: false,
                                                   contactAddress: _model
-                                                      .textController7.text,
+                                                      .contactAddressTextController
+                                                      .text,
                                                   allCardData:
                                                       _model.allCardData,
                                                   allRegistrationData: _model
