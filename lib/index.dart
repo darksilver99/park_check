@@ -24,3 +24,4 @@ export '/authen_view/web_view_page/web_view_page_widget.dart'
     show WebViewPageWidget;
 export '/authen_view/forget_password_page/forget_password_page_widget.dart'
     show ForgetPasswordPageWidget;
+export '/guide_view/guide_page/guide_page_widget.dart' show GuidePageWidget;

@@ -76,6 +76,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           storeVersion: _model.config?.storeVersion,
           storeAndroidLink: _model.config?.storeAndroidLink,
           storeIosLink: _model.config?.storeIosLink,
+          guideUrl: _model.config?.guideUrl,
         );
         if (FFAppState().appBuildVersion >=
             FFAppState().configData.storeVersion) {
