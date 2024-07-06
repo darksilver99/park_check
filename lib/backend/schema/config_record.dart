@@ -102,6 +102,21 @@ class ConfigRecord extends FirestoreRecord {
   String get paymentDetailDefaultImage => _paymentDetailDefaultImage ?? '';
   bool hasPaymentDetailDefaultImage() => _paymentDetailDefaultImage != null;
 
+  // "default_text_in_last_slip" field.
+  String? _defaultTextInLastSlip;
+  String get defaultTextInLastSlip => _defaultTextInLastSlip ?? '';
+  bool hasDefaultTextInLastSlip() => _defaultTextInLastSlip != null;
+
+  // "default_more_image_field" field.
+  String? _defaultMoreImageField;
+  String get defaultMoreImageField => _defaultMoreImageField ?? '';
+  bool hasDefaultMoreImageField() => _defaultMoreImageField != null;
+
+  // "default_more_detail_field" field.
+  String? _defaultMoreDetailField;
+  String get defaultMoreDetailField => _defaultMoreDetailField ?? '';
+  bool hasDefaultMoreDetailField() => _defaultMoreDetailField != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -123,6 +138,12 @@ class ConfigRecord extends FirestoreRecord {
         getDataList(snapshotData['payment_alert_default_text']);
     _paymentDetailDefaultImage =
         snapshotData['payment_detail_default_image'] as String?;
+    _defaultTextInLastSlip =
+        snapshotData['default_text_in_last_slip'] as String?;
+    _defaultMoreImageField =
+        snapshotData['default_more_image_field'] as String?;
+    _defaultMoreDetailField =
+        snapshotData['default_more_detail_field'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -168,6 +189,9 @@ Map<String, dynamic> createConfigRecordData({
   String? storeIosLink,
   String? guideUrl,
   String? paymentDetailDefaultImage,
+  String? defaultTextInLastSlip,
+  String? defaultMoreImageField,
+  String? defaultMoreDetailField,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -180,6 +204,9 @@ Map<String, dynamic> createConfigRecordData({
       'store_ios_link': storeIosLink,
       'guide_url': guideUrl,
       'payment_detail_default_image': paymentDetailDefaultImage,
+      'default_text_in_last_slip': defaultTextInLastSlip,
+      'default_more_image_field': defaultMoreImageField,
+      'default_more_detail_field': defaultMoreDetailField,
     }.withoutNulls,
   );
 
@@ -210,7 +237,10 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.guideUrl == e2?.guideUrl &&
         listEquality.equals(
             e1?.paymentAlertDefaultText, e2?.paymentAlertDefaultText) &&
-        e1?.paymentDetailDefaultImage == e2?.paymentDetailDefaultImage;
+        e1?.paymentDetailDefaultImage == e2?.paymentDetailDefaultImage &&
+        e1?.defaultTextInLastSlip == e2?.defaultTextInLastSlip &&
+        e1?.defaultMoreImageField == e2?.defaultMoreImageField &&
+        e1?.defaultMoreDetailField == e2?.defaultMoreDetailField;
   }
 
   @override
@@ -231,7 +261,10 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.storeIosLink,
         e?.guideUrl,
         e?.paymentAlertDefaultText,
-        e?.paymentDetailDefaultImage
+        e?.paymentDetailDefaultImage,
+        e?.defaultTextInLastSlip,
+        e?.defaultMoreImageField,
+        e?.defaultMoreDetailField
       ]);
 
   @override
