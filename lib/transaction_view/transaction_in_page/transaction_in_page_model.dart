@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -17,6 +18,7 @@ import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'transaction_in_page_widget.dart' show TransactionInPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +34,18 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   String? tmpCardImagePath;
 
   String? tmpRegistrationImagePath;
+
+  List<String> tmpMoreImageListPath = [];
+  void addToTmpMoreImageListPath(String item) => tmpMoreImageListPath.add(item);
+  void removeFromTmpMoreImageListPath(String item) =>
+      tmpMoreImageListPath.remove(item);
+  void removeAtIndexFromTmpMoreImageListPath(int index) =>
+      tmpMoreImageListPath.removeAt(index);
+  void insertAtIndexInTmpMoreImageListPath(int index, String item) =>
+      tmpMoreImageListPath.insert(index, item);
+  void updateTmpMoreImageListPathAtIndex(
+          int index, Function(String) updateFn) =>
+      tmpMoreImageListPath[index] = updateFn(tmpMoreImageListPath[index]);
 
   ///  State fields for stateful widgets in this page.
 
@@ -136,6 +150,15 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   TextEditingController? contactAddressTextController;
   String? Function(BuildContext, String?)?
       contactAddressTextControllerValidator;
+  // State field(s) for more_detail widget.
+  FocusNode? moreDetailFocusNode;
+  TextEditingController? moreDetailTextController;
+  String? Function(BuildContext, String?)? moreDetailTextControllerValidator;
+  bool isDataUploading3 = false;
+  FFUploadedFile uploadedLocalFile3 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl3 = '';
+
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   String? registrationImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
@@ -175,5 +198,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
     contactAddressFocusNode?.dispose();
     contactAddressTextController?.dispose();
+
+    moreDetailFocusNode?.dispose();
+    moreDetailTextController?.dispose();
   }
 }
