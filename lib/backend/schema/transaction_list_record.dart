@@ -106,6 +106,16 @@ class TransactionListRecord extends FirestoreRecord {
   String get registrationImage => _registrationImage ?? '';
   bool hasRegistrationImage() => _registrationImage != null;
 
+  // "more_detail" field.
+  String? _moreDetail;
+  String get moreDetail => _moreDetail ?? '';
+  bool hasMoreDetail() => _moreDetail != null;
+
+  // "more_image" field.
+  String? _moreImage;
+  String get moreImage => _moreImage ?? '';
+  bool hasMoreImage() => _moreImage != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _cardNumber = snapshotData['card_number'] as String?;
@@ -126,6 +136,8 @@ class TransactionListRecord extends FirestoreRecord {
     _allRegistrationData = snapshotData['all_registration_data'] as String?;
     _cardImage = snapshotData['card_image'] as String?;
     _registrationImage = snapshotData['registration_image'] as String?;
+    _moreDetail = snapshotData['more_detail'] as String?;
+    _moreImage = snapshotData['more_image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -181,6 +193,8 @@ Map<String, dynamic> createTransactionListRecordData({
   String? allRegistrationData,
   String? cardImage,
   String? registrationImage,
+  String? moreDetail,
+  String? moreImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -202,6 +216,8 @@ Map<String, dynamic> createTransactionListRecordData({
       'all_registration_data': allRegistrationData,
       'card_image': cardImage,
       'registration_image': registrationImage,
+      'more_detail': moreDetail,
+      'more_image': moreImage,
     }.withoutNulls,
   );
 
@@ -231,7 +247,9 @@ class TransactionListRecordDocumentEquality
         e1?.allCardData == e2?.allCardData &&
         e1?.allRegistrationData == e2?.allRegistrationData &&
         e1?.cardImage == e2?.cardImage &&
-        e1?.registrationImage == e2?.registrationImage;
+        e1?.registrationImage == e2?.registrationImage &&
+        e1?.moreDetail == e2?.moreDetail &&
+        e1?.moreImage == e2?.moreImage;
   }
 
   @override
@@ -253,7 +271,9 @@ class TransactionListRecordDocumentEquality
         e?.allCardData,
         e?.allRegistrationData,
         e?.cardImage,
-        e?.registrationImage
+        e?.registrationImage,
+        e?.moreDetail,
+        e?.moreImage
       ]);
 
   @override

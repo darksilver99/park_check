@@ -26,6 +26,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
     String? guideUrl,
     List<String>? paymentAlertDefaultText,
     String? paymentDetailDefaultImage,
+    String? defaultTextInLastSlip,
+    String? defaultMoreDetailField,
+    String? defaultMoreImageField,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -43,6 +46,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _guideUrl = guideUrl,
         _paymentAlertDefaultText = paymentAlertDefaultText,
         _paymentDetailDefaultImage = paymentDetailDefaultImage,
+        _defaultTextInLastSlip = defaultTextInLastSlip,
+        _defaultMoreDetailField = defaultMoreDetailField,
+        _defaultMoreImageField = defaultMoreImageField,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -198,6 +204,27 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasPaymentDetailDefaultImage() => _paymentDetailDefaultImage != null;
 
+  // "default_text_in_last_slip" field.
+  String? _defaultTextInLastSlip;
+  String get defaultTextInLastSlip => _defaultTextInLastSlip ?? '';
+  set defaultTextInLastSlip(String? val) => _defaultTextInLastSlip = val;
+
+  bool hasDefaultTextInLastSlip() => _defaultTextInLastSlip != null;
+
+  // "default_more_detail_field" field.
+  String? _defaultMoreDetailField;
+  String get defaultMoreDetailField => _defaultMoreDetailField ?? '';
+  set defaultMoreDetailField(String? val) => _defaultMoreDetailField = val;
+
+  bool hasDefaultMoreDetailField() => _defaultMoreDetailField != null;
+
+  // "default_more_image_field" field.
+  String? _defaultMoreImageField;
+  String get defaultMoreImageField => _defaultMoreImageField ?? '';
+  set defaultMoreImageField(String? val) => _defaultMoreImageField = val;
+
+  bool hasDefaultMoreImageField() => _defaultMoreImageField != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -219,6 +246,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
             getDataList(data['payment_alert_default_text']),
         paymentDetailDefaultImage:
             data['payment_detail_default_image'] as String?,
+        defaultTextInLastSlip: data['default_text_in_last_slip'] as String?,
+        defaultMoreDetailField: data['default_more_detail_field'] as String?,
+        defaultMoreImageField: data['default_more_image_field'] as String?,
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -242,6 +272,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'guide_url': _guideUrl,
         'payment_alert_default_text': _paymentAlertDefaultText,
         'payment_detail_default_image': _paymentDetailDefaultImage,
+        'default_text_in_last_slip': _defaultTextInLastSlip,
+        'default_more_detail_field': _defaultMoreDetailField,
+        'default_more_image_field': _defaultMoreImageField,
       }.withoutNulls;
 
   @override
@@ -316,6 +349,18 @@ class ConfigDataStruct extends FFFirebaseStruct {
         ),
         'payment_detail_default_image': serializeParam(
           _paymentDetailDefaultImage,
+          ParamType.String,
+        ),
+        'default_text_in_last_slip': serializeParam(
+          _defaultTextInLastSlip,
+          ParamType.String,
+        ),
+        'default_more_detail_field': serializeParam(
+          _defaultMoreDetailField,
+          ParamType.String,
+        ),
+        'default_more_image_field': serializeParam(
+          _defaultMoreImageField,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -402,6 +447,21 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        defaultTextInLastSlip: deserializeParam(
+          data['default_text_in_last_slip'],
+          ParamType.String,
+          false,
+        ),
+        defaultMoreDetailField: deserializeParam(
+          data['default_more_detail_field'],
+          ParamType.String,
+          false,
+        ),
+        defaultMoreImageField: deserializeParam(
+          data['default_more_image_field'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -427,7 +487,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         guideUrl == other.guideUrl &&
         listEquality.equals(
             paymentAlertDefaultText, other.paymentAlertDefaultText) &&
-        paymentDetailDefaultImage == other.paymentDetailDefaultImage;
+        paymentDetailDefaultImage == other.paymentDetailDefaultImage &&
+        defaultTextInLastSlip == other.defaultTextInLastSlip &&
+        defaultMoreDetailField == other.defaultMoreDetailField &&
+        defaultMoreImageField == other.defaultMoreImageField;
   }
 
   @override
@@ -447,7 +510,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeIosLink,
         guideUrl,
         paymentAlertDefaultText,
-        paymentDetailDefaultImage
+        paymentDetailDefaultImage,
+        defaultTextInLastSlip,
+        defaultMoreDetailField,
+        defaultMoreImageField
       ]);
 }
 
@@ -460,6 +526,9 @@ ConfigDataStruct createConfigDataStruct({
   String? storeIosLink,
   String? guideUrl,
   String? paymentDetailDefaultImage,
+  String? defaultTextInLastSlip,
+  String? defaultMoreDetailField,
+  String? defaultMoreImageField,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -474,6 +543,9 @@ ConfigDataStruct createConfigDataStruct({
       storeIosLink: storeIosLink,
       guideUrl: guideUrl,
       paymentDetailDefaultImage: paymentDetailDefaultImage,
+      defaultTextInLastSlip: defaultTextInLastSlip,
+      defaultMoreDetailField: defaultMoreDetailField,
+      defaultMoreImageField: defaultMoreImageField,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

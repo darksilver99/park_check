@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/component/loading_view/loading_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -306,6 +305,17 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               paymentDetailImage: FFAppState()
                                                   .configData
                                                   .paymentDetailDefaultImage,
+                                              textInLastSlip: FFAppState()
+                                                  .configData
+                                                  .defaultTextInLastSlip,
+                                              enableMoreDetail: false,
+                                              enableMoreImage: false,
+                                              moreDetailField: FFAppState()
+                                                  .configData
+                                                  .defaultMoreDetailField,
+                                              moreImageField: FFAppState()
+                                                  .configData
+                                                  .defaultMoreImageField,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -347,6 +357,17 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               paymentDetailImage: FFAppState()
                                                   .configData
                                                   .paymentDetailDefaultImage,
+                                              textInLastSlip: FFAppState()
+                                                  .configData
+                                                  .defaultTextInLastSlip,
+                                              enableMoreDetail: false,
+                                              enableMoreImage: false,
+                                              moreDetailField: FFAppState()
+                                                  .configData
+                                                  .defaultMoreDetailField,
+                                              moreImageField: FFAppState()
+                                                  .configData
+                                                  .defaultMoreImageField,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -366,36 +387,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               },
                                             ),
                                           }, projectListRecordReference);
-                                          FFAppState().projectData =
-                                              ProjectDataStruct(
-                                            projectDocID: _model
-                                                .projectInserted?.reference.id,
-                                            projectName:
-                                                _model.textController.text,
-                                            projectStampList: _model
-                                                .projectInserted?.stampList,
-                                            projectObjectiveList: _model
-                                                .projectInserted?.objectiveList,
-                                            projectCarList:
-                                                _model.projectInserted?.carList,
-                                            projectType: _model
-                                                .projectInserted?.projectType,
-                                            stampField: _model
-                                                .projectInserted?.stampField,
-                                            projectReference: _model
-                                                .projectInserted?.reference,
-                                            enableContactAddress: true,
-                                            backgroundImage: _model
-                                                .projectInserted
-                                                ?.backgroundImage,
-                                            expireDate: _model
-                                                .projectInserted?.expireDate,
-                                            paymentDetailImage: _model
-                                                .projectInserted
-                                                ?.paymentDetailImage,
-                                            paymentAlertText: _model
-                                                .projectInserted
-                                                ?.paymentAlertText,
+                                          await action_blocks.createProjectData(
+                                            context,
+                                            projectData: _model.projectInserted,
                                           );
 
                                           context.goNamed('HomePage');

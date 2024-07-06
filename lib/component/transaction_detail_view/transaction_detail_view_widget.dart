@@ -339,10 +339,23 @@ class _TransactionDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'ที่อยู่ที่มาติดต่อ : ${valueOrDefault<String>(
-                                    widget.transactionParameter?.contactAddress,
-                                    '-',
-                                  )}',
+                                  'ที่อยู่ที่มาติดต่อ : ${widget.transactionParameter?.contactAddress}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            if (FFAppState().projectData.enableMoreDetail)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Text(
+                                  '${FFAppState().projectData.moreDetailField} : ${widget.transactionParameter?.moreDetail}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -385,7 +398,7 @@ class _TransactionDetailViewWidgetState
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 32.0),
+                                  0.0, 0.0, 0.0, 16.0),
                               child: Container(
                                 width: double.infinity,
                                 height: 100.0,
@@ -398,6 +411,29 @@ class _TransactionDetailViewWidgetState
                                   ),
                                 ),
                               ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (FFAppState().projectData.textInLastSlip !=
+                                        null &&
+                                    FFAppState().projectData.textInLastSlip !=
+                                        '')
+                                  Expanded(
+                                    child: Text(
+                                      FFAppState().projectData.textInLastSlip,
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),

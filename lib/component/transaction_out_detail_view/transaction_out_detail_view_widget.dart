@@ -357,6 +357,22 @@ class _TransactionOutDetailViewWidgetState
                                       ),
                                 ),
                               ),
+                            if (FFAppState().projectData.enableMoreDetail)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: Text(
+                                  '${FFAppState().projectData.moreDetailField} : ${widget.transactionParameter?.moreDetail}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
@@ -378,201 +394,238 @@ class _TransactionOutDetailViewWidgetState
                             Builder(
                               builder: (context) {
                                 if (!widget.transactionParameter!.isOut) {
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'เวลาออก : ${functions.dateTimeTh(getCurrentTimestamp)}',
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            'เวลาออก : ${functions.dateTimeTh(getCurrentTimestamp)}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, getCurrentTimestamp)}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        Text(
+                                          FFAppState().projectData.stampField,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, getCurrentTimestamp)}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 24.0,
+                                                fontSize: 18.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
-                                      ),
-                                      Text(
-                                        FFAppState().projectData.stampField,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      FlutterFlowChoiceChips(
-                                        options: FFAppState()
-                                            .projectData
-                                            .projectStampList
-                                            .map((label) => ChipData(label))
-                                            .toList(),
-                                        onChanged: (val) => setState(() =>
-                                            _model.stampSelectedValue =
-                                                val?.firstOrNull),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          iconSize: 18.0,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          elevation: 4.0,
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          borderWidth: 2.0,
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
+                                        FlutterFlowChoiceChips(
+                                          options: FFAppState()
+                                              .projectData
+                                              .projectStampList
+                                              .map((label) => ChipData(label))
+                                              .toList(),
+                                          onChanged: (val) => setState(() =>
+                                              _model.stampSelectedValue =
+                                                  val?.firstOrNull),
+                                          selectedChipStyle: ChipStyle(
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 18.0,
+                                            labelPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            elevation: 4.0,
+                                            borderColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            borderWidth: 2.0,
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          unselectedChipStyle: ChipStyle(
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                            iconSize: 18.0,
+                                            labelPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            elevation: 0.0,
+                                            borderColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
+                                            borderWidth: 2.0,
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          chipSpacing: 12.0,
+                                          rowSpacing: 12.0,
+                                          multiselect: false,
+                                          alignment: WrapAlignment.start,
+                                          controller: _model
+                                                  .stampSelectedValueController ??=
+                                              FormFieldController<List<String>>(
+                                            [],
+                                          ),
+                                          wrapped: true,
                                         ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                          iconSize: 18.0,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          elevation: 0.0,
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          borderWidth: 2.0,
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        chipSpacing: 12.0,
-                                        rowSpacing: 12.0,
-                                        multiselect: false,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .stampSelectedValueController ??=
-                                            FormFieldController<List<String>>(
-                                          [],
-                                        ),
-                                        wrapped: true,
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   );
                                 } else {
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'เวลาออก : ${functions.dateTimeTh(widget.transactionParameter!.dateOut!)}',
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            'เวลาออก : ${functions.dateTimeTh(widget.transactionParameter!.dateOut!)}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, widget.transactionParameter!.dateOut!)}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        Text(
+                                          'ตราประทับ : ${widget.transactionParameter?.stamp}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, widget.transactionParameter!.dateOut!)}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 24.0,
+                                                fontSize: 18.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
-                                      ),
-                                      Text(
-                                        'ตราประทับ : ${widget.transactionParameter?.stamp}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   );
                                 }
                               },
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (FFAppState().projectData.textInLastSlip !=
+                                        null &&
+                                    FFAppState().projectData.textInLastSlip !=
+                                        '')
+                                  Expanded(
+                                    child: Text(
+                                      FFAppState().projectData.textInLastSlip,
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),

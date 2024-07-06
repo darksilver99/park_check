@@ -24,6 +24,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
     DateTime? expireDate,
     String? paymentDetailImage,
     List<String>? paymentAlertText,
+    bool? enableMoreImage,
+    bool? enableMoreDetail,
+    String? moreDetailField,
+    String? moreImageField,
+    String? textInLastSlip,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -39,6 +44,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _expireDate = expireDate,
         _paymentDetailImage = paymentDetailImage,
         _paymentAlertText = paymentAlertText,
+        _enableMoreImage = enableMoreImage,
+        _enableMoreDetail = enableMoreDetail,
+        _moreDetailField = moreDetailField,
+        _moreImageField = moreImageField,
+        _textInLastSlip = textInLastSlip,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -158,6 +168,41 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasPaymentAlertText() => _paymentAlertText != null;
 
+  // "enable_more_image" field.
+  bool? _enableMoreImage;
+  bool get enableMoreImage => _enableMoreImage ?? false;
+  set enableMoreImage(bool? val) => _enableMoreImage = val;
+
+  bool hasEnableMoreImage() => _enableMoreImage != null;
+
+  // "enable_more_detail" field.
+  bool? _enableMoreDetail;
+  bool get enableMoreDetail => _enableMoreDetail ?? false;
+  set enableMoreDetail(bool? val) => _enableMoreDetail = val;
+
+  bool hasEnableMoreDetail() => _enableMoreDetail != null;
+
+  // "more_detail_field" field.
+  String? _moreDetailField;
+  String get moreDetailField => _moreDetailField ?? '';
+  set moreDetailField(String? val) => _moreDetailField = val;
+
+  bool hasMoreDetailField() => _moreDetailField != null;
+
+  // "more_image_field" field.
+  String? _moreImageField;
+  String get moreImageField => _moreImageField ?? '';
+  set moreImageField(String? val) => _moreImageField = val;
+
+  bool hasMoreImageField() => _moreImageField != null;
+
+  // "text_in_last_slip" field.
+  String? _textInLastSlip;
+  String get textInLastSlip => _textInLastSlip ?? '';
+  set textInLastSlip(String? val) => _textInLastSlip = val;
+
+  bool hasTextInLastSlip() => _textInLastSlip != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -174,6 +219,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         expireDate: data['expire_date'] as DateTime?,
         paymentDetailImage: data['payment_detail_image'] as String?,
         paymentAlertText: getDataList(data['payment_alert_text']),
+        enableMoreImage: data['enable_more_image'] as bool?,
+        enableMoreDetail: data['enable_more_detail'] as bool?,
+        moreDetailField: data['more_detail_field'] as String?,
+        moreImageField: data['more_image_field'] as String?,
+        textInLastSlip: data['text_in_last_slip'] as String?,
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -195,6 +245,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'expire_date': _expireDate,
         'payment_detail_image': _paymentDetailImage,
         'payment_alert_text': _paymentAlertText,
+        'enable_more_image': _enableMoreImage,
+        'enable_more_detail': _enableMoreDetail,
+        'more_detail_field': _moreDetailField,
+        'more_image_field': _moreImageField,
+        'text_in_last_slip': _textInLastSlip,
       }.withoutNulls;
 
   @override
@@ -258,6 +313,26 @@ class ProjectDataStruct extends FFFirebaseStruct {
           _paymentAlertText,
           ParamType.String,
           isList: true,
+        ),
+        'enable_more_image': serializeParam(
+          _enableMoreImage,
+          ParamType.bool,
+        ),
+        'enable_more_detail': serializeParam(
+          _enableMoreDetail,
+          ParamType.bool,
+        ),
+        'more_detail_field': serializeParam(
+          _moreDetailField,
+          ParamType.String,
+        ),
+        'more_image_field': serializeParam(
+          _moreImageField,
+          ParamType.String,
+        ),
+        'text_in_last_slip': serializeParam(
+          _textInLastSlip,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -334,6 +409,31 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
+        enableMoreImage: deserializeParam(
+          data['enable_more_image'],
+          ParamType.bool,
+          false,
+        ),
+        enableMoreDetail: deserializeParam(
+          data['enable_more_detail'],
+          ParamType.bool,
+          false,
+        ),
+        moreDetailField: deserializeParam(
+          data['more_detail_field'],
+          ParamType.String,
+          false,
+        ),
+        moreImageField: deserializeParam(
+          data['more_image_field'],
+          ParamType.String,
+          false,
+        ),
+        textInLastSlip: deserializeParam(
+          data['text_in_last_slip'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -356,7 +456,12 @@ class ProjectDataStruct extends FFFirebaseStruct {
         backgroundImage == other.backgroundImage &&
         expireDate == other.expireDate &&
         paymentDetailImage == other.paymentDetailImage &&
-        listEquality.equals(paymentAlertText, other.paymentAlertText);
+        listEquality.equals(paymentAlertText, other.paymentAlertText) &&
+        enableMoreImage == other.enableMoreImage &&
+        enableMoreDetail == other.enableMoreDetail &&
+        moreDetailField == other.moreDetailField &&
+        moreImageField == other.moreImageField &&
+        textInLastSlip == other.textInLastSlip;
   }
 
   @override
@@ -374,7 +479,12 @@ class ProjectDataStruct extends FFFirebaseStruct {
         backgroundImage,
         expireDate,
         paymentDetailImage,
-        paymentAlertText
+        paymentAlertText,
+        enableMoreImage,
+        enableMoreDetail,
+        moreDetailField,
+        moreImageField,
+        textInLastSlip
       ]);
 }
 
@@ -389,6 +499,11 @@ ProjectDataStruct createProjectDataStruct({
   int? backgroundImage,
   DateTime? expireDate,
   String? paymentDetailImage,
+  bool? enableMoreImage,
+  bool? enableMoreDetail,
+  String? moreDetailField,
+  String? moreImageField,
+  String? textInLastSlip,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -405,6 +520,11 @@ ProjectDataStruct createProjectDataStruct({
       backgroundImage: backgroundImage,
       expireDate: expireDate,
       paymentDetailImage: paymentDetailImage,
+      enableMoreImage: enableMoreImage,
+      enableMoreDetail: enableMoreDetail,
+      moreDetailField: moreDetailField,
+      moreImageField: moreImageField,
+      textInLastSlip: textInLastSlip,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

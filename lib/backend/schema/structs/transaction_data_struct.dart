@@ -24,6 +24,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
     String? preName,
     String? stamp,
     String? contactAddress,
+    String? moreImage,
+    String? moreDetail,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _carRegistration = carRegistration,
         _carRegistrationProvince = carRegistrationProvince,
@@ -39,6 +41,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
         _preName = preName,
         _stamp = stamp,
         _contactAddress = contactAddress,
+        _moreImage = moreImage,
+        _moreDetail = moreDetail,
         super(firestoreUtilData);
 
   // "car_registration" field.
@@ -139,6 +143,20 @@ class TransactionDataStruct extends FFFirebaseStruct {
 
   bool hasContactAddress() => _contactAddress != null;
 
+  // "more_image" field.
+  String? _moreImage;
+  String get moreImage => _moreImage ?? '';
+  set moreImage(String? val) => _moreImage = val;
+
+  bool hasMoreImage() => _moreImage != null;
+
+  // "more_detail" field.
+  String? _moreDetail;
+  String get moreDetail => _moreDetail ?? '';
+  set moreDetail(String? val) => _moreDetail = val;
+
+  bool hasMoreDetail() => _moreDetail != null;
+
   static TransactionDataStruct fromMap(Map<String, dynamic> data) =>
       TransactionDataStruct(
         carRegistration: data['car_registration'] as String?,
@@ -155,6 +173,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
         preName: data['pre_name'] as String?,
         stamp: data['stamp'] as String?,
         contactAddress: data['contact_address'] as String?,
+        moreImage: data['more_image'] as String?,
+        moreDetail: data['more_detail'] as String?,
       );
 
   static TransactionDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -176,6 +196,8 @@ class TransactionDataStruct extends FFFirebaseStruct {
         'pre_name': _preName,
         'stamp': _stamp,
         'contact_address': _contactAddress,
+        'more_image': _moreImage,
+        'more_detail': _moreDetail,
       }.withoutNulls;
 
   @override
@@ -234,6 +256,14 @@ class TransactionDataStruct extends FFFirebaseStruct {
         ),
         'contact_address': serializeParam(
           _contactAddress,
+          ParamType.String,
+        ),
+        'more_image': serializeParam(
+          _moreImage,
+          ParamType.String,
+        ),
+        'more_detail': serializeParam(
+          _moreDetail,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -310,6 +340,16 @@ class TransactionDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        moreImage: deserializeParam(
+          data['more_image'],
+          ParamType.String,
+          false,
+        ),
+        moreDetail: deserializeParam(
+          data['more_detail'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -331,7 +371,9 @@ class TransactionDataStruct extends FFFirebaseStruct {
         objective == other.objective &&
         preName == other.preName &&
         stamp == other.stamp &&
-        contactAddress == other.contactAddress;
+        contactAddress == other.contactAddress &&
+        moreImage == other.moreImage &&
+        moreDetail == other.moreDetail;
   }
 
   @override
@@ -349,7 +391,9 @@ class TransactionDataStruct extends FFFirebaseStruct {
         objective,
         preName,
         stamp,
-        contactAddress
+        contactAddress,
+        moreImage,
+        moreDetail
       ]);
 }
 
@@ -368,6 +412,8 @@ TransactionDataStruct createTransactionDataStruct({
   String? preName,
   String? stamp,
   String? contactAddress,
+  String? moreImage,
+  String? moreDetail,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -388,6 +434,8 @@ TransactionDataStruct createTransactionDataStruct({
       preName: preName,
       stamp: stamp,
       contactAddress: contactAddress,
+      moreImage: moreImage,
+      moreDetail: moreDetail,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

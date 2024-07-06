@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/loading_list_view/loading_list_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
@@ -54,21 +53,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.projectData?.reference != null) {
-        FFAppState().projectData = ProjectDataStruct(
-          projectDocID: _model.projectData?.reference.id,
-          projectName: _model.projectData?.name,
-          projectStampList: _model.projectData?.stampList,
-          projectObjectiveList: _model.projectData?.objectiveList,
-          projectCarList: _model.projectData?.carList,
-          projectType: _model.projectData?.projectType,
-          stampField: _model.projectData?.stampField,
-          projectReference: _model.projectData?.reference,
-          enableContactAddress: _model.projectData?.enableContactAddress,
-          logo: _model.projectData?.logo,
-          backgroundImage: _model.projectData?.backgroundImage,
-          expireDate: _model.projectData?.expireDate,
-          paymentDetailImage: _model.projectData?.paymentDetailImage,
-          paymentAlertText: _model.projectData?.paymentAlertText,
+        await action_blocks.createProjectData(
+          context,
+          projectData: _model.projectData,
         );
         await action_blocks.getConfigData(context);
         if (FFAppState().appBuildVersion >=
@@ -693,6 +680,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .info,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                   ),
@@ -823,6 +811,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .info,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                   ),

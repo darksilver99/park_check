@@ -30,5 +30,35 @@ Future getConfigData(BuildContext context) async {
     guideUrl: configResult?.guideUrl,
     paymentAlertDefaultText: configResult?.paymentAlertDefaultText,
     paymentDetailDefaultImage: configResult?.paymentDetailDefaultImage,
+    defaultTextInLastSlip: configResult?.defaultTextInLastSlip,
+    defaultMoreDetailField: configResult?.defaultMoreDetailField,
+    defaultMoreImageField: configResult?.defaultMoreImageField,
+  );
+}
+
+Future createProjectData(
+  BuildContext context, {
+  required ProjectListRecord? projectData,
+}) async {
+  FFAppState().projectData = ProjectDataStruct(
+    projectDocID: projectData?.reference.id,
+    projectName: projectData?.name,
+    projectStampList: projectData?.stampList,
+    projectObjectiveList: projectData?.objectiveList,
+    projectCarList: projectData?.carList,
+    projectType: projectData?.projectType,
+    stampField: projectData?.stampField,
+    projectReference: projectData?.reference,
+    enableContactAddress: projectData?.enableContactAddress,
+    logo: projectData?.logo,
+    backgroundImage: projectData?.backgroundImage,
+    expireDate: projectData?.expireDate,
+    paymentDetailImage: projectData?.paymentDetailImage,
+    paymentAlertText: projectData?.paymentAlertText,
+    enableMoreImage: projectData?.enableMoreImage,
+    enableMoreDetail: projectData?.enableMoreDetail,
+    moreDetailField: projectData?.moreDetailField,
+    moreImageField: projectData?.moreImageField,
+    textInLastSlip: projectData?.textInLastSlip,
   );
 }
