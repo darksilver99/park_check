@@ -112,8 +112,8 @@ class TransactionListRecord extends FirestoreRecord {
   bool hasMoreDetail() => _moreDetail != null;
 
   // "more_image" field.
-  String? _moreImage;
-  String get moreImage => _moreImage ?? '';
+  List<String>? _moreImage;
+  List<String> get moreImage => _moreImage ?? const [];
   bool hasMoreImage() => _moreImage != null;
 
   void _initializeFields() {
@@ -137,7 +137,7 @@ class TransactionListRecord extends FirestoreRecord {
     _cardImage = snapshotData['card_image'] as String?;
     _registrationImage = snapshotData['registration_image'] as String?;
     _moreDetail = snapshotData['more_detail'] as String?;
-    _moreImage = snapshotData['more_image'] as String?;
+    _moreImage = getDataList(snapshotData['more_image']);
   }
 
   static CollectionReference get collection =>
@@ -194,7 +194,6 @@ Map<String, dynamic> createTransactionListRecordData({
   String? cardImage,
   String? registrationImage,
   String? moreDetail,
-  String? moreImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -217,7 +216,6 @@ Map<String, dynamic> createTransactionListRecordData({
       'card_image': cardImage,
       'registration_image': registrationImage,
       'more_detail': moreDetail,
-      'more_image': moreImage,
     }.withoutNulls,
   );
 
@@ -230,6 +228,7 @@ class TransactionListRecordDocumentEquality
 
   @override
   bool equals(TransactionListRecord? e1, TransactionListRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.createDate == e2?.createDate &&
         e1?.cardNumber == e2?.cardNumber &&
         e1?.preName == e2?.preName &&
@@ -249,7 +248,7 @@ class TransactionListRecordDocumentEquality
         e1?.cardImage == e2?.cardImage &&
         e1?.registrationImage == e2?.registrationImage &&
         e1?.moreDetail == e2?.moreDetail &&
-        e1?.moreImage == e2?.moreImage;
+        listEquality.equals(e1?.moreImage, e2?.moreImage);
   }
 
   @override
