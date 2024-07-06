@@ -81,6 +81,21 @@ class ProjectListRecord extends FirestoreRecord {
   bool get enableContactAddress => _enableContactAddress ?? false;
   bool hasEnableContactAddress() => _enableContactAddress != null;
 
+  // "expire_date" field.
+  DateTime? _expireDate;
+  DateTime? get expireDate => _expireDate;
+  bool hasExpireDate() => _expireDate != null;
+
+  // "payment_detail_image" field.
+  String? _paymentDetailImage;
+  String get paymentDetailImage => _paymentDetailImage ?? '';
+  bool hasPaymentDetailImage() => _paymentDetailImage != null;
+
+  // "payment_alert_text" field.
+  List<String>? _paymentAlertText;
+  List<String> get paymentAlertText => _paymentAlertText ?? const [];
+  bool hasPaymentAlertText() => _paymentAlertText != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -95,6 +110,9 @@ class ProjectListRecord extends FirestoreRecord {
     _logo = snapshotData['logo'] as String?;
     _backgroundImage = castToType<int>(snapshotData['background_image']);
     _enableContactAddress = snapshotData['enable_contact_address'] as bool?;
+    _expireDate = snapshotData['expire_date'] as DateTime?;
+    _paymentDetailImage = snapshotData['payment_detail_image'] as String?;
+    _paymentAlertText = getDataList(snapshotData['payment_alert_text']);
   }
 
   static CollectionReference get collection =>
@@ -142,6 +160,8 @@ Map<String, dynamic> createProjectListRecordData({
   String? logo,
   int? backgroundImage,
   bool? enableContactAddress,
+  DateTime? expireDate,
+  String? paymentDetailImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -155,6 +175,8 @@ Map<String, dynamic> createProjectListRecordData({
       'logo': logo,
       'background_image': backgroundImage,
       'enable_contact_address': enableContactAddress,
+      'expire_date': expireDate,
+      'payment_detail_image': paymentDetailImage,
     }.withoutNulls,
   );
 
@@ -179,7 +201,10 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.updateDate == e2?.updateDate &&
         e1?.logo == e2?.logo &&
         e1?.backgroundImage == e2?.backgroundImage &&
-        e1?.enableContactAddress == e2?.enableContactAddress;
+        e1?.enableContactAddress == e2?.enableContactAddress &&
+        e1?.expireDate == e2?.expireDate &&
+        e1?.paymentDetailImage == e2?.paymentDetailImage &&
+        listEquality.equals(e1?.paymentAlertText, e2?.paymentAlertText);
   }
 
   @override
@@ -196,7 +221,10 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.updateDate,
         e?.logo,
         e?.backgroundImage,
-        e?.enableContactAddress
+        e?.enableContactAddress,
+        e?.expireDate,
+        e?.paymentDetailImage,
+        e?.paymentAlertText
       ]);
 
   @override

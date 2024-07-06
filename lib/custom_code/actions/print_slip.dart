@@ -1,6 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
@@ -35,14 +36,12 @@ Future<PrintStatusDataStruct> printSlip(dynamic imageSlip) async {
   final bytes = await imageSlip.capture();
   String base64Image = base64Encode(bytes!.toList());
   list.add(LineText(
-    type: LineText.TYPE_IMAGE,
-    content: base64Image,
-    align: LineText.ALIGN_CENTER,
-    width: 400,
-    size: 1,
-    weight: 1,
-    linefeed: 1,
-  ));
+      type: LineText.TYPE_IMAGE,
+      content: base64Image,
+      align: LineText.ALIGN_CENTER,
+      width: 400,
+      size: 1,
+      weight: 1));
 
   await bluetoothPrint.printReceipt(config, list);
 

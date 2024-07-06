@@ -103,3 +103,9 @@ String dateTh(DateTime date) {
 DocumentReference configReference() {
   return FirebaseFirestore.instance.doc("config/park_car_app");
 }
+
+DateTime getNextDay(int nextDay) {
+  DateTime currentDate = DateTime.now();
+  DateTime futureDate = currentDate.add(Duration(days: nextDay));
+  return futureDate;
+}
