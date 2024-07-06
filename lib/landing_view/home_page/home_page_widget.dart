@@ -10,6 +10,7 @@ import '/component/transaction_out_detail_view/transaction_out_detail_view_widge
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -66,18 +67,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           logo: _model.projectData?.logo,
           backgroundImage: _model.projectData?.backgroundImage,
         );
-        _model.config =
-            await ConfigRecord.getDocumentOnce(functions.configReference());
-        FFAppState().configData = ConfigDataStruct(
-          ocrApi: _model.config?.ocrApi,
-          ocrAlertText: _model.config?.ocrAlertText,
-          ocrErrorText: _model.config?.ocrErrorText,
-          provinceList: _model.config?.provinceList,
-          storeVersion: _model.config?.storeVersion,
-          storeAndroidLink: _model.config?.storeAndroidLink,
-          storeIosLink: _model.config?.storeIosLink,
-          guideUrl: _model.config?.guideUrl,
-        );
+        await action_blocks.getConfigData(context);
         if (FFAppState().appBuildVersion >=
             FFAppState().configData.storeVersion) {
           _model.rsDataList = await queryTransactionListRecordOnce(

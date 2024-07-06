@@ -24,7 +24,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
     String? storeAndroidLink,
     String? storeIosLink,
     String? guideUrl,
-    List<String>? paymentAlertText,
+    List<String>? paymentAlertDefaultText,
+    String? paymentDetailDefaultImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -40,7 +41,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _storeAndroidLink = storeAndroidLink,
         _storeIosLink = storeIosLink,
         _guideUrl = guideUrl,
-        _paymentAlertText = paymentAlertText,
+        _paymentAlertDefaultText = paymentAlertDefaultText,
+        _paymentDetailDefaultImage = paymentDetailDefaultImage,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -175,16 +177,26 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasGuideUrl() => _guideUrl != null;
 
-  // "payment_alert_text" field.
-  List<String>? _paymentAlertText;
-  List<String> get paymentAlertText => _paymentAlertText ?? const [];
-  set paymentAlertText(List<String>? val) => _paymentAlertText = val;
+  // "payment_alert_default_text" field.
+  List<String>? _paymentAlertDefaultText;
+  List<String> get paymentAlertDefaultText =>
+      _paymentAlertDefaultText ?? const [];
+  set paymentAlertDefaultText(List<String>? val) =>
+      _paymentAlertDefaultText = val;
 
-  void updatePaymentAlertText(Function(List<String>) updateFn) {
-    updateFn(_paymentAlertText ??= []);
+  void updatePaymentAlertDefaultText(Function(List<String>) updateFn) {
+    updateFn(_paymentAlertDefaultText ??= []);
   }
 
-  bool hasPaymentAlertText() => _paymentAlertText != null;
+  bool hasPaymentAlertDefaultText() => _paymentAlertDefaultText != null;
+
+  // "payment_detail_default_image" field.
+  String? _paymentDetailDefaultImage;
+  String get paymentDetailDefaultImage => _paymentDetailDefaultImage ?? '';
+  set paymentDetailDefaultImage(String? val) =>
+      _paymentDetailDefaultImage = val;
+
+  bool hasPaymentDetailDefaultImage() => _paymentDetailDefaultImage != null;
 
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
@@ -203,7 +215,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeAndroidLink: data['store_android_link'] as String?,
         storeIosLink: data['store_ios_link'] as String?,
         guideUrl: data['guide_url'] as String?,
-        paymentAlertText: getDataList(data['payment_alert_text']),
+        paymentAlertDefaultText:
+            getDataList(data['payment_alert_default_text']),
+        paymentDetailDefaultImage:
+            data['payment_detail_default_image'] as String?,
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -225,7 +240,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'store_android_link': _storeAndroidLink,
         'store_ios_link': _storeIosLink,
         'guide_url': _guideUrl,
-        'payment_alert_text': _paymentAlertText,
+        'payment_alert_default_text': _paymentAlertDefaultText,
+        'payment_detail_default_image': _paymentDetailDefaultImage,
       }.withoutNulls;
 
   @override
@@ -293,10 +309,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
           _guideUrl,
           ParamType.String,
         ),
-        'payment_alert_text': serializeParam(
-          _paymentAlertText,
+        'payment_alert_default_text': serializeParam(
+          _paymentAlertDefaultText,
           ParamType.String,
           isList: true,
+        ),
+        'payment_detail_default_image': serializeParam(
+          _paymentDetailDefaultImage,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -372,10 +392,15 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        paymentAlertText: deserializeParam<String>(
-          data['payment_alert_text'],
+        paymentAlertDefaultText: deserializeParam<String>(
+          data['payment_alert_default_text'],
           ParamType.String,
           true,
+        ),
+        paymentDetailDefaultImage: deserializeParam(
+          data['payment_detail_default_image'],
+          ParamType.String,
+          false,
         ),
       );
 
@@ -400,7 +425,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeAndroidLink == other.storeAndroidLink &&
         storeIosLink == other.storeIosLink &&
         guideUrl == other.guideUrl &&
-        listEquality.equals(paymentAlertText, other.paymentAlertText);
+        listEquality.equals(
+            paymentAlertDefaultText, other.paymentAlertDefaultText) &&
+        paymentDetailDefaultImage == other.paymentDetailDefaultImage;
   }
 
   @override
@@ -419,7 +446,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeAndroidLink,
         storeIosLink,
         guideUrl,
-        paymentAlertText
+        paymentAlertDefaultText,
+        paymentDetailDefaultImage
       ]);
 }
 
@@ -431,6 +459,7 @@ ConfigDataStruct createConfigDataStruct({
   String? storeAndroidLink,
   String? storeIosLink,
   String? guideUrl,
+  String? paymentDetailDefaultImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -444,6 +473,7 @@ ConfigDataStruct createConfigDataStruct({
       storeAndroidLink: storeAndroidLink,
       storeIosLink: storeIosLink,
       guideUrl: guideUrl,
+      paymentDetailDefaultImage: paymentDetailDefaultImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

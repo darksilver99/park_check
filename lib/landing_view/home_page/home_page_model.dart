@@ -10,6 +10,7 @@ import '/component/transaction_out_detail_view/transaction_out_detail_view_widge
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
@@ -47,8 +48,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ProjectListRecord? projectData;
-  // Stores action output result for [Backend Call - Read Document] action in HomePage widget.
-  ConfigRecord? config;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<TransactionListRecord>? rsDataList;
   // Model for MainBackgroundView component.

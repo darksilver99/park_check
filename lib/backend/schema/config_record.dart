@@ -91,10 +91,16 @@ class ConfigRecord extends FirestoreRecord {
   String get guideUrl => _guideUrl ?? '';
   bool hasGuideUrl() => _guideUrl != null;
 
-  // "payment_alert_text" field.
-  List<String>? _paymentAlertText;
-  List<String> get paymentAlertText => _paymentAlertText ?? const [];
-  bool hasPaymentAlertText() => _paymentAlertText != null;
+  // "payment_alert_default_text" field.
+  List<String>? _paymentAlertDefaultText;
+  List<String> get paymentAlertDefaultText =>
+      _paymentAlertDefaultText ?? const [];
+  bool hasPaymentAlertDefaultText() => _paymentAlertDefaultText != null;
+
+  // "payment_detail_default_image" field.
+  String? _paymentDetailDefaultImage;
+  String get paymentDetailDefaultImage => _paymentDetailDefaultImage ?? '';
+  bool hasPaymentDetailDefaultImage() => _paymentDetailDefaultImage != null;
 
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
@@ -113,7 +119,10 @@ class ConfigRecord extends FirestoreRecord {
     _storeAndroidLink = snapshotData['store_android_link'] as String?;
     _storeIosLink = snapshotData['store_ios_link'] as String?;
     _guideUrl = snapshotData['guide_url'] as String?;
-    _paymentAlertText = getDataList(snapshotData['payment_alert_text']);
+    _paymentAlertDefaultText =
+        getDataList(snapshotData['payment_alert_default_text']);
+    _paymentDetailDefaultImage =
+        snapshotData['payment_detail_default_image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -158,6 +167,7 @@ Map<String, dynamic> createConfigRecordData({
   String? storeAndroidLink,
   String? storeIosLink,
   String? guideUrl,
+  String? paymentDetailDefaultImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -169,6 +179,7 @@ Map<String, dynamic> createConfigRecordData({
       'store_android_link': storeAndroidLink,
       'store_ios_link': storeIosLink,
       'guide_url': guideUrl,
+      'payment_detail_default_image': paymentDetailDefaultImage,
     }.withoutNulls,
   );
 
@@ -197,7 +208,9 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.storeAndroidLink == e2?.storeAndroidLink &&
         e1?.storeIosLink == e2?.storeIosLink &&
         e1?.guideUrl == e2?.guideUrl &&
-        listEquality.equals(e1?.paymentAlertText, e2?.paymentAlertText);
+        listEquality.equals(
+            e1?.paymentAlertDefaultText, e2?.paymentAlertDefaultText) &&
+        e1?.paymentDetailDefaultImage == e2?.paymentDetailDefaultImage;
   }
 
   @override
@@ -217,7 +230,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.storeAndroidLink,
         e?.storeIosLink,
         e?.guideUrl,
-        e?.paymentAlertText
+        e?.paymentAlertDefaultText,
+        e?.paymentDetailDefaultImage
       ]);
 
   @override

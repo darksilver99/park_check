@@ -8,9 +8,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,18 +39,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.configResult = await queryConfigRecordOnce(
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-      FFAppState().configData = ConfigDataStruct(
-        ocrApi: _model.configResult?.ocrApi,
-        defaultStampField: _model.configResult?.defaultStampField,
-        defaultCarList: _model.configResult?.defaultCarList,
-        defaultStampList: _model.configResult?.defaultStampList,
-        defaultObjectiveList: _model.configResult?.defaultObjectiveList,
-        projectType: _model.configResult?.projectType,
-        defaultBackgroundImage: _model.configResult?.defaultBackgroundImage,
-      );
+      await action_blocks.getConfigData(context);
       _model.isLoading = false;
       setState(() {});
     });
@@ -314,6 +303,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               enableContactAddress: true,
                                               expireDate:
                                                   functions.getNextDay(30),
+                                              paymentDetailImage: FFAppState()
+                                                  .configData
+                                                  .paymentDetailDefaultImage,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -326,6 +318,10 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                 'car_list': FFAppState()
                                                     .configData
                                                     .defaultCarList,
+                                                'payment_alert_text':
+                                                    FFAppState()
+                                                        .configData
+                                                        .paymentAlertDefaultText,
                                               },
                                             ),
                                           });
@@ -348,6 +344,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               enableContactAddress: true,
                                               expireDate:
                                                   functions.getNextDay(30),
+                                              paymentDetailImage: FFAppState()
+                                                  .configData
+                                                  .paymentDetailDefaultImage,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -360,6 +359,10 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                 'car_list': FFAppState()
                                                     .configData
                                                     .defaultCarList,
+                                                'payment_alert_text':
+                                                    FFAppState()
+                                                        .configData
+                                                        .paymentAlertDefaultText,
                                               },
                                             ),
                                           }, projectListRecordReference);
@@ -387,6 +390,12 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                                 ?.backgroundImage,
                                             expireDate: _model
                                                 .projectInserted?.expireDate,
+                                            paymentDetailImage: _model
+                                                .projectInserted
+                                                ?.paymentDetailImage,
+                                            paymentAlertText: _model
+                                                .projectInserted
+                                                ?.paymentAlertText,
                                           );
 
                                           context.goNamed('HomePage');

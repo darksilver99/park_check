@@ -23,6 +23,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
     int? backgroundImage,
     DateTime? expireDate,
     String? paymentDetailImage,
+    List<String>? paymentAlertText,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -37,6 +38,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _backgroundImage = backgroundImage,
         _expireDate = expireDate,
         _paymentDetailImage = paymentDetailImage,
+        _paymentAlertText = paymentAlertText,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -145,6 +147,17 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasPaymentDetailImage() => _paymentDetailImage != null;
 
+  // "payment_alert_text" field.
+  List<String>? _paymentAlertText;
+  List<String> get paymentAlertText => _paymentAlertText ?? const [];
+  set paymentAlertText(List<String>? val) => _paymentAlertText = val;
+
+  void updatePaymentAlertText(Function(List<String>) updateFn) {
+    updateFn(_paymentAlertText ??= []);
+  }
+
+  bool hasPaymentAlertText() => _paymentAlertText != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -160,6 +173,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         backgroundImage: castToType<int>(data['background_image']),
         expireDate: data['expire_date'] as DateTime?,
         paymentDetailImage: data['payment_detail_image'] as String?,
+        paymentAlertText: getDataList(data['payment_alert_text']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -180,6 +194,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'background_image': _backgroundImage,
         'expire_date': _expireDate,
         'payment_detail_image': _paymentDetailImage,
+        'payment_alert_text': _paymentAlertText,
       }.withoutNulls;
 
   @override
@@ -238,6 +253,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'payment_detail_image': serializeParam(
           _paymentDetailImage,
           ParamType.String,
+        ),
+        'payment_alert_text': serializeParam(
+          _paymentAlertText,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -309,6 +329,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        paymentAlertText: deserializeParam<String>(
+          data['payment_alert_text'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -330,7 +355,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         logo == other.logo &&
         backgroundImage == other.backgroundImage &&
         expireDate == other.expireDate &&
-        paymentDetailImage == other.paymentDetailImage;
+        paymentDetailImage == other.paymentDetailImage &&
+        listEquality.equals(paymentAlertText, other.paymentAlertText);
   }
 
   @override
@@ -347,7 +373,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         logo,
         backgroundImage,
         expireDate,
-        paymentDetailImage
+        paymentDetailImage,
+        paymentAlertText
       ]);
 }
 
