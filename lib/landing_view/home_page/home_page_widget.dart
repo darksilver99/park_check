@@ -66,6 +66,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           enableContactAddress: _model.projectData?.enableContactAddress,
           logo: _model.projectData?.logo,
           backgroundImage: _model.projectData?.backgroundImage,
+          expireDate: _model.projectData?.expireDate,
+          paymentDetailImage: _model.projectData?.paymentDetailImage,
+          paymentAlertText: _model.projectData?.paymentAlertText,
         );
         await action_blocks.getConfigData(context);
         if (FFAppState().appBuildVersion >=
