@@ -115,39 +115,23 @@ class _TransactionDetailViewWidgetState
                     elevation: 1.0,
                     child: WidgetsToImage(
                       controller: controller,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).secondaryBackground,
-                          border: Border.all(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 1.0,
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 1.0,
                         ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (FFAppState().projectData.logo != null &&
-                                  FFAppState().projectData.logo != '')
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.network(
-                                        FFAppState().projectData.logo,
-                                        width: 80.0,
-                                        height: 80.0,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 16.0, 16.0, 16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (FFAppState().projectData.logo != null &&
+                                FFAppState().projectData.logo != '')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
@@ -155,209 +139,210 @@ class _TransactionDetailViewWidgetState
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Expanded(
+                                    Image.network(
+                                      FFAppState().projectData.logo,
+                                      width: 120.0,
+                                      height: 120.0,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      FFAppState().projectData.projectName,
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 22.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, -1.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 16.0),
+                                child: BarcodeWidget(
+                                  data:
+                                      widget.transactionParameter!.reference.id,
+                                  barcode: Barcode.qrCode(),
+                                  width: 300.0,
+                                  height: 150.0,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  backgroundColor: Colors.transparent,
+                                  errorBuilder: (_context, _error) => SizedBox(
+                                    width: 300.0,
+                                    height: 150.0,
+                                  ),
+                                  drawText: false,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Flexible(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
                                       child: Text(
-                                        FFAppState().projectData.projectName,
-                                        textAlign: TextAlign.center,
+                                        'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
-                                              fontSize: 22.0,
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0.0, -1.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: BarcodeWidget(
-                                    data:
-                                        widget.transactionParameter!.reference.id,
-                                    barcode: Barcode.qrCode(),
-                                    width: 300.0,
-                                    height: 150.0,
-                                    color:
-                                        FlutterFlowTheme.of(context).primaryText,
-                                    backgroundColor: Colors.transparent,
-                                    errorBuilder: (_context, _error) => SizedBox(
-                                      width: 300.0,
-                                      height: 150.0,
-                                    ),
-                                    drawText: false,
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: Text(
-                                          'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
+                                  if (widget.transactionParameter
+                                              ?.registrationImage !=
+                                          null &&
+                                      widget.transactionParameter
+                                              ?.registrationImage !=
+                                          '')
+                                    Stack(
+                                      children: [
+                                        Text(
+                                          'ดูรูปทะเบียน',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                fontSize: 18.0,
+                                                color: Color(0xFF1B88D9),
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
+                                                decoration:
+                                                    TextDecoration.underline,
                                               ),
                                         ),
-                                      ),
-                                    ),
-                                    if (widget.transactionParameter
-                                                ?.registrationImage !=
-                                            null &&
-                                        widget.transactionParameter
-                                                ?.registrationImage !=
-                                            '')
-                                      Stack(
-                                        children: [
-                                          Text(
-                                            'ดูรูปทะเบียน',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF1B88D9),
-                                                  letterSpacing: 0.0,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                          ),
-                                          Opacity(
-                                            opacity: 0.0,
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor: Colors.transparent,
-                                              onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType.fade,
-                                                    child:
-                                                        FlutterFlowExpandedImageView(
-                                                      image: Image.network(
-                                                        widget
-                                                            .transactionParameter!
-                                                            .registrationImage,
-                                                        fit: BoxFit.contain,
-                                                      ),
-                                                      allowRotation: false,
-                                                      tag: widget
+                                        Opacity(
+                                          opacity: 0.0,
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  child:
+                                                      FlutterFlowExpandedImageView(
+                                                    image: Image.network(
+                                                      widget
                                                           .transactionParameter!
                                                           .registrationImage,
-                                                      useHeroAnimation: true,
+                                                      fit: BoxFit.contain,
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                              child: Hero(
-                                                tag: widget.transactionParameter!
-                                                    .registrationImage,
-                                                transitionOnUserGestures: true,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8.0),
-                                                  child: Image.network(
-                                                    widget.transactionParameter!
+                                                    allowRotation: false,
+                                                    tag: widget
+                                                        .transactionParameter!
                                                         .registrationImage,
-                                                    width: 80.0,
-                                                    height: 20.0,
-                                                    fit: BoxFit.cover,
+                                                    useHeroAnimation: true,
                                                   ),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: widget.transactionParameter!
+                                                  .registrationImage,
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  widget.transactionParameter!
+                                                      .registrationImage,
+                                                  width: 80.0,
+                                                  height: 20.0,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Text(
-                                  'ประเภทรถ : ${widget.transactionParameter?.carType}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Text(
-                                  'ชื่อ : ${widget.transactionParameter?.preName} ${widget.transactionParameter?.firstName} ${widget.transactionParameter?.lastName}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Text(
-                                  'จุดประสงค์ : ${widget.transactionParameter?.objective}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ),
-                              if (FFAppState().projectData.enableContactAddress)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: Text(
-                                    'ที่อยู่ที่มาติดต่อ : ${valueOrDefault<String>(
-                                      widget.transactionParameter?.contactAddress,
-                                      '-',
-                                    )}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
                                         ),
-                                  ),
-                                ),
+                                      ],
+                                    ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                'ประเภทรถ : ${widget.transactionParameter?.carType}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                'ชื่อ : ${widget.transactionParameter?.preName} ${widget.transactionParameter?.firstName} ${widget.transactionParameter?.lastName}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                'จุดประสงค์ : ${widget.transactionParameter?.objective}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            if (FFAppState().projectData.enableContactAddress)
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'เวลาเข้า : ${functions.dateTimeTh(widget.transactionParameter!.dateIn!)}',
+                                  'ที่อยู่ที่มาติดต่อ : ${valueOrDefault<String>(
+                                    widget.transactionParameter?.contactAddress,
+                                    '-',
+                                  )}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -368,40 +353,55 @@ class _TransactionDetailViewWidgetState
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 4.0),
-                                child: Text(
-                                  FFAppState().projectData.stampField,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 32.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                'เวลาเข้า : ${functions.dateTimeTh(widget.transactionParameter!.dateIn!)}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 4.0),
+                              child: Text(
+                                FFAppState().projectData.stampField,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 32.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                      ),
                       ),
                     ),
                   ),
