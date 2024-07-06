@@ -2035,85 +2035,88 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             TransactionListRecord.collection
                                                 .doc();
                                         await transactionListRecordReference
-                                            .set(
-                                                createTransactionListRecordData(
-                                          createDate: getCurrentTimestamp,
-                                          cardNumber: _model
-                                              .idNumberTextController.text,
-                                          preName:
-                                              _model.preNameTextController.text,
-                                          firstName: _model
-                                              .firstNameTextController.text,
-                                          lastName: _model
-                                              .lastNameTextController.text,
-                                          carRegistration: _model
-                                              .registrationTextController.text,
-                                          carRegistrationProvince:
-                                              _model.dropDownValue,
-                                          objective:
-                                              _model.objectiveSelectedValue,
-                                          carType: _model.carSelectedValue,
-                                          dateIn: getCurrentTimestamp,
-                                          isOut: false,
-                                          contactAddress: _model
-                                              .contactAddressTextController
-                                              .text,
-                                          allCardData: _model.allCardData,
-                                          allRegistrationData:
-                                              _model.allRegistrationData,
-                                          registrationImage:
-                                              _model.tmpRegistrationImagePath,
-                                          cardImage: _model.tmpCardImagePath,
-                                          moreDetail: _model
-                                              .moreDetailTextController.text,
-                                          moreImage: _model.tmpCardImagePath,
-                                        ));
+                                            .set({
+                                          ...createTransactionListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            cardNumber: _model
+                                                .idNumberTextController.text,
+                                            preName: _model
+                                                .preNameTextController.text,
+                                            firstName: _model
+                                                .firstNameTextController.text,
+                                            lastName: _model
+                                                .lastNameTextController.text,
+                                            carRegistration: _model
+                                                .registrationTextController
+                                                .text,
+                                            carRegistrationProvince:
+                                                _model.dropDownValue,
+                                            objective:
+                                                _model.objectiveSelectedValue,
+                                            carType: _model.carSelectedValue,
+                                            dateIn: getCurrentTimestamp,
+                                            isOut: false,
+                                            contactAddress: _model
+                                                .contactAddressTextController
+                                                .text,
+                                            allCardData: _model.allCardData,
+                                            allRegistrationData:
+                                                _model.allRegistrationData,
+                                            registrationImage:
+                                                _model.tmpRegistrationImagePath,
+                                            cardImage: _model.tmpCardImagePath,
+                                            moreDetail: _model
+                                                .moreDetailTextController.text,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'more_image':
+                                                  _model.tmpMoreImageListPath,
+                                            },
+                                          ),
+                                        });
                                         _model.insertedTransaction =
-                                            TransactionListRecord.getDocumentFromData(
-                                                createTransactionListRecordData(
-                                                  createDate:
-                                                      getCurrentTimestamp,
-                                                  cardNumber: _model
-                                                      .idNumberTextController
-                                                      .text,
-                                                  preName: _model
-                                                      .preNameTextController
-                                                      .text,
-                                                  firstName: _model
-                                                      .firstNameTextController
-                                                      .text,
-                                                  lastName: _model
-                                                      .lastNameTextController
-                                                      .text,
-                                                  carRegistration: _model
-                                                      .registrationTextController
-                                                      .text,
-                                                  carRegistrationProvince:
-                                                      _model.dropDownValue,
-                                                  objective: _model
-                                                      .objectiveSelectedValue,
-                                                  carType:
-                                                      _model.carSelectedValue,
-                                                  dateIn: getCurrentTimestamp,
-                                                  isOut: false,
-                                                  contactAddress: _model
-                                                      .contactAddressTextController
-                                                      .text,
-                                                  allCardData:
-                                                      _model.allCardData,
-                                                  allRegistrationData: _model
-                                                      .allRegistrationData,
-                                                  registrationImage: _model
-                                                      .tmpRegistrationImagePath,
-                                                  cardImage:
-                                                      _model.tmpCardImagePath,
-                                                  moreDetail: _model
-                                                      .moreDetailTextController
-                                                      .text,
-                                                  moreImage:
-                                                      _model.tmpCardImagePath,
-                                                ),
-                                                transactionListRecordReference);
+                                            TransactionListRecord
+                                                .getDocumentFromData({
+                                          ...createTransactionListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            cardNumber: _model
+                                                .idNumberTextController.text,
+                                            preName: _model
+                                                .preNameTextController.text,
+                                            firstName: _model
+                                                .firstNameTextController.text,
+                                            lastName: _model
+                                                .lastNameTextController.text,
+                                            carRegistration: _model
+                                                .registrationTextController
+                                                .text,
+                                            carRegistrationProvince:
+                                                _model.dropDownValue,
+                                            objective:
+                                                _model.objectiveSelectedValue,
+                                            carType: _model.carSelectedValue,
+                                            dateIn: getCurrentTimestamp,
+                                            isOut: false,
+                                            contactAddress: _model
+                                                .contactAddressTextController
+                                                .text,
+                                            allCardData: _model.allCardData,
+                                            allRegistrationData:
+                                                _model.allRegistrationData,
+                                            registrationImage:
+                                                _model.tmpRegistrationImagePath,
+                                            cardImage: _model.tmpCardImagePath,
+                                            moreDetail: _model
+                                                .moreDetailTextController.text,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'more_image':
+                                                  _model.tmpMoreImageListPath,
+                                            },
+                                          ),
+                                        }, transactionListRecordReference);
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
                                           backgroundColor: Colors.transparent,
