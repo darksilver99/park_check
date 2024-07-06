@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -16,6 +17,7 @@ import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +60,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
 
     _model.contactAddressTextController ??= TextEditingController();
     _model.contactAddressFocusNode ??= FocusNode();
+
+    _model.moreDetailTextController ??= TextEditingController();
+    _model.moreDetailFocusNode ??= FocusNode();
   }
 
   @override
@@ -1578,6 +1583,395 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       ),
                                     ],
                                   ),
+                                if (FFAppState().projectData.enableMoreDetail)
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          FFAppState()
+                                              .projectData
+                                              .moreDetailField,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.moreDetailTextController,
+                                          focusNode: _model.moreDetailFocusNode,
+                                          autofocus: false,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: FFAppState()
+                                                .projectData
+                                                .moreDetailField,
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                            ),
+                                            filled: true,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLines: 3,
+                                          validator: _model
+                                              .moreDetailTextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                if (FFAppState().projectData.enableMoreImage)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            FFAppState()
+                                                .projectData
+                                                .moreImageField,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Builder(
+                                                  builder: (context) {
+                                                    final moreImageList = _model
+                                                        .tmpMoreImageListPath
+                                                        .toList();
+                                                    return Wrap(
+                                                      spacing: 8.0,
+                                                      runSpacing: 8.0,
+                                                      alignment:
+                                                          WrapAlignment.start,
+                                                      crossAxisAlignment:
+                                                          WrapCrossAlignment
+                                                              .start,
+                                                      direction:
+                                                          Axis.horizontal,
+                                                      runAlignment:
+                                                          WrapAlignment.start,
+                                                      verticalDirection:
+                                                          VerticalDirection
+                                                              .down,
+                                                      clipBehavior: Clip.none,
+                                                      children: List.generate(
+                                                          moreImageList.length,
+                                                          (moreImageListIndex) {
+                                                        final moreImageListItem =
+                                                            moreImageList[
+                                                                moreImageListIndex];
+                                                        return Container(
+                                                          width: 86.0,
+                                                          height: 86.0,
+                                                          child: Stack(
+                                                            children: [
+                                                              ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                                child: Image
+                                                                    .network(
+                                                                  moreImageListItem,
+                                                                  width: 86.0,
+                                                                  height: 86.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1.0,
+                                                                        -1.0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          4.0,
+                                                                          4.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      var confirmDialogResponse = await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return WebViewAware(
+                                                                                child: AlertDialog(
+                                                                                  title: Text('ต้องการลบรูปนี้?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('ยกเลิก'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('ยืนยัน'),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                      if (confirmDialogResponse) {
+                                                                        await FirebaseStorage
+                                                                            .instance
+                                                                            .refFromURL(moreImageListItem)
+                                                                            .delete();
+                                                                        _model.removeFromTmpMoreImageListPath(
+                                                                            moreImageListItem);
+                                                                        setState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .cancel_rounded,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      }),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        FFButtonWidget(
+                                          onPressed: () async {
+                                            final selectedMedia =
+                                                await selectMedia(
+                                              maxWidth: 600.00,
+                                              imageQuality: 80,
+                                              multiImage: false,
+                                            );
+                                            if (selectedMedia != null &&
+                                                selectedMedia.every((m) =>
+                                                    validateFileFormat(
+                                                        m.storagePath,
+                                                        context))) {
+                                              setState(() => _model
+                                                  .isDataUploading3 = true);
+                                              var selectedUploadedFiles =
+                                                  <FFUploadedFile>[];
+
+                                              var downloadUrls = <String>[];
+                                              try {
+                                                selectedUploadedFiles =
+                                                    selectedMedia
+                                                        .map((m) =>
+                                                            FFUploadedFile(
+                                                              name: m
+                                                                  .storagePath
+                                                                  .split('/')
+                                                                  .last,
+                                                              bytes: m.bytes,
+                                                              height: m
+                                                                  .dimensions
+                                                                  ?.height,
+                                                              width: m
+                                                                  .dimensions
+                                                                  ?.width,
+                                                              blurHash:
+                                                                  m.blurHash,
+                                                            ))
+                                                        .toList();
+
+                                                downloadUrls =
+                                                    (await Future.wait(
+                                                  selectedMedia.map(
+                                                    (m) async =>
+                                                        await uploadData(
+                                                            m.storagePath,
+                                                            m.bytes),
+                                                  ),
+                                                ))
+                                                        .where((u) => u != null)
+                                                        .map((u) => u!)
+                                                        .toList();
+                                              } finally {
+                                                _model.isDataUploading3 = false;
+                                              }
+                                              if (selectedUploadedFiles
+                                                          .length ==
+                                                      selectedMedia.length &&
+                                                  downloadUrls.length ==
+                                                      selectedMedia.length) {
+                                                setState(() {
+                                                  _model.uploadedLocalFile3 =
+                                                      selectedUploadedFiles
+                                                          .first;
+                                                  _model.uploadedFileUrl3 =
+                                                      downloadUrls.first;
+                                                });
+                                              } else {
+                                                setState(() {});
+                                                return;
+                                              }
+                                            }
+
+                                            if (_model.uploadedFileUrl3 !=
+                                                    null &&
+                                                _model.uploadedFileUrl3 != '') {
+                                              _model.addToTmpMoreImageListPath(
+                                                  _model.uploadedFileUrl3);
+                                              setState(() {});
+                                            }
+                                          },
+                                          text: 'ถ่ายรูป',
+                                          icon: Icon(
+                                            Icons.photo_camera,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF2C61E9),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 FFButtonWidget(
                                   onPressed: () async {
                                     if (_model.formKey.currentState == null ||
@@ -1670,6 +2064,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           registrationImage:
                                               _model.tmpRegistrationImagePath,
                                           cardImage: _model.tmpCardImagePath,
+                                          moreDetail: _model
+                                              .moreDetailTextController.text,
+                                          moreImage: _model.tmpCardImagePath,
                                         ));
                                         _model.insertedTransaction =
                                             TransactionListRecord.getDocumentFromData(
@@ -1709,6 +2106,11 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   registrationImage: _model
                                                       .tmpRegistrationImagePath,
                                                   cardImage:
+                                                      _model.tmpCardImagePath,
+                                                  moreDetail: _model
+                                                      .moreDetailTextController
+                                                      .text,
+                                                  moreImage:
                                                       _model.tmpCardImagePath,
                                                 ),
                                                 transactionListRecordReference);
