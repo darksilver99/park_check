@@ -151,8 +151,8 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
                                       ),
                                     ),
                                     FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        context.pushNamed('PaymentPage');
                                       },
                                       text: 'แจ้งชำระเงิน',
                                       options: FFButtonOptions(
