@@ -175,6 +175,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ForgetPasswordPage',
           path: '/forgetPasswordPage',
           builder: (context, params) => ForgetPasswordPageWidget(),
+        ),
+        FFRoute(
+          name: 'PaymentAlertPage',
+          path: '/paymentAlertPage',
+          builder: (context, params) => PaymentAlertPageWidget(),
+        ),
+        FFRoute(
+          name: 'PaymentPage',
+          path: '/paymentPage',
+          builder: (context, params) => PaymentPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

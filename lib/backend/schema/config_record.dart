@@ -91,6 +91,11 @@ class ConfigRecord extends FirestoreRecord {
   String get guideUrl => _guideUrl ?? '';
   bool hasGuideUrl() => _guideUrl != null;
 
+  // "payment_alert_text" field.
+  List<String>? _paymentAlertText;
+  List<String> get paymentAlertText => _paymentAlertText ?? const [];
+  bool hasPaymentAlertText() => _paymentAlertText != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -108,6 +113,7 @@ class ConfigRecord extends FirestoreRecord {
     _storeAndroidLink = snapshotData['store_android_link'] as String?;
     _storeIosLink = snapshotData['store_ios_link'] as String?;
     _guideUrl = snapshotData['guide_url'] as String?;
+    _paymentAlertText = getDataList(snapshotData['payment_alert_text']);
   }
 
   static CollectionReference get collection =>
@@ -190,7 +196,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.storeVersion == e2?.storeVersion &&
         e1?.storeAndroidLink == e2?.storeAndroidLink &&
         e1?.storeIosLink == e2?.storeIosLink &&
-        e1?.guideUrl == e2?.guideUrl;
+        e1?.guideUrl == e2?.guideUrl &&
+        listEquality.equals(e1?.paymentAlertText, e2?.paymentAlertText);
   }
 
   @override
@@ -209,7 +216,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.storeVersion,
         e?.storeAndroidLink,
         e?.storeIosLink,
-        e?.guideUrl
+        e?.guideUrl,
+        e?.paymentAlertText
       ]);
 
   @override

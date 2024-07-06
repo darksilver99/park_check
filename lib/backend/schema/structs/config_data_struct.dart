@@ -24,6 +24,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     String? storeAndroidLink,
     String? storeIosLink,
     String? guideUrl,
+    List<String>? paymentAlertText,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -39,6 +40,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _storeAndroidLink = storeAndroidLink,
         _storeIosLink = storeIosLink,
         _guideUrl = guideUrl,
+        _paymentAlertText = paymentAlertText,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -173,6 +175,17 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasGuideUrl() => _guideUrl != null;
 
+  // "payment_alert_text" field.
+  List<String>? _paymentAlertText;
+  List<String> get paymentAlertText => _paymentAlertText ?? const [];
+  set paymentAlertText(List<String>? val) => _paymentAlertText = val;
+
+  void updatePaymentAlertText(Function(List<String>) updateFn) {
+    updateFn(_paymentAlertText ??= []);
+  }
+
+  bool hasPaymentAlertText() => _paymentAlertText != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -190,6 +203,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeAndroidLink: data['store_android_link'] as String?,
         storeIosLink: data['store_ios_link'] as String?,
         guideUrl: data['guide_url'] as String?,
+        paymentAlertText: getDataList(data['payment_alert_text']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -211,6 +225,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'store_android_link': _storeAndroidLink,
         'store_ios_link': _storeIosLink,
         'guide_url': _guideUrl,
+        'payment_alert_text': _paymentAlertText,
       }.withoutNulls;
 
   @override
@@ -277,6 +292,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'guide_url': serializeParam(
           _guideUrl,
           ParamType.String,
+        ),
+        'payment_alert_text': serializeParam(
+          _paymentAlertText,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -352,6 +372,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        paymentAlertText: deserializeParam<String>(
+          data['payment_alert_text'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -374,7 +399,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion == other.storeVersion &&
         storeAndroidLink == other.storeAndroidLink &&
         storeIosLink == other.storeIosLink &&
-        guideUrl == other.guideUrl;
+        guideUrl == other.guideUrl &&
+        listEquality.equals(paymentAlertText, other.paymentAlertText);
   }
 
   @override
@@ -392,7 +418,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion,
         storeAndroidLink,
         storeIosLink,
-        guideUrl
+        guideUrl,
+        paymentAlertText
       ]);
 }
 

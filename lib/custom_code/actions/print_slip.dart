@@ -35,14 +35,12 @@ Future<PrintStatusDataStruct> printSlip(dynamic imageSlip) async {
   final bytes = await imageSlip.capture();
   String base64Image = base64Encode(bytes!.toList());
   list.add(LineText(
-    type: LineText.TYPE_IMAGE,
-    content: base64Image,
-    align: LineText.ALIGN_CENTER,
-    width: 400,
-    size: 1,
-    weight: 1,
-    linefeed: 1,
-  ));
+      type: LineText.TYPE_IMAGE,
+      content: base64Image,
+      align: LineText.ALIGN_CENTER,
+      width: 400,
+      size: 1,
+      weight: 1));
 
   await bluetoothPrint.printReceipt(config, list);
 

@@ -21,6 +21,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
     bool? enableContactAddress,
     String? logo,
     int? backgroundImage,
+    DateTime? expireDate,
+    String? paymentDetailImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -33,6 +35,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _enableContactAddress = enableContactAddress,
         _logo = logo,
         _backgroundImage = backgroundImage,
+        _expireDate = expireDate,
+        _paymentDetailImage = paymentDetailImage,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -127,6 +131,20 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasBackgroundImage() => _backgroundImage != null;
 
+  // "expire_date" field.
+  DateTime? _expireDate;
+  DateTime? get expireDate => _expireDate;
+  set expireDate(DateTime? val) => _expireDate = val;
+
+  bool hasExpireDate() => _expireDate != null;
+
+  // "payment_detail_image" field.
+  String? _paymentDetailImage;
+  String get paymentDetailImage => _paymentDetailImage ?? '';
+  set paymentDetailImage(String? val) => _paymentDetailImage = val;
+
+  bool hasPaymentDetailImage() => _paymentDetailImage != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -140,6 +158,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         enableContactAddress: data['enable_contact_address'] as bool?,
         logo: data['logo'] as String?,
         backgroundImage: castToType<int>(data['background_image']),
+        expireDate: data['expire_date'] as DateTime?,
+        paymentDetailImage: data['payment_detail_image'] as String?,
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -158,6 +178,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'enable_contact_address': _enableContactAddress,
         'logo': _logo,
         'background_image': _backgroundImage,
+        'expire_date': _expireDate,
+        'payment_detail_image': _paymentDetailImage,
       }.withoutNulls;
 
   @override
@@ -208,6 +230,14 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'background_image': serializeParam(
           _backgroundImage,
           ParamType.int,
+        ),
+        'expire_date': serializeParam(
+          _expireDate,
+          ParamType.DateTime,
+        ),
+        'payment_detail_image': serializeParam(
+          _paymentDetailImage,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -269,6 +299,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        expireDate: deserializeParam(
+          data['expire_date'],
+          ParamType.DateTime,
+          false,
+        ),
+        paymentDetailImage: deserializeParam(
+          data['payment_detail_image'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -288,7 +328,9 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectReference == other.projectReference &&
         enableContactAddress == other.enableContactAddress &&
         logo == other.logo &&
-        backgroundImage == other.backgroundImage;
+        backgroundImage == other.backgroundImage &&
+        expireDate == other.expireDate &&
+        paymentDetailImage == other.paymentDetailImage;
   }
 
   @override
@@ -303,7 +345,9 @@ class ProjectDataStruct extends FFFirebaseStruct {
         projectReference,
         enableContactAddress,
         logo,
-        backgroundImage
+        backgroundImage,
+        expireDate,
+        paymentDetailImage
       ]);
 }
 
@@ -316,6 +360,8 @@ ProjectDataStruct createProjectDataStruct({
   bool? enableContactAddress,
   String? logo,
   int? backgroundImage,
+  DateTime? expireDate,
+  String? paymentDetailImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -330,6 +376,8 @@ ProjectDataStruct createProjectDataStruct({
       enableContactAddress: enableContactAddress,
       logo: logo,
       backgroundImage: backgroundImage,
+      expireDate: expireDate,
+      paymentDetailImage: paymentDetailImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

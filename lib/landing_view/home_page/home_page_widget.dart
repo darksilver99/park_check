@@ -108,6 +108,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 functions.getStartDayTime(getCurrentTimestamp);
             FFAppState().isSkipOCRAlert = false;
           }
+          if (getCurrentTimestamp > FFAppState().projectData.expireDate!) {
+            context.goNamed('PaymentAlertPage');
+          }
         } else {
           await showDialog(
             context: context,
