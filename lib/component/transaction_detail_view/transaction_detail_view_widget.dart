@@ -132,8 +132,8 @@ class _TransactionDetailViewWidgetState
                                   children: [
                                     Image.network(
                                       FFAppState().projectData.logo,
-                                      width: 80.0,
-                                      height: 80.0,
+                                      width: 120.0,
+                                      height: 120.0,
                                       fit: BoxFit.contain,
                                     ),
                                   ],
