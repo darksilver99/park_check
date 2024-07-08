@@ -26,7 +26,7 @@ Future<String> uploadImageToFirebase(
   var waterMark = (await rootBundle.load("assets/images/watermark.png"))
       .buffer
       .asUint8List();
-  var mergeImage = await actions.overlayImg(image.bytes!, waterMark);
+  var mergeImage = await actions.addWaterMark(image.bytes!, waterMark);
 
   Uint8List compress = await FlutterImageCompress.compressWithList(
     mergeImage,
