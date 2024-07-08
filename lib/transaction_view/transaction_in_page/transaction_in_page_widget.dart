@@ -15,7 +15,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -2076,6 +2078,15 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           _model.tmpCardImagePath =
                                               _model.cardImagePath;
                                         }
+                                        _model.lastDocument =
+                                            await queryTransactionListRecordOnce(
+                                          queryBuilder:
+                                              (transactionListRecord) =>
+                                                  transactionListRecord.orderBy(
+                                                      'create_date',
+                                                      descending: true),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
 
                                         var transactionListRecordReference =
                                             TransactionListRecord.collection
@@ -2113,6 +2124,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             cardImage: _model.tmpCardImagePath,
                                             moreDetail: _model
                                                 .moreDetailTextController.text,
+                                            transactionNumber:
+                                                functions.getTransactionNumber(
+                                                    _model.lastDocument),
                                           ),
                                           ...mapToFirestore(
                                             {
@@ -2155,6 +2169,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             cardImage: _model.tmpCardImagePath,
                                             moreDetail: _model
                                                 .moreDetailTextController.text,
+                                            transactionNumber:
+                                                functions.getTransactionNumber(
+                                                    _model.lastDocument),
                                           ),
                                           ...mapToFirestore(
                                             {
