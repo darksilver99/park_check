@@ -169,7 +169,9 @@ class _EditStampViewWidgetState extends State<EditStampViewWidget> {
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(

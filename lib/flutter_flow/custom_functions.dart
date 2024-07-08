@@ -127,3 +127,15 @@ String getTransactionNumber(TransactionListRecord? transactionDoc) {
 
   return newValue;
 }
+
+DateTime getBeforeDay(
+  int pastDay,
+  DateTime date,
+) {
+  DateTime pastDate = date.subtract(Duration(days: pastDay));
+  return pastDate;
+}
+
+String imageToString(String str) {
+  return str;
+}

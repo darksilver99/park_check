@@ -48,12 +48,12 @@ class FFAppState extends ChangeNotifier {
           _tmpTransactionList;
     });
     _safeInit(() {
-      _isSkipOCRAlert = prefs.getBool('ff_isSkipOCRAlert') ?? _isSkipOCRAlert;
-    });
-    _safeInit(() {
       _currentDate = prefs.containsKey('ff_currentDate')
           ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_currentDate')!)
           : _currentDate;
+    });
+    _safeInit(() {
+      _isSkipOCRAlert = prefs.getBool('ff_isSkipOCRAlert') ?? _isSkipOCRAlert;
     });
   }
 
@@ -63,6 +63,18 @@ class FFAppState extends ChangeNotifier {
   }
 
   late SharedPreferences prefs;
+
+  int _appBuildVersion = 0;
+  int get appBuildVersion => _appBuildVersion;
+  set appBuildVersion(int value) {
+    _appBuildVersion = value;
+  }
+
+  String _appVersion = '';
+  String get appVersion => _appVersion;
+  set appVersion(String value) {
+    _appVersion = value;
+  }
 
   ProjectDataStruct _projectData = ProjectDataStruct();
   ProjectDataStruct get projectData => _projectData;
@@ -128,13 +140,6 @@ class FFAppState extends ChangeNotifier {
         _tmpTransactionList.map((x) => x.serialize()).toList());
   }
 
-  bool _isSkipOCRAlert = false;
-  bool get isSkipOCRAlert => _isSkipOCRAlert;
-  set isSkipOCRAlert(bool value) {
-    _isSkipOCRAlert = value;
-    prefs.setBool('ff_isSkipOCRAlert', value);
-  }
-
   DateTime? _currentDate = DateTime.fromMillisecondsSinceEpoch(13064400000);
   DateTime? get currentDate => _currentDate;
   set currentDate(DateTime? value) {
@@ -144,16 +149,17 @@ class FFAppState extends ChangeNotifier {
         : prefs.remove('ff_currentDate');
   }
 
-  String _appVersion = '';
-  String get appVersion => _appVersion;
-  set appVersion(String value) {
-    _appVersion = value;
+  bool _isSkipOCRAlert = false;
+  bool get isSkipOCRAlert => _isSkipOCRAlert;
+  set isSkipOCRAlert(bool value) {
+    _isSkipOCRAlert = value;
+    prefs.setBool('ff_isSkipOCRAlert', value);
   }
 
-  int _appBuildVersion = 0;
-  int get appBuildVersion => _appBuildVersion;
-  set appBuildVersion(int value) {
-    _appBuildVersion = value;
+  bool _isSkipExpireAlert = false;
+  bool get isSkipExpireAlert => _isSkipExpireAlert;
+  set isSkipExpireAlert(bool value) {
+    _isSkipExpireAlert = value;
   }
 }
 
