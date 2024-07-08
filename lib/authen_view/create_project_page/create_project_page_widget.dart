@@ -320,6 +320,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               moreImageField: FFAppState()
                                                   .configData
                                                   .defaultMoreImageField,
+                                              maxMoreImage: FFAppState()
+                                                  .configData
+                                                  .defaultMaxMoreImage,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -376,6 +379,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               moreImageField: FFAppState()
                                                   .configData
                                                   .defaultMoreImageField,
+                                              maxMoreImage: FFAppState()
+                                                  .configData
+                                                  .defaultMaxMoreImage,
                                             ),
                                             ...mapToFirestore(
                                               {
