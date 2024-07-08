@@ -299,7 +299,11 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               backgroundImage: FFAppState()
                                                   .configData
                                                   .defaultBackgroundImage,
-                                              enableContactAddress: true,
+                                              enableContactAddress: (_model
+                                                          .projectTypeSelectedValue ==
+                                                      'คอนโด') ||
+                                                  (_model.projectTypeSelectedValue ==
+                                                      'หมู่บ้าน'),
                                               expireDate:
                                                   functions.getNextDay(30),
                                               paymentDetailImage: FFAppState()
@@ -351,7 +355,11 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               backgroundImage: FFAppState()
                                                   .configData
                                                   .defaultBackgroundImage,
-                                              enableContactAddress: true,
+                                              enableContactAddress: (_model
+                                                          .projectTypeSelectedValue ==
+                                                      'คอนโด') ||
+                                                  (_model.projectTypeSelectedValue ==
+                                                      'หมู่บ้าน'),
                                               expireDate:
                                                   functions.getNextDay(30),
                                               paymentDetailImage: FFAppState()
