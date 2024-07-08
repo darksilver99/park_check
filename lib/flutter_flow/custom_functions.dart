@@ -109,3 +109,19 @@ DateTime getNextDay(int nextDay) {
   DateTime futureDate = currentDate.add(Duration(days: nextDay));
   return futureDate;
 }
+
+String getTransactionNumber(TransactionListRecord? transactionDoc) {
+  if (transactionDoc == null) {
+    return "00000001";
+  }
+
+  int intValue = int.parse(transactionDoc.transactionNumber);
+
+  if (intValue > 99999999) {
+    intValue = 1;
+  }
+
+  String newValue = intValue.toString().padLeft(8, '0');
+
+  return newValue;
+}

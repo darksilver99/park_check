@@ -15,8 +15,10 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'transaction_in_page_widget.dart' show TransactionInPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -163,6 +165,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   String? registrationImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   String? cardImagePath;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  TransactionListRecord? lastDocument;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   TransactionListRecord? insertedTransaction;
 
