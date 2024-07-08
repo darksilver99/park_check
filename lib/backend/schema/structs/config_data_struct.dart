@@ -29,6 +29,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     String? defaultTextInLastSlip,
     String? defaultMoreDetailField,
     String? defaultMoreImageField,
+    int? defaultMaxMoreImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -49,6 +50,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _defaultTextInLastSlip = defaultTextInLastSlip,
         _defaultMoreDetailField = defaultMoreDetailField,
         _defaultMoreImageField = defaultMoreImageField,
+        _defaultMaxMoreImage = defaultMaxMoreImage,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -225,6 +227,16 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasDefaultMoreImageField() => _defaultMoreImageField != null;
 
+  // "default_max_more_image" field.
+  int? _defaultMaxMoreImage;
+  int get defaultMaxMoreImage => _defaultMaxMoreImage ?? 0;
+  set defaultMaxMoreImage(int? val) => _defaultMaxMoreImage = val;
+
+  void incrementDefaultMaxMoreImage(int amount) =>
+      defaultMaxMoreImage = defaultMaxMoreImage + amount;
+
+  bool hasDefaultMaxMoreImage() => _defaultMaxMoreImage != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -249,6 +261,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultTextInLastSlip: data['default_text_in_last_slip'] as String?,
         defaultMoreDetailField: data['default_more_detail_field'] as String?,
         defaultMoreImageField: data['default_more_image_field'] as String?,
+        defaultMaxMoreImage: castToType<int>(data['default_max_more_image']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -275,6 +288,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_text_in_last_slip': _defaultTextInLastSlip,
         'default_more_detail_field': _defaultMoreDetailField,
         'default_more_image_field': _defaultMoreImageField,
+        'default_max_more_image': _defaultMaxMoreImage,
       }.withoutNulls;
 
   @override
@@ -362,6 +376,10 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_more_image_field': serializeParam(
           _defaultMoreImageField,
           ParamType.String,
+        ),
+        'default_max_more_image': serializeParam(
+          _defaultMaxMoreImage,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -462,6 +480,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        defaultMaxMoreImage: deserializeParam(
+          data['default_max_more_image'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -490,7 +513,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         paymentDetailDefaultImage == other.paymentDetailDefaultImage &&
         defaultTextInLastSlip == other.defaultTextInLastSlip &&
         defaultMoreDetailField == other.defaultMoreDetailField &&
-        defaultMoreImageField == other.defaultMoreImageField;
+        defaultMoreImageField == other.defaultMoreImageField &&
+        defaultMaxMoreImage == other.defaultMaxMoreImage;
   }
 
   @override
@@ -513,7 +537,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         paymentDetailDefaultImage,
         defaultTextInLastSlip,
         defaultMoreDetailField,
-        defaultMoreImageField
+        defaultMoreImageField,
+        defaultMaxMoreImage
       ]);
 }
 
@@ -529,6 +554,7 @@ ConfigDataStruct createConfigDataStruct({
   String? defaultTextInLastSlip,
   String? defaultMoreDetailField,
   String? defaultMoreImageField,
+  int? defaultMaxMoreImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -546,6 +572,7 @@ ConfigDataStruct createConfigDataStruct({
       defaultTextInLastSlip: defaultTextInLastSlip,
       defaultMoreDetailField: defaultMoreDetailField,
       defaultMoreImageField: defaultMoreImageField,
+      defaultMaxMoreImage: defaultMaxMoreImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

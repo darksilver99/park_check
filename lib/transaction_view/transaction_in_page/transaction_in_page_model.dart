@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -157,8 +156,9 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   bool isDataUploading3 = false;
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl3 = '';
 
+  // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
+  String? moreImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   String? registrationImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.

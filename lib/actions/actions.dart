@@ -33,6 +33,7 @@ Future getConfigData(BuildContext context) async {
     defaultTextInLastSlip: configResult?.defaultTextInLastSlip,
     defaultMoreDetailField: configResult?.defaultMoreDetailField,
     defaultMoreImageField: configResult?.defaultMoreImageField,
+    defaultMaxMoreImage: configResult?.defaultMaxMoreImage,
   );
 }
 
@@ -60,5 +61,6 @@ Future createProjectData(
     moreDetailField: projectData?.moreDetailField,
     moreImageField: projectData?.moreImageField,
     textInLastSlip: projectData?.textInLastSlip,
+    maxMoreImage: projectData?.maxMoreImage,
   );
 }

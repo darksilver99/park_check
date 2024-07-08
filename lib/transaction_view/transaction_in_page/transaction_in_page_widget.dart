@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
@@ -1857,116 +1856,163 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             ],
                                           ),
                                         ),
-                                        FFButtonWidget(
-                                          onPressed: () async {
-                                            final selectedMedia =
-                                                await selectMedia(
-                                              maxWidth: 600.00,
-                                              imageQuality: 80,
-                                              multiImage: false,
-                                            );
-                                            if (selectedMedia != null &&
-                                                selectedMedia.every((m) =>
-                                                    validateFileFormat(
-                                                        m.storagePath,
-                                                        context))) {
-                                              setState(() => _model
-                                                  .isDataUploading3 = true);
-                                              var selectedUploadedFiles =
-                                                  <FFUploadedFile>[];
-
-                                              var downloadUrls = <String>[];
-                                              try {
-                                                selectedUploadedFiles =
-                                                    selectedMedia
-                                                        .map((m) =>
-                                                            FFUploadedFile(
-                                                              name: m
-                                                                  .storagePath
-                                                                  .split('/')
-                                                                  .last,
-                                                              bytes: m.bytes,
-                                                              height: m
-                                                                  .dimensions
-                                                                  ?.height,
-                                                              width: m
-                                                                  .dimensions
-                                                                  ?.width,
-                                                              blurHash:
-                                                                  m.blurHash,
-                                                            ))
-                                                        .toList();
-
-                                                downloadUrls =
-                                                    (await Future.wait(
-                                                  selectedMedia.map(
-                                                    (m) async =>
-                                                        await uploadData(
-                                                            m.storagePath,
-                                                            m.bytes),
-                                                  ),
-                                                ))
-                                                        .where((u) => u != null)
-                                                        .map((u) => u!)
-                                                        .toList();
-                                              } finally {
-                                                _model.isDataUploading3 = false;
-                                              }
-                                              if (selectedUploadedFiles
-                                                          .length ==
-                                                      selectedMedia.length &&
-                                                  downloadUrls.length ==
-                                                      selectedMedia.length) {
-                                                setState(() {
-                                                  _model.uploadedLocalFile3 =
-                                                      selectedUploadedFiles
-                                                          .first;
-                                                  _model.uploadedFileUrl3 =
-                                                      downloadUrls.first;
-                                                });
+                                        Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              if (_model.tmpMoreImageListPath
+                                                      .length >=
+                                                  FFAppState()
+                                                      .projectData
+                                                      .maxMoreImage) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child:
+                                                              CustomInfoAlertViewWidget(
+                                                            title:
+                                                                'กำหนดรูปภาพสูงสุด ${FFAppState().projectData.maxMoreImage.toString()} รูป',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
                                               } else {
-                                                setState(() {});
-                                                return;
-                                              }
-                                            }
+                                                final selectedMedia =
+                                                    await selectMedia(
+                                                  maxWidth: 600.00,
+                                                  imageQuality: 80,
+                                                  multiImage: false,
+                                                );
+                                                if (selectedMedia != null &&
+                                                    selectedMedia.every((m) =>
+                                                        validateFileFormat(
+                                                            m.storagePath,
+                                                            context))) {
+                                                  setState(() => _model
+                                                      .isDataUploading3 = true);
+                                                  var selectedUploadedFiles =
+                                                      <FFUploadedFile>[];
 
-                                            if (_model.uploadedFileUrl3 !=
-                                                    null &&
-                                                _model.uploadedFileUrl3 != '') {
-                                              _model.addToTmpMoreImageListPath(
-                                                  _model.uploadedFileUrl3);
+                                                  try {
+                                                    selectedUploadedFiles =
+                                                        selectedMedia
+                                                            .map((m) =>
+                                                                FFUploadedFile(
+                                                                  name: m
+                                                                      .storagePath
+                                                                      .split(
+                                                                          '/')
+                                                                      .last,
+                                                                  bytes:
+                                                                      m.bytes,
+                                                                  height: m
+                                                                      .dimensions
+                                                                      ?.height,
+                                                                  width: m
+                                                                      .dimensions
+                                                                      ?.width,
+                                                                  blurHash: m
+                                                                      .blurHash,
+                                                                ))
+                                                            .toList();
+                                                  } finally {
+                                                    _model.isDataUploading3 =
+                                                        false;
+                                                  }
+                                                  if (selectedUploadedFiles
+                                                          .length ==
+                                                      selectedMedia.length) {
+                                                    setState(() {
+                                                      _model.uploadedLocalFile3 =
+                                                          selectedUploadedFiles
+                                                              .first;
+                                                    });
+                                                  } else {
+                                                    setState(() {});
+                                                    return;
+                                                  }
+                                                }
+
+                                                if (_model.uploadedLocalFile3 !=
+                                                        null &&
+                                                    (_model
+                                                            .uploadedLocalFile3
+                                                            .bytes
+                                                            ?.isNotEmpty ??
+                                                        false)) {
+                                                  _model.moreImagePath =
+                                                      await actions
+                                                          .uploadImageToFirebase(
+                                                    _model.uploadedLocalFile3,
+                                                    'more_image',
+                                                  );
+                                                  _model
+                                                      .addToTmpMoreImageListPath(
+                                                          _model
+                                                              .moreImagePath!);
+                                                  setState(() {});
+                                                }
+                                              }
+
                                               setState(() {});
-                                            }
-                                          },
-                                          text: 'ถ่ายรูป',
-                                          icon: Icon(
-                                            Icons.photo_camera,
-                                            size: 15.0,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 40.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: Color(0xFF2C61E9),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                            },
+                                            text: 'ถ่ายรูป',
+                                            icon: Icon(
+                                              Icons.photo_camera,
+                                              size: 15.0,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFF2C61E9),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
                                       ],

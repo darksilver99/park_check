@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 
 import 'package:park_check/backend/firebase_storage/storage.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:flutter/services.dart';
+import '/custom_code/actions/index.dart' as actions;
 
 Future<String> uploadImageToFirebase(
   FFUploadedFile image,
@@ -21,8 +23,13 @@ Future<String> uploadImageToFirebase(
   String path =
       'transaction/${FFAppState().projectData.projectDocID}/$type/${image.name}';
 
+  var waterMark = (await rootBundle.load("assets/images/watermark.png"))
+      .buffer
+      .asUint8List();
+  var mergeImage = await actions.overlayImg(image.bytes!, waterMark);
+
   Uint8List compress = await FlutterImageCompress.compressWithList(
-    image.bytes!,
+    mergeImage,
     minWidth: 300,
     quality: 50,
   );
