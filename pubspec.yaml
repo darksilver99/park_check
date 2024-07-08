@@ -147,7 +147,7 @@ dependency_overrides:
   win32: 5.5.1
 
   # custom
-  image: ^3.0.2
+  #image: ^3.0.2
   #rxdart: ^0.26.0
 
 dev_dependencies:
