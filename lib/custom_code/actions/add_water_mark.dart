@@ -18,8 +18,8 @@ Future<dynamic> addWaterMark(
 ) async {
   // Add your function code here!
 
-  ui.Image? originalImage = ui.decodeImage(image1);
-  ui.Image? watermarkImage = ui.decodeImage(image2);
+  ui.Image? originalImage = ui.decodeImage(baseImage);
+  ui.Image? watermarkImage = ui.decodeImage(waterMarkImage);
   watermarkImage = ui.copyResize(watermarkImage!, width: originalImage!.width);
 
   final mergedImage =
