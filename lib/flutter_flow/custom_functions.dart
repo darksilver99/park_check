@@ -117,6 +117,8 @@ String getTransactionNumber(TransactionListRecord? transactionDoc) {
 
   int intValue = int.parse(transactionDoc.transactionNumber);
 
+  intValue += 1;
+
   if (intValue > 99999999) {
     intValue = 1;
   }
