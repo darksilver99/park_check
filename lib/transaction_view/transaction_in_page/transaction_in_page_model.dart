@@ -48,6 +48,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
           int index, Function(String) updateFn) =>
       tmpMoreImageListPath[index] = updateFn(tmpMoreImageListPath[index]);
 
+  String? transactionNumber;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

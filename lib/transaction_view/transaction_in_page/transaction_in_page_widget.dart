@@ -2087,6 +2087,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                       descending: true),
                                           singleRecord: true,
                                         ).then((s) => s.firstOrNull);
+                                        _model.transactionNumber =
+                                            functions.getTransactionNumber(
+                                                _model.lastDocument);
 
                                         var transactionListRecordReference =
                                             TransactionListRecord.collection
@@ -2125,8 +2128,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             moreDetail: _model
                                                 .moreDetailTextController.text,
                                             transactionNumber:
-                                                functions.getTransactionNumber(
-                                                    _model.lastDocument),
+                                                _model.transactionNumber,
                                           ),
                                           ...mapToFirestore(
                                             {
@@ -2170,8 +2172,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             moreDetail: _model
                                                 .moreDetailTextController.text,
                                             transactionNumber:
-                                                functions.getTransactionNumber(
-                                                    _model.lastDocument),
+                                                _model.transactionNumber,
                                           ),
                                           ...mapToFirestore(
                                             {
