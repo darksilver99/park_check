@@ -121,6 +121,11 @@ class ProjectListRecord extends FirestoreRecord {
   String get moreImageField => _moreImageField ?? '';
   bool hasMoreImageField() => _moreImageField != null;
 
+  // "max_more_image" field.
+  int? _maxMoreImage;
+  int get maxMoreImage => _maxMoreImage ?? 0;
+  bool hasMaxMoreImage() => _maxMoreImage != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -143,6 +148,7 @@ class ProjectListRecord extends FirestoreRecord {
     _enableMoreImage = snapshotData['enable_more_image'] as bool?;
     _moreDetailField = snapshotData['more_detail_field'] as String?;
     _moreImageField = snapshotData['more_image_field'] as String?;
+    _maxMoreImage = castToType<int>(snapshotData['max_more_image']);
   }
 
   static CollectionReference get collection =>
@@ -197,6 +203,7 @@ Map<String, dynamic> createProjectListRecordData({
   bool? enableMoreImage,
   String? moreDetailField,
   String? moreImageField,
+  int? maxMoreImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -217,6 +224,7 @@ Map<String, dynamic> createProjectListRecordData({
       'enable_more_image': enableMoreImage,
       'more_detail_field': moreDetailField,
       'more_image_field': moreImageField,
+      'max_more_image': maxMoreImage,
     }.withoutNulls,
   );
 
@@ -249,7 +257,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.enableMoreDetail == e2?.enableMoreDetail &&
         e1?.enableMoreImage == e2?.enableMoreImage &&
         e1?.moreDetailField == e2?.moreDetailField &&
-        e1?.moreImageField == e2?.moreImageField;
+        e1?.moreImageField == e2?.moreImageField &&
+        e1?.maxMoreImage == e2?.maxMoreImage;
   }
 
   @override
@@ -274,7 +283,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.enableMoreDetail,
         e?.enableMoreImage,
         e?.moreDetailField,
-        e?.moreImageField
+        e?.moreImageField,
+        e?.maxMoreImage
       ]);
 
   @override

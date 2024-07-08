@@ -117,6 +117,11 @@ class ConfigRecord extends FirestoreRecord {
   String get defaultMoreDetailField => _defaultMoreDetailField ?? '';
   bool hasDefaultMoreDetailField() => _defaultMoreDetailField != null;
 
+  // "default_max_more_image" field.
+  int? _defaultMaxMoreImage;
+  int get defaultMaxMoreImage => _defaultMaxMoreImage ?? 0;
+  bool hasDefaultMaxMoreImage() => _defaultMaxMoreImage != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -144,6 +149,8 @@ class ConfigRecord extends FirestoreRecord {
         snapshotData['default_more_image_field'] as String?;
     _defaultMoreDetailField =
         snapshotData['default_more_detail_field'] as String?;
+    _defaultMaxMoreImage =
+        castToType<int>(snapshotData['default_max_more_image']);
   }
 
   static CollectionReference get collection =>
@@ -192,6 +199,7 @@ Map<String, dynamic> createConfigRecordData({
   String? defaultTextInLastSlip,
   String? defaultMoreImageField,
   String? defaultMoreDetailField,
+  int? defaultMaxMoreImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -207,6 +215,7 @@ Map<String, dynamic> createConfigRecordData({
       'default_text_in_last_slip': defaultTextInLastSlip,
       'default_more_image_field': defaultMoreImageField,
       'default_more_detail_field': defaultMoreDetailField,
+      'default_max_more_image': defaultMaxMoreImage,
     }.withoutNulls,
   );
 
@@ -240,7 +249,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.paymentDetailDefaultImage == e2?.paymentDetailDefaultImage &&
         e1?.defaultTextInLastSlip == e2?.defaultTextInLastSlip &&
         e1?.defaultMoreImageField == e2?.defaultMoreImageField &&
-        e1?.defaultMoreDetailField == e2?.defaultMoreDetailField;
+        e1?.defaultMoreDetailField == e2?.defaultMoreDetailField &&
+        e1?.defaultMaxMoreImage == e2?.defaultMaxMoreImage;
   }
 
   @override
@@ -264,7 +274,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.paymentDetailDefaultImage,
         e?.defaultTextInLastSlip,
         e?.defaultMoreImageField,
-        e?.defaultMoreDetailField
+        e?.defaultMoreDetailField,
+        e?.defaultMaxMoreImage
       ]);
 
   @override

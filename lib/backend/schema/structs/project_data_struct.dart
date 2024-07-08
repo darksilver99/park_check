@@ -29,6 +29,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
     String? moreDetailField,
     String? moreImageField,
     String? textInLastSlip,
+    int? maxMoreImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -49,6 +50,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _moreDetailField = moreDetailField,
         _moreImageField = moreImageField,
         _textInLastSlip = textInLastSlip,
+        _maxMoreImage = maxMoreImage,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -203,6 +205,16 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasTextInLastSlip() => _textInLastSlip != null;
 
+  // "max_more_image" field.
+  int? _maxMoreImage;
+  int get maxMoreImage => _maxMoreImage ?? 0;
+  set maxMoreImage(int? val) => _maxMoreImage = val;
+
+  void incrementMaxMoreImage(int amount) =>
+      maxMoreImage = maxMoreImage + amount;
+
+  bool hasMaxMoreImage() => _maxMoreImage != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -224,6 +236,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         moreDetailField: data['more_detail_field'] as String?,
         moreImageField: data['more_image_field'] as String?,
         textInLastSlip: data['text_in_last_slip'] as String?,
+        maxMoreImage: castToType<int>(data['max_more_image']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -250,6 +263,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'more_detail_field': _moreDetailField,
         'more_image_field': _moreImageField,
         'text_in_last_slip': _textInLastSlip,
+        'max_more_image': _maxMoreImage,
       }.withoutNulls;
 
   @override
@@ -333,6 +347,10 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'text_in_last_slip': serializeParam(
           _textInLastSlip,
           ParamType.String,
+        ),
+        'max_more_image': serializeParam(
+          _maxMoreImage,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -434,6 +452,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        maxMoreImage: deserializeParam(
+          data['max_more_image'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -461,7 +484,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         enableMoreDetail == other.enableMoreDetail &&
         moreDetailField == other.moreDetailField &&
         moreImageField == other.moreImageField &&
-        textInLastSlip == other.textInLastSlip;
+        textInLastSlip == other.textInLastSlip &&
+        maxMoreImage == other.maxMoreImage;
   }
 
   @override
@@ -484,7 +508,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         enableMoreDetail,
         moreDetailField,
         moreImageField,
-        textInLastSlip
+        textInLastSlip,
+        maxMoreImage
       ]);
 }
 
@@ -504,6 +529,7 @@ ProjectDataStruct createProjectDataStruct({
   String? moreDetailField,
   String? moreImageField,
   String? textInLastSlip,
+  int? maxMoreImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -525,6 +551,7 @@ ProjectDataStruct createProjectDataStruct({
       moreDetailField: moreDetailField,
       moreImageField: moreImageField,
       textInLastSlip: textInLastSlip,
+      maxMoreImage: maxMoreImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

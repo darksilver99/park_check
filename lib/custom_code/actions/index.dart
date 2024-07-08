@@ -9,3 +9,4 @@ export 'print_slip.dart' show printSlip;
 export 'go_to_page.dart' show goToPage;
 export 'set_app_version.dart' show setAppVersion;
 export 'close_app.dart' show closeApp;
+export 'add_water_mark.dart' show addWaterMark;
