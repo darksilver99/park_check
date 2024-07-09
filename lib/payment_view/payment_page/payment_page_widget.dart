@@ -527,6 +527,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                             'ส่งข้อมูลไปยังระบบเรียบร้อยแล้ว กรุณารอการตรวจสอบ',
                                                         detail:
                                                             'ระบบใช้เวลาตรวจสอบ 5 - 10 นาที',
+                                                        status: 'success',
                                                       ),
                                                     ),
                                                   ),

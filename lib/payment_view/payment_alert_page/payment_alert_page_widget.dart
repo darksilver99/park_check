@@ -50,7 +50,7 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
           onPressed: () async {
             context.pushNamed('PaymentPage');
           },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).link,
           elevation: 8.0,
           label: Row(
             mainAxisSize: MainAxisSize.max,

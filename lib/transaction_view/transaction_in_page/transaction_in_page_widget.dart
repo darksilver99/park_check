@@ -1997,7 +1997,9 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                       24.0, 0.0, 24.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Color(0xFF2C61E9),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .link,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
