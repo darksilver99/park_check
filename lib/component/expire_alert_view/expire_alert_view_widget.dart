@@ -89,6 +89,7 @@ class _ExpireAlertViewWidgetState extends State<ExpireAlertViewWidget> {
                             color: FlutterFlowTheme.of(context).error,
                             fontSize: 18.0,
                             letterSpacing: 0.0,
+                            fontWeight: FontWeight.bold,
                           ),
                     ),
                   ),
