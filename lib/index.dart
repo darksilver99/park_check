@@ -20,7 +20,7 @@ export '/setting_view/setting_printer_page/setting_printer_page_widget.dart'
 export '/test/test_page/test_page_widget.dart' show TestPageWidget;
 export '/authen_view/register_page/register_page_widget.dart'
     show RegisterPageWidget;
-export '/authen_view/web_view_page/web_view_page_widget.dart'
+export '/landing_view/web_view_page/web_view_page_widget.dart'
     show WebViewPageWidget;
 export '/authen_view/forget_password_page/forget_password_page_widget.dart'
     show ForgetPasswordPageWidget;
@@ -28,3 +28,5 @@ export '/payment_view/payment_alert_page/payment_alert_page_widget.dart'
     show PaymentAlertPageWidget;
 export '/payment_view/payment_page/payment_page_widget.dart'
     show PaymentPageWidget;
+export '/landing_view/detail_with_image_page/detail_with_image_page_widget.dart'
+    show DetailWithImagePageWidget;

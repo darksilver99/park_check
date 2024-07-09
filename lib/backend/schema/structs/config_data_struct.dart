@@ -23,13 +23,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
     int? storeVersion,
     String? storeAndroidLink,
     String? storeIosLink,
-    String? guideUrl,
     List<String>? paymentAlertDefaultText,
     String? paymentDetailDefaultImage,
     String? defaultTextInLastSlip,
     String? defaultMoreDetailField,
     String? defaultMoreImageField,
     int? defaultMaxMoreImage,
+    String? guideImagePath,
+    String? promotionDefaultImage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -44,13 +45,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _storeVersion = storeVersion,
         _storeAndroidLink = storeAndroidLink,
         _storeIosLink = storeIosLink,
-        _guideUrl = guideUrl,
         _paymentAlertDefaultText = paymentAlertDefaultText,
         _paymentDetailDefaultImage = paymentDetailDefaultImage,
         _defaultTextInLastSlip = defaultTextInLastSlip,
         _defaultMoreDetailField = defaultMoreDetailField,
         _defaultMoreImageField = defaultMoreImageField,
         _defaultMaxMoreImage = defaultMaxMoreImage,
+        _guideImagePath = guideImagePath,
+        _promotionDefaultImage = promotionDefaultImage,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -178,13 +180,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasStoreIosLink() => _storeIosLink != null;
 
-  // "guide_url" field.
-  String? _guideUrl;
-  String get guideUrl => _guideUrl ?? '';
-  set guideUrl(String? val) => _guideUrl = val;
-
-  bool hasGuideUrl() => _guideUrl != null;
-
   // "payment_alert_default_text" field.
   List<String>? _paymentAlertDefaultText;
   List<String> get paymentAlertDefaultText =>
@@ -237,6 +232,20 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasDefaultMaxMoreImage() => _defaultMaxMoreImage != null;
 
+  // "guide_image_path" field.
+  String? _guideImagePath;
+  String get guideImagePath => _guideImagePath ?? '';
+  set guideImagePath(String? val) => _guideImagePath = val;
+
+  bool hasGuideImagePath() => _guideImagePath != null;
+
+  // "promotion_default_image" field.
+  String? _promotionDefaultImage;
+  String get promotionDefaultImage => _promotionDefaultImage ?? '';
+  set promotionDefaultImage(String? val) => _promotionDefaultImage = val;
+
+  bool hasPromotionDefaultImage() => _promotionDefaultImage != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -253,7 +262,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion: castToType<int>(data['store_version']),
         storeAndroidLink: data['store_android_link'] as String?,
         storeIosLink: data['store_ios_link'] as String?,
-        guideUrl: data['guide_url'] as String?,
         paymentAlertDefaultText:
             getDataList(data['payment_alert_default_text']),
         paymentDetailDefaultImage:
@@ -262,6 +270,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultMoreDetailField: data['default_more_detail_field'] as String?,
         defaultMoreImageField: data['default_more_image_field'] as String?,
         defaultMaxMoreImage: castToType<int>(data['default_max_more_image']),
+        guideImagePath: data['guide_image_path'] as String?,
+        promotionDefaultImage: data['promotion_default_image'] as String?,
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -282,13 +292,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'store_version': _storeVersion,
         'store_android_link': _storeAndroidLink,
         'store_ios_link': _storeIosLink,
-        'guide_url': _guideUrl,
         'payment_alert_default_text': _paymentAlertDefaultText,
         'payment_detail_default_image': _paymentDetailDefaultImage,
         'default_text_in_last_slip': _defaultTextInLastSlip,
         'default_more_detail_field': _defaultMoreDetailField,
         'default_more_image_field': _defaultMoreImageField,
         'default_max_more_image': _defaultMaxMoreImage,
+        'guide_image_path': _guideImagePath,
+        'promotion_default_image': _promotionDefaultImage,
       }.withoutNulls;
 
   @override
@@ -352,10 +363,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
           _storeIosLink,
           ParamType.String,
         ),
-        'guide_url': serializeParam(
-          _guideUrl,
-          ParamType.String,
-        ),
         'payment_alert_default_text': serializeParam(
           _paymentAlertDefaultText,
           ParamType.String,
@@ -380,6 +387,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_max_more_image': serializeParam(
           _defaultMaxMoreImage,
           ParamType.int,
+        ),
+        'guide_image_path': serializeParam(
+          _guideImagePath,
+          ParamType.String,
+        ),
+        'promotion_default_image': serializeParam(
+          _promotionDefaultImage,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -450,11 +465,6 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        guideUrl: deserializeParam(
-          data['guide_url'],
-          ParamType.String,
-          false,
-        ),
         paymentAlertDefaultText: deserializeParam<String>(
           data['payment_alert_default_text'],
           ParamType.String,
@@ -485,6 +495,16 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        guideImagePath: deserializeParam(
+          data['guide_image_path'],
+          ParamType.String,
+          false,
+        ),
+        promotionDefaultImage: deserializeParam(
+          data['promotion_default_image'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -507,14 +527,15 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion == other.storeVersion &&
         storeAndroidLink == other.storeAndroidLink &&
         storeIosLink == other.storeIosLink &&
-        guideUrl == other.guideUrl &&
         listEquality.equals(
             paymentAlertDefaultText, other.paymentAlertDefaultText) &&
         paymentDetailDefaultImage == other.paymentDetailDefaultImage &&
         defaultTextInLastSlip == other.defaultTextInLastSlip &&
         defaultMoreDetailField == other.defaultMoreDetailField &&
         defaultMoreImageField == other.defaultMoreImageField &&
-        defaultMaxMoreImage == other.defaultMaxMoreImage;
+        defaultMaxMoreImage == other.defaultMaxMoreImage &&
+        guideImagePath == other.guideImagePath &&
+        promotionDefaultImage == other.promotionDefaultImage;
   }
 
   @override
@@ -532,13 +553,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
         storeVersion,
         storeAndroidLink,
         storeIosLink,
-        guideUrl,
         paymentAlertDefaultText,
         paymentDetailDefaultImage,
         defaultTextInLastSlip,
         defaultMoreDetailField,
         defaultMoreImageField,
-        defaultMaxMoreImage
+        defaultMaxMoreImage,
+        guideImagePath,
+        promotionDefaultImage
       ]);
 }
 
@@ -549,12 +571,13 @@ ConfigDataStruct createConfigDataStruct({
   int? storeVersion,
   String? storeAndroidLink,
   String? storeIosLink,
-  String? guideUrl,
   String? paymentDetailDefaultImage,
   String? defaultTextInLastSlip,
   String? defaultMoreDetailField,
   String? defaultMoreImageField,
   int? defaultMaxMoreImage,
+  String? guideImagePath,
+  String? promotionDefaultImage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -567,12 +590,13 @@ ConfigDataStruct createConfigDataStruct({
       storeVersion: storeVersion,
       storeAndroidLink: storeAndroidLink,
       storeIosLink: storeIosLink,
-      guideUrl: guideUrl,
       paymentDetailDefaultImage: paymentDetailDefaultImage,
       defaultTextInLastSlip: defaultTextInLastSlip,
       defaultMoreDetailField: defaultMoreDetailField,
       defaultMoreImageField: defaultMoreImageField,
       defaultMaxMoreImage: defaultMaxMoreImage,
+      guideImagePath: guideImagePath,
+      promotionDefaultImage: promotionDefaultImage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

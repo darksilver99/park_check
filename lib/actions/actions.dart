@@ -27,13 +27,14 @@ Future getConfigData(BuildContext context) async {
     storeVersion: configResult?.storeVersion,
     storeAndroidLink: configResult?.storeAndroidLink,
     storeIosLink: configResult?.storeIosLink,
-    guideUrl: configResult?.guideUrl,
     paymentAlertDefaultText: configResult?.paymentAlertDefaultText,
     paymentDetailDefaultImage: configResult?.paymentDetailDefaultImage,
     defaultTextInLastSlip: configResult?.defaultTextInLastSlip,
     defaultMoreDetailField: configResult?.defaultMoreDetailField,
     defaultMoreImageField: configResult?.defaultMoreImageField,
     defaultMaxMoreImage: configResult?.defaultMaxMoreImage,
+    guideImagePath: configResult?.guideImagePath,
+    promotionDefaultImage: configResult?.promotionDefaultImage,
   );
 }
 
@@ -62,5 +63,6 @@ Future createProjectData(
     moreImageField: projectData?.moreImageField,
     textInLastSlip: projectData?.textInLastSlip,
     maxMoreImage: projectData?.maxMoreImage,
+    promotionImage: projectData?.promotionImage,
   );
 }

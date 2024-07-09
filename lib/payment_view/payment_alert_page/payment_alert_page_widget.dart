@@ -155,7 +155,28 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              fontSize: 22.0,
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: Text(
+                                        FFAppState()
+                                            .projectData
+                                            .paymentAlertText
+                                            .last,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -168,10 +189,9 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          functions.imageToString(FFAppState()
+                                          FFAppState()
                                               .projectData
-                                              .paymentAlertText
-                                              .last),
+                                              .promotionImage,
                                           width: double.infinity,
                                           fit: BoxFit.contain,
                                         ),

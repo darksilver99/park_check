@@ -185,6 +185,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PaymentPage',
           path: '/paymentPage',
           builder: (context, params) => PaymentPageWidget(),
+        ),
+        FFRoute(
+          name: 'DetailWithImagePage',
+          path: '/detailWithImagePage',
+          builder: (context, params) => DetailWithImagePageWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            image: params.getParam(
+              'image',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
