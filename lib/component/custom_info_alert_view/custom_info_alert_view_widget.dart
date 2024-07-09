@@ -124,12 +124,13 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                                 widget.detail,
                                 '-',
                               ),
-                              textAlign: TextAlign.start,
+                              textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    fontSize: 18.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     letterSpacing: 0.0,
                                   ),
                             ),

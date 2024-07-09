@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -127,15 +126,11 @@ class _DetailWithImagePageWidgetState extends State<DetailWithImagePageWidget> {
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 500),
-                                          imageUrl: widget.image!,
+                                        child: Image.network(
+                                          widget.image!,
                                           width: double.infinity,
                                           fit: BoxFit.contain,
-                                          errorWidget:
+                                          errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
                                             'assets/images/error_image.jpg',
