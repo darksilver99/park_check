@@ -46,6 +46,36 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () async {
+            context.pushNamed('PaymentPage');
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          label: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                child: Icon(
+                  Icons.payments_outlined,
+                  color: FlutterFlowTheme.of(context).info,
+                  size: 24.0,
+                ),
+              ),
+              Text(
+                'ชำระเงิน',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Readex Pro',
+                      color: FlutterFlowTheme.of(context).info,
+                      fontSize: 18.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
@@ -94,8 +124,7 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Container(
                               width: double.infinity,
                               constraints: BoxConstraints(
@@ -207,44 +236,6 @@ class _PaymentAlertPageWidgetState extends State<PaymentAlertPageWidget> {
                                               .promotionImage,
                                           width: double.infinity,
                                           fit: BoxFit.contain,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          context.pushNamed('PaymentPage');
-                                        },
-                                        text: 'แจ้งชำระเงิน',
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          height: 50.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                    fontSize: 22.0,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
                                         ),
                                       ),
                                     ),
