@@ -51,6 +51,11 @@ class PaymentListRecord extends FirestoreRecord {
   String get slipImage => _slipImage ?? '';
   bool hasSlipImage() => _slipImage != null;
 
+  // "pay_from" field.
+  String? _payFrom;
+  String get payFrom => _payFrom ?? '';
+  bool hasPayFrom() => _payFrom != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -60,6 +65,7 @@ class PaymentListRecord extends FirestoreRecord {
     _status = castToType<int>(snapshotData['status']);
     _price = castToType<double>(snapshotData['price']);
     _slipImage = snapshotData['slip_image'] as String?;
+    _payFrom = snapshotData['pay_from'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -104,6 +110,7 @@ Map<String, dynamic> createPaymentListRecordData({
   int? status,
   double? price,
   String? slipImage,
+  String? payFrom,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -114,6 +121,7 @@ Map<String, dynamic> createPaymentListRecordData({
       'status': status,
       'price': price,
       'slip_image': slipImage,
+      'pay_from': payFrom,
     }.withoutNulls,
   );
 
@@ -131,7 +139,8 @@ class PaymentListRecordDocumentEquality implements Equality<PaymentListRecord> {
         e1?.createProjectRef == e2?.createProjectRef &&
         e1?.status == e2?.status &&
         e1?.price == e2?.price &&
-        e1?.slipImage == e2?.slipImage;
+        e1?.slipImage == e2?.slipImage &&
+        e1?.payFrom == e2?.payFrom;
   }
 
   @override
@@ -142,7 +151,8 @@ class PaymentListRecordDocumentEquality implements Equality<PaymentListRecord> {
         e?.createProjectRef,
         e?.status,
         e?.price,
-        e?.slipImage
+        e?.slipImage,
+        e?.payFrom
       ]);
 
   @override
