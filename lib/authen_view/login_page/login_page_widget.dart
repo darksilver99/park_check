@@ -31,6 +31,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().projectData = ProjectDataStruct();
+      FFAppState().isSkipOCRAlert = false;
+      FFAppState().isSkipExpireAlert = false;
+      FFAppState().currentDate =
+          DateTime.fromMillisecondsSinceEpoch(13064400000);
     });
 
     _model.emailTextController ??= TextEditingController();
@@ -298,9 +302,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .validate()) {
                                           return;
                                         }
-                                        FFAppState().isSkipOCRAlert = false;
-                                        FFAppState().isSkipExpireAlert = false;
-                                        setState(() {});
                                         GoRouter.of(context).prepareAuthEvent();
 
                                         final user =
