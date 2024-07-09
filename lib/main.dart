@@ -18,6 +18,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import 'package:flutter/services.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -26,6 +28,11 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   if (!kIsWeb) {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
