@@ -298,6 +298,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .validate()) {
                                           return;
                                         }
+                                        FFAppState().isSkipOCRAlert = false;
+                                        FFAppState().isSkipExpireAlert = false;
+                                        setState(() {});
                                         GoRouter.of(context).prepareAuthEvent();
 
                                         final user =
