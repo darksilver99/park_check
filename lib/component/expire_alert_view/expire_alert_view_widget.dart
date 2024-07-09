@@ -96,7 +96,8 @@ class _ExpireAlertViewWidgetState extends State<ExpireAlertViewWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Text(
-                      'ใช้งานได้ถึงวันที่ ${functions.dateTimeTh(FFAppState().projectData.expireDate!)}',
+                      'ใช้งานได้ถึงวันที่ ${functions.dateTh(FFAppState().projectData.expireDate!)}',
+                      textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             fontSize: 22.0,
