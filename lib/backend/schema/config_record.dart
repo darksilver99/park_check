@@ -86,11 +86,6 @@ class ConfigRecord extends FirestoreRecord {
   String get storeIosLink => _storeIosLink ?? '';
   bool hasStoreIosLink() => _storeIosLink != null;
 
-  // "guide_url" field.
-  String? _guideUrl;
-  String get guideUrl => _guideUrl ?? '';
-  bool hasGuideUrl() => _guideUrl != null;
-
   // "payment_alert_default_text" field.
   List<String>? _paymentAlertDefaultText;
   List<String> get paymentAlertDefaultText =>
@@ -122,6 +117,16 @@ class ConfigRecord extends FirestoreRecord {
   int get defaultMaxMoreImage => _defaultMaxMoreImage ?? 0;
   bool hasDefaultMaxMoreImage() => _defaultMaxMoreImage != null;
 
+  // "guide_image_path" field.
+  String? _guideImagePath;
+  String get guideImagePath => _guideImagePath ?? '';
+  bool hasGuideImagePath() => _guideImagePath != null;
+
+  // "promotion_default_image" field.
+  String? _promotionDefaultImage;
+  String get promotionDefaultImage => _promotionDefaultImage ?? '';
+  bool hasPromotionDefaultImage() => _promotionDefaultImage != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -138,7 +143,6 @@ class ConfigRecord extends FirestoreRecord {
     _storeVersion = castToType<int>(snapshotData['store_version']);
     _storeAndroidLink = snapshotData['store_android_link'] as String?;
     _storeIosLink = snapshotData['store_ios_link'] as String?;
-    _guideUrl = snapshotData['guide_url'] as String?;
     _paymentAlertDefaultText =
         getDataList(snapshotData['payment_alert_default_text']);
     _paymentDetailDefaultImage =
@@ -151,6 +155,8 @@ class ConfigRecord extends FirestoreRecord {
         snapshotData['default_more_detail_field'] as String?;
     _defaultMaxMoreImage =
         castToType<int>(snapshotData['default_max_more_image']);
+    _guideImagePath = snapshotData['guide_image_path'] as String?;
+    _promotionDefaultImage = snapshotData['promotion_default_image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -194,12 +200,13 @@ Map<String, dynamic> createConfigRecordData({
   int? storeVersion,
   String? storeAndroidLink,
   String? storeIosLink,
-  String? guideUrl,
   String? paymentDetailDefaultImage,
   String? defaultTextInLastSlip,
   String? defaultMoreImageField,
   String? defaultMoreDetailField,
   int? defaultMaxMoreImage,
+  String? guideImagePath,
+  String? promotionDefaultImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -210,12 +217,13 @@ Map<String, dynamic> createConfigRecordData({
       'store_version': storeVersion,
       'store_android_link': storeAndroidLink,
       'store_ios_link': storeIosLink,
-      'guide_url': guideUrl,
       'payment_detail_default_image': paymentDetailDefaultImage,
       'default_text_in_last_slip': defaultTextInLastSlip,
       'default_more_image_field': defaultMoreImageField,
       'default_more_detail_field': defaultMoreDetailField,
       'default_max_more_image': defaultMaxMoreImage,
+      'guide_image_path': guideImagePath,
+      'promotion_default_image': promotionDefaultImage,
     }.withoutNulls,
   );
 
@@ -243,14 +251,15 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.storeVersion == e2?.storeVersion &&
         e1?.storeAndroidLink == e2?.storeAndroidLink &&
         e1?.storeIosLink == e2?.storeIosLink &&
-        e1?.guideUrl == e2?.guideUrl &&
         listEquality.equals(
             e1?.paymentAlertDefaultText, e2?.paymentAlertDefaultText) &&
         e1?.paymentDetailDefaultImage == e2?.paymentDetailDefaultImage &&
         e1?.defaultTextInLastSlip == e2?.defaultTextInLastSlip &&
         e1?.defaultMoreImageField == e2?.defaultMoreImageField &&
         e1?.defaultMoreDetailField == e2?.defaultMoreDetailField &&
-        e1?.defaultMaxMoreImage == e2?.defaultMaxMoreImage;
+        e1?.defaultMaxMoreImage == e2?.defaultMaxMoreImage &&
+        e1?.guideImagePath == e2?.guideImagePath &&
+        e1?.promotionDefaultImage == e2?.promotionDefaultImage;
   }
 
   @override
@@ -269,13 +278,14 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.storeVersion,
         e?.storeAndroidLink,
         e?.storeIosLink,
-        e?.guideUrl,
         e?.paymentAlertDefaultText,
         e?.paymentDetailDefaultImage,
         e?.defaultTextInLastSlip,
         e?.defaultMoreImageField,
         e?.defaultMoreDetailField,
-        e?.defaultMaxMoreImage
+        e?.defaultMaxMoreImage,
+        e?.guideImagePath,
+        e?.promotionDefaultImage
       ]);
 
   @override

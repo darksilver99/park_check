@@ -136,6 +136,10 @@ DateTime getBeforeDay(
   return pastDate;
 }
 
-String imageToString(String str) {
+String imageToString(String image) {
+  return image;
+}
+
+String stringToImage(String str) {
   return str;
 }

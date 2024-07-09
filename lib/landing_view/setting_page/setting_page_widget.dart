@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -212,13 +213,27 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                     ParamType.String,
                                                   ),
                                                   'url': serializeParam(
-                                                    columnParkCarMenuListRecord.subject ==
-                                                            'คู่มือการใช้งาน'
-                                                        ? FFAppState()
-                                                            .configData
-                                                            .guideUrl
-                                                        : columnParkCarMenuListRecord
-                                                            .pathName,
+                                                    columnParkCarMenuListRecord
+                                                        .pathName,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            } else if (columnParkCarMenuListRecord
+                                                    .type ==
+                                                'app_image') {
+                                              context.pushNamed(
+                                                'DetailWithImagePage',
+                                                queryParameters: {
+                                                  'title': serializeParam(
+                                                    columnParkCarMenuListRecord
+                                                        .subject,
+                                                    ParamType.String,
+                                                  ),
+                                                  'image': serializeParam(
+                                                    functions.stringToImage(
+                                                        columnParkCarMenuListRecord
+                                                            .pathName),
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,

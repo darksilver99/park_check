@@ -126,6 +126,11 @@ class ProjectListRecord extends FirestoreRecord {
   int get maxMoreImage => _maxMoreImage ?? 0;
   bool hasMaxMoreImage() => _maxMoreImage != null;
 
+  // "promotion_image" field.
+  String? _promotionImage;
+  String get promotionImage => _promotionImage ?? '';
+  bool hasPromotionImage() => _promotionImage != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -149,6 +154,7 @@ class ProjectListRecord extends FirestoreRecord {
     _moreDetailField = snapshotData['more_detail_field'] as String?;
     _moreImageField = snapshotData['more_image_field'] as String?;
     _maxMoreImage = castToType<int>(snapshotData['max_more_image']);
+    _promotionImage = snapshotData['promotion_image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -204,6 +210,7 @@ Map<String, dynamic> createProjectListRecordData({
   String? moreDetailField,
   String? moreImageField,
   int? maxMoreImage,
+  String? promotionImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -225,6 +232,7 @@ Map<String, dynamic> createProjectListRecordData({
       'more_detail_field': moreDetailField,
       'more_image_field': moreImageField,
       'max_more_image': maxMoreImage,
+      'promotion_image': promotionImage,
     }.withoutNulls,
   );
 
@@ -258,7 +266,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.enableMoreImage == e2?.enableMoreImage &&
         e1?.moreDetailField == e2?.moreDetailField &&
         e1?.moreImageField == e2?.moreImageField &&
-        e1?.maxMoreImage == e2?.maxMoreImage;
+        e1?.maxMoreImage == e2?.maxMoreImage &&
+        e1?.promotionImage == e2?.promotionImage;
   }
 
   @override
@@ -284,7 +293,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.enableMoreImage,
         e?.moreDetailField,
         e?.moreImageField,
-        e?.maxMoreImage
+        e?.maxMoreImage,
+        e?.promotionImage
       ]);
 
   @override
