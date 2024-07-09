@@ -55,6 +55,10 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _isSkipOCRAlert = prefs.getBool('ff_isSkipOCRAlert') ?? _isSkipOCRAlert;
     });
+    _safeInit(() {
+      _isSkipExpireAlert =
+          prefs.getBool('ff_isSkipExpireAlert') ?? _isSkipExpireAlert;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -160,6 +164,7 @@ class FFAppState extends ChangeNotifier {
   bool get isSkipExpireAlert => _isSkipExpireAlert;
   set isSkipExpireAlert(bool value) {
     _isSkipExpireAlert = value;
+    prefs.setBool('ff_isSkipExpireAlert', value);
   }
 }
 
