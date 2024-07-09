@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
+import '/component/expire_alert_view/expire_alert_view_widget.dart';
 import '/component/loading_list_view/loading_list_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
@@ -87,9 +88,38 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             FFAppState().currentDate =
                 functions.getStartDayTime(getCurrentTimestamp);
             FFAppState().isSkipOCRAlert = false;
+            FFAppState().isSkipExpireAlert = false;
           }
           if (getCurrentTimestamp > FFAppState().projectData.expireDate!) {
             context.goNamed('PaymentAlertPage');
+          } else {
+            if (getCurrentTimestamp >
+                functions.getBeforeDay(
+                    5, FFAppState().projectData.expireDate!)) {
+              if (!FFAppState().isSkipExpireAlert) {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: AlignmentDirectional(0.0, 0.0)
+                          .resolve(Directionality.of(context)),
+                      child: WebViewAware(
+                        child: GestureDetector(
+                          onTap: () => _model.unfocusNode.canRequestFocus
+                              ? FocusScope.of(context)
+                                  .requestFocus(_model.unfocusNode)
+                              : FocusScope.of(context).unfocus(),
+                          child: ExpireAlertViewWidget(),
+                        ),
+                      ),
+                    );
+                  },
+                ).then((value) => setState(() {}));
+              }
+            }
           }
         } else {
           await showDialog(
