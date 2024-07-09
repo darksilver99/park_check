@@ -103,8 +103,7 @@ class _DetailWithImagePageWidgetState extends State<DetailWithImagePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Container(
                               width: double.infinity,
                               constraints: BoxConstraints(
