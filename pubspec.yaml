@@ -122,7 +122,7 @@ dependencies:
   skeleton_text: ^3.0.1
   device_info_plus: ^10.1.0
   permission_handler: ^11.3.1
-  bluetooth_print: ^4.3.0 #ได้
+  bluetooth_print: ^4.3.0
   widgets_to_image: ^1.0.0
   flutter_image_compress: ^2.3.0
   package_info_plus: ^3.0.3
