@@ -611,6 +611,7 @@ class _TransactionHistoryPageWidgetState
                               if (dataList.isEmpty) {
                                 return NoDataViewWidget();
                               }
+
                               return RefreshIndicator(
                                 key: Key('RefreshIndicator_zqhfhxpw'),
                                 onRefresh: () async {
@@ -882,6 +883,7 @@ class _TransactionHistoryPageWidgetState
                               if (dataList.isEmpty) {
                                 return NoDataViewWidget();
                               }
+
                               return RefreshIndicator(
                                 key: Key('RefreshIndicator_fkufsics'),
                                 onRefresh: () async {

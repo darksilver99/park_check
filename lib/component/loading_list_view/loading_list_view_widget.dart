@@ -42,6 +42,7 @@ class _LoadingListViewWidgetState extends State<LoadingListViewWidget> {
       child: Builder(
         builder: (context) {
           final list = _model.tmpList.toList();
+
           return SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,

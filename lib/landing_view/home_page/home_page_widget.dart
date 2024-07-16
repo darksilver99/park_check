@@ -427,6 +427,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 if (dataList.isEmpty) {
                                   return NoDataViewWidget();
                                 }
+
                                 return RefreshIndicator(
                                   onRefresh: () async {
                                     _model.isLoading = true;

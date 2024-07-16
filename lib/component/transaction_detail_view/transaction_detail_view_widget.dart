@@ -169,8 +169,8 @@ class _TransactionDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: BarcodeWidget(
-                                  data:
-                                      widget.transactionParameter!.reference.id,
+                                  data: widget!
+                                      .transactionParameter!.reference.id,
                                   barcode: Barcode.qrCode(),
                                   width: 300.0,
                                   height: 150.0,
@@ -189,7 +189,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'หมายเลขขาเข้า : ${widget.transactionParameter?.transactionNumber}',
+                                'หมายเลขขาเข้า : ${widget!.transactionParameter?.transactionNumber}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -211,7 +211,7 @@ class _TransactionDetailViewWidgetState
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: Text(
-                                        'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
+                                        'ทะเบียน : ${widget!.transactionParameter?.carRegistration}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -223,10 +223,10 @@ class _TransactionDetailViewWidgetState
                                       ),
                                     ),
                                   ),
-                                  if (widget.transactionParameter
+                                  if (widget!.transactionParameter
                                               ?.registrationImage !=
                                           null &&
-                                      widget.transactionParameter
+                                      widget!.transactionParameter
                                               ?.registrationImage !=
                                           '')
                                     Stack(
@@ -258,13 +258,13 @@ class _TransactionDetailViewWidgetState
                                                   child:
                                                       FlutterFlowExpandedImageView(
                                                     image: Image.network(
-                                                      widget
+                                                      widget!
                                                           .transactionParameter!
                                                           .registrationImage,
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
-                                                    tag: widget
+                                                    tag: widget!
                                                         .transactionParameter!
                                                         .registrationImage,
                                                     useHeroAnimation: true,
@@ -273,14 +273,14 @@ class _TransactionDetailViewWidgetState
                                               );
                                             },
                                             child: Hero(
-                                              tag: widget.transactionParameter!
+                                              tag: widget!.transactionParameter!
                                                   .registrationImage,
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  widget.transactionParameter!
+                                                  widget!.transactionParameter!
                                                       .registrationImage,
                                                   width: 80.0,
                                                   height: 20.0,
@@ -299,7 +299,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'ประเภทรถ : ${widget.transactionParameter?.carType}',
+                                'ประเภทรถ : ${widget!.transactionParameter?.carType}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -314,7 +314,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'ชื่อ : ${widget.transactionParameter?.preName} ${widget.transactionParameter?.firstName} ${widget.transactionParameter?.lastName}',
+                                'ชื่อ : ${widget!.transactionParameter?.preName} ${widget!.transactionParameter?.firstName} ${widget!.transactionParameter?.lastName}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -329,7 +329,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'จุดประสงค์ : ${widget.transactionParameter?.objective}',
+                                'จุดประสงค์ : ${widget!.transactionParameter?.objective}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -345,7 +345,7 @@ class _TransactionDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'ที่อยู่ที่มาติดต่อ : ${widget.transactionParameter?.contactAddress}',
+                                  'ที่อยู่ที่มาติดต่อ : ${widget!.transactionParameter?.contactAddress}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -361,7 +361,7 @@ class _TransactionDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  '${FFAppState().projectData.moreDetailField} : ${widget.transactionParameter?.moreDetail}',
+                                  '${FFAppState().projectData.moreDetailField} : ${widget!.transactionParameter?.moreDetail}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -376,7 +376,7 @@ class _TransactionDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'เวลาเข้า : ${functions.dateTimeTh(widget.transactionParameter!.dateIn!)}',
+                                'เวลาเข้า : ${functions.dateTimeTh(widget!.transactionParameter!.dateIn!)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

@@ -33,6 +33,8 @@ class TransactionOutDetailViewModel
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult2;
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
+  PrintStatusDataStruct? printResult3;
+  // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult;
 
   @override
