@@ -1278,6 +1278,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .labelMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                               ),
                                       searchTextStyle:
@@ -1291,6 +1292,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'เลือกจังหวัด',
@@ -1299,7 +1301,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         Icons.keyboard_arrow_down_rounded,
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
-                                        size: 24.0,
+                                        size: 42.0,
                                       ),
                                       fillColor: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -1731,6 +1733,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     final moreImageList = _model
                                                         .tmpMoreImageListPath
                                                         .toList();
+
                                                     return Wrap(
                                                       spacing: 8.0,
                                                       runSpacing: 8.0,

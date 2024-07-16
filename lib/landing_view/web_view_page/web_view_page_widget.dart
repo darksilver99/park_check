@@ -70,7 +70,7 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.title,
+              widget!.title,
               '-',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -98,7 +98,7 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
                 children: [
                   Expanded(
                     child: FlutterFlowWebView(
-                      content: widget.url!,
+                      content: widget!.url!,
                       bypass: false,
                       height: MediaQuery.sizeOf(context).height * 1.0,
                       verticalScroll: false,

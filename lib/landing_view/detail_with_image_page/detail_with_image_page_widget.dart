@@ -70,7 +70,7 @@ class _DetailWithImagePageWidgetState extends State<DetailWithImagePageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.title,
+              widget!.title,
               '-',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -127,7 +127,7 @@ class _DetailWithImagePageWidgetState extends State<DetailWithImagePageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          widget.image!,
+                                          widget!.image!,
                                           width: double.infinity,
                                           fit: BoxFit.contain,
                                           errorBuilder:

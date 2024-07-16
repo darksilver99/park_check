@@ -180,6 +180,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   List<ParkCarMenuListRecord>
                                       columnParkCarMenuListRecordList =
                                       snapshot.data!;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: List.generate(

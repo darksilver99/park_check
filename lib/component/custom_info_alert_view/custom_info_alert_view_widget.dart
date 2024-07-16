@@ -90,16 +90,16 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget.title,
+                        widget!.title,
                         '-',
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: () {
-                              if (widget.status == 'error') {
+                              if (widget!.status == 'error') {
                                 return FlutterFlowTheme.of(context).error;
-                              } else if (widget.status == 'info') {
+                              } else if (widget!.status == 'info') {
                                 return FlutterFlowTheme.of(context).primaryText;
                               } else {
                                 return FlutterFlowTheme.of(context).success;
@@ -111,7 +111,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                           ),
                     ),
                   ),
-                  if (widget.detail != null && widget.detail != '')
+                  if (widget!.detail != null && widget!.detail != '')
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
@@ -121,7 +121,7 @@ class _CustomInfoAlertViewWidgetState extends State<CustomInfoAlertViewWidget> {
                           Expanded(
                             child: Text(
                               valueOrDefault<String>(
-                                widget.detail,
+                                widget!.detail,
                                 '-',
                               ),
                               textAlign: TextAlign.center,

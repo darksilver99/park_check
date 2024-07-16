@@ -494,6 +494,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                       .projectReference,
                                                   status: 0,
                                                   slipImage: _model.slipImage,
+                                                  payFrom: 'park_app',
                                                 ));
                                             await showDialog(
                                               context: context,

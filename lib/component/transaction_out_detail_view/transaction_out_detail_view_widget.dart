@@ -182,8 +182,8 @@ class _TransactionOutDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: BarcodeWidget(
-                                  data:
-                                      widget.transactionParameter!.reference.id,
+                                  data: widget!
+                                      .transactionParameter!.reference.id,
                                   barcode: Barcode.qrCode(),
                                   width: 300.0,
                                   height: 150.0,
@@ -202,7 +202,7 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'หมายเลขขาเข้า : ${widget.transactionParameter?.transactionNumber}',
+                                'หมายเลขขาเข้า : ${widget!.transactionParameter?.transactionNumber}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -224,7 +224,7 @@ class _TransactionOutDetailViewWidgetState
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: Text(
-                                        'ทะเบียน : ${widget.transactionParameter?.carRegistration}',
+                                        'ทะเบียน : ${widget!.transactionParameter?.carRegistration}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -236,10 +236,10 @@ class _TransactionOutDetailViewWidgetState
                                       ),
                                     ),
                                   ),
-                                  if (widget.transactionParameter
+                                  if (widget!.transactionParameter
                                               ?.registrationImage !=
                                           null &&
-                                      widget.transactionParameter
+                                      widget!.transactionParameter
                                               ?.registrationImage !=
                                           '')
                                     Stack(
@@ -271,13 +271,13 @@ class _TransactionOutDetailViewWidgetState
                                                   child:
                                                       FlutterFlowExpandedImageView(
                                                     image: Image.network(
-                                                      widget
+                                                      widget!
                                                           .transactionParameter!
                                                           .registrationImage,
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
-                                                    tag: widget
+                                                    tag: widget!
                                                         .transactionParameter!
                                                         .registrationImage,
                                                     useHeroAnimation: true,
@@ -286,14 +286,14 @@ class _TransactionOutDetailViewWidgetState
                                               );
                                             },
                                             child: Hero(
-                                              tag: widget.transactionParameter!
+                                              tag: widget!.transactionParameter!
                                                   .registrationImage,
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  widget.transactionParameter!
+                                                  widget!.transactionParameter!
                                                       .registrationImage,
                                                   width: 80.0,
                                                   height: 20.0,
@@ -312,7 +312,7 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'ประเภทรถ : ${widget.transactionParameter?.carType}',
+                                'ประเภทรถ : ${widget!.transactionParameter?.carType}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -327,7 +327,7 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'ชื่อ : ${widget.transactionParameter?.preName} ${widget.transactionParameter?.firstName} ${widget.transactionParameter?.lastName}',
+                                'ชื่อ : ${widget!.transactionParameter?.preName} ${widget!.transactionParameter?.firstName} ${widget!.transactionParameter?.lastName}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -342,7 +342,7 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'จุดประสงค์ : ${widget.transactionParameter?.objective}',
+                                'จุดประสงค์ : ${widget!.transactionParameter?.objective}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -359,7 +359,8 @@ class _TransactionOutDetailViewWidgetState
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
                                   'ที่อยู่ที่มาติดต่อ : ${valueOrDefault<String>(
-                                    widget.transactionParameter?.contactAddress,
+                                    widget!
+                                        .transactionParameter?.contactAddress,
                                     '-',
                                   )}',
                                   style: FlutterFlowTheme.of(context)
@@ -377,7 +378,7 @@ class _TransactionOutDetailViewWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  '${FFAppState().projectData.moreDetailField} : ${widget.transactionParameter?.moreDetail}',
+                                  '${FFAppState().projectData.moreDetailField} : ${widget!.transactionParameter?.moreDetail}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -392,7 +393,7 @@ class _TransactionOutDetailViewWidgetState
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
-                                'เวลาเข้า : ${functions.dateTimeTh(widget.transactionParameter!.dateIn!)}',
+                                'เวลาเข้า : ${functions.dateTimeTh(widget!.transactionParameter!.dateIn!)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -408,7 +409,9 @@ class _TransactionOutDetailViewWidgetState
                             ),
                             Builder(
                               builder: (context) {
-                                if (!widget.transactionParameter!.isOut) {
+                                if (widget!.transactionParameter?.stamp ==
+                                        null ||
+                                    widget!.transactionParameter?.stamp == '') {
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
@@ -443,7 +446,7 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, getCurrentTimestamp)}',
+                                            'รวม : ${functions.getTimeDuration(widget!.transactionParameter!.dateIn!, getCurrentTimestamp)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -567,7 +570,7 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'เวลาออก : ${functions.dateTimeTh(widget.transactionParameter!.dateOut!)}',
+                                            'เวลาออก : ${functions.dateTimeTh(widget!.transactionParameter!.dateOut!)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -588,7 +591,7 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'รวม : ${functions.getTimeDuration(widget.transactionParameter!.dateIn!, widget.transactionParameter!.dateOut!)}',
+                                            'รวม : ${functions.getTimeDuration(widget!.transactionParameter!.dateIn!, widget!.transactionParameter!.dateOut!)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -603,7 +606,7 @@ class _TransactionOutDetailViewWidgetState
                                           ),
                                         ),
                                         Text(
-                                          'ตราประทับ : ${widget.transactionParameter?.stamp}',
+                                          'ตราประทับ : ${widget!.transactionParameter?.stamp}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -656,16 +659,121 @@ class _TransactionOutDetailViewWidgetState
                     Expanded(
                       child: Builder(
                         builder: (context) {
-                          if (!widget.transactionParameter!.isOut) {
+                          if (!widget!.transactionParameter!.isOut) {
                             return Builder(
                               builder: (context) => Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (_model.stampSelectedValue != null &&
-                                        _model.stampSelectedValue != '') {
-                                      await widget
+                                    if (widget!.transactionParameter?.stamp ==
+                                            null ||
+                                        widget!.transactionParameter?.stamp ==
+                                            '') {
+                                      if (_model.stampSelectedValue != null &&
+                                          _model.stampSelectedValue != '') {
+                                        await widget!
+                                            .transactionParameter!.reference
+                                            .update(
+                                                createTransactionListRecordData(
+                                          dateOut: getCurrentTimestamp,
+                                          stamp: _model.stampSelectedValue,
+                                          isOut: true,
+                                          stampDate: getCurrentTimestamp,
+                                          stampBy: currentUserReference,
+                                          isStampByResident: false,
+                                        ));
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return WebViewAware(
+                                                      child: AlertDialog(
+                                                        title: Text(
+                                                            'ต้องการพิมพ์ใบขาออกหรือไม่'),
+                                                        content: Text(
+                                                            'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    false),
+                                                            child: Text(
+                                                                'ไม่พิมพ์'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    true),
+                                                            child:
+                                                                Text('พิมพ์'),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          _model.printResult2 =
+                                              await actions.printSlip(
+                                            null!,
+                                          );
+                                          if (_model.printResult2?.status !=
+                                              1) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child:
+                                                        CustomInfoAlertViewWidget(
+                                                      title: _model
+                                                          .printResult2!.msg,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+                                          }
+                                        }
+                                        Navigator.pop(context, 'saved');
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title:
+                                                    Text('กรุณาเลือกตราประทับ'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('ตกลง'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    } else {
+                                      await widget!
                                           .transactionParameter!.reference
                                           .update(
                                               createTransactionListRecordData(
@@ -706,11 +814,11 @@ class _TransactionOutDetailViewWidgetState
                                               ) ??
                                               false;
                                       if (confirmDialogResponse) {
-                                        _model.printResult2 =
+                                        _model.printResult3 =
                                             await actions.printSlip(
                                           controller,
                                         );
-                                        if (_model.printResult2?.status != 1) {
+                                        if (_model.printResult3?.status != 1) {
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
@@ -727,7 +835,7 @@ class _TransactionOutDetailViewWidgetState
                                                   child:
                                                       CustomInfoAlertViewWidget(
                                                     title: _model
-                                                        .printResult2!.msg,
+                                                        .printResult3!.msg,
                                                   ),
                                                 ),
                                               );
@@ -736,26 +844,6 @@ class _TransactionOutDetailViewWidgetState
                                         }
                                       }
                                       Navigator.pop(context, 'saved');
-                                    } else {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title:
-                                                  Text('กรุณาเลือกตราประทับ'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('ตกลง'),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
                                     }
 
                                     setState(() {});
