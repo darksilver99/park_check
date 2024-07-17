@@ -1,3 +1,4 @@
+
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
@@ -39,10 +40,7 @@ class _TransactionOutDetailViewWidgetState
     extends State<TransactionOutDetailViewWidget> {
   late TransactionOutDetailViewModel _model;
 
-  // WidgetsToImageController to access widget
-  WidgetsToImageController controller = WidgetsToImageController();
-  // to save image bytes of widget
-  Uint8List? bytes;
+
 
   @override
   void setState(VoidCallback callback) {
@@ -118,7 +116,7 @@ class _TransactionOutDetailViewWidgetState
                     color: Colors.transparent,
                     elevation: 1.0,
                     child: WidgetsToImage(
-                      controller: controller,
+                      controller: _model.controller,
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -852,7 +850,7 @@ class _TransactionOutDetailViewWidgetState
                                       onPressed: () async {
                                         _model.printResult =
                                             await actions.printSlip(
-                                          controller,
+                                          _model.controller,
                                         );
                                         if (_model.printResult?.status != 1) {
                                           await showDialog(

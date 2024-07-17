@@ -20,6 +20,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
+import 'package:widgets_to_image/widgets_to_image.dart';
+
 class TransactionOutDetailViewModel
     extends FlutterFlowModel<TransactionOutDetailViewWidget> {
   ///  State fields for stateful widgets in this component.
@@ -36,6 +38,8 @@ class TransactionOutDetailViewModel
   PrintStatusDataStruct? printResult2;
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult;
+
+  WidgetsToImageController controller = WidgetsToImageController();
 
   @override
   void initState(BuildContext context) {}
@@ -78,7 +82,7 @@ class TransactionOutDetailViewModel
         false;
     if (confirmDialogResponse) {
       printResultActionBlock = await actions.printSlip(
-        null!,
+        controller,
       );
       if (printResultActionBlock?.status != 1) {
         await showDialog(
