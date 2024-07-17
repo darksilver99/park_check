@@ -30,10 +30,10 @@ class TransactionOutDetailViewModel
       stampSelectedValueController?.value?.firstOrNull;
   set stampSelectedValue(String? val) =>
       stampSelectedValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  TransactionListRecord? checkStamp;
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult2;
-  // Stores action output result for [Custom Action - printSlip] action in Button widget.
-  PrintStatusDataStruct? printResult3;
   // Stores action output result for [Custom Action - printSlip] action in Button widget.
   PrintStatusDataStruct? printResult;
 
@@ -42,4 +42,64 @@ class TransactionOutDetailViewModel
 
   @override
   void dispose() {}
+
+  /// Action blocks.
+  Future updateCarOut(BuildContext context) async {
+    PrintStatusDataStruct? printResultActionBlock;
+
+    await widget!.transactionParameter!.reference
+        .update(createTransactionListRecordData(
+      dateOut: getCurrentTimestamp,
+      stamp: stampSelectedValue,
+      isOut: true,
+    ));
+    var confirmDialogResponse = await showDialog<bool>(
+          context: context,
+          builder: (alertDialogContext) {
+            return WebViewAware(
+              child: AlertDialog(
+                title: Text('ต้องการพิมพ์ใบขาออกหรือไม่'),
+                content:
+                    Text('สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                    child: Text('ไม่พิมพ์'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                    child: Text('พิมพ์'),
+                  ),
+                ],
+              ),
+            );
+          },
+        ) ??
+        false;
+    if (confirmDialogResponse) {
+      printResultActionBlock = await actions.printSlip(
+        null!,
+      );
+      if (printResultActionBlock?.status != 1) {
+        await showDialog(
+          context: context,
+          builder: (dialogContext) {
+            return Dialog(
+              elevation: 0,
+              insetPadding: EdgeInsets.zero,
+              backgroundColor: Colors.transparent,
+              alignment: AlignmentDirectional(0.0, 0.0)
+                  .resolve(Directionality.of(context)),
+              child: WebViewAware(
+                child: CustomInfoAlertViewWidget(
+                  title: printResultActionBlock!.msg,
+                ),
+              ),
+            );
+          },
+        );
+      }
+    }
+    Navigator.pop(context, 'saved');
+  }
 }

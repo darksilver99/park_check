@@ -678,180 +678,122 @@ class _TransactionOutDetailViewWidgetState
                                             null ||
                                         widget!.transactionParameter?.stamp ==
                                             '') {
-                                      if (_model.stampSelectedValue != null &&
-                                          _model.stampSelectedValue != '') {
-                                        await widget!
-                                            .transactionParameter!.reference
-                                            .update(
-                                                createTransactionListRecordData(
-                                          dateOut: getCurrentTimestamp,
-                                          stamp: _model.stampSelectedValue,
-                                          isOut: true,
-                                          stampDate: getCurrentTimestamp,
-                                          stampBy: currentUserReference,
-                                          isStampByResident: false,
-                                        ));
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(
-                                                            'ต้องการพิมพ์ใบขาออกหรือไม่'),
-                                                        content: Text(
-                                                            'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child: Text(
-                                                                'ไม่พิมพ์'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child:
-                                                                Text('พิมพ์'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          _model.printResult2 =
-                                              await actions.printSlip(
-                                            controller,
-                                          );
-                                          if (_model.printResult2?.status !=
-                                              1) {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: WebViewAware(
-                                                    child:
-                                                        CustomInfoAlertViewWidget(
-                                                      title: _model
-                                                          .printResult2!.msg,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => setState(() {}));
-                                          }
-                                        }
-                                        Navigator.pop(context, 'saved');
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title:
-                                                    Text('กรุณาเลือกตราประทับ'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('ตกลง'),
-                                                  ),
-                                                ],
-                                              ),
+                                      _model.checkStamp =
+                                          await TransactionListRecord
+                                              .getDocumentOnce(widget!
+                                                  .transactionParameter!
+                                                  .reference);
+                                      if (_model.checkStamp?.stamp == null ||
+                                          _model.checkStamp?.stamp == '') {
+                                        if (_model.stampSelectedValue != null &&
+                                            _model.stampSelectedValue != '') {
+                                          await widget!
+                                              .transactionParameter!.reference
+                                              .update(
+                                                  createTransactionListRecordData(
+                                            dateOut: getCurrentTimestamp,
+                                            stamp: _model.stampSelectedValue,
+                                            isOut: true,
+                                            stampDate: getCurrentTimestamp,
+                                            stampBy: currentUserReference,
+                                            isStampByResident: false,
+                                          ));
+                                          var confirmDialogResponse =
+                                              await showDialog<bool>(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return WebViewAware(
+                                                        child: AlertDialog(
+                                                          title: Text(
+                                                              'ต้องการพิมพ์ใบขาออกหรือไม่'),
+                                                          content: Text(
+                                                              'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: Text(
+                                                                  'ไม่พิมพ์'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child:
+                                                                  Text('พิมพ์'),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  ) ??
+                                                  false;
+                                          if (confirmDialogResponse) {
+                                            _model.printResult2 =
+                                                await actions.printSlip(
+                                              null!,
                                             );
-                                          },
-                                        );
-                                      }
-                                    } else {
-                                      await widget!
-                                          .transactionParameter!.reference
-                                          .update(
-                                              createTransactionListRecordData(
-                                        dateOut: getCurrentTimestamp,
-                                        stamp: _model.stampSelectedValue,
-                                        isOut: true,
-                                      ));
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
+                                            if (_model.printResult2?.status !=
+                                                1) {
+                                              await showDialog(
                                                 context: context,
-                                                builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: Text(
-                                                          'ต้องการพิมพ์ใบขาออกหรือไม่'),
-                                                      content: Text(
-                                                          'สามารถพิมพ์ย้อนหลังได้ที่เมนู \"รายการรถออก/ค้าง\"'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child:
-                                                              Text('ไม่พิมพ์'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child: Text('พิมพ์'),
-                                                        ),
-                                                      ],
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: WebViewAware(
+                                                      child:
+                                                          CustomInfoAlertViewWidget(
+                                                        title: _model
+                                                            .printResult2!.msg,
+                                                      ),
                                                     ),
                                                   );
                                                 },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        _model.printResult3 =
-                                            await actions.printSlip(
-                                          controller,
-                                        );
-                                        if (_model.printResult3?.status != 1) {
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            }
+                                          }
+                                          Navigator.pop(context, 'saved');
+                                        } else {
                                           await showDialog(
                                             context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child:
-                                                      CustomInfoAlertViewWidget(
-                                                    title: _model
-                                                        .printResult3!.msg,
-                                                  ),
+                                            builder: (alertDialogContext) {
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: Text(
+                                                      'กรุณาเลือกตราประทับ'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('ตกลง'),
+                                                    ),
+                                                  ],
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         }
+                                      } else {
+                                        await _model.updateCarOut(context);
                                       }
-                                      Navigator.pop(context, 'saved');
+                                    } else {
+                                      await _model.updateCarOut(context);
                                     }
 
                                     setState(() {});
