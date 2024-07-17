@@ -54,7 +54,6 @@ class TransactionOutDetailViewModel
     await widget!.transactionParameter!.reference
         .update(createTransactionListRecordData(
       dateOut: getCurrentTimestamp,
-      stamp: stampSelectedValue,
       isOut: true,
     ));
     var confirmDialogResponse = await showDialog<bool>(
