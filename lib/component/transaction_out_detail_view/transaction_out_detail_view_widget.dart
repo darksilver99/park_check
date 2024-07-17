@@ -788,10 +788,10 @@ class _TransactionOutDetailViewWidgetState
                                           );
                                         }
                                       } else {
-                                        await _model.updateCarOut(context);
+                                        await _model.updateCarOut(context, _model.controller);
                                       }
                                     } else {
-                                      await _model.updateCarOut(context);
+                                      await _model.updateCarOut(context, _model.controller);
                                     }
 
                                     setState(() {});

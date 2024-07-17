@@ -48,7 +48,7 @@ class TransactionOutDetailViewModel
   void dispose() {}
 
   /// Action blocks.
-  Future updateCarOut(BuildContext context) async {
+  Future updateCarOut(BuildContext context, controller) async {
     PrintStatusDataStruct? printResultActionBlock;
 
     await widget!.transactionParameter!.reference
