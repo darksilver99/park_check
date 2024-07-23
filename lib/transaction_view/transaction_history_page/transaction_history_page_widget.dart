@@ -304,6 +304,7 @@ class _TransactionHistoryPageWidgetState
                                                 final _datePickedDate =
                                                     await showDatePicker(
                                                   context: context,
+                                                  locale: Locale('th', 'TH'),
                                                   initialDate:
                                                       (_model.startDate ??
                                                           DateTime.now()),
