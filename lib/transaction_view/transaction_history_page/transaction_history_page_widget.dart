@@ -1212,6 +1212,10 @@ class _TransactionHistoryPageWidgetState
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.all(16.0),
@@ -1243,6 +1247,10 @@ class _TransactionHistoryPageWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
