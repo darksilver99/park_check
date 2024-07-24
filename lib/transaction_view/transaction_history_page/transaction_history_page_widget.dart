@@ -754,7 +754,7 @@ class _TransactionHistoryPageWidgetState
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              'เวลาเข้า : ${dateTimeFormat('d/M/y', dataListItem.dateIn)} ${dateTimeFormat('Hm', dataListItem.dateIn)}',
+                                                              'เวลาเข้า : ${functions.dateTimeTh(dataListItem.dateIn!)}',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1255,7 +1255,10 @@ class _TransactionHistoryPageWidgetState
                                         Builder(
                                           builder: (context) => FFButtonWidget(
                                             onPressed: () async {
-                                              if (rowCount <= 0) {
+                                              if (rowCount > 0) {
+                                                context.pushNamed(
+                                                    'TransactionHistoryAllPage');
+                                              } else {
                                                 await showDialog(
                                                   context: context,
                                                   builder: (dialogContext) {
