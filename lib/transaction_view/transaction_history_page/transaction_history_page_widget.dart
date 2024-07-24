@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/component/custom_info_alert_view/custom_info_alert_view_widget.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/component/no_data_view/no_data_view_widget.dart';
 import '/component/transaction_out_detail_view/transaction_out_detail_view_widget.dart';
@@ -628,9 +629,8 @@ class _TransactionHistoryPageWidgetState
                                     0,
                                     0,
                                     0,
-                                    16.0,
+                                    120.0,
                                   ),
-                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: dataList.length,
                                   separatorBuilder: (_, __) =>
@@ -900,9 +900,8 @@ class _TransactionHistoryPageWidgetState
                                     0,
                                     0,
                                     0,
-                                    16.0,
+                                    120.0,
                                   ),
-                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: dataList.length,
                                   separatorBuilder: (_, __) =>
@@ -1166,6 +1165,181 @@ class _TransactionHistoryPageWidgetState
                     ),
                   ),
                 ],
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 1.0),
+                child: FutureBuilder<int>(
+                  future: queryTransactionListRecordCount(
+                    queryBuilder: (transactionListRecord) =>
+                        transactionListRecord.where(
+                      'is_out',
+                      isEqualTo: false,
+                    ),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    int rowCount = snapshot.data!;
+
+                    return Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (rowCount > 0)
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 3.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 4.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'มีรายการรถที่ยังอยู่ในพื้นที่ทั้งหมด ${formatNumber(
+                                                    rowCount,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  )} รายการ',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              if (rowCount <= 0) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child:
+                                                              CustomInfoAlertViewWidget(
+                                                            title:
+                                                                'ไม่มีรายการรถค้าง',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              }
+                                            },
+                                            text: 'ดูรายละเอียด',
+                                            options: FFButtonOptions(
+                                              height: 32.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),

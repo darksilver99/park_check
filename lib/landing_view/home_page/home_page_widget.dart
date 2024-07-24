@@ -370,7 +370,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         fontFamily: 'Readex Pro',
                                         color:
                                             FlutterFlowTheme.of(context).info,
-                                        fontSize: 18.0,
+                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -391,7 +391,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               options: FFButtonOptions(
                                 height: 40.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
+                                    16.0, 0.0, 16.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
