@@ -1256,7 +1256,10 @@ class _TransactionHistoryPageWidgetState
                                         Builder(
                                           builder: (context) => FFButtonWidget(
                                             onPressed: () async {
-                                              if (rowCount <= 0) {
+                                              if (rowCount > 0) {
+                                                context.pushNamed(
+                                                    'TransactionHistoryAllPage');
+                                              } else {
                                                 await showDialog(
                                                   context: context,
                                                   builder: (dialogContext) {

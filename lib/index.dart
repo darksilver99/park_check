@@ -30,3 +30,5 @@ export '/payment_view/payment_page/payment_page_widget.dart'
     show PaymentPageWidget;
 export '/landing_view/detail_with_image_page/detail_with_image_page_widget.dart'
     show DetailWithImagePageWidget;
+export '/transaction_view/transaction_history_all_page/transaction_history_all_page_widget.dart'
+    show TransactionHistoryAllPageWidget;
