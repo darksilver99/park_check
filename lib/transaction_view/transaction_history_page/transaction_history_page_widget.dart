@@ -437,165 +437,155 @@ class _TransactionHistoryPageWidgetState
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 8.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: TextFormField(
-                                      controller: _model.textController,
-                                      focusNode: _model.textFieldFocusNode,
-                                      onChanged: (_) => EasyDebounce.debounce(
-                                        '_model.textController',
-                                        Duration(milliseconds: 200),
-                                        () async {
-                                          if (_model.textController.text !=
-                                                  null &&
-                                              _model.textController.text !=
-                                                  '') {
-                                            _model.searchedTransactionList =
-                                                functions
-                                                    .updateTransactionList(
-                                                        _model
-                                                            .transactionList
-                                                            .toList(),
-                                                        _model.textController
-                                                            .text,
-                                                        _model.checkboxValue!)
-                                                    .toList()
-                                                    .cast<
-                                                        TransactionListRecord>();
-                                            _model.isFullList = false;
-                                            setState(() {});
-                                          } else {
-                                            _model.isLoading = true;
-                                            setState(() {});
-                                            await _model
-                                                .getTransactionList(context);
-                                            _model.isLoading = false;
-                                            _model.isFullList = true;
-                                            setState(() {});
-                                          }
-                                        },
-                                      ),
-                                      autofocus: false,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText:
-                                            'ระบุคำค้นหา ทะเบียนรถ, ชื่อผู้ติดต่อ',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        filled: true,
-                                        suffixIcon: _model
-                                                .textController!.text.isNotEmpty
-                                            ? InkWell(
-                                                onTap: () async {
-                                                  _model.textController
-                                                      ?.clear();
-                                                  if (_model.textController
-                                                              .text !=
-                                                          null &&
-                                                      _model.textController
-                                                              .text !=
-                                                          '') {
-                                                    _model.searchedTransactionList = functions
-                                                        .updateTransactionList(
-                                                            _model
-                                                                .transactionList
-                                                                .toList(),
-                                                            _model
-                                                                .textController
-                                                                .text,
-                                                            _model
-                                                                .checkboxValue!)
-                                                        .toList()
-                                                        .cast<
-                                                            TransactionListRecord>();
-                                                    _model.isFullList = false;
-                                                    setState(() {});
-                                                  } else {
-                                                    _model.isLoading = true;
-                                                    setState(() {});
-                                                    await _model
-                                                        .getTransactionList(
-                                                            context);
-                                                    _model.isLoading = false;
-                                                    _model.isFullList = true;
-                                                    setState(() {});
-                                                  }
-
-                                                  setState(() {});
-                                                },
-                                                child: Icon(
-                                                  Icons.clear,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 32.0,
-                                                ),
-                                              )
-                                            : null,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textController',
+                                      Duration(milliseconds: 200),
+                                      () async {
+                                        if (_model.textController.text !=
+                                                null &&
+                                            _model.textController.text != '') {
+                                          _model.searchedTransactionList =
+                                              functions
+                                                  .updateTransactionList(
+                                                      _model.transactionList
+                                                          .toList(),
+                                                      _model
+                                                          .textController.text,
+                                                      _model.checkboxValue!)
+                                                  .toList()
+                                                  .cast<
+                                                      TransactionListRecord>();
+                                          _model.isFullList = false;
+                                          setState(() {});
+                                        } else {
+                                          _model.isLoading = true;
+                                          setState(() {});
+                                          await _model
+                                              .getTransactionList(context);
+                                          _model.isLoading = false;
+                                          _model.isFullList = true;
+                                          setState(() {});
+                                        }
+                                      },
+                                    ),
+                                    autofocus: false,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText:
+                                          'ระบุคำค้นหา ทะเบียนรถ, ชื่อผู้ติดต่อ',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                           ),
-                                      validator: _model.textControllerValidator
-                                          .asValidator(context),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      filled: true,
+                                      suffixIcon: _model
+                                              .textController!.text.isNotEmpty
+                                          ? InkWell(
+                                              onTap: () async {
+                                                _model.textController?.clear();
+                                                if (_model.textController
+                                                            .text !=
+                                                        null &&
+                                                    _model.textController
+                                                            .text !=
+                                                        '') {
+                                                  _model.searchedTransactionList = functions
+                                                      .updateTransactionList(
+                                                          _model.transactionList
+                                                              .toList(),
+                                                          _model.textController
+                                                              .text,
+                                                          _model.checkboxValue!)
+                                                      .toList()
+                                                      .cast<
+                                                          TransactionListRecord>();
+                                                  _model.isFullList = false;
+                                                  setState(() {});
+                                                } else {
+                                                  _model.isLoading = true;
+                                                  setState(() {});
+                                                  await _model
+                                                      .getTransactionList(
+                                                          context);
+                                                  _model.isLoading = false;
+                                                  _model.isFullList = true;
+                                                  setState(() {});
+                                                }
+
+                                                setState(() {});
+                                              },
+                                              child: Icon(
+                                                Icons.clear,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 32.0,
+                                              ),
+                                            )
+                                          : null,
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    validator: _model.textControllerValidator
+                                        .asValidator(context),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
