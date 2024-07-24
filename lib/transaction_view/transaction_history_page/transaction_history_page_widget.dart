@@ -111,7 +111,7 @@ class _TransactionHistoryPageWidgetState
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 4.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -601,6 +601,71 @@ class _TransactionHistoryPageWidgetState
                         ),
                       ),
                     ),
+                  ),
+                  Builder(
+                    builder: (context) {
+                      if (_model.isFullList) {
+                        return Visibility(
+                          visible: _model.transactionList.length > 0,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'ค้นพบ ${formatNumber(
+                                      _model.transactionList.length,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.automatic,
+                                    )} รายการ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Visibility(
+                          visible: _model.searchedTransactionList.length > 0,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'ค้นพบ ${formatNumber(
+                                      _model.searchedTransactionList.length,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.automatic,
+                                    )} รายการ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   Expanded(
                     child: Builder(
