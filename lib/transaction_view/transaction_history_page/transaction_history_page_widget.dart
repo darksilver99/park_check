@@ -603,14 +603,13 @@ class _TransactionHistoryPageWidgetState
                       ),
                     ),
                   ),
-                  Builder(
-                    builder: (context) {
-                      if (_model.isFullList) {
-                        return Visibility(
-                          visible: _model.transactionList.length > 0,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 8.0),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        if (_model.isFullList) {
+                          return Visibility(
+                            visible: _model.transactionList.length > 0,
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -627,20 +626,18 @@ class _TransactionHistoryPageWidgetState
                                           fontFamily: 'Readex Pro',
                                           color:
                                               FlutterFlowTheme.of(context).info,
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        );
-                      } else {
-                        return Visibility(
-                          visible: _model.searchedTransactionList.length > 0,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 8.0),
+                          );
+                        } else {
+                          return Visibility(
+                            visible: _model.searchedTransactionList.length > 0,
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -657,16 +654,18 @@ class _TransactionHistoryPageWidgetState
                                           fontFamily: 'Readex Pro',
                                           color:
                                               FlutterFlowTheme.of(context).info,
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        );
-                      }
-                    },
+                          );
+                        }
+                      },
+                    ),
                   ),
                   Expanded(
                     child: Builder(
