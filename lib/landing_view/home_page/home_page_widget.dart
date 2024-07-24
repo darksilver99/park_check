@@ -416,6 +416,60 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ],
                       ),
                     ),
+                    if (_model.transactionList.length > 0)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Builder(
+                                builder: (context) {
+                                  if (_model.textController.text == null ||
+                                      _model.textController.text == '') {
+                                    return Text(
+                                      'จำนวน ${formatNumber(
+                                        _model.transactionList.length,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                      )} รายการ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    );
+                                  } else {
+                                    return Text(
+                                      'ค้นพบ ${formatNumber(
+                                        _model.transactionList.length,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                      )} รายการ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     Expanded(
                       child: Stack(
                         children: [
