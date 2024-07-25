@@ -611,6 +611,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       children: [
                                                         Text(
                                                           'ทะเบียน : ${dataListItem.carRegistration}',
+                                                          maxLines: 1,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -628,6 +629,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Expanded(
                                                           child: Text(
                                                             '${dataListItem.preName} ${dataListItem.firstName} ${dataListItem.lastName}',
+                                                            maxLines: 1,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium

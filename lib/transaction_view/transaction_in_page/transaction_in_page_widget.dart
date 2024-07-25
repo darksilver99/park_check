@@ -859,6 +859,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
@@ -866,6 +867,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -915,6 +917,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -938,6 +941,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
@@ -945,6 +949,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -994,6 +999,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -1017,6 +1023,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
@@ -1024,6 +1031,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -1073,6 +1081,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -1096,6 +1105,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
@@ -1103,6 +1113,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -1152,6 +1163,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -1200,6 +1212,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
@@ -1207,6 +1220,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   .labelMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
+                                                    fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -1256,6 +1270,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -1278,7 +1293,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .labelMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                fontSize: 14.0,
+                                                fontSize: 22.0,
                                                 letterSpacing: 0.0,
                                               ),
                                       searchTextStyle:
@@ -1292,7 +1307,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            fontSize: 14.0,
+                                            fontSize: 22.0,
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'เลือกจังหวัด',
@@ -1352,7 +1367,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color:
                                               FlutterFlowTheme.of(context).info,
-                                          fontSize: 18.0,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
@@ -1373,7 +1388,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          fontSize: 18.0,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
@@ -1433,7 +1448,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color:
                                               FlutterFlowTheme.of(context).info,
-                                          fontSize: 18.0,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
@@ -1454,7 +1469,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          fontSize: 18.0,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
@@ -1521,6 +1536,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
+                                                      fontSize: 22.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -1528,6 +1544,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
+                                                      fontSize: 22.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: OutlineInputBorder(
@@ -1577,6 +1594,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 22.0,
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
@@ -1627,6 +1645,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
+                                                      fontSize: 22.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -1634,6 +1653,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
+                                                      fontSize: 22.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: OutlineInputBorder(
@@ -1683,6 +1703,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 22.0,
                                                 letterSpacing: 0.0,
                                               ),
                                           maxLines: 3,
