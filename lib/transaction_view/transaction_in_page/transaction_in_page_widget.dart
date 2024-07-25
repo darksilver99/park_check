@@ -1770,7 +1770,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  fontSize: 18.0,
+                                                  fontSize: 24.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
                                                 ),
