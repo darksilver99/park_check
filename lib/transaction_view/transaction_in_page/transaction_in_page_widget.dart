@@ -490,7 +490,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           fontFamily:
                                                               'Readex Pro',
                                                           color: Colors.white,
-                                                          fontSize: 18.0,
+                                                          fontSize: 22.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -804,7 +804,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           fontFamily:
                                                               'Readex Pro',
                                                           color: Colors.white,
-                                                          fontSize: 18.0,
+                                                          fontSize: 22.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -837,7 +837,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
-                                              fontSize: 18.0,
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -1174,7 +1174,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   ],
                                 ),
                                 Divider(
-                                  thickness: 1.0,
+                                  thickness: 3.0,
                                   color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 Column(
@@ -1190,7 +1190,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
-                                              fontSize: 18.0,
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -1345,6 +1345,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -1424,7 +1425,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          fontSize: 18.0,
+                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -1493,7 +1494,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   wrapped: true,
                                 ),
                                 Divider(
-                                  thickness: 1.0,
+                                  thickness: 3.0,
                                   color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 if (FFAppState()
@@ -1513,7 +1514,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                fontSize: 18.0,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -1602,6 +1603,11 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
+                                      Divider(
+                                        thickness: 3.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
                                     ],
                                   ),
                                 if (FFAppState().projectData.enableMoreDetail)
@@ -1621,7 +1627,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                fontSize: 18.0,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -2031,6 +2037,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color: Colors.white,
+                                                        fontSize: 22.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
@@ -2288,7 +2295,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                   text: 'บันทึกรถเข้า',
                                   options: FFButtonOptions(
                                     width: double.infinity,
-                                    height: 50.0,
+                                    height: 60.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -2299,7 +2306,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: 22.0,
+                                          fontSize: 28.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
