@@ -498,6 +498,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                                         .textController4.text,
                                                     deviceData:
                                                         _model.deviceData,
+                                                    appName: 'park_check',
                                                   ));
                                               await showDialog(
                                                 context: context,

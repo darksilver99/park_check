@@ -66,6 +66,11 @@ class IssueeListRecord extends FirestoreRecord {
   String get deviceData => _deviceData ?? '';
   bool hasDeviceData() => _deviceData != null;
 
+  // "app_name" field.
+  String? _appName;
+  String get appName => _appName ?? '';
+  bool hasAppName() => _appName != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -78,6 +83,7 @@ class IssueeListRecord extends FirestoreRecord {
     _contactName = snapshotData['contact_name'] as String?;
     _contactPhone = snapshotData['contact_phone'] as String?;
     _deviceData = snapshotData['device_data'] as String?;
+    _appName = snapshotData['app_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -125,6 +131,7 @@ Map<String, dynamic> createIssueeListRecordData({
   String? contactName,
   String? contactPhone,
   String? deviceData,
+  String? appName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -138,6 +145,7 @@ Map<String, dynamic> createIssueeListRecordData({
       'contact_name': contactName,
       'contact_phone': contactPhone,
       'device_data': deviceData,
+      'app_name': appName,
     }.withoutNulls,
   );
 
@@ -158,7 +166,8 @@ class IssueeListRecordDocumentEquality implements Equality<IssueeListRecord> {
         e1?.detail == e2?.detail &&
         e1?.contactName == e2?.contactName &&
         e1?.contactPhone == e2?.contactPhone &&
-        e1?.deviceData == e2?.deviceData;
+        e1?.deviceData == e2?.deviceData &&
+        e1?.appName == e2?.appName;
   }
 
   @override
@@ -172,7 +181,8 @@ class IssueeListRecordDocumentEquality implements Equality<IssueeListRecord> {
         e?.detail,
         e?.contactName,
         e?.contactPhone,
-        e?.deviceData
+        e?.deviceData,
+        e?.appName
       ]);
 
   @override

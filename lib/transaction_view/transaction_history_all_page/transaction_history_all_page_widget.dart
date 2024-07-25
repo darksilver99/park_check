@@ -127,10 +127,10 @@ class _TransactionHistoryAllPageWidgetState
                   }
                   List<TransactionListRecord>
                       listViewTransactionListRecordList = snapshot.data!;
-
                   if (listViewTransactionListRecordList.isEmpty) {
                     return NoDataViewWidget();
                   }
+
                   return ListView.separated(
                     padding: EdgeInsets.fromLTRB(
                       0,
@@ -206,6 +206,7 @@ class _TransactionHistoryAllPageWidgetState
                                       children: [
                                         Text(
                                           'ทะเบียน : ${listViewTransactionListRecord.carRegistration}',
+                                          maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -218,6 +219,7 @@ class _TransactionHistoryAllPageWidgetState
                                         Expanded(
                                           child: Text(
                                             '${listViewTransactionListRecord.preName} ${listViewTransactionListRecord.firstName} ${listViewTransactionListRecord.lastName}',
+                                            maxLines: 1,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
