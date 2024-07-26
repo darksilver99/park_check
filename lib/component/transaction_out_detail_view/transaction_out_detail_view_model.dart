@@ -24,6 +24,10 @@ import 'package:widgets_to_image/widgets_to_image.dart';
 
 class TransactionOutDetailViewModel
     extends FlutterFlowModel<TransactionOutDetailViewWidget> {
+  ///  Local state fields for this component.
+
+  DateTime? currentDate;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for stampSelected widget.

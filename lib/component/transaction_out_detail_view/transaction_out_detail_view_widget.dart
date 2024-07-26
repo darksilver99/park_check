@@ -423,7 +423,7 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'เวลาออก : ${functions.dateTimeTh(getCurrentTimestamp)}',
+                                            'เวลาออก : ${functions.dateTimeTh(_model.currentDate!)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -444,7 +444,7 @@ class _TransactionOutDetailViewWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Text(
-                                            'รวม : ${functions.getTimeDuration(widget!.transactionParameter!.dateIn!, getCurrentTimestamp)}',
+                                            'รวม : ${functions.getTimeDuration(widget!.transactionParameter!.dateIn!, _model.currentDate!)}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
