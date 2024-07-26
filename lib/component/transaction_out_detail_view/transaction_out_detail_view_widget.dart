@@ -708,7 +708,7 @@ class _TransactionOutDetailViewWidgetState
                                               .transactionParameter!.reference
                                               .update(
                                                   createTransactionListRecordData(
-                                            dateOut: getCurrentTimestamp,
+                                            dateOut: _model.currentDate,
                                             stamp: _model.stampSelectedValue,
                                             isOut: true,
                                             stampDate: getCurrentTimestamp,
