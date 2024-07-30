@@ -801,7 +801,7 @@ class _TransactionHistoryPageWidgetState
                                                                 if (dataListItem
                                                                     .isOut) {
                                                                   return Text(
-                                                                    'เวลาออก : ${dateTimeFormat('d/M/y', dataListItem.dateOut)} ${dateTimeFormat('Hm', dataListItem.dateOut)}',
+                                                                    'เวลาออก : ${functions.dateTimeTh(dataListItem.dateOut!)}',
                                                                     textAlign:
                                                                         TextAlign
                                                                             .end,
