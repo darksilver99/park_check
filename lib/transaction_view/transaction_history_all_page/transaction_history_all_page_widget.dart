@@ -55,263 +55,247 @@ class _TransactionHistoryAllPageWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.chevron_left_rounded,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primary,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
+          icon: Icon(
+            Icons.chevron_left_rounded,
+            color: Colors.white,
+            size: 30.0,
           ),
-          title: Text(
-            'รายการรถที่ยังอยู่ในพื้นที่',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 2.0,
+          onPressed: () async {
+            context.pop();
+          },
         ),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              wrapWithModel(
-                model: _model.mainBackgroundViewModel,
-                updateCallback: () => setState(() {}),
-                child: MainBackgroundViewWidget(),
+        title: Text(
+          'รายการรถที่ยังอยู่ในพื้นที่',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Outfit',
+                color: Colors.white,
+                fontSize: 22.0,
+                letterSpacing: 0.0,
               ),
-              StreamBuilder<List<TransactionListRecord>>(
-                stream: queryTransactionListRecord(
-                  queryBuilder: (transactionListRecord) => transactionListRecord
-                      .where(
-                        'is_out',
-                        isEqualTo: false,
-                      )
-                      .orderBy('date_in', descending: true),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 2.0,
+      ),
+      body: SafeArea(
+        top: true,
+        child: Stack(
+          children: [
+            wrapWithModel(
+              model: _model.mainBackgroundViewModel,
+              updateCallback: () => setState(() {}),
+              child: MainBackgroundViewWidget(),
+            ),
+            StreamBuilder<List<TransactionListRecord>>(
+              stream: queryTransactionListRecord(
+                queryBuilder: (transactionListRecord) => transactionListRecord
+                    .where(
+                      'is_out',
+                      isEqualTo: false,
+                    )
+                    .orderBy('date_in', descending: true),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
                         ),
                       ),
-                    );
-                  }
-                  List<TransactionListRecord>
-                      listViewTransactionListRecordList = snapshot.data!;
-                  if (listViewTransactionListRecordList.isEmpty) {
-                    return NoDataViewWidget();
-                  }
-
-                  return ListView.separated(
-                    padding: EdgeInsets.fromLTRB(
-                      0,
-                      16.0,
-                      0,
-                      16.0,
                     ),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewTransactionListRecordList.length,
-                    separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewTransactionListRecord =
-                          listViewTransactionListRecordList[listViewIndex];
-                      return Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await actions.hideKeyBoard(
-                              context,
-                            );
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              useSafeArea: true,
-                              context: context,
-                              builder: (context) {
-                                return WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: TransactionOutDetailViewWidget(
-                                        transactionParameter:
-                                            listViewTransactionListRecord,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) =>
-                                safeSetState(() => _model.isSaved = value));
+                  );
+                }
+                List<TransactionListRecord> listViewTransactionListRecordList =
+                    snapshot.data!;
+                if (listViewTransactionListRecordList.isEmpty) {
+                  return NoDataViewWidget();
+                }
 
-                            setState(() {});
-                          },
-                          child: Container(
-                            width: 100.0,
-                            height: 130.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'ทะเบียน : ${listViewTransactionListRecord.carRegistration}',
+                return ListView.separated(
+                  padding: EdgeInsets.fromLTRB(
+                    0,
+                    16.0,
+                    0,
+                    16.0,
+                  ),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: listViewTransactionListRecordList.length,
+                  separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                  itemBuilder: (context, listViewIndex) {
+                    final listViewTransactionListRecord =
+                        listViewTransactionListRecordList[listViewIndex];
+                    return Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await actions.hideKeyBoard(
+                            context,
+                          );
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            useSafeArea: true,
+                            context: context,
+                            builder: (context) {
+                              return WebViewAware(
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: TransactionOutDetailViewWidget(
+                                    transactionParameter:
+                                        listViewTransactionListRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) =>
+                              safeSetState(() => _model.isSaved = value));
+
+                          setState(() {});
+                        },
+                        child: Container(
+                          width: 100.0,
+                          height: 130.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'ทะเบียน : ${listViewTransactionListRecord.carRegistration}',
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          '${listViewTransactionListRecord.preName} ${listViewTransactionListRecord.firstName} ${listViewTransactionListRecord.lastName}',
                                           maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                fontSize: 20.0,
+                                                fontSize: 16.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
                                               ),
                                         ),
-                                        Expanded(
-                                          child: Text(
-                                            '${listViewTransactionListRecord.preName} ${listViewTransactionListRecord.firstName} ${listViewTransactionListRecord.lastName}',
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'เวลาเข้า : ${functions.dateTimeTh(listViewTransactionListRecord.dateIn!)}',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'ยังไม่ออก',
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.content_paste_search_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
                                       ),
-                                      Text(
-                                        'ดูรายละเอียด',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 8.0,
-                                              letterSpacing: 0.0,
-                                              lineHeight: 1.2,
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'เวลาเข้า : ${functions.dateTimeTh(listViewTransactionListRecord.dateIn!)}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .success,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
+                                            Text(
+                                              'ยังไม่ออก',
+                                              textAlign: TextAlign.end,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.content_paste_search_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    Text(
+                                      'ดูรายละเอียด',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 8.0,
+                                            letterSpacing: 0.0,
+                                            lineHeight: 1.2,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

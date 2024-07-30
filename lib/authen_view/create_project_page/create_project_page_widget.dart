@@ -58,432 +58,410 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              wrapWithModel(
-                model: _model.mainBackgroundViewModel,
-                updateCallback: () => setState(() {}),
-                child: MainBackgroundViewWidget(),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        top: true,
+        child: Stack(
+          children: [
+            wrapWithModel(
+              model: _model.mainBackgroundViewModel,
+              updateCallback: () => setState(() {}),
+              child: MainBackgroundViewWidget(),
+            ),
+            SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        0.0,
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).height * 0.3,
                           0.0,
-                          valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).height * 0.3,
-                            0.0,
+                        ),
+                        0.0,
+                        0.0),
+                    child: Form(
+                      key: _model.formKey,
+                      autovalidateMode: AutovalidateMode.disabled,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(16.0),
                           ),
-                          0.0,
-                          0.0),
-                      child: Form(
-                        key: _model.formKey,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Visibility(
-                              visible: !_model.isLoading,
-                              child: Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: TextFormField(
-                                        controller: _model.textController,
-                                        focusNode: _model.textFieldFocusNode,
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'ระบุชื่อโครงการ',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          filled: true,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                          child: Visibility(
+                            visible: !_model.isLoading,
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: TextFormField(
+                                      controller: _model.textController,
+                                      focusNode: _model.textFieldFocusNode,
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'ระบุชื่อโครงการ',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
                                               letterSpacing: 0.0,
                                             ),
-                                        validator: _model
-                                            .textControllerValidator
-                                            .asValidator(context),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        filled: true,
                                       ),
-                                    ),
-                                    Text(
-                                      'ประเภทโครงการ',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                           ),
+                                      validator: _model.textControllerValidator
+                                          .asValidator(context),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: FlutterFlowChoiceChips(
-                                        options: FFAppState()
-                                            .configData
-                                            .projectType
-                                            .map((label) => ChipData(label))
-                                            .toList(),
-                                        onChanged: (val) => setState(() =>
-                                            _model.projectTypeSelectedValue =
-                                                val?.firstOrNull),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          iconSize: 18.0,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          elevation: 4.0,
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
+                                  ),
+                                  Text(
+                                    'ประเภทโครงการ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
                                         ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                          iconSize: 18.0,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        chipSpacing: 12.0,
-                                        rowSpacing: 12.0,
-                                        multiselect: false,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .projectTypeSelectedValueController ??=
-                                            FormFieldController<List<String>>(
-                                          [],
-                                        ),
-                                        wrapped: true,
-                                      ),
-                                    ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        if (_model.projectTypeSelectedValue !=
-                                                null &&
-                                            _model.projectTypeSelectedValue !=
-                                                '') {
-                                          var projectListRecordReference =
-                                              ProjectListRecord.collection
-                                                  .doc();
-                                          await projectListRecordReference.set({
-                                            ...createProjectListRecordData(
-                                              createDate: getCurrentTimestamp,
-                                              createBy: currentUserReference,
-                                              name: _model.textController.text,
-                                              status: 1,
-                                              stampField: FFAppState()
-                                                  .configData
-                                                  .defaultStampField,
-                                              projectType: _model
-                                                  .projectTypeSelectedValue,
-                                              backgroundImage: FFAppState()
-                                                  .configData
-                                                  .defaultBackgroundImage,
-                                              enableContactAddress: (_model
-                                                          .projectTypeSelectedValue ==
-                                                      'คอนโด') ||
-                                                  (_model.projectTypeSelectedValue ==
-                                                      'หมู่บ้าน'),
-                                              expireDate:
-                                                  functions.getNextDay(30),
-                                              paymentDetailImage: FFAppState()
-                                                  .configData
-                                                  .paymentDetailDefaultImage,
-                                              textInLastSlip: FFAppState()
-                                                  .configData
-                                                  .defaultTextInLastSlip,
-                                              enableMoreDetail: false,
-                                              enableMoreImage: false,
-                                              moreDetailField: FFAppState()
-                                                  .configData
-                                                  .defaultMoreDetailField,
-                                              moreImageField: FFAppState()
-                                                  .configData
-                                                  .defaultMoreImageField,
-                                              maxMoreImage: FFAppState()
-                                                  .configData
-                                                  .defaultMaxMoreImage,
-                                              promotionImage: FFAppState()
-                                                  .configData
-                                                  .promotionDefaultImage,
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'objective_list': FFAppState()
-                                                    .configData
-                                                    .defaultObjectiveList,
-                                                'stamp_list': FFAppState()
-                                                    .configData
-                                                    .defaultStampList,
-                                                'car_list': FFAppState()
-                                                    .configData
-                                                    .defaultCarList,
-                                                'payment_alert_text':
-                                                    FFAppState()
-                                                        .configData
-                                                        .paymentAlertDefaultText,
-                                              },
-                                            ),
-                                          });
-                                          _model.projectInserted =
-                                              ProjectListRecord
-                                                  .getDocumentFromData({
-                                            ...createProjectListRecordData(
-                                              createDate: getCurrentTimestamp,
-                                              createBy: currentUserReference,
-                                              name: _model.textController.text,
-                                              status: 1,
-                                              stampField: FFAppState()
-                                                  .configData
-                                                  .defaultStampField,
-                                              projectType: _model
-                                                  .projectTypeSelectedValue,
-                                              backgroundImage: FFAppState()
-                                                  .configData
-                                                  .defaultBackgroundImage,
-                                              enableContactAddress: (_model
-                                                          .projectTypeSelectedValue ==
-                                                      'คอนโด') ||
-                                                  (_model.projectTypeSelectedValue ==
-                                                      'หมู่บ้าน'),
-                                              expireDate:
-                                                  functions.getNextDay(30),
-                                              paymentDetailImage: FFAppState()
-                                                  .configData
-                                                  .paymentDetailDefaultImage,
-                                              textInLastSlip: FFAppState()
-                                                  .configData
-                                                  .defaultTextInLastSlip,
-                                              enableMoreDetail: false,
-                                              enableMoreImage: false,
-                                              moreDetailField: FFAppState()
-                                                  .configData
-                                                  .defaultMoreDetailField,
-                                              moreImageField: FFAppState()
-                                                  .configData
-                                                  .defaultMoreImageField,
-                                              maxMoreImage: FFAppState()
-                                                  .configData
-                                                  .defaultMaxMoreImage,
-                                              promotionImage: FFAppState()
-                                                  .configData
-                                                  .promotionDefaultImage,
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'objective_list': FFAppState()
-                                                    .configData
-                                                    .defaultObjectiveList,
-                                                'stamp_list': FFAppState()
-                                                    .configData
-                                                    .defaultStampList,
-                                                'car_list': FFAppState()
-                                                    .configData
-                                                    .defaultCarList,
-                                                'payment_alert_text':
-                                                    FFAppState()
-                                                        .configData
-                                                        .paymentAlertDefaultText,
-                                              },
-                                            ),
-                                          }, projectListRecordReference);
-                                          await action_blocks.createProjectData(
-                                            context,
-                                            projectData: _model.projectInserted,
-                                          );
-
-                                          context.goNamed('HomePage');
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text(
-                                                      'กรุณาเลือกประเภทโครงการ'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('ตกลง'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
-
-                                        setState(() {});
-                                      },
-                                      text: 'สร้างโครงการ',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: FlutterFlowChoiceChips(
+                                      options: FFAppState()
+                                          .configData
+                                          .projectType
+                                          .map((label) => ChipData(label))
+                                          .toList(),
+                                      onChanged: (val) => setState(() =>
+                                          _model.projectTypeSelectedValue =
+                                              val?.firstOrNull),
+                                      selectedChipStyle: ChipStyle(
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                            .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
-                                              color: Colors.white,
-                                              fontSize: 22.0,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                             ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        iconSize: 18.0,
+                                        labelPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                16.0, 8.0, 16.0, 8.0),
+                                        elevation: 4.0,
                                         borderRadius:
                                             BorderRadius.circular(24.0),
                                       ),
+                                      unselectedChipStyle: ChipStyle(
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        iconSize: 18.0,
+                                        labelPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                16.0, 8.0, 16.0, 8.0),
+                                        elevation: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                      chipSpacing: 12.0,
+                                      rowSpacing: 12.0,
+                                      multiselect: false,
+                                      alignment: WrapAlignment.start,
+                                      controller: _model
+                                              .projectTypeSelectedValueController ??=
+                                          FormFieldController<List<String>>(
+                                        [],
+                                      ),
+                                      wrapped: true,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      if (_model.formKey.currentState == null ||
+                                          !_model.formKey.currentState!
+                                              .validate()) {
+                                        return;
+                                      }
+                                      if (_model.projectTypeSelectedValue !=
+                                              null &&
+                                          _model.projectTypeSelectedValue !=
+                                              '') {
+                                        var projectListRecordReference =
+                                            ProjectListRecord.collection.doc();
+                                        await projectListRecordReference.set({
+                                          ...createProjectListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            createBy: currentUserReference,
+                                            name: _model.textController.text,
+                                            status: 1,
+                                            stampField: FFAppState()
+                                                .configData
+                                                .defaultStampField,
+                                            projectType:
+                                                _model.projectTypeSelectedValue,
+                                            backgroundImage: FFAppState()
+                                                .configData
+                                                .defaultBackgroundImage,
+                                            enableContactAddress: (_model
+                                                        .projectTypeSelectedValue ==
+                                                    'คอนโด') ||
+                                                (_model.projectTypeSelectedValue ==
+                                                    'หมู่บ้าน'),
+                                            expireDate:
+                                                functions.getNextDay(30),
+                                            paymentDetailImage: FFAppState()
+                                                .configData
+                                                .paymentDetailDefaultImage,
+                                            textInLastSlip: FFAppState()
+                                                .configData
+                                                .defaultTextInLastSlip,
+                                            enableMoreDetail: false,
+                                            enableMoreImage: false,
+                                            moreDetailField: FFAppState()
+                                                .configData
+                                                .defaultMoreDetailField,
+                                            moreImageField: FFAppState()
+                                                .configData
+                                                .defaultMoreImageField,
+                                            maxMoreImage: FFAppState()
+                                                .configData
+                                                .defaultMaxMoreImage,
+                                            promotionImage: FFAppState()
+                                                .configData
+                                                .promotionDefaultImage,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'objective_list': FFAppState()
+                                                  .configData
+                                                  .defaultObjectiveList,
+                                              'stamp_list': FFAppState()
+                                                  .configData
+                                                  .defaultStampList,
+                                              'car_list': FFAppState()
+                                                  .configData
+                                                  .defaultCarList,
+                                              'payment_alert_text': FFAppState()
+                                                  .configData
+                                                  .paymentAlertDefaultText,
+                                            },
+                                          ),
+                                        });
+                                        _model.projectInserted =
+                                            ProjectListRecord
+                                                .getDocumentFromData({
+                                          ...createProjectListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            createBy: currentUserReference,
+                                            name: _model.textController.text,
+                                            status: 1,
+                                            stampField: FFAppState()
+                                                .configData
+                                                .defaultStampField,
+                                            projectType:
+                                                _model.projectTypeSelectedValue,
+                                            backgroundImage: FFAppState()
+                                                .configData
+                                                .defaultBackgroundImage,
+                                            enableContactAddress: (_model
+                                                        .projectTypeSelectedValue ==
+                                                    'คอนโด') ||
+                                                (_model.projectTypeSelectedValue ==
+                                                    'หมู่บ้าน'),
+                                            expireDate:
+                                                functions.getNextDay(30),
+                                            paymentDetailImage: FFAppState()
+                                                .configData
+                                                .paymentDetailDefaultImage,
+                                            textInLastSlip: FFAppState()
+                                                .configData
+                                                .defaultTextInLastSlip,
+                                            enableMoreDetail: false,
+                                            enableMoreImage: false,
+                                            moreDetailField: FFAppState()
+                                                .configData
+                                                .defaultMoreDetailField,
+                                            moreImageField: FFAppState()
+                                                .configData
+                                                .defaultMoreImageField,
+                                            maxMoreImage: FFAppState()
+                                                .configData
+                                                .defaultMaxMoreImage,
+                                            promotionImage: FFAppState()
+                                                .configData
+                                                .promotionDefaultImage,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'objective_list': FFAppState()
+                                                  .configData
+                                                  .defaultObjectiveList,
+                                              'stamp_list': FFAppState()
+                                                  .configData
+                                                  .defaultStampList,
+                                              'car_list': FFAppState()
+                                                  .configData
+                                                  .defaultCarList,
+                                              'payment_alert_text': FFAppState()
+                                                  .configData
+                                                  .paymentAlertDefaultText,
+                                            },
+                                          ),
+                                        }, projectListRecordReference);
+                                        await action_blocks.createProjectData(
+                                          context,
+                                          projectData: _model.projectInserted,
+                                        );
+
+                                        context.goNamed('HomePage');
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text(
+                                                    'กรุณาเลือกประเภทโครงการ'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('ตกลง'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    text: 'สร้างโครงการ',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 50.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            fontSize: 22.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              if (_model.isLoading)
-                wrapWithModel(
-                  model: _model.loadingViewModel,
-                  updateCallback: () => setState(() {}),
-                  child: LoadingViewWidget(),
-                ),
-            ],
-          ),
+            ),
+            if (_model.isLoading)
+              wrapWithModel(
+                model: _model.loadingViewModel,
+                updateCallback: () => setState(() {}),
+                child: LoadingViewWidget(),
+              ),
+          ],
         ),
       ),
     );

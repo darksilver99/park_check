@@ -45,7 +45,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   ProjectListRecord? projectData;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
@@ -75,7 +74,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();

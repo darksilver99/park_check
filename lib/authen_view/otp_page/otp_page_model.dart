@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 class OtpPageModel extends FlutterFlowModel<OtpPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
@@ -38,7 +37,6 @@ class OtpPageModel extends FlutterFlowModel<OtpPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     pinCodeController?.dispose();
   }

@@ -56,7 +56,6 @@ class SettingProjectPageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   bool isDataUploading = false;
@@ -104,7 +103,6 @@ class SettingProjectPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     carTypeValueFocusNode?.dispose();
     carTypeValueTextController?.dispose();

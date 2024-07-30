@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
@@ -45,7 +44,6 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     textFieldFocusNode1?.dispose();
     emailTextController?.dispose();

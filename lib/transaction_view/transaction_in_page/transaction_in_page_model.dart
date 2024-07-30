@@ -52,7 +52,6 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
@@ -185,7 +184,6 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     preNameFocusNode?.dispose();
     preNameTextController?.dispose();

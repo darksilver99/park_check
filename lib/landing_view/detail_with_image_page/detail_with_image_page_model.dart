@@ -12,7 +12,6 @@ class DetailWithImagePageModel
     extends FlutterFlowModel<DetailWithImagePageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
 
@@ -24,7 +23,6 @@ class DetailWithImagePageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
   }
 }

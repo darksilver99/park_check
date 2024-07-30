@@ -62,7 +62,6 @@ class TransactionHistoryPageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for Checkbox widget.
@@ -85,7 +84,6 @@ class TransactionHistoryPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
