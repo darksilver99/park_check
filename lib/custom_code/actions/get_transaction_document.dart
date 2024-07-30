@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<TransactionListRecord> getTransactionDocument(String docID) async {
+Future<TransactionListRecord?> getTransactionDocument(String docID) async {
   // Add your function code here!
   var rs = await FirebaseFirestore.instance
       .doc(
