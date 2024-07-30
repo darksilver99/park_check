@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class PaymentAlertPageModel extends FlutterFlowModel<PaymentAlertPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
 
@@ -24,7 +23,6 @@ class PaymentAlertPageModel extends FlutterFlowModel<PaymentAlertPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
   }
 }

@@ -57,7 +57,6 @@ class TransactionHistoryAllPageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // Stores action output result for [Bottom Sheet - TransactionOutDetailView] action in Container widget.
@@ -71,7 +70,6 @@ class TransactionHistoryAllPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
   }
 

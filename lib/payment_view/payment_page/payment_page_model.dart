@@ -26,7 +26,6 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   bool isDataUploading = false;
@@ -42,7 +41,6 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
   }
 }

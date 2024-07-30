@@ -16,7 +16,6 @@ class WebViewPageModel extends FlutterFlowModel<WebViewPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
 
@@ -28,7 +27,6 @@ class WebViewPageModel extends FlutterFlowModel<WebViewPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainBackgroundViewModel.dispose();
   }
 }
