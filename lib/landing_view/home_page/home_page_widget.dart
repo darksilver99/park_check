@@ -776,8 +776,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   await actions.getTransactionDocument(
                                 _model.qrCode!,
                               );
-                              if ((_model.transactionDocumentResult != null) ==
-                                  true) {
+                              if (_model.transactionDocumentResult != null) {
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
                                   backgroundColor: Colors.transparent,
@@ -807,9 +806,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   builder: (alertDialogContext) {
                                     return WebViewAware(
                                       child: AlertDialog(
-                                        title: Text('ไม่พบข้อมูล'),
+                                        title: Text(
+                                            'ไม่พบข้อมูล กรุณาตรวจสอบ QR Code '),
                                         content: Text(
-                                            'กรุณาตรวจสอบ QR Code / ทะเบียนรถ'),
+                                            'หาก QR Code เสียหายให้ค้นหาจากทะเบียนในเมนู \"รายการ รถออก/ค้าง\"'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
