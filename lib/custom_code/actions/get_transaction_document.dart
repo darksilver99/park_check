@@ -16,5 +16,5 @@ Future<TransactionListRecord?> getTransactionDocument(String docID) async {
       .doc(
           'project_list/${FFAppState().projectData.projectDocID}/transaction_list/$docID')
       .get();
-  return TransactionListRecord.getDocumentOnce(rs.reference);
+  return rs.exists ? TransactionListRecord.getDocumentOnce(rs.reference) : null;
 }
