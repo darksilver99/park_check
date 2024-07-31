@@ -54,68 +54,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.projectData?.reference != null) {
-        await action_blocks.createProjectData(
-          context,
-          projectData: _model.projectData,
-        );
-        await action_blocks.getConfigData(context);
-        if (FFAppState().appBuildVersion >=
-            FFAppState().configData.storeVersion) {
-          _model.rsDataList = await queryTransactionListRecordOnce(
-            queryBuilder: (transactionListRecord) => transactionListRecord
-                .where(
-                  'is_out',
-                  isEqualTo: false,
-                )
-                .where(
-                  'date_in',
-                  isGreaterThanOrEqualTo:
-                      functions.getStartDayTime(getCurrentTimestamp),
-                )
-                .where(
-                  'date_in',
-                  isLessThanOrEqualTo:
-                      functions.getEndDayTime(getCurrentTimestamp),
-                )
-                .orderBy('date_in', descending: true),
-          );
-          _model.isLoading = false;
-          _model.transactionList =
-              _model.rsDataList!.toList().cast<TransactionListRecord>();
-          setState(() {});
-          if (functions.getStartDayTime(getCurrentTimestamp) !=
-              functions.getStartDayTime(FFAppState().currentDate!)) {
-            FFAppState().currentDate =
-                functions.getStartDayTime(getCurrentTimestamp);
-            FFAppState().isSkipOCRAlert = false;
-            FFAppState().isSkipExpireAlert = false;
-          }
-          if (getCurrentTimestamp > FFAppState().projectData.expireDate!) {
-            context.goNamed('PaymentAlertPage');
-          } else {
-            if (getCurrentTimestamp >
-                functions.getBeforeDay(
-                    5, FFAppState().projectData.expireDate!)) {
-              if (!FFAppState().isSkipExpireAlert) {
-                await showDialog(
-                  context: context,
-                  builder: (dialogContext) {
-                    return Dialog(
-                      elevation: 0,
-                      insetPadding: EdgeInsets.zero,
-                      backgroundColor: Colors.transparent,
-                      alignment: AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
-                      child: WebViewAware(
-                        child: ExpireAlertViewWidget(),
-                      ),
-                    );
-                  },
-                ).then((value) => setState(() {}));
-              }
-            }
-          }
-        } else {
+        if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
           await showDialog(
             context: context,
             builder: (dialogContext) {
@@ -127,23 +66,136 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     .resolve(Directionality.of(context)),
                 child: WebViewAware(
                   child: CustomInfoAlertViewWidget(
-                    title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
+                    title: 'ไม่สามารถใช้งานได้',
+                    detail:
+                        'เนื่องจากบัญชีของท่านเปิดใช้ระบบอื่นไปแล้ว กรุณาติดต่อผู้ดูแลระบบ',
                   ),
                 ),
               );
             },
           ).then((value) => setState(() {}));
 
-          if (isAndroid) {
-            await launchURL(FFAppState().configData.storeAndroidLink);
+          GoRouter.of(context).prepareAuthEvent();
+          await authManager.signOut();
+          GoRouter.of(context).clearRedirectLocation();
+        } else {
+          await action_blocks.createProjectData(
+            context,
+            projectData: _model.projectData,
+          );
+          await action_blocks.getConfigData(context);
+          if (FFAppState().appBuildVersion >=
+              FFAppState().configData.storeVersion) {
+            _model.rsDataList = await queryTransactionListRecordOnce(
+              queryBuilder: (transactionListRecord) => transactionListRecord
+                  .where(
+                    'is_out',
+                    isEqualTo: false,
+                  )
+                  .where(
+                    'date_in',
+                    isGreaterThanOrEqualTo:
+                        functions.getStartDayTime(getCurrentTimestamp),
+                  )
+                  .where(
+                    'date_in',
+                    isLessThanOrEqualTo:
+                        functions.getEndDayTime(getCurrentTimestamp),
+                  )
+                  .orderBy('date_in', descending: true),
+            );
+            _model.isLoading = false;
+            _model.transactionList =
+                _model.rsDataList!.toList().cast<TransactionListRecord>();
+            setState(() {});
+            if (functions.getStartDayTime(getCurrentTimestamp) !=
+                functions.getStartDayTime(FFAppState().currentDate!)) {
+              FFAppState().currentDate =
+                  functions.getStartDayTime(getCurrentTimestamp);
+              FFAppState().isSkipOCRAlert = false;
+              FFAppState().isSkipExpireAlert = false;
+            }
+            if (getCurrentTimestamp > FFAppState().projectData.expireDate!) {
+              context.goNamedAuth('PaymentAlertPage', context.mounted);
+            } else {
+              if (getCurrentTimestamp >
+                  functions.getBeforeDay(
+                      5, FFAppState().projectData.expireDate!)) {
+                if (!FFAppState().isSkipExpireAlert) {
+                  await showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return Dialog(
+                        elevation: 0,
+                        insetPadding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        alignment: AlignmentDirectional(0.0, 0.0)
+                            .resolve(Directionality.of(context)),
+                        child: WebViewAware(
+                          child: ExpireAlertViewWidget(),
+                        ),
+                      );
+                    },
+                  ).then((value) => setState(() {}));
+                }
+              }
+            }
           } else {
-            await launchURL(FFAppState().configData.storeIosLink);
-          }
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: WebViewAware(
+                    child: CustomInfoAlertViewWidget(
+                      title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
+                    ),
+                  ),
+                );
+              },
+            ).then((value) => setState(() {}));
 
-          await actions.closeApp();
+            if (isAndroid) {
+              await launchURL(FFAppState().configData.storeAndroidLink);
+            } else {
+              await launchURL(FFAppState().configData.storeIosLink);
+            }
+
+            await actions.closeApp();
+          }
         }
       } else {
-        context.goNamed('CreateProjectPage');
+        if (valueOrDefault(currentUserDocument?.type, '') == 'resident') {
+          await showDialog(
+            context: context,
+            builder: (dialogContext) {
+              return Dialog(
+                elevation: 0,
+                insetPadding: EdgeInsets.zero,
+                backgroundColor: Colors.transparent,
+                alignment: AlignmentDirectional(0.0, 0.0)
+                    .resolve(Directionality.of(context)),
+                child: WebViewAware(
+                  child: CustomInfoAlertViewWidget(
+                    title: 'ไม่สามารถใช้งานได้',
+                    detail:
+                        'เนื่องจากบัญชีของท่านเปิดใช้ระบบอื่นไปแล้ว กรุณาติดต่อผู้ดูแลระบบ',
+                  ),
+                ),
+              );
+            },
+          ).then((value) => setState(() {}));
+
+          GoRouter.of(context).prepareAuthEvent();
+          await authManager.signOut();
+          GoRouter.of(context).clearRedirectLocation();
+        } else {
+          context.goNamedAuth('CreateProjectPage', context.mounted);
+        }
       }
     });
 
