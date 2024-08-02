@@ -27,8 +27,8 @@ DateTime getStartDayTime(DateTime currentDate) {
 }
 
 DateTime getEndDayTime(DateTime currentDate) {
-  DateTime endOfDay =
-      DateTime(currentDate.year, currentDate.month, currentDate.day, 23, 0, 0);
+  DateTime endOfDay = DateTime(
+      currentDate.year, currentDate.month, currentDate.day, 23, 59, 59);
   return endOfDay;
 }
 
