@@ -260,8 +260,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                             ),
                                                           );
                                                         },
-                                                      ).then((value) =>
-                                                          setState(() {}));
+                                                      );
                                                     }
                                                     if (getJsonField(
                                                           (_model.apiReuslt2
@@ -377,8 +376,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           ),
                                                         );
                                                       },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    );
                                                   }
                                                 } else {
                                                   await showDialog(
@@ -411,8 +409,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         ),
                                                       );
                                                     },
-                                                  ).then((value) =>
-                                                      setState(() {}));
+                                                  );
                                                 }
                                               }
 
@@ -563,8 +560,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                             ),
                                                           );
                                                         },
-                                                      ).then((value) =>
-                                                          setState(() {}));
+                                                      );
                                                     }
                                                     if (getJsonField(
                                                           (_model.apiReuslt
@@ -639,8 +635,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           ),
                                                         );
                                                       },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    );
                                                   }
                                                 } else {
                                                   await showDialog(
@@ -673,8 +668,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                         ),
                                                       );
                                                     },
-                                                  ).then((value) =>
-                                                      setState(() {}));
+                                                  );
                                                 }
                                               }
 
@@ -1782,8 +1776,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             } else {
                                               final selectedMedia =
                                                   await selectMedia(

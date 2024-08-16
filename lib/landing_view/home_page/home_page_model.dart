@@ -49,6 +49,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ProjectListRecord? projectData;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<TransactionListRecord>? rsDataList;
+  // Stores action output result for [Custom Action - getFirebaseToken] action in HomePage widget.
+  String? token;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for TextField widget.

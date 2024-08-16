@@ -244,7 +244,7 @@ class _ForgetPasswordPageWidgetState extends State<ForgetPasswordPageWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
 
                                       context.safePop();
                                     },

@@ -512,7 +512,7 @@ class _IssuePageWidgetState extends State<IssuePageWidget> {
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
 
                                             context.safePop();
 

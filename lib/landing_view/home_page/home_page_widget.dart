@@ -73,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               );
             },
-          ).then((value) => setState(() {}));
+          );
 
           GoRouter.of(context).prepareAuthEvent();
           await authManager.signOut();
@@ -112,6 +112,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             setState(() {});
             if (functions.getStartDayTime(getCurrentTimestamp) !=
                 functions.getStartDayTime(FFAppState().currentDate!)) {
+              _model.token = await actions.getFirebaseToken();
+
+              await currentUserReference!.update(createUsersRecordData(
+                firebaseToken: _model.token,
+              ));
               FFAppState().currentDate =
                   functions.getStartDayTime(getCurrentTimestamp);
               FFAppState().isSkipOCRAlert = false;
@@ -138,7 +143,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       );
                     },
-                  ).then((value) => setState(() {}));
+                  );
                 }
               }
             }
@@ -159,7 +164,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 );
               },
-            ).then((value) => setState(() {}));
+            );
 
             if (isAndroid) {
               await launchURL(FFAppState().configData.storeAndroidLink);
@@ -190,7 +195,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               );
             },
-          ).then((value) => setState(() {}));
+          );
 
           GoRouter.of(context).prepareAuthEvent();
           await authManager.signOut();

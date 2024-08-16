@@ -688,7 +688,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       }
 
                                       _navigate();
