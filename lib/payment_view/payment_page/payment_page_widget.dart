@@ -493,7 +493,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
 
                                           await actions.pushReplacement(
                                             context,
@@ -520,7 +520,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         }
                                       },
                                       text: 'ยืนยันการชำระเงิน',

@@ -10,3 +10,4 @@ export 'go_to_page.dart' show goToPage;
 export 'set_app_version.dart' show setAppVersion;
 export 'close_app.dart' show closeApp;
 export 'add_water_mark.dart' show addWaterMark;
+export 'get_firebase_token.dart' show getFirebaseToken;

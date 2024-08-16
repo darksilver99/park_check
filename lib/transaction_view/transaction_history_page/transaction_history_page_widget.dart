@@ -1288,8 +1288,7 @@ class _TransactionHistoryPageWidgetState
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             }
                                           },
                                           text: 'ดูรายละเอียด',

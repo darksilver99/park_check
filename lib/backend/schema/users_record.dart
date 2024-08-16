@@ -51,6 +51,16 @@ class UsersRecord extends FirestoreRecord {
   String get type => _type ?? '';
   bool hasType() => _type != null;
 
+  // "firebase_token" field.
+  String? _firebaseToken;
+  String get firebaseToken => _firebaseToken ?? '';
+  bool hasFirebaseToken() => _firebaseToken != null;
+
+  // "total_notification" field.
+  int? _totalNotification;
+  int get totalNotification => _totalNotification ?? 0;
+  bool hasTotalNotification() => _totalNotification != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -59,6 +69,8 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _type = snapshotData['type'] as String?;
+    _firebaseToken = snapshotData['firebase_token'] as String?;
+    _totalNotification = castToType<int>(snapshotData['total_notification']);
   }
 
   static CollectionReference get collection =>
@@ -102,6 +114,8 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   String? type,
+  String? firebaseToken,
+  int? totalNotification,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,6 +126,8 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'type': type,
+      'firebase_token': firebaseToken,
+      'total_notification': totalNotification,
     }.withoutNulls,
   );
 
@@ -129,7 +145,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.firebaseToken == e2?.firebaseToken &&
+        e1?.totalNotification == e2?.totalNotification;
   }
 
   @override
@@ -140,7 +158,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.type
+        e?.type,
+        e?.firebaseToken,
+        e?.totalNotification
       ]);
 
   @override

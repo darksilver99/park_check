@@ -478,7 +478,7 @@ class _TransactionDetailViewWidgetState
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                );
                               }
                               Navigator.pop(context);
 

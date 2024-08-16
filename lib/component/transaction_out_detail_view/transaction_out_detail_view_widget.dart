@@ -866,8 +866,7 @@ class _TransactionOutDetailViewWidgetState
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             }
                                           }
                                           Navigator.pop(context, 'saved');
@@ -979,7 +978,7 @@ class _TransactionOutDetailViewWidgetState
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         }
                                         Navigator.pop(context);
 
