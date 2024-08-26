@@ -127,6 +127,11 @@ class ConfigRecord extends FirestoreRecord {
   String get promotionDefaultImage => _promotionDefaultImage ?? '';
   bool hasPromotionDefaultImage() => _promotionDefaultImage != null;
 
+  // "help_subject_list" field.
+  List<String>? _helpSubjectList;
+  List<String> get helpSubjectList => _helpSubjectList ?? const [];
+  bool hasHelpSubjectList() => _helpSubjectList != null;
+
   void _initializeFields() {
     _ocrApi = snapshotData['ocr_api'] as String?;
     _defaultStampList = getDataList(snapshotData['default_stamp_list']);
@@ -157,6 +162,7 @@ class ConfigRecord extends FirestoreRecord {
         castToType<int>(snapshotData['default_max_more_image']);
     _guideImagePath = snapshotData['guide_image_path'] as String?;
     _promotionDefaultImage = snapshotData['promotion_default_image'] as String?;
+    _helpSubjectList = getDataList(snapshotData['help_subject_list']);
   }
 
   static CollectionReference get collection =>
@@ -259,7 +265,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.defaultMoreDetailField == e2?.defaultMoreDetailField &&
         e1?.defaultMaxMoreImage == e2?.defaultMaxMoreImage &&
         e1?.guideImagePath == e2?.guideImagePath &&
-        e1?.promotionDefaultImage == e2?.promotionDefaultImage;
+        e1?.promotionDefaultImage == e2?.promotionDefaultImage &&
+        listEquality.equals(e1?.helpSubjectList, e2?.helpSubjectList);
   }
 
   @override
@@ -285,7 +292,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.defaultMoreDetailField,
         e?.defaultMaxMoreImage,
         e?.guideImagePath,
-        e?.promotionDefaultImage
+        e?.promotionDefaultImage,
+        e?.helpSubjectList
       ]);
 
   @override

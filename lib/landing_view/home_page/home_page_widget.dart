@@ -80,6 +80,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           GoRouter.of(context).clearRedirectLocation();
 
           context.goNamedAuth('LoginPage', context.mounted);
+
+          return;
         } else {
           await action_blocks.createProjectData(
             context,
@@ -130,6 +132,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             }
             if (getCurrentTimestamp > FFAppState().projectData.expireDate!) {
               context.goNamedAuth('PaymentAlertPage', context.mounted);
+
+              return;
             } else {
               if (getCurrentTimestamp >
                   functions.getBeforeDay(
@@ -152,6 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   );
                 }
               }
+              await actions.listenNewHelp();
             }
           } else {
             await showDialog(
@@ -179,6 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             }
 
             await actions.closeApp();
+            return;
           }
         }
       } else {
@@ -208,8 +214,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           GoRouter.of(context).clearRedirectLocation();
 
           context.goNamedAuth('LoginPage', context.mounted);
+
+          return;
         } else {
           context.goNamedAuth('CreateProjectPage', context.mounted);
+
+          return;
         }
       }
     });
@@ -929,6 +939,78 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
               ),
+              if (FFAppState().hasNewHelp)
+                Align(
+                  alignment: AlignmentDirectional(0.0, 1.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 3.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.error_rounded,
+                                      color: FlutterFlowTheme.of(context).error,
+                                      size: 36.0,
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Text(
+                                          'มีการแจ้งข้อความช่วยเหลือจากลูกบ้าน กรุณาตรวจสอบและติดต่อลูกบ้านกลับ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.settings_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

@@ -131,6 +131,11 @@ class ProjectListRecord extends FirestoreRecord {
   String get promotionImage => _promotionImage ?? '';
   bool hasPromotionImage() => _promotionImage != null;
 
+  // "help_subject_list" field.
+  List<String>? _helpSubjectList;
+  List<String> get helpSubjectList => _helpSubjectList ?? const [];
+  bool hasHelpSubjectList() => _helpSubjectList != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -155,6 +160,7 @@ class ProjectListRecord extends FirestoreRecord {
     _moreImageField = snapshotData['more_image_field'] as String?;
     _maxMoreImage = castToType<int>(snapshotData['max_more_image']);
     _promotionImage = snapshotData['promotion_image'] as String?;
+    _helpSubjectList = getDataList(snapshotData['help_subject_list']);
   }
 
   static CollectionReference get collection =>
@@ -267,7 +273,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e1?.moreDetailField == e2?.moreDetailField &&
         e1?.moreImageField == e2?.moreImageField &&
         e1?.maxMoreImage == e2?.maxMoreImage &&
-        e1?.promotionImage == e2?.promotionImage;
+        e1?.promotionImage == e2?.promotionImage &&
+        listEquality.equals(e1?.helpSubjectList, e2?.helpSubjectList);
   }
 
   @override
@@ -294,7 +301,8 @@ class ProjectListRecordDocumentEquality implements Equality<ProjectListRecord> {
         e?.moreDetailField,
         e?.moreImageField,
         e?.maxMoreImage,
-        e?.promotionImage
+        e?.promotionImage,
+        e?.helpSubjectList
       ]);
 
   @override
