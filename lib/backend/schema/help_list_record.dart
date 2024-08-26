@@ -66,6 +66,11 @@ class HelpListRecord extends FirestoreRecord {
   String get contactPhone => _contactPhone ?? '';
   bool hasContactPhone() => _contactPhone != null;
 
+  // "remark" field.
+  String? _remark;
+  String get remark => _remark ?? '';
+  bool hasRemark() => _remark != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -77,6 +82,7 @@ class HelpListRecord extends FirestoreRecord {
     _contactAddress = snapshotData['contact_address'] as String?;
     _contactName = snapshotData['contact_name'] as String?;
     _contactPhone = snapshotData['contact_phone'] as String?;
+    _remark = snapshotData['remark'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -124,6 +130,7 @@ Map<String, dynamic> createHelpListRecordData({
   String? contactAddress,
   String? contactName,
   String? contactPhone,
+  String? remark,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -137,6 +144,7 @@ Map<String, dynamic> createHelpListRecordData({
       'contact_address': contactAddress,
       'contact_name': contactName,
       'contact_phone': contactPhone,
+      'remark': remark,
     }.withoutNulls,
   );
 
@@ -157,7 +165,8 @@ class HelpListRecordDocumentEquality implements Equality<HelpListRecord> {
         e1?.detail == e2?.detail &&
         e1?.contactAddress == e2?.contactAddress &&
         e1?.contactName == e2?.contactName &&
-        e1?.contactPhone == e2?.contactPhone;
+        e1?.contactPhone == e2?.contactPhone &&
+        e1?.remark == e2?.remark;
   }
 
   @override
@@ -171,7 +180,8 @@ class HelpListRecordDocumentEquality implements Equality<HelpListRecord> {
         e?.detail,
         e?.contactAddress,
         e?.contactName,
-        e?.contactPhone
+        e?.contactPhone,
+        e?.remark
       ]);
 
   @override

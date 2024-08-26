@@ -204,6 +204,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TransactionHistoryAllPage',
           path: '/transactionHistoryAllPage',
           builder: (context, params) => TransactionHistoryAllPageWidget(),
+        ),
+        FFRoute(
+          name: 'HelpPage',
+          path: '/helpPage',
+          builder: (context, params) => HelpPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
