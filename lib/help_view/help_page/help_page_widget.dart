@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,8 +7,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/help_view/help_detail_view/help_detail_view_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -30,6 +33,18 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HelpPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.totalHelpResult = await queryHelpListRecordCount(
+        queryBuilder: (helpListRecord) => helpListRecord.where(
+          'status',
+          isEqualTo: 0,
+        ),
+      );
+      _model.total = _model.totalHelpResult!;
+      setState(() {});
+    });
   }
 
   @override
@@ -147,7 +162,6 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                     () async {
                                       _model.total =
                                           listViewHelpListRecordList.length;
-                                      setState(() {});
 
                                       setState(() {});
                                     }();
