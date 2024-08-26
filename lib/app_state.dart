@@ -166,12 +166,6 @@ class FFAppState extends ChangeNotifier {
     _isSkipExpireAlert = value;
     prefs.setBool('ff_isSkipExpireAlert', value);
   }
-
-  bool _hasNewHelp = false;
-  bool get hasNewHelp => _hasNewHelp;
-  set hasNewHelp(bool value) {
-    _hasNewHelp = value;
-  }
 }
 
 void _safeInit(Function() initializeField) {
