@@ -132,13 +132,6 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     selectedColor:
                                         FlutterFlowTheme.of(context).primary,
-                                    activeFillColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    inactiveFillColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    selectedFillColor:
-                                        FlutterFlowTheme.of(context).primary,
                                   ),
                                   controller: _model.pinCodeController,
                                   onChanged: (_) {},

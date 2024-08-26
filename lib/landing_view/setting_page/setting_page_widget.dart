@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -308,6 +309,18 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         ) ??
                                         false;
                                 if (confirmDialogResponse) {
+                                  _model.token =
+                                      await actions.getFirebaseToken();
+
+                                  await currentUserReference!.update({
+                                    ...mapToFirestore(
+                                      {
+                                        'firebase_token':
+                                            FieldValue.arrayRemove(
+                                                [_model.token]),
+                                      },
+                                    ),
+                                  });
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();
@@ -319,6 +332,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 }
 
                                 _navigate();
+
+                                setState(() {});
                               },
                               text: 'ออกจากระบบ',
                               icon: Icon(
