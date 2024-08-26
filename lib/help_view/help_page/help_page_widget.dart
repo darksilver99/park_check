@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/help_view/help_detail_view/help_detail_view_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -99,210 +100,163 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                         color: Color(0xE6FFFFFF),
                         borderRadius: BorderRadius.circular(24.0),
                       ),
-                      child: StreamBuilder<List<HelpListRecord>>(
-                        stream: queryHelpListRecord(
-                          queryBuilder: (helpListRecord) => helpListRecord
-                              .where(
-                                'status',
-                                isEqualTo: 0,
-                              )
-                              .orderBy('create_date', descending: true),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 16.0, 16.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'ทั้งหมด ${_model.total.toString()} รายการ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }
-                          List<HelpListRecord> listViewHelpListRecordList =
-                              snapshot.data!;
-
-                          return ListView.separated(
-                            padding: EdgeInsets.fromLTRB(
-                              0,
-                              16.0,
-                              0,
-                              32.0,
+                              ],
                             ),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listViewHelpListRecordList.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                            itemBuilder: (context, listViewIndex) {
-                              final listViewHelpListRecord =
-                                  listViewHelpListRecordList[listViewIndex];
-                              return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      enableDrag: false,
-                                      useSafeArea: true,
-                                      context: context,
-                                      builder: (context) {
-                                        return WebViewAware(
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: HelpDetailViewWidget(
-                                              helpDocument:
-                                                  listViewHelpListRecord,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => safeSetState(() {}));
-                                  },
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    elevation: 3.0,
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                          ),
+                          Expanded(
+                            child: StreamBuilder<List<HelpListRecord>>(
+                              stream: queryHelpListRecord(
+                                queryBuilder: (helpListRecord) => helpListRecord
+                                    .where(
+                                      'status',
+                                      isEqualTo: 0,
+                                    )
+                                    .orderBy('create_date', descending: true),
+                              )..listen((snapshot) {
+                                  List<HelpListRecord>
+                                      listViewHelpListRecordList = snapshot;
+                                  if (_model.listViewPreviousSnapshot != null &&
+                                      !const ListEquality(
+                                              HelpListRecordDocumentEquality())
+                                          .equals(
+                                              listViewHelpListRecordList,
+                                              _model
+                                                  .listViewPreviousSnapshot)) {
+                                    () async {
+                                      _model.total =
+                                          listViewHelpListRecordList.length;
+                                      setState(() {});
+
+                                      setState(() {});
+                                    }();
+                                  }
+                                  _model.listViewPreviousSnapshot = snapshot;
+                                }),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    listViewHelpListRecord
-                                                        .subject,
-                                                    maxLines: 1,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
+                                    ),
+                                  );
+                                }
+                                List<HelpListRecord>
+                                    listViewHelpListRecordList = snapshot.data!;
+
+                                return ListView.separated(
+                                  padding: EdgeInsets.fromLTRB(
+                                    0,
+                                    16.0,
+                                    0,
+                                    32.0,
+                                  ),
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listViewHelpListRecordList.length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 8.0),
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewHelpListRecord =
+                                        listViewHelpListRecordList[
+                                            listViewIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            useSafeArea: true,
+                                            context: context,
+                                            builder: (context) {
+                                              return WebViewAware(
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: HelpDetailViewWidget(
+                                                    helpDocument:
+                                                        listViewHelpListRecord,
                                                   ),
                                                 ),
-                                              ],
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
                                             ),
-                                            Expanded(
-                                              child: Row(
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Expanded(
-                                                    flex: 4,
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listViewHelpListRecord
-                                                            .detail,
-                                                        maxLines: 2,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 2,
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          functions.getStatusText(
-                                                              listViewHelpListRecord
-                                                                  .status,
-                                                              FFAppState()
-                                                                  .helpStatusList
-                                                                  .toList()),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 2,
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          listViewHelpListRecord
+                                                              .subject,
+                                                          maxLines: 1,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
-                                                                color: () {
-                                                                  if (listViewHelpListRecord
-                                                                          .status ==
-                                                                      0) {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary;
-                                                                  } else if (listViewHelpListRecord
-                                                                          .status ==
-                                                                      1) {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success;
-                                                                  } else if (listViewHelpListRecord
-                                                                          .status ==
-                                                                      3) {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error;
-                                                                  } else {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText;
-                                                                  }
-                                                                }(),
-                                                                fontSize: 12.0,
+                                                                fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -310,53 +264,160 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                                                         .bold,
                                                               ),
                                                         ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          flex: 4,
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              listViewHelpListRecord
+                                                                  .detail,
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          flex: 2,
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                functions.getStatusText(
+                                                                    listViewHelpListRecord
+                                                                        .status,
+                                                                    FFAppState()
+                                                                        .helpStatusList
+                                                                        .toList()),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                maxLines: 2,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color:
+                                                                          () {
+                                                                        if (listViewHelpListRecord.status ==
+                                                                            0) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .tertiary;
+                                                                        } else if (listViewHelpListRecord.status ==
+                                                                            1) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .success;
+                                                                        } else if (listViewHelpListRecord.status ==
+                                                                            3) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .error;
+                                                                        } else {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primaryText;
+                                                                        }
+                                                                      }(),
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Icon(
+                                                          Icons
+                                                              .navigate_next_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
-                                                  Icon(
-                                                    Icons.navigate_next_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          'วันที่แจ้ง ${functions.dateTimeTh(listViewHelpListRecord.createDate!)}',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          maxLines: 1,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    'วันที่แจ้ง ${functions.dateTimeTh(listViewHelpListRecord.createDate!)}',
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: 1,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
