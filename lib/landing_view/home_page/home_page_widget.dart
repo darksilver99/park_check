@@ -162,7 +162,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   );
                 }
               }
-              await actions.listenNewHelp();
             }
           } else {
             await showDialog(
