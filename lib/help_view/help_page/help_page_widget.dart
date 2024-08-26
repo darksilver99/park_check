@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/component/main_background_view/main_background_view_widget.dart';
+import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -186,6 +187,9 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                 }
                                 List<HelpListRecord>
                                     listViewHelpListRecordList = snapshot.data!;
+                                if (listViewHelpListRecordList.isEmpty) {
+                                  return NoDataViewWidget();
+                                }
 
                                 return ListView.separated(
                                   padding: EdgeInsets.fromLTRB(
