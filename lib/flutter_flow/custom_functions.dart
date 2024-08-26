@@ -143,3 +143,15 @@ String imageToString(String image) {
 String stringToImage(String str) {
   return str;
 }
+
+String getStatusText(
+  int status,
+  List<StatusDataStruct> statusList,
+) {
+  for (var dataStatus in statusList) {
+    if (dataStatus.status == status) {
+      return dataStatus.subject;
+    }
+  }
+  return '-';
+}
