@@ -240,7 +240,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
-            duration: 1000.0.ms,
+            duration: 1400.0.ms,
             begin: Offset(-5.0, -5.0),
             end: Offset(1.0, 1.0),
           ),
@@ -1005,12 +1005,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 16.0),
-                              child: Material(
-                                color: Colors.transparent,
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('HelpPage');
+                                },
                                 child: Container(
                                   width: double.infinity,
                                   height: 100.0,
@@ -1018,6 +1020,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 3.0,
+                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
