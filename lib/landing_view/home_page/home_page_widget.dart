@@ -240,8 +240,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
         effectsBuilder: () => [
           ScaleEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
+            delay: 100.0.ms,
+            duration: 1000.0.ms,
             begin: Offset(-5.0, -5.0),
             end: Offset(1.0, 1.0),
           ),
