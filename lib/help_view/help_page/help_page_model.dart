@@ -9,7 +9,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'help_page_widget.dart' show HelpPageWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
@@ -18,11 +17,6 @@ class HelpPageModel extends FlutterFlowModel<HelpPageWidget> {
 
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
-  // State field(s) for ListView widget.
-
-  PagingController<DocumentSnapshot?, HelpListRecord>? listViewPagingController;
-  Query? listViewPagingQuery;
-  List<StreamSubscription?> listViewStreamSubscriptions = [];
 
   @override
   void initState(BuildContext context) {
@@ -33,39 +27,5 @@ class HelpPageModel extends FlutterFlowModel<HelpPageWidget> {
   @override
   void dispose() {
     mainBackgroundViewModel.dispose();
-    listViewStreamSubscriptions.forEach((s) => s?.cancel());
-    listViewPagingController?.dispose();
-  }
-
-  /// Additional helper methods.
-  PagingController<DocumentSnapshot?, HelpListRecord> setListViewController(
-    Query query, {
-    DocumentReference<Object?>? parent,
-  }) {
-    listViewPagingController ??= _createListViewController(query, parent);
-    if (listViewPagingQuery != query) {
-      listViewPagingQuery = query;
-      listViewPagingController?.refresh();
-    }
-    return listViewPagingController!;
-  }
-
-  PagingController<DocumentSnapshot?, HelpListRecord> _createListViewController(
-    Query query,
-    DocumentReference<Object?>? parent,
-  ) {
-    final controller =
-        PagingController<DocumentSnapshot?, HelpListRecord>(firstPageKey: null);
-    return controller
-      ..addPageRequestListener(
-        (nextPageMarker) => queryHelpListRecordPage(
-          queryBuilder: (_) => listViewPagingQuery ??= query,
-          nextPageMarker: nextPageMarker,
-          streamSubscriptions: listViewStreamSubscriptions,
-          controller: controller,
-          pageSize: 25,
-          isStream: true,
-        ),
-      );
   }
 }
