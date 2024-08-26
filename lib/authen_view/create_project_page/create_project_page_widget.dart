@@ -323,6 +323,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               'payment_alert_text': FFAppState()
                                                   .configData
                                                   .paymentAlertDefaultText,
+                                              'help_subject_list': FFAppState()
+                                                  .configData
+                                                  .helpSubjectList,
                                             },
                                           ),
                                         });
@@ -384,6 +387,9 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                               'payment_alert_text': FFAppState()
                                                   .configData
                                                   .paymentAlertDefaultText,
+                                              'help_subject_list': FFAppState()
+                                                  .configData
+                                                  .helpSubjectList,
                                             },
                                           ),
                                         }, projectListRecordReference);

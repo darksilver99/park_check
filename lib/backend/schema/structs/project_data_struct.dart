@@ -31,6 +31,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
     String? textInLastSlip,
     int? maxMoreImage,
     String? promotionImage,
+    List<String>? helpSubjectList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _projectDocID = projectDocID,
         _projectName = projectName,
@@ -53,6 +54,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         _textInLastSlip = textInLastSlip,
         _maxMoreImage = maxMoreImage,
         _promotionImage = promotionImage,
+        _helpSubjectList = helpSubjectList,
         super(firestoreUtilData);
 
   // "projectDocID" field.
@@ -224,6 +226,17 @@ class ProjectDataStruct extends FFFirebaseStruct {
 
   bool hasPromotionImage() => _promotionImage != null;
 
+  // "help_subject_list" field.
+  List<String>? _helpSubjectList;
+  List<String> get helpSubjectList => _helpSubjectList ?? const [];
+  set helpSubjectList(List<String>? val) => _helpSubjectList = val;
+
+  void updateHelpSubjectList(Function(List<String>) updateFn) {
+    updateFn(_helpSubjectList ??= []);
+  }
+
+  bool hasHelpSubjectList() => _helpSubjectList != null;
+
   static ProjectDataStruct fromMap(Map<String, dynamic> data) =>
       ProjectDataStruct(
         projectDocID: data['projectDocID'] as String?,
@@ -247,6 +260,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         textInLastSlip: data['text_in_last_slip'] as String?,
         maxMoreImage: castToType<int>(data['max_more_image']),
         promotionImage: data['promotion_image'] as String?,
+        helpSubjectList: getDataList(data['help_subject_list']),
       );
 
   static ProjectDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -275,6 +289,7 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'text_in_last_slip': _textInLastSlip,
         'max_more_image': _maxMoreImage,
         'promotion_image': _promotionImage,
+        'help_subject_list': _helpSubjectList,
       }.withoutNulls;
 
   @override
@@ -366,6 +381,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
         'promotion_image': serializeParam(
           _promotionImage,
           ParamType.String,
+        ),
+        'help_subject_list': serializeParam(
+          _helpSubjectList,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -477,6 +497,11 @@ class ProjectDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        helpSubjectList: deserializeParam<String>(
+          data['help_subject_list'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -506,7 +531,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         moreImageField == other.moreImageField &&
         textInLastSlip == other.textInLastSlip &&
         maxMoreImage == other.maxMoreImage &&
-        promotionImage == other.promotionImage;
+        promotionImage == other.promotionImage &&
+        listEquality.equals(helpSubjectList, other.helpSubjectList);
   }
 
   @override
@@ -531,7 +557,8 @@ class ProjectDataStruct extends FFFirebaseStruct {
         moreImageField,
         textInLastSlip,
         maxMoreImage,
-        promotionImage
+        promotionImage,
+        helpSubjectList
       ]);
 }
 

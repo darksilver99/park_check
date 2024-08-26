@@ -35,6 +35,7 @@ Future getConfigData(BuildContext context) async {
     defaultMaxMoreImage: configResult?.defaultMaxMoreImage,
     guideImagePath: configResult?.guideImagePath,
     promotionDefaultImage: configResult?.promotionDefaultImage,
+    helpSubjectList: configResult?.helpSubjectList,
   );
 }
 
@@ -64,5 +65,6 @@ Future createProjectData(
     textInLastSlip: projectData?.textInLastSlip,
     maxMoreImage: projectData?.maxMoreImage,
     promotionImage: projectData?.promotionImage,
+    helpSubjectList: projectData?.helpSubjectList,
   );
 }

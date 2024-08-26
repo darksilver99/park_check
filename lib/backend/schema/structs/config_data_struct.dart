@@ -31,6 +31,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     int? defaultMaxMoreImage,
     String? guideImagePath,
     String? promotionDefaultImage,
+    List<String>? helpSubjectList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _defaultStampField = defaultStampField,
@@ -53,6 +54,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _defaultMaxMoreImage = defaultMaxMoreImage,
         _guideImagePath = guideImagePath,
         _promotionDefaultImage = promotionDefaultImage,
+        _helpSubjectList = helpSubjectList,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -246,6 +248,17 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasPromotionDefaultImage() => _promotionDefaultImage != null;
 
+  // "help_subject_list" field.
+  List<String>? _helpSubjectList;
+  List<String> get helpSubjectList => _helpSubjectList ?? const [];
+  set helpSubjectList(List<String>? val) => _helpSubjectList = val;
+
+  void updateHelpSubjectList(Function(List<String>) updateFn) {
+    updateFn(_helpSubjectList ??= []);
+  }
+
+  bool hasHelpSubjectList() => _helpSubjectList != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -272,6 +285,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultMaxMoreImage: castToType<int>(data['default_max_more_image']),
         guideImagePath: data['guide_image_path'] as String?,
         promotionDefaultImage: data['promotion_default_image'] as String?,
+        helpSubjectList: getDataList(data['help_subject_list']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -300,6 +314,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'default_max_more_image': _defaultMaxMoreImage,
         'guide_image_path': _guideImagePath,
         'promotion_default_image': _promotionDefaultImage,
+        'help_subject_list': _helpSubjectList,
       }.withoutNulls;
 
   @override
@@ -395,6 +410,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'promotion_default_image': serializeParam(
           _promotionDefaultImage,
           ParamType.String,
+        ),
+        'help_subject_list': serializeParam(
+          _helpSubjectList,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -505,6 +525,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        helpSubjectList: deserializeParam<String>(
+          data['help_subject_list'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -535,7 +560,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultMoreImageField == other.defaultMoreImageField &&
         defaultMaxMoreImage == other.defaultMaxMoreImage &&
         guideImagePath == other.guideImagePath &&
-        promotionDefaultImage == other.promotionDefaultImage;
+        promotionDefaultImage == other.promotionDefaultImage &&
+        listEquality.equals(helpSubjectList, other.helpSubjectList);
   }
 
   @override
@@ -560,7 +586,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         defaultMoreImageField,
         defaultMaxMoreImage,
         guideImagePath,
-        promotionDefaultImage
+        promotionDefaultImage,
+        helpSubjectList
       ]);
 }
 
