@@ -113,10 +113,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             if (functions.getStartDayTime(getCurrentTimestamp) !=
                 functions.getStartDayTime(FFAppState().currentDate!)) {
               _model.token = await actions.getFirebaseToken();
-
-              await currentUserReference!.update(createUsersRecordData(
-                firebaseToken: _model.token,
-              ));
+              if (!(currentUserDocument?.firebaseToken?.toList() ?? [])
+                  .contains(_model.token)) {
+                await currentUserReference!.update({
+                  ...mapToFirestore(
+                    {
+                      'firebase_token': FieldValue.arrayUnion([_model.token]),
+                    },
+                  ),
+                });
+              }
               FFAppState().currentDate =
                   functions.getStartDayTime(getCurrentTimestamp);
               FFAppState().isSkipOCRAlert = false;
