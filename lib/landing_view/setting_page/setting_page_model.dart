@@ -18,10 +18,14 @@ import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
+  ///  Local state fields for this page.
+
+  int? totalHelp = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in SettingPage widget.
-  int? totalHelp;
+  int? totalHelpResult;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // Stores action output result for [Custom Action - getFirebaseToken] action in Button widget.

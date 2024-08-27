@@ -37,12 +37,14 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.totalHelp = await queryHelpListRecordCount(
+      _model.totalHelpResult = await queryHelpListRecordCount(
         queryBuilder: (helpListRecord) => helpListRecord.where(
           'status',
           isEqualTo: 0,
         ),
       );
+      _model.totalHelp = _model.totalHelpResult;
+      setState(() {});
     });
   }
 
@@ -286,9 +288,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                 if (columnParkCarMenuListRecord
                                                             .pathName ==
                                                         'HelpPage'
-                                                    ? ((_model.totalHelp !=
-                                                            null) &&
-                                                        (_model.totalHelp! > 0))
+                                                    ? (_model.totalHelp! > 0)
                                                     : false)
                                                   Container(
                                                     width: 32.0,
