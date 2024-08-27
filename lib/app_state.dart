@@ -202,6 +202,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInHelpStatusList(int index, StatusDataStruct value) {
     helpStatusList.insert(index, value);
   }
+
+  bool _isHasHelp = false;
+  bool get isHasHelp => _isHasHelp;
+  set isHasHelp(bool value) {
+    _isHasHelp = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
