@@ -8,9 +8,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -34,18 +32,6 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingPageModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.totalHelpResult = await queryHelpListRecordCount(
-        queryBuilder: (helpListRecord) => helpListRecord.where(
-          'status',
-          isEqualTo: 0,
-        ),
-      );
-      _model.totalHelp = _model.totalHelpResult;
-      setState(() {});
-    });
   }
 
   @override
@@ -288,7 +274,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                 if (columnParkCarMenuListRecord
                                                             .pathName ==
                                                         'HelpPage'
-                                                    ? (_model.totalHelp! > 0)
+                                                    ? (FFAppState().totalHelp >
+                                                        0)
                                                     : false)
                                                   Container(
                                                     width: 32.0,
@@ -305,7 +292,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                           AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
-                                                        '1',
+                                                        FFAppState()
+                                                            .totalHelp
+                                                            .toString(),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

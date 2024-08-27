@@ -208,6 +208,12 @@ class FFAppState extends ChangeNotifier {
   set isHasHelp(bool value) {
     _isHasHelp = value;
   }
+
+  int _totalHelp = 0;
+  int get totalHelp => _totalHelp;
+  set totalHelp(int value) {
+    _totalHelp = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

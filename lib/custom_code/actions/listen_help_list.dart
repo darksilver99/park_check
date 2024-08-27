@@ -20,6 +20,7 @@ Future listenHelpList() async {
       .snapshots()
       .listen((data) {
     print(data.size);
+    FFAppState().totalHelp = data.size;
     if (data.size > 0) {
       FFAppState().isHasHelp = true;
     } else {
