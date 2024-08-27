@@ -164,14 +164,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 }
               }
               await actions.listenHelpList();
-              _model.soundPlayer ??= AudioPlayer();
-              if (_model.soundPlayer!.playing) {
-                await _model.soundPlayer!.stop();
+              if (FFAppState().isHasHelp) {
+                _model.soundPlayer ??= AudioPlayer();
+                if (_model.soundPlayer!.playing) {
+                  await _model.soundPlayer!.stop();
+                }
+                _model.soundPlayer!.setVolume(1.0);
+                _model.soundPlayer!
+                    .setAsset('assets/audios/message-alert-190042.mp3')
+                    .then((_) => _model.soundPlayer!.play());
               }
-              _model.soundPlayer!.setVolume(1.0);
-              _model.soundPlayer!
-                  .setAsset('assets/audios/message-alert-190042.mp3')
-                  .then((_) => _model.soundPlayer!.play());
             }
           } else {
             await showDialog(
@@ -1069,6 +1071,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             },
                                           );
 
+                                          _model.soundPlayer?.stop();
                                           FFAppState().isHasHelp = false;
                                           FFAppState().update(() {});
                                         },
