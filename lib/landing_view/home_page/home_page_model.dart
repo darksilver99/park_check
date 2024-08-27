@@ -71,7 +71,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   var qrCode = '';
   // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
   TransactionListRecord? transactionDocumentResult;
-  List<HelpListRecord>? containerPreviousSnapshot;
 
   @override
   void initState(BuildContext context) {

@@ -162,6 +162,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   );
                 }
               }
+              await actions.listenHelpList();
             }
           } else {
             await showDialog(
@@ -240,7 +241,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
-            duration: 1400.0.ms,
+            duration: 1200.0.ms,
             begin: Offset(-5.0, -5.0),
             end: Offset(1.0, 1.0),
           ),
@@ -960,183 +961,126 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   ),
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
-                child: StreamBuilder<List<HelpListRecord>>(
-                  stream: queryHelpListRecord(
-                    queryBuilder: (helpListRecord) => helpListRecord.where(
-                      'status',
-                      isEqualTo: 0,
-                    ),
-                  )..listen((snapshot) {
-                      List<HelpListRecord> containerHelpListRecordList =
-                          snapshot;
-                      if (_model.containerPreviousSnapshot != null &&
-                          !const ListEquality(HelpListRecordDocumentEquality())
-                              .equals(containerHelpListRecordList,
-                                  _model.containerPreviousSnapshot)) {
-                        () async {
-                          if (containerHelpListRecordList.length > 0) {
-                            _model.isHasHelp = true;
-                            setState(() {});
-                          }
-
-                          setState(() {});
-                        }();
-                      }
-                      _model.containerPreviousSnapshot = snapshot;
-                    }),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
+              if (FFAppState().isHasHelp)
+                Align(
+                  alignment: AlignmentDirectional(0.0, 1.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('HelpPage');
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 3.0,
                           ),
                         ),
-                      );
-                    }
-                    List<HelpListRecord> containerHelpListRecordList =
-                        snapshot.data!;
-
-                    return Container(
-                      decoration: BoxDecoration(),
-                      child: Visibility(
-                        visible: (containerHelpListRecordList.length < 0) ||
-                            _model.isHasHelp,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 16.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed('HelpPage');
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(8.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 3.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
-                                child: Column(
+                              16.0, 8.0, 16.0, 8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: Icon(
+                                        Icons.error_rounded,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        size: 42.0,
+                                      ).animateOnPageLoad(animationsMap[
+                                          'iconOnPageLoadAnimation']!),
+                                    ),
                                     Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 8.0, 0.0),
-                                            child: Icon(
-                                              Icons.error_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              size: 42.0,
-                                            ).animateOnPageLoad(animationsMap[
-                                                'iconOnPageLoadAnimation']!),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
-                                              child: Text(
-                                                'มีการแจ้งข้อความช่วยเหลือจากลูกบ้าน กรุณาตรวจสอบและติดต่อลูกบ้าน',
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      fontSize: 18.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                            ),
-                                          ),
-                                          Builder(
-                                            builder: (context) => InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: WebViewAware(
-                                                        child:
-                                                            CustomInfoAlertViewWidget(
-                                                          title:
-                                                              'ตรวจสอบรายการของความช่วยเหลือได้ที่เมนูตั้งค่า (รูปฟันเฟืองขวาล่าง) และเลือกเมนู \"รายการขอความช่วยเหลือ\")',
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                              child: Icon(
-                                                Icons.close_rounded,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Text(
+                                          'มีการแจ้งข้อความช่วยเหลือจากลูกบ้าน กรุณาตรวจสอบและติดต่อลูกบ้าน',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 32.0,
+                                                        .error,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
+                                      ),
+                                    ),
+                                    Builder(
+                                      builder: (context) => InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child:
+                                                      CustomInfoAlertViewWidget(
+                                                    title:
+                                                        'ตรวจสอบรายการของความช่วยเหลือได้ที่เมนูตั้งค่า (รูปฟันเฟืองขวาล่าง) และเลือกเมนู \"รายการขอความช่วยเหลือ\")',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          _model.isHasHelp = false;
+                                          setState(() {});
+                                        },
+                                        child: Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 32.0,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ),
-                    );
-                  },
+                    ),
+                  ),
                 ),
-              ),
             ],
           ),
         ),
