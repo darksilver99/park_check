@@ -24,6 +24,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'home_page_model.dart';
@@ -163,6 +164,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 }
               }
               await actions.listenHelpList();
+              if (FFAppState().isHasHelp) {
+                _model.soundPlayer ??= AudioPlayer();
+                if (_model.soundPlayer!.playing) {
+                  await _model.soundPlayer!.stop();
+                }
+                _model.soundPlayer!.setVolume(1.0);
+                _model.soundPlayer!
+                    .setAsset('assets/audios/message-alert-190042.mp3')
+                    .then((_) => _model.soundPlayer!.play());
+              }
             }
           } else {
             await showDialog(
@@ -1060,6 +1071,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             },
                                           );
 
+                                          _model.soundPlayer?.stop();
                                           FFAppState().isHasHelp = false;
                                           FFAppState().update(() {});
                                         },
