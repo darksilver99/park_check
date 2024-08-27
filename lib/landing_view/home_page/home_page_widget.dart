@@ -1071,7 +1071,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             },
                                           );
 
-                                          _model.soundPlayer?.stop();
+                                          await actions.stopAlertSound(
+                                            null!,
+                                          );
                                           FFAppState().isHasHelp = false;
                                           FFAppState().update(() {});
                                         },
