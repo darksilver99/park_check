@@ -46,6 +46,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isLoading = true;
 
+  bool isHasHelp = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
@@ -69,6 +71,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   var qrCode = '';
   // Stores action output result for [Custom Action - getTransactionDocument] action in Row widget.
   TransactionListRecord? transactionDocumentResult;
+  List<HelpListRecord>? containerPreviousSnapshot;
 
   @override
   void initState(BuildContext context) {
