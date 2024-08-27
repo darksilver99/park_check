@@ -13,10 +13,8 @@ import 'package:flutter/material.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:just_audio/just_audio.dart';
 
-Future listenHelpList() async {
+Future listenHelpList(dynamic audioHelper) async {
   // Add your function code here!
-  print("listenHelpList");
-
   final audioHelper = AudioPlayer();
   FirebaseFirestore.instance
       .collection(
