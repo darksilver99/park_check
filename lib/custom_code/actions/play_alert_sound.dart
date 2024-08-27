@@ -18,7 +18,7 @@ Future playAlertSound(dynamic audioPlayer) async {
     }
     audioPlayer.setVolume(1.0);
     audioPlayer
-        .setAsset('assets/audios/message-alert-190042.mp3')
+        .setAsset('assets/audios/big-alert-136677.mp3')
         .then((_) => audioPlayer.play());
   } catch (e) {
     debugPrint("Error playing sound: $e");
