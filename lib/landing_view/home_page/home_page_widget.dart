@@ -29,6 +29,8 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
+import 'package:just_audio/just_audio.dart';
+
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
 
@@ -43,6 +45,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
+
+  final audioHelper = AudioPlayer();
 
   @override
   void initState() {
@@ -163,7 +167,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 }
               }
               await actions.listenHelpList(
-                null!,
+                audioHelper,
               );
             }
           } else {
@@ -1063,7 +1067,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           );
 
                                           await actions.stopAlertSound(
-                                            null!,
+                                            audioHelper,
                                           );
                                           FFAppState().isHasHelp = false;
                                           FFAppState().update(() {});
