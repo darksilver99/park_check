@@ -25,7 +25,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
@@ -55,7 +54,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   List<TransactionListRecord>? rsDataList;
   // Stores action output result for [Custom Action - getFirebaseToken] action in HomePage widget.
   String? token;
-  AudioPlayer? soundPlayer;
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // State field(s) for TextField widget.
