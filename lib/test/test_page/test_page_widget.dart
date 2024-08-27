@@ -3,7 +3,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'test_page_model.dart';
 export 'test_page_model.dart';
@@ -24,6 +26,18 @@ class _TestPageWidgetState extends State<TestPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TestPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.soundPlayer ??= AudioPlayer();
+      if (_model.soundPlayer!.playing) {
+        await _model.soundPlayer!.stop();
+      }
+      _model.soundPlayer!.setVolume(1.0);
+      _model.soundPlayer!
+          .setAsset('assets/audios/message-alert-190042.mp3')
+          .then((_) => _model.soundPlayer!.play());
+    });
   }
 
   @override

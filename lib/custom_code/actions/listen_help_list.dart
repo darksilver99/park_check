@@ -10,9 +10,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/custom_code/actions/index.dart' as actions;
+import 'package:just_audio/just_audio.dart';
+
 Future listenHelpList() async {
   // Add your function code here!
   print("listenHelpList");
+
+  final audioHelper = AudioPlayer();
   FirebaseFirestore.instance
       .collection(
           "${FFAppState().projectData.projectReference!.path}/help_list")
@@ -23,8 +28,10 @@ Future listenHelpList() async {
     FFAppState().totalHelp = data.size;
     if (data.size > 0) {
       FFAppState().isHasHelp = true;
+      actions.playAlertSound(audioHelper);
     } else {
       FFAppState().isHasHelp = false;
+      actions.stopAlertSound(audioHelper);
     }
     FFAppState().update(() {});
   });
