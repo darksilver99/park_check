@@ -21,9 +21,10 @@ Future listenHelpList() async {
       .listen((data) {
     print(data.size);
     if (data.size > 0) {
-      FFAppState().update(() {
-        FFAppState().isHasHelp = true;
-      });
+      FFAppState().isHasHelp = true;
+    } else {
+      FFAppState().isHasHelp = false;
     }
+    FFAppState().update(() {});
   });
 }
