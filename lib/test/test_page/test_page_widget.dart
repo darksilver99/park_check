@@ -35,7 +35,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
       }
       _model.soundPlayer!.setVolume(1.0);
       _model.soundPlayer!
-          .setAsset('assets/audios/big-alert-136677.mp3')
+          .setAsset('assets/audios/big-alert-136677.wav')
           .then((_) => _model.soundPlayer!.play());
     });
   }
