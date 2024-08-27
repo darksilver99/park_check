@@ -46,8 +46,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isLoading = true;
 
-  bool isHasHelp = false;
-
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.

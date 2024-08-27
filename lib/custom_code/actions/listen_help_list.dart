@@ -12,4 +12,18 @@ import 'package:flutter/material.dart';
 
 Future listenHelpList() async {
   // Add your function code here!
+  print("listenHelpList");
+  FirebaseFirestore.instance
+      .collection(
+          "${FFAppState().projectData.projectReference!.path}/help_list")
+      .where("status", isEqualTo: 0)
+      .snapshots()
+      .listen((data) {
+    print(data.size);
+    if (data.size > 0) {
+      FFAppState().update(() {
+        FFAppState().isHasHelp = true;
+      });
+    }
+  });
 }

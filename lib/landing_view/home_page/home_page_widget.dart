@@ -1060,8 +1060,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             },
                                           );
 
-                                          _model.isHasHelp = false;
-                                          setState(() {});
+                                          FFAppState().isHasHelp = false;
+                                          FFAppState().update(() {});
                                         },
                                         child: Icon(
                                           Icons.close_rounded,
