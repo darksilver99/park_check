@@ -8,7 +8,9 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +34,16 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.totalHelp = await queryHelpListRecordCount(
+        queryBuilder: (helpListRecord) => helpListRecord.where(
+          'status',
+          isEqualTo: 0,
+        ),
+      );
+    });
   }
 
   @override
@@ -182,96 +194,154 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                     final columnParkCarMenuListRecord =
                                         columnParkCarMenuListRecordList[
                                             columnIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          if (columnParkCarMenuListRecord
-                                                  .type ==
-                                              'app') {
-                                            await actions.goToPage(
-                                              context,
-                                              columnParkCarMenuListRecord
-                                                  .pathName,
-                                            );
-                                          } else if (columnParkCarMenuListRecord
-                                                  .type ==
-                                              'web') {
-                                            context.pushNamed(
-                                              'WebViewPage',
-                                              queryParameters: {
-                                                'title': serializeParam(
-                                                  columnParkCarMenuListRecord
-                                                      .subject,
-                                                  ParamType.String,
-                                                ),
-                                                'url': serializeParam(
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(16.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (columnParkCarMenuListRecord
+                                                      .type ==
+                                                  'app') {
+                                                await actions.goToPage(
+                                                  context,
                                                   columnParkCarMenuListRecord
                                                       .pathName,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          } else if (columnParkCarMenuListRecord
-                                                  .type ==
-                                              'app_image') {
-                                            context.pushNamed(
-                                              'DetailWithImagePage',
-                                              queryParameters: {
-                                                'title': serializeParam(
-                                                  columnParkCarMenuListRecord
-                                                      .subject,
-                                                  ParamType.String,
-                                                ),
-                                                'image': serializeParam(
-                                                  functions.stringToImage(
+                                                );
+                                              } else if (columnParkCarMenuListRecord
+                                                      .type ==
+                                                  'web') {
+                                                context.pushNamed(
+                                                  'WebViewPage',
+                                                  queryParameters: {
+                                                    'title': serializeParam(
                                                       columnParkCarMenuListRecord
-                                                          .pathName),
-                                                  ParamType.String,
+                                                          .subject,
+                                                      ParamType.String,
+                                                    ),
+                                                    'url': serializeParam(
+                                                      columnParkCarMenuListRecord
+                                                          .pathName,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              } else if (columnParkCarMenuListRecord
+                                                      .type ==
+                                                  'app_image') {
+                                                context.pushNamed(
+                                                  'DetailWithImagePage',
+                                                  queryParameters: {
+                                                    'title': serializeParam(
+                                                      columnParkCarMenuListRecord
+                                                          .subject,
+                                                      ParamType.String,
+                                                    ),
+                                                    'image': serializeParam(
+                                                      functions.stringToImage(
+                                                          columnParkCarMenuListRecord
+                                                              .pathName),
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                await launchURL(
+                                                    columnParkCarMenuListRecord
+                                                        .pathName);
+                                              }
+                                            },
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                4.0, 0.0),
+                                                    child: Text(
+                                                      columnParkCarMenuListRecord
+                                                          .subject,
+                                                      maxLines: 1,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 20.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              }.withoutNulls,
-                                            );
-                                          } else {
-                                            await launchURL(
-                                                columnParkCarMenuListRecord
-                                                    .pathName);
-                                          }
-                                        },
-                                        text:
-                                            columnParkCarMenuListRecord.subject,
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          height: 50.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                                if (columnParkCarMenuListRecord
+                                                            .pathName ==
+                                                        'HelpPage'
+                                                    ? ((_model.totalHelp !=
+                                                            null) &&
+                                                        (_model.totalHelp! > 0))
+                                                    : false)
+                                                  Container(
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        '1',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                Icon(
+                                                  Icons.navigate_next_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 32.0,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
                                         ),
-                                      ),
+                                        Container(
+                                          width: double.infinity,
+                                          height: 2.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                        ),
+                                      ],
                                     );
                                   }),
                                 );
