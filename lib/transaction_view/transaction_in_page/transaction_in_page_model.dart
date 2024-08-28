@@ -55,16 +55,14 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   final formKey = GlobalKey<FormState>();
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
+  // Stores action output result for [Custom Action - customCamera] action in Button widget.
+  List<FFUploadedFile>? uploadDataY3x;
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
   String? base64Result2;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
   ApiCallResponse? apiReuslt2;
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
@@ -156,8 +154,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   FocusNode? moreDetailFocusNode;
   TextEditingController? moreDetailTextController;
   String? Function(BuildContext, String?)? moreDetailTextControllerValidator;
-  bool isDataUploading3 = false;
-  FFUploadedFile uploadedLocalFile3 =
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.

@@ -155,68 +155,18 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              final selectedMedia =
-                                                  await selectMedia(
-                                                maxWidth: 600.00,
-                                                imageQuality: 100,
-                                                multiImage: false,
+                                              _model.uploadDataY3x =
+                                                  await actions.customCamera(
+                                                context,
                                               );
-                                              if (selectedMedia != null &&
-                                                  selectedMedia.every((m) =>
-                                                      validateFileFormat(
-                                                          m.storagePath,
-                                                          context))) {
-                                                setState(() => _model
-                                                    .isDataUploading1 = true);
-                                                var selectedUploadedFiles =
-                                                    <FFUploadedFile>[];
-
-                                                try {
-                                                  selectedUploadedFiles =
-                                                      selectedMedia
-                                                          .map((m) =>
-                                                              FFUploadedFile(
-                                                                name: m
-                                                                    .storagePath
-                                                                    .split('/')
-                                                                    .last,
-                                                                bytes: m.bytes,
-                                                                height: m
-                                                                    .dimensions
-                                                                    ?.height,
-                                                                width: m
-                                                                    .dimensions
-                                                                    ?.width,
-                                                                blurHash:
-                                                                    m.blurHash,
-                                                              ))
-                                                          .toList();
-                                                } finally {
-                                                  _model.isDataUploading1 =
-                                                      false;
-                                                }
-                                                if (selectedUploadedFiles
-                                                        .length ==
-                                                    selectedMedia.length) {
-                                                  setState(() {
-                                                    _model.uploadedLocalFile1 =
-                                                        selectedUploadedFiles
-                                                            .first;
-                                                  });
-                                                } else {
-                                                  setState(() {});
-                                                  return;
-                                                }
-                                              }
-
-                                              if (_model.uploadedLocalFile1 !=
-                                                      null &&
-                                                  (_model.uploadedLocalFile1
-                                                          .bytes?.isNotEmpty ??
-                                                      false)) {
+                                              if ((_model.uploadDataY3x !=
+                                                          null &&
+                                                      (_model.uploadDataY3x)!
+                                                          .isNotEmpty) !=
+                                                  null) {
                                                 _model.base64Result2 =
                                                     await actions.getBase64(
-                                                  _model.uploadedLocalFile1,
+                                                  _model.uploadDataY3x!.first,
                                                 );
                                                 _model.apiReuslt2 =
                                                     await GetORCDataCall.call(
@@ -467,7 +417,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           m.storagePath,
                                                           context))) {
                                                 setState(() => _model
-                                                    .isDataUploading2 = true);
+                                                    .isDataUploading1 = true);
                                                 var selectedUploadedFiles =
                                                     <FFUploadedFile>[];
 
@@ -492,14 +442,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                               ))
                                                           .toList();
                                                 } finally {
-                                                  _model.isDataUploading2 =
+                                                  _model.isDataUploading1 =
                                                       false;
                                                 }
                                                 if (selectedUploadedFiles
                                                         .length ==
                                                     selectedMedia.length) {
                                                   setState(() {
-                                                    _model.uploadedLocalFile2 =
+                                                    _model.uploadedLocalFile1 =
                                                         selectedUploadedFiles
                                                             .first;
                                                   });
@@ -509,14 +459,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 }
                                               }
 
-                                              if (_model.uploadedLocalFile2 !=
+                                              if (_model.uploadedLocalFile1 !=
                                                       null &&
-                                                  (_model.uploadedLocalFile2
+                                                  (_model.uploadedLocalFile1
                                                           .bytes?.isNotEmpty ??
                                                       false)) {
                                                 _model.base64Result =
                                                     await actions.getBase64(
-                                                  _model.uploadedLocalFile2,
+                                                  _model.uploadedLocalFile1,
                                                 );
                                                 _model.apiReuslt =
                                                     await GetORCDataCall.call(
@@ -1790,7 +1740,7 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                           m.storagePath,
                                                           context))) {
                                                 setState(() => _model
-                                                    .isDataUploading3 = true);
+                                                    .isDataUploading2 = true);
                                                 var selectedUploadedFiles =
                                                     <FFUploadedFile>[];
 
@@ -1815,14 +1765,14 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                               ))
                                                           .toList();
                                                 } finally {
-                                                  _model.isDataUploading3 =
+                                                  _model.isDataUploading2 =
                                                       false;
                                                 }
                                                 if (selectedUploadedFiles
                                                         .length ==
                                                     selectedMedia.length) {
                                                   setState(() {
-                                                    _model.uploadedLocalFile3 =
+                                                    _model.uploadedLocalFile2 =
                                                         selectedUploadedFiles
                                                             .first;
                                                   });
@@ -1832,15 +1782,15 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                 }
                                               }
 
-                                              if (_model.uploadedLocalFile3 !=
+                                              if (_model.uploadedLocalFile2 !=
                                                       null &&
-                                                  (_model.uploadedLocalFile3
+                                                  (_model.uploadedLocalFile2
                                                           .bytes?.isNotEmpty ??
                                                       false)) {
                                                 _model.moreImagePath =
                                                     await actions
                                                         .uploadImageToFirebase(
-                                                  _model.uploadedLocalFile3,
+                                                  _model.uploadedLocalFile2,
                                                   'more_image',
                                                 );
                                                 _model
@@ -1920,25 +1870,23 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                       _model.carSelectedValue != '') {
                                     if (_model.objectiveSelectedValue != null &&
                                         _model.objectiveSelectedValue != '') {
-                                      if (_model.uploadedLocalFile2 != null &&
-                                          (_model.uploadedLocalFile2.bytes
+                                      if (_model.uploadedLocalFile1 != null &&
+                                          (_model.uploadedLocalFile1.bytes
                                                   ?.isNotEmpty ??
                                               false)) {
                                         _model.registrationImagePath =
                                             await actions.uploadImageToFirebase(
-                                          _model.uploadedLocalFile2,
+                                          _model.uploadedLocalFile1,
                                           'registrations',
                                         );
                                         _model.tmpRegistrationImagePath =
                                             _model.registrationImagePath;
                                       }
-                                      if (_model.uploadedLocalFile1 != null &&
-                                          (_model.uploadedLocalFile1.bytes
-                                                  ?.isNotEmpty ??
-                                              false)) {
+                                      if (_model.uploadDataY3x != null &&
+                                          (_model.uploadDataY3x)!.isNotEmpty) {
                                         _model.cardImagePath =
                                             await actions.uploadImageToFirebase(
-                                          _model.uploadedLocalFile1,
+                                          _model.uploadDataY3x!.first,
                                           'cards',
                                         );
                                         _model.tmpCardImagePath =
