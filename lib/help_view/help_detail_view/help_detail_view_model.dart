@@ -19,8 +19,6 @@ class HelpDetailViewModel extends FlutterFlowModel<HelpDetailViewWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
-  String? update;
-  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? remark;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? update2;

@@ -107,7 +107,7 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22.0,
+                                  fontSize: 24.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -133,7 +133,7 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 22.0,
+                                    fontSize: 24.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -251,7 +251,7 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  fontSize: 18.0,
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -288,49 +288,23 @@ class _HelpDetailViewWidgetState extends State<HelpDetailViewWidget> {
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
-                                          child: CustomConfirmViewWidget(
-                                            title:
-                                                'ยืนยัน \"ไม่สามารถดำเนินการได้\"',
-                                          ),
+                                          child: RemarkEditViewWidget(),
                                         ),
                                       );
                                     },
                                   ).then((value) => safeSetState(
-                                      () => _model.update = value));
+                                      () => _model.remark = value));
 
-                                  if ((_model.update != null &&
-                                          _model.update != '') &&
-                                      (_model.update == 'update')) {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: RemarkEditViewWidget(),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => safeSetState(
-                                        () => _model.remark = value));
-
-                                    if (_model.remark != null &&
-                                        _model.remark != '') {
-                                      await widget!.helpDocument!.reference
-                                          .update(createHelpListRecordData(
-                                        updateDate: getCurrentTimestamp,
-                                        updateBy: currentUserReference,
-                                        status: 3,
-                                        remark: _model.remark,
-                                      ));
-                                      Navigator.pop(context);
-                                    }
+                                  if (_model.remark != null &&
+                                      _model.remark != '') {
+                                    await widget!.helpDocument!.reference
+                                        .update(createHelpListRecordData(
+                                      updateDate: getCurrentTimestamp,
+                                      updateBy: currentUserReference,
+                                      status: 3,
+                                      remark: _model.remark,
+                                    ));
+                                    Navigator.pop(context);
                                   }
 
                                   setState(() {});
