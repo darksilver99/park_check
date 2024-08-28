@@ -82,6 +82,22 @@ class _RemarkEditViewWidgetState extends State<RemarkEditViewWidget> {
                             ),
                           ),
                         ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'ระบุเหตุผล',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 22.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
@@ -91,7 +107,6 @@ class _RemarkEditViewWidgetState extends State<RemarkEditViewWidget> {
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'หมายเหตุ',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -99,6 +114,7 @@ class _RemarkEditViewWidgetState extends State<RemarkEditViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
+                              hintText: 'ระบุเหตุผลที่ไม่สามารถดำเนินการได้',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
