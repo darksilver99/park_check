@@ -115,7 +115,7 @@ class _CustomCameraPageState extends State<CustomCameraPage> {
           },
         ),
         title: Text(
-          'ถ่ายรูปพนักงาน',
+          'ถ่ายรูป',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Kanit',
                 color: Colors.white,
