@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:park_check/solo/CustomCameraPage.dart';
+import 'package:park_check/custom_toon/CustomCameraPage.dart';
 import 'package:park_check/flutter_flow/upload_data.dart';
 
 Future<List<FFUploadedFile>?> customCamera(BuildContext context) async {
