@@ -23,13 +23,14 @@ Future listenHelpList(dynamic audioHelper) async {
       .snapshots()
       .listen((data) {
     print(data.size);
+    if (data.size > FFAppState().totalHelp) {
+      actions.playAlertSound(audioHelper);
+    }
     FFAppState().totalHelp = data.size;
     if (data.size > 0) {
       FFAppState().isHasHelp = true;
-      actions.playAlertSound(audioHelper);
     } else {
       FFAppState().isHasHelp = false;
-      actions.stopAlertSound(audioHelper);
     }
     FFAppState().update(() {});
   });
