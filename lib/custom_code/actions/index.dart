@@ -14,3 +14,4 @@ export 'add_water_mark.dart' show addWaterMark;
 export 'get_firebase_token.dart' show getFirebaseToken;
 export 'listen_help_list.dart' show listenHelpList;
 export 'play_alert_sound.dart' show playAlertSound;
+export 'custom_camera.dart' show customCamera;
