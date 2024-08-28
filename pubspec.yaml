@@ -131,6 +131,7 @@ dependencies:
   package_info_plus: ^3.0.3
   firebase_messaging: ^14.9.2
   flutter_local_notifications: ^17.2.1+1
+  camera: ^0.10.5+7
 
   #esc_pos_printer: ^4.1.0
   #flutter_bluetooth_serial: ^0.4.0
