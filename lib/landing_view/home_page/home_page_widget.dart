@@ -238,14 +238,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
         loop: true,
+        reverse: true,
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
-            duration: 1200.0.ms,
+            duration: 500.0.ms,
             begin: Offset(-5.0, -5.0),
-            end: Offset(1.0, 1.0),
+            end: Offset(1.2, 1.2),
           ),
         ],
       ),

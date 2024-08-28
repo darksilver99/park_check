@@ -25,11 +25,10 @@ Future listenHelpList(dynamic audioHelper) async {
     print(data.size);
     if (data.size > FFAppState().totalHelp) {
       actions.playAlertSound(audioHelper);
+      FFAppState().isHasHelp = true;
     }
     FFAppState().totalHelp = data.size;
-    if (data.size > 0) {
-      FFAppState().isHasHelp = true;
-    } else {
+    if (data.size == 0) {
       FFAppState().isHasHelp = false;
     }
     FFAppState().update(() {});
