@@ -12,7 +12,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -56,15 +55,13 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   // Model for MainBackgroundView component.
   late MainBackgroundViewModel mainBackgroundViewModel;
   // Stores action output result for [Custom Action - customCamera] action in Button widget.
-  List<FFUploadedFile>? uploadDataY3x;
+  List<FFUploadedFile>? uploadData1;
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
   String? base64Result2;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
   ApiCallResponse? apiReuslt2;
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
+  // Stores action output result for [Custom Action - customCamera] action in Button widget.
+  List<FFUploadedFile>? uploadData2;
   // Stores action output result for [Custom Action - getBase64] action in Button widget.
   String? base64Result;
   // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
@@ -154,10 +151,8 @@ class TransactionInPageModel extends FlutterFlowModel<TransactionInPageWidget> {
   FocusNode? moreDetailFocusNode;
   TextEditingController? moreDetailTextController;
   String? Function(BuildContext, String?)? moreDetailTextControllerValidator;
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
+  // Stores action output result for [Custom Action - customCamera] action in Button widget.
+  List<FFUploadedFile>? uploadData3;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   String? moreImagePath;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
