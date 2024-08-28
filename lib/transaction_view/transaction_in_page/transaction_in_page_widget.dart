@@ -159,11 +159,10 @@ class _TransactionInPageWidgetState extends State<TransactionInPageWidget> {
                                                   await actions.customCamera(
                                                 context,
                                               );
-                                              if ((_model.uploadDataY3x !=
-                                                          null &&
-                                                      (_model.uploadDataY3x)!
-                                                          .isNotEmpty) !=
-                                                  null) {
+                                              if (_model.uploadDataY3x !=
+                                                      null &&
+                                                  (_model.uploadDataY3x)!
+                                                      .isNotEmpty) {
                                                 _model.base64Result2 =
                                                     await actions.getBase64(
                                                   _model.uploadDataY3x!.first,
