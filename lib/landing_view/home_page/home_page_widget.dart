@@ -120,17 +120,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
             setState(() {});
             if (functions.getStartDayTime(getCurrentTimestamp) !=
                 functions.getStartDayTime(FFAppState().currentDate!)) {
-              _model.token = await actions.getFirebaseToken();
-              if (!(currentUserDocument?.firebaseToken?.toList() ?? [])
-                  .contains(_model.token)) {
-                await currentUserReference!.update({
-                  ...mapToFirestore(
-                    {
-                      'firebase_token': FieldValue.arrayUnion([_model.token]),
-                    },
-                  ),
-                });
-              }
               FFAppState().currentDate =
                   functions.getStartDayTime(getCurrentTimestamp);
               FFAppState().isSkipOCRAlert = false;
@@ -165,6 +154,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
               await actions.listenHelpList(
                 null!,
               );
+              _model.token = await actions.getFirebaseToken();
+              if (!(currentUserDocument?.firebaseToken?.toList() ?? [])
+                  .contains(_model.token)) {
+                await currentUserReference!.update({
+                  ...mapToFirestore(
+                    {
+                      'firebase_token': FieldValue.arrayUnion([_model.token]),
+                    },
+                  ),
+                });
+              }
             }
           } else {
             await showDialog(
